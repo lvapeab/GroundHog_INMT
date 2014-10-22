@@ -127,7 +127,7 @@ def prototype_state():
     state['bleu_script'] = None
     # Location of the validation set
     state['validation_set'] = None
-    # boolean, whether or not to write the validation set to file    
+    # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
@@ -138,8 +138,10 @@ def prototype_state():
     state['beam_size'] = None
     # Number of steps between every validation
     state['bleu_val_frequency'] = None
-    # Character or word based BLEU calculation 
+    # Character or word based BLEU calculation
     state['char_based_bleu'] = False
+    # boolean, whether or not words are segmented into suffixes
+    state['segmented_words'] = False
 
     # ---- REGULARIZATION -----
 

@@ -75,8 +75,8 @@ class RandomSamplePrinter(object):
 class BleuValidator(object):
     """
     Object that evaluates the bleu score on the validation set.
-    Opens the subprocess to run the validation script, and 
-    keeps track of the bleu scores over time  
+    Opens the subprocess to run the validation script, and
+    keeps track of the bleu scores over time
     """
     def __init__(self, state, lm_model,
                 beam_search, ignore_unk=False,
@@ -88,7 +88,7 @@ class BleuValidator(object):
         :param state:
             a state in the usual groundhog sense
         :param lm_model:
-            a groundhog language model 
+            a groundhog language model
         :param beam_search:
             beamsearch object used for sampling
         :param ignore_unk
@@ -97,10 +97,10 @@ class BleuValidator(object):
             whether or not to normalize the score by the length
             of the sentence
         :param verbose
-            whether or not to also write the ranslation to the file 
+            whether or not to also write the ranslation to the file
             specified by validation_set_out
 
-        """ 
+        """
 
         args = dict(locals())
         args.pop('self')
@@ -112,7 +112,7 @@ class BleuValidator(object):
         self.best_bleu = 0
 
         self.val_bleu_curve = []
-        if state['reload']: 
+        if state['reload']:
             try:
                 bleu_score = numpy.load(state['prefix'] + 'val_bleu_scores.npz')
                 self.val_bleu_curve = bleu_score['bleu_scores'].tolist()
@@ -121,32 +121,32 @@ class BleuValidator(object):
                 print "BleuScores not Found"
 
         if state['char_based_bleu']:
-            self.multibleu_cmd = ['perl', state['bleu_script'], '-char', state['validation_set_grndtruth'], '<'] 
+            self.multibleu_cmd = ['perl', state['bleu_script'], '-char', state['validation_set_grndtruth'], '<']
         else:
-            self.multibleu_cmd = ['perl', state['bleu_script'], state['validation_set_grndtruth'], '<'] 
+            self.multibleu_cmd = ['perl', state['bleu_script'], state['validation_set_grndtruth'], '<']
 
         if verbose:
             if 'validation_set_out' not in state.keys():
                 self.state['validation_set_out'] = state['prefix'] + 'validation_out.txt'
 
-    def __call__(self): 
+    def __call__(self):
         """
-        Opens the file for the validation set and creates a subprocess 
-        for the multi-bleu script. 
+        Opens the file for the validation set and creates a subprocess
+        for the multi-bleu script.
 
         Returns a boolean indicating whether the current model should
-        be saved. 
-        """ 
+        be saved.
+        """
 
         print "Started Validation: "
         val_start_time = time.time()
         fsrc = open(self.state['validation_set'], 'r')
-        mb_subprocess = Popen(self.multibleu_cmd, stdin=PIPE, stdout=PIPE) 
+        mb_subprocess = Popen(self.multibleu_cmd, stdin=PIPE, stdout=PIPE)
         total_cost = 0.0
 
         if self.verbose:
             ftrans = open(self.state['validation_set_out'], 'w')
-        
+
         for i, line in enumerate(fsrc):
             """
             Load the sentence, retrieve the sample, write to file
@@ -164,20 +164,25 @@ class BleuValidator(object):
                 best = numpy.argmin(costs)
                 total_cost += costs[best]
                 trans_out = trans[best]
-            except ValueError:  
+            except ValueError:
                 print "Could not fine a translation for line: {}".format(i+1)
                 trans_out = u'UNK' if self.state['target_encoding'] == 'utf8' else 'UNK'
-            
+
             # Write to subprocess and file if it exists
-            if self.state['target_encoding'] == 'utf8':
+            if self.state['target_encoding'] == 'utf8' and
+                self.state['char_based_bleu']:
                 print >> mb_subprocess.stdin, trans_out.encode('utf8').replace(" ","")
                 if self.verbose:
                     print  >> ftrans, trans_out.encode('utf8').replace(" ","")
+            elif self.state['segmented_words']:
+                print >> mb_subprocess.stdin, self.append_suffixes(trans_out.encode('utf8'))
+                if self.verbose:
+                    print >> ftrans, self.append_suffixes(trans_out.encode('utf8'))
             else:
                 print >> mb_subprocess.stdin, trans_out
                 if self.verbose:
                     print >> ftrans, trans_out
-         
+
             if i != 0 and i % 50 == 0:
                 print "Translated {} lines of validation set...".format(i)
             mb_subprocess.stdin.flush()
@@ -187,16 +192,16 @@ class BleuValidator(object):
         if self.verbose:
             ftrans.close()
 
-        # send end of file, read output.        
+        # send end of file, read output.
         mb_subprocess.stdin.close()
         out_parse = re.match(r'BLEU = [-.0-9]+', mb_subprocess.stdout.readline())
-        print "Validation Took: {} minutes".format(float(time.time() - val_start_time)/60.) 
+        print "Validation Took: {} minutes".format(float(time.time() - val_start_time)/60.)
         assert out_parse is not None
 
         # extract the score
         bleu_score = float(out_parse.group()[6:])
-        self.val_bleu_curve.append(bleu_score)                
-        print bleu_score     
+        self.val_bleu_curve.append(bleu_score)
+        print bleu_score
         mb_subprocess.terminate()
 
         # Determine whether or not we should save
@@ -204,6 +209,27 @@ class BleuValidator(object):
             self.best_bleu = bleu_score
             return True
         return False
+
+    def append_suffixes(self,trans):
+        '''
+        Suffix merger for segmented words, looks for suffixes in <tag:_sfx_>
+        pattern and appends _sfx_ to its corresponding stem
+
+        :param trans:
+            sentence to be merged, string
+
+        '''
+        out = []
+        for word in trans.split():
+            if word.startswith('<') and word.endswith('>'):
+                sfx = re.search(r':(.*)\>',word)
+                if sfx is not None:
+                    outline.append(my.group(1))
+            else: # it is a stem
+                if out is not None:
+                    out.append(' ')
+                out.append(word)
+        return ''.join(out)
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -218,7 +244,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    # this loads the state specified in the prototype 
+    # this loads the state specified in the prototype
     state = getattr(experiments.nmt, args.proto)()
     # this is based on the suggestion in the README.md in this foloder
     if args.state:
@@ -238,15 +264,15 @@ def main():
     enc_dec.build()
     lm_model = enc_dec.create_lm_model()
 
-    # If we are going to use validation with the bleu script, we 
-    # will need early stopping 
+    # If we are going to use validation with the bleu script, we
+    # will need early stopping
     bleu_validator = None
     if state['bleu_script'] is not None and state['validation_set'] is not None\
         and state['validation_set_grndtruth'] is not None:
-        # make beam search       
+        # make beam search
         beam_search = BeamSearch(enc_dec)
         beam_search.compile()
-        bleu_validator = BleuValidator(state, lm_model, beam_search, verbose=state['output_validation_set']) 
+        bleu_validator = BleuValidator(state, lm_model, beam_search, verbose=state['output_validation_set'])
 
     logger.debug("Load data")
     train_data = get_batch_iterator(state)
@@ -254,10 +280,10 @@ def main():
 
     algo = eval(state['algo'])(lm_model, state, train_data)
     logger.debug("Run training")
-    
+
     main = MainLoop(train_data, None, None, lm_model, algo, state, None,
             reset=state['reset'],
-            bleu_val_fn = bleu_validator, 
+            bleu_val_fn = bleu_validator,
             hooks=[RandomSamplePrinter(state, lm_model, train_data)]
                 if state['hookFreq'] >= 0 and state['validation_set'] is not None
                 else None)

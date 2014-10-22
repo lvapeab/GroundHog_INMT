@@ -52,7 +52,9 @@ parser.add_argument("-c", "--count", action="store_true",
                     help="save the word counts")
 parser.add_argument("-t", "--char", action="store_true",
                     help="character-level processing")
-
+parser.add_argument("-a", "--auxiliary-text", default=None,
+                    help="auxiliary file to be binarized according to the "
+                         "original dictionary generated from input file")
 
 def open_files():
     base_filenames = []
@@ -246,6 +248,36 @@ def binarize():
     elif args.ngram:
         safe_hdf(ngrams, 'combined')
 
+def binarize_aux():
+    if args.ngram:
+        assert numpy.iinfo(numpy.uint16).max > len(vocab)
+        ngrams = numpy.empty((sum(combined_counter.values()) +
+                              sum(sentence_counts), args.ngram),
+                             dtype='uint16')
+    total_ngram_count = 0
+    base_filename = os.path.basename(args.auxiliary_text)
+    logger.info("Binarizing %s." % (base_filename))    
+    binarized_corpus = []
+    unk_count = 0
+    fin  = open(args.auxiliary_text,'r')
+    
+    # read line
+    while 1:
+
+        sentence = fin.readline()
+        if not sentence:
+            break
+    
+        words = sentence.strip().split(' ')
+        binarized_sentence = [vocab.get(word, 1) for word in words]
+        binarized_corpus.append(binarized_sentence)
+        unk_count += binarized_sentence.count(1)
+        
+    fin.close()
+    # endfor sentence in input_file
+    logger.info("#Unknown words in auxilary-file %d." % (unk_count))
+    # Output
+    safe_pickle(binarized_corpus, base_filename + '.pkl')
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
@@ -255,3 +287,6 @@ if __name__ == "__main__":
     combined_counter, sentence_counts, counters, vocab = create_dictionary()
     if args.ngram or args.pickle:
         binarize()
+
+    if args.auxiliary_text:
+        binarize_aux()

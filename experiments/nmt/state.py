@@ -124,37 +124,43 @@ def prototype_state():
     # ----- BLEU VALIDATION OPTIONS ----
 
     # Location of the evaluation script
-    state['bleu_script'] = None
+    state['bleu_script']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set'] = None
+    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth'] = None
+    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
     # Beam size during sampling
-    state['beam_size'] = None
+    state['beam_size'] = 10
     # Number of steps between every validation
-    state['bleu_val_frequency'] = None
+    state['bleu_val_frequency'] = 10
     # Character or word based BLEU calculation
     state['char_based_bleu'] = False
     # boolean, whether or not words are segmented into suffixes
-    state['segmented_words'] = False
+    state['segmented_words'] = True
+    # source encoding
+    state['source_encoding'] = 'ascii'
+    # target encoding
+    state['target_encoding'] = 'ascii'
+    # start after this many iterations
+    state['validation_burn_in'] = 1000
 
     # ---- REGULARIZATION -----
 
     # WARNING: dropout is not tested and probably does not work.
     # Dropout in output layer
-    state['dropout'] = 1.
+    state['dropout'] = 0.5
     # Dropout in recurrent layers
     state['dropout_rec'] = 1.
 
     # WARNING: weight noise regularization is not tested
     # and most probably does not work.
     # Random weight noise regularization settings
-    state['weight_noise'] = False
+    state['weight_noise'] = True
     state['weight_noise_rec'] = False
     state['weight_noise_amount'] = 0.01
 
@@ -209,7 +215,7 @@ def prototype_state():
     state['overwrite'] = 1
 
     # Number of batches to process
-    state['loopIters'] = 3000000
+    state['loopIters'] = 3000
     # Maximum number of minutes to run
     state['timeStop'] = 24*60*31
     # Error level to stop at
@@ -262,23 +268,24 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    state['target'] = ["/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/binarized_text.shuffled.fr.h5"]
-    state['source'] = ["/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/binarized_text.shuffled.en.h5"]
-    state['indx_word'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/ivocab.en.pkl"
-    state['indx_word_target'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/ivocab.fr.pkl"
-    state['word_indx'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/vocab.en.pkl"
-    state['word_indx_trgt'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/vocab.fr.pkl"
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/trainSet/'
+    state['target'] = [baseDir + 'binarized_text.tr.shuf.h5']
+    state['source'] = [baseDir + 'binarized_text.en.shuf.h5']
+    state['indx_word'] = baseDir + 'ivocab.en.pkl'
+    state['indx_word_target'] = baseDir + 'ivocab.tr.pkl'
+    state['word_indx'] = baseDir + 'vocab.en.pkl'
+    state['word_indx_trgt'] = baseDir + 'vocab.tr.pkl'
 
-    state['null_sym_source'] = 30000
-    state['null_sym_target'] = 30000
+    state['null_sym_source'] = 3000
+    state['null_sym_target'] = 3000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
     state['bs']  = 80
 
-    state['dim'] = 1000
-    state['rank_n_approx'] = 620
+    state['dim'] = 100
+    state['rank_n_approx'] = 50
 
     state['prefix'] = 'encdec_'
 
@@ -297,7 +304,7 @@ def prototype_search_state():
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'search_'
+    state['prefix'] = 'searchTest_'
 
     return state
 

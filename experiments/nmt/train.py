@@ -7,15 +7,16 @@ import pprint
 import re
 import numpy
 import time
+import experiments
 
 from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
 from groundhog.trainer.SGD import SGD as SGD
 from groundhog.trainer.SGD_momentum import SGD as SGD_momentum
 from groundhog.mainLoop import MainLoop
 from experiments.nmt import\
-        RNNEncoderDecoder, prototype_state, get_batch_iterator, sample,\
-        BeamSearch, parse_input
-import experiments.nmt
+        RNNEncoderDecoder, prototype_state, get_batch_iterator,\
+        sample, parse_input
+from experiments.nmt.sample import BeamSearch
 
 from subprocess import Popen, PIPE
 
@@ -158,7 +159,7 @@ class BleuValidator(object):
             seq, parsed_in = parse_input(self.state, self.indx_word, seqin, idx2word=self.idict_src)
 
             # draw sample, checking to ensure we don't get an empty string back
-            trans, costs, _ = sample(self.lm_model, seq, self.n_samples,
+            trans, costs, _ = sample.sample(self.lm_model, seq, self.n_samples,
                     beam_search=self.beam_search, ignore_unk=self.ignore_unk, normalize=self.normalize)
             try:
                 best = numpy.argmin(costs)
@@ -169,7 +170,7 @@ class BleuValidator(object):
                 trans_out = u'UNK' if self.state['target_encoding'] == 'utf8' else 'UNK'
 
             # Write to subprocess and file if it exists
-            if self.state['target_encoding'] == 'utf8' and
+            if self.state['target_encoding'] == 'utf8' and \
                 self.state['char_based_bleu']:
                 print >> mb_subprocess.stdin, trans_out.encode('utf8').replace(" ","")
                 if self.verbose:

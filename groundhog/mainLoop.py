@@ -82,7 +82,7 @@ class MainLoop(object):
 
         :type bleu_val_fn: function
         :param bleu_val_fn: list of functions that are called every `bleu_val_frequency`
-            which generates translations for validation, and calls the evaluation script 
+            which generates translations for validation, and calls the evaluation script
 
         :type reset: int
         :param reset: if larger than 0, the train_data iterator position is
@@ -343,12 +343,13 @@ class MainLoop(object):
                    self.step % self.state['hookFreq'] == 0 and \
                    self.hooks:
                     [fn() for fn in self.hooks]
-                
+
                 if self.state['bleu_val_frequency'] is not None and \
                     self.step % self.state['bleu_val_frequency'] == 0 \
-                    and self.bleu_val_fn is not None and self.step > 0:
+                    and self.bleu_val_fn is not None and \
+                    self.step > self.state['validation_burn_in']:
                     if self.bleu_val_fn():
-                        self.model.save(self.state['prefix']+'best_bleu_'+'model.npz')                    
+                        self.model.save(self.state['prefix']+'best_bleu_'+'model.npz')
                     numpy.savez(self.state['prefix'] + 'val_bleu_scores.npz', bleu_scores=self.bleu_val_fn.val_bleu_curve)
 
                 if self.reset > 0 and self.step > 1 and \

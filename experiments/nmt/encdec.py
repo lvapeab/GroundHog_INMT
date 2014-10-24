@@ -287,7 +287,7 @@ class RecurrentLayerWithSearch(Layer):
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
         self.params_grad_scale = [self.grad_scale for x in self.params]
-       
+
     def set_decoding_layers(self, c_inputer, c_reseter, c_updater):
         self.c_inputer = c_inputer
         self.c_reseter = c_reseter
@@ -461,10 +461,10 @@ class RecurrentLayerWithSearch(Layer):
 
         p_from_c =  utils.dot(c, self.A_cp).reshape(
                 (c.shape[0], c.shape[1], self.n_hids))
-        
+
         if mask:
             sequences = [state_below, mask, updater_below, reseter_below]
-            non_sequences = [c, c_mask, p_from_c] 
+            non_sequences = [c, c_mask, p_from_c]
             #              seqs    | out |  non_seqs
             fn = lambda x, m, g, r,   h,   c1, cm, pc : self.step_fprop(x, h, mask=m,
                     gater_below=g, reseter_below=r,
@@ -1100,7 +1100,7 @@ class Decoder(EncoderDecoderBase):
             if self.state['search']:
                 if self.compute_alignment:
                     #This implicitly wraps each element of result.out with a Layer to keep track of the parameters.
-                    #It is equivalent to h=result[0], ctx=result[1] etc. 
+                    #It is equivalent to h=result[0], ctx=result[1] etc.
                     h, ctx, alignment = result
                     if mode == Decoder.EVALUATION:
                         alignment = alignment.out
@@ -1460,7 +1460,7 @@ class RNNEncoderDecoder(object):
                     inputs=[self.c, self.step_num, self.gen_y] + self.current_states,
                     outputs=[self.decoder.build_next_probs_predictor(
                         self.c, self.step_num, self.gen_y, self.current_states)],
-                    name="next_probs_fn")
+                    name="next_probs_fn",on_unused_input='warn')
         return self.next_probs_fn
 
     def create_next_states_computer(self):
@@ -1469,7 +1469,7 @@ class RNNEncoderDecoder(object):
                     inputs=[self.c, self.step_num, self.gen_y] + self.current_states,
                     outputs=self.decoder.build_next_states_computer(
                         self.c, self.step_num, self.gen_y, self.current_states),
-                    name="next_states_fn")
+                    name="next_states_fn",on_unused_input='warn')
         return self.next_states_fn
 
 

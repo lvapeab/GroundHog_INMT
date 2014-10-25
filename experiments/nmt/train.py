@@ -176,9 +176,11 @@ class BleuValidator(object):
                 if self.verbose:
                     print  >> ftrans, trans_out.encode('utf8').replace(" ","")
             elif self.state['segmented_words']:
-                print >> mb_subprocess.stdin, self.append_suffixes(trans_out.encode('utf8'))
+                print >> mb_subprocess.stdin, \
+                self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
                 if self.verbose:
-                    print >> ftrans, self.append_suffixes(trans_out.encode('utf8'))
+                    print >> ftrans, \
+                            self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
             else:
                 print >> mb_subprocess.stdin, trans_out
                 if self.verbose:
@@ -225,7 +227,7 @@ class BleuValidator(object):
             if word.startswith('<') and word.endswith('>'):
                 sfx = re.search(r':(.*)\>',word)
                 if sfx is not None:
-                    outline.append(my.group(1))
+                    out.append(sfx.group(1))
             else: # it is a stem
                 if out is not None:
                     out.append(' ')

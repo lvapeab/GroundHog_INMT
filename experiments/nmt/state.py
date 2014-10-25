@@ -147,7 +147,7 @@ def prototype_state():
     # target encoding
     state['target_encoding'] = 'ascii'
     # start after this many iterations
-    state['validation_burn_in'] = 1000
+    state['validation_burn_in'] = 100
 
     # ---- REGULARIZATION -----
 

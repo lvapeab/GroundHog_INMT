@@ -124,16 +124,16 @@ def prototype_state():
     # ----- BLEU VALIDATION OPTIONS ----
 
     # Location of the evaluation script
-    state['bleu_script']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
+    state['bleu_script']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
+    state['validation_set']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
+    state['validation_set_grndtruth']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
     # Beam size during sampling
     state['beam_size'] = 10
     # Number of steps between every validation
@@ -215,7 +215,7 @@ def prototype_state():
     state['overwrite'] = 1
 
     # Number of batches to process
-    state['loopIters'] = 3000
+    state['loopIters'] = 3000000
     # Maximum number of minutes to run
     state['timeStop'] = 24*60*31
     # Error level to stop at
@@ -268,7 +268,7 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/trainSet/'
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/trainSet/'
     state['target'] = [baseDir + 'binarized_text.tr.shuf.h5']
     state['source'] = [baseDir + 'binarized_text.en.shuf.h5']
     state['indx_word'] = baseDir + 'ivocab.en.pkl'
@@ -276,16 +276,16 @@ def prototype_encdec_state():
     state['word_indx'] = baseDir + 'vocab.en.pkl'
     state['word_indx_trgt'] = baseDir + 'vocab.tr.pkl'
 
-    state['null_sym_source'] = 3000
-    state['null_sym_target'] = 3000
+    state['null_sym_source'] = 30000
+    state['null_sym_target'] = 30000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
     state['bs']  = 80
 
-    state['dim'] = 100
-    state['rank_n_approx'] = 50
+    state['dim'] = 1500
+    state['rank_n_approx'] = 420
 
     state['prefix'] = 'encdec_'
 
@@ -304,7 +304,7 @@ def prototype_search_state():
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'searchTest_'
+    state['prefix'] = 'searchTransfer1_'
 
     return state
 

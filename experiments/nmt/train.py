@@ -177,7 +177,7 @@ class BleuValidator(object):
                     print  >> ftrans, trans_out.encode('utf8').replace(" ","")
             elif self.state['segmented_words']:
                 print >> mb_subprocess.stdin, \
-                self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
+                        self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
                 if self.verbose:
                     print >> ftrans, \
                             self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
@@ -229,7 +229,7 @@ class BleuValidator(object):
                 if sfx is not None:
                     out.append(sfx.group(1))
             else: # it is a stem
-                if out is not None:
+                if not out:
                     out.append(' ')
                 out.append(word)
         return ''.join(out)

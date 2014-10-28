@@ -213,7 +213,7 @@ class MultiLayer(Layer):
         self.b_ems = [self.b_em]
 
         for dx in xrange(1, self.n_layers):
-            W_em = self.init_fn[dx](self.n_hids[dx-1] / self.pieces[dx],
+            W_em = self.init_fn[dx](self.n_hids[dx-1],# / self.pieces[dx],
                                 self.n_hids[dx],
                                 self.sparsity[dx],
                                 self.scale[dx],

@@ -268,7 +268,7 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/trainSet/'
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/trainSet/'
     state['target'] = [baseDir + 'binarized_text.tr.shuf.h5']
     state['source'] = [baseDir + 'binarized_text.en.shuf.h5']
     state['indx_word'] = baseDir + 'ivocab.en.pkl'
@@ -276,16 +276,16 @@ def prototype_encdec_state():
     state['word_indx'] = baseDir + 'vocab.en.pkl'
     state['word_indx_trgt'] = baseDir + 'vocab.tr.pkl'
 
-    state['null_sym_source'] = 30000
-    state['null_sym_target'] = 30000
+    state['null_sym_source'] = 300
+    state['null_sym_target'] = 300
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
     state['bs']  = 80
 
-    state['dim'] = 1500
-    state['rank_n_approx'] = 420
+    state['dim'] = 100
+    state['rank_n_approx'] = 40
 
     state['prefix'] = 'encdec_'
 
@@ -297,7 +297,8 @@ def prototype_search_state():
 
     state = prototype_encdec_state()
 
-    state['dec_rec_layer'] = 'RecurrentLayerWithDeepSearch'
+    state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
+    state['deep_attention']={'n_hids':[400,400], 'activations':['lambda x: TT.tanh(x)', 'lambda x: TT.tanh(x)']}
     state['search'] = True
     state['last_forward'] = False
     state['forward'] = True

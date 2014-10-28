@@ -202,6 +202,7 @@ class RecurrentLayerWithSearch(Layer):
                  gater_activation=TT.nnet.sigmoid,
                  reseter_activation=TT.nnet.sigmoid,
                  weight_noise=False,
+                 deep_attention=None,
                  name=None):
         logger.debug("RecurrentLayerWithSearch is used")
 
@@ -232,7 +233,8 @@ class RecurrentLayerWithSearch(Layer):
         self.updater_activation = updater_activation
         self.reseter_activation = reseter_activation
         self.c_dim = c_dim
-
+        self.deep_attention = deep_attention
+        
         assert rng is not None, "random number generator should not be empty!"
 
         super(RecurrentLayerWithSearch, self).__init__(self.n_hids,
@@ -286,7 +288,16 @@ class RecurrentLayerWithSearch(Layer):
                 numpy.zeros((self.n_hids, 1), dtype="float32"),
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
+        
+        self.DatN = MultiLayer(rng=self.rng, 
+                               n_in=3*self.n_hid, # birnn enc-hids + dec-hid  
+                               n_hids=self.deep_attention['n_hids'], 
+                               activation=self.deep_attention['activations'],
+                               name="DatN_%s"%self.name)
+        
         self.params_grad_scale = [self.grad_scale for x in self.params]
+        
+
 
     def set_decoding_layers(self, c_inputer, c_reseter, c_updater):
         self.c_inputer = c_inputer
@@ -346,7 +357,8 @@ class RecurrentLayerWithSearch(Layer):
         A_cp = self.A_cp
         B_hp = self.B_hp
         D_pe = self.D_pe
-
+        DatN = self.DatN
+        
         # The code works only with 3D tensors
         cndim = c.ndim
         if cndim == 2:
@@ -371,8 +383,10 @@ class RecurrentLayerWithSearch(Layer):
         # Sum projections - broadcasting happens at the dimension 1.
         p = p_from_h + p_from_c
 
+        pp = p if not self.deep_attention else self.DatN.fprop(p)
+
         # Apply non-linearity and project to energy.
-        energy = TT.exp(utils.dot(TT.tanh(p), D_pe)).reshape((source_len, target_num))
+        energy = TT.exp(utils.dot(TT.tanh(pp), D_pe)).reshape((source_len, target_num))
         if c_mask:
             # This is used for batches only, that is target_num == source_num
             energy *= c_mask
@@ -636,7 +650,7 @@ class EncoderDecoderBase(object):
         rec_layer = eval(prefix_lookup(self.state, self.prefix, 'rec_layer'))
         add_args = dict()
         if rec_layer == RecurrentLayerWithSearch:
-            add_args = dict(c_dim=self.state['c_dim'])
+            add_args = dict(c_dim=self.state['c_dim'],deep_attention=self.state['deep_attention'])
         for level in range(self.num_levels):
             self.transitions.append(rec_layer(
                     self.rng,

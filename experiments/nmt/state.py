@@ -68,6 +68,9 @@ def prototype_state():
 
     state['eps'] = 1e-10
 
+    # Deep MLP parameters for deep attention mechanism
+    state['deep_attention'] = None
+
     # ----- MODEL COMPONENTS -----
 
     # Low-rank approximation activation function

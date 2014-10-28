@@ -26,7 +26,7 @@ from groundhog.models import LM_Model
 from groundhog.datasets import PytablesBitextIterator
 from groundhog.utils import sample_zeros, sample_weights_orth, init_bias, sample_weights_classic
 import groundhog.utils as utils
-
+import pdb
 logger = logging.getLogger(__name__)
 
 def create_padded_batch(state, x, y, return_dict=False):
@@ -234,7 +234,7 @@ class RecurrentLayerWithSearch(Layer):
         self.reseter_activation = reseter_activation
         self.c_dim = c_dim
         self.deep_attention = deep_attention
-        
+
         assert rng is not None, "random number generator should not be empty!"
 
         super(RecurrentLayerWithSearch, self).__init__(self.n_hids,
@@ -288,15 +288,41 @@ class RecurrentLayerWithSearch(Layer):
                 numpy.zeros((self.n_hids, 1), dtype="float32"),
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
-        
-        self.DatN = MultiLayer(rng=self.rng, 
-                               n_in=3*self.n_hid, # birnn enc-hids + dec-hid  
-                               n_hids=self.deep_attention['n_hids'], 
-                               activation=self.deep_attention['activations'],
-                               name="DatN_%s"%self.name)
-        
+        self.M_w1 = theano.shared(
+                sample_weights_classic(self.n_hids,
+                    self.n_hids,
+                    -1,
+                    10 ** (-3),
+                    rng=self.rng),
+                name="M_w1_%s"%self.name)
+        self.params.append(self.M_w1)
+        self.M_w2 = theano.shared(
+                sample_weights_classic(self.n_hids,
+                    self.n_hids,
+                    -1,
+                    10 ** (-3),
+                    rng=self.rng),
+                name="M_w2_%s"%self.name)
+        self.params.append(self.M_w2)
+        self.M_b1 = theano.shared(
+                numpy.zeros((self.n_hids,), dtype="float32"),
+                name="M_b1_%s"%self.name)
+        self.params.append(self.M_b1)
+        '''
+        self.M_b2 = theano.shared(
+                numpy.zeros((self.n_hids, 1), dtype="float32"),
+                name="M_b2_%s"%self.name)
+        self.params.append(self.M_b2)
+        '''
+        #pdb.set_trace()
+        #self.DatN = MultiLayer(rng=self.rng,
+        #                       n_in=3*self.n_hid, # birnn enc-hids + dec-hid
+        #                       n_hids=self.deep_attention['n_hids'],
+        #                       activation=self.deep_attention['activations'],
+        #                       name="DatN_%s"%self.name)
+
         self.params_grad_scale = [self.grad_scale for x in self.params]
-        
+
 
 
     def set_decoding_layers(self, c_inputer, c_reseter, c_updater):
@@ -357,8 +383,11 @@ class RecurrentLayerWithSearch(Layer):
         A_cp = self.A_cp
         B_hp = self.B_hp
         D_pe = self.D_pe
-        DatN = self.DatN
-        
+        M_w1 = self.M_w1
+        M_w2 = self.M_w2
+        M_b1 = self.M_b1
+        #M_b2 = self.M_b2
+
         # The code works only with 3D tensors
         cndim = c.ndim
         if cndim == 2:
@@ -378,12 +407,17 @@ class RecurrentLayerWithSearch(Layer):
 
         # Form projection to the tanh layer from the source annotation.
         if not p_from_c:
-            p_from_c =  utils.dot(c, A_cp).reshape((source_len, source_num, dim))
+            p_from_c = utils.dot(c, A_cp).reshape((source_len, source_num, dim))
 
         # Sum projections - broadcasting happens at the dimension 1.
-        p = p_from_h + p_from_c
+        joint_p = p_from_h + p_from_c
+        pdb.set_trace()
 
-        pp = p if not self.deep_attention else self.DatN.fprop(p)
+        #pp = p if not self.deep_attention else self.DatN.fprop(p)
+        pp1 = TT.tanh(utils.dot(joint_p, M_w1))
+        pp1 += M_b1
+        pp = TT.tanh(utils.dot(pp1, M_w2))
+        #pp = joint_p
 
         # Apply non-linearity and project to energy.
         energy = TT.exp(utils.dot(TT.tanh(pp), D_pe)).reshape((source_len, target_num))
@@ -394,7 +428,8 @@ class RecurrentLayerWithSearch(Layer):
         # Calculate energy sums.
         normalizer = energy.sum(axis=0)
 
-        # Get probabilities.
+        # Get probabilities.:w
+
         probs = energy / normalizer
 
         # Calculate weighted sums of source annotations.

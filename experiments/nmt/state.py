@@ -297,14 +297,14 @@ def prototype_search_state():
 
     state = prototype_encdec_state()
 
-    state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
+    state['dec_rec_layer'] = 'RecurrentLayerWithDeepSearch'
     state['search'] = True
     state['last_forward'] = False
     state['forward'] = True
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'searchTransfer1_'
+    state['prefix'] = 'deepSearchTest1_'
 
     return state
 

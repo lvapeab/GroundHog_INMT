@@ -301,7 +301,7 @@ def prototype_search_state():
     state = prototype_encdec_state()
 
     state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
-    state['deep_attention']={'n_hids':[400,400], 'activations':['lambda x: TT.tanh(x)', 'lambda x: TT.tanh(x)']}
+    state['deep_attention']=None#{'n_hids':[400,400], 'activations':['lambda x: TT.tanh(x)', 'lambda x: TT.tanh(x)']}
     state['search'] = True
     state['last_forward'] = False
     state['forward'] = True

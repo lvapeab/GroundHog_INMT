@@ -26,7 +26,7 @@ from groundhog.models import LM_Model
 from groundhog.datasets import PytablesBitextIterator
 from groundhog.utils import sample_zeros, sample_weights_orth, init_bias, sample_weights_classic
 import groundhog.utils as utils
-import pdb
+
 logger = logging.getLogger(__name__)
 
 def create_padded_batch(state, x, y, return_dict=False):
@@ -288,12 +288,13 @@ class RecurrentLayerWithSearch(Layer):
                 numpy.zeros((self.n_hids, 1), dtype="float32"),
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
-        self.DatN = MultiLayer(rng=self.rng,
-                               n_in=3*self.n_hid, # birnn enc-hids + dec-hid
-                               n_hids=self.deep_attention['n_hids'],
-                               activation=self.deep_attention['activations'],
-                               name="DatN_%s"%self.name)
-        [self.params.append(param) for param in self.DatN.params]
+        if self.state['deep_attention']:
+            self.DatN = MultiLayer(rng=self.rng,
+                                   n_in=3*self.n_hid, # birnn enc-hids + dec-hid
+                                   n_hids=self.deep_attention['n_hids'],
+                                   activation=self.deep_attention['activations'],
+                                   name="DatN_%s"%self.name)
+            [self.params.append(param) for param in self.DatN.params]
         self.params_grad_scale = [self.grad_scale for x in self.params]
 
 
@@ -356,10 +357,6 @@ class RecurrentLayerWithSearch(Layer):
         A_cp = self.A_cp
         B_hp = self.B_hp
         D_pe = self.D_pe
-        M_w1 = self.M_w1
-        M_w2 = self.M_w2
-        #M_b1 = self.M_b1
-        #M_b2 = self.M_b2
 
         # The code works only with 3D tensors
         cndim = c.ndim
@@ -384,13 +381,12 @@ class RecurrentLayerWithSearch(Layer):
 
         # Sum projections - broadcasting happens at the dimension 1.
         joint_p = p_from_h + p_from_c
-        pdb.set_trace()
 
-        #pp = p if not self.deep_attention else self.DatN.fprop(p)
-        pp1 = TT.tanh(utils.dot(joint_p, M_w1))
-        pp1 += M_b1
-        pp = TT.tanh(utils.dot(pp1, M_w2))
-        #pp = joint_p
+        # Apply deep MLP for deep attention
+        if self.state['deep_attention']:
+            pp = self.DatN.fprop(joint_p)
+        else:
+            pp = joint_p
 
         # Apply non-linearity and project to energy.
         energy = TT.exp(utils.dot(TT.tanh(pp), D_pe)).reshape((source_len, target_num))

@@ -288,39 +288,12 @@ class RecurrentLayerWithSearch(Layer):
                 numpy.zeros((self.n_hids, 1), dtype="float32"),
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
-        self.M_w1 = theano.shared(
-                sample_weights_classic(self.n_hids,
-                    self.n_hids,
-                    -1,
-                    10 ** (-3),
-                    rng=self.rng),
-                name="M_w1_%s"%self.name)
-        self.params.append(self.M_w1)
-        self.M_w2 = theano.shared(
-                sample_weights_classic(self.n_hids,
-                    self.n_hids,
-                    -1,
-                    10 ** (-3),
-                    rng=self.rng),
-                name="M_w2_%s"%self.name)
-        self.params.append(self.M_w2)
-        self.M_b1 = theano.shared(
-                numpy.zeros((self.n_hids,), dtype="float32"),
-                name="M_b1_%s"%self.name)
-        self.params.append(self.M_b1)
-        '''
-        self.M_b2 = theano.shared(
-                numpy.zeros((self.n_hids, 1), dtype="float32"),
-                name="M_b2_%s"%self.name)
-        self.params.append(self.M_b2)
-        '''
-        #pdb.set_trace()
-        #self.DatN = MultiLayer(rng=self.rng,
-        #                       n_in=3*self.n_hid, # birnn enc-hids + dec-hid
-        #                       n_hids=self.deep_attention['n_hids'],
-        #                       activation=self.deep_attention['activations'],
-        #                       name="DatN_%s"%self.name)
-
+        self.DatN = MultiLayer(rng=self.rng,
+                               n_in=3*self.n_hid, # birnn enc-hids + dec-hid
+                               n_hids=self.deep_attention['n_hids'],
+                               activation=self.deep_attention['activations'],
+                               name="DatN_%s"%self.name)
+        [self.params.append(param) for param in self.DatN.params]
         self.params_grad_scale = [self.grad_scale for x in self.params]
 
 
@@ -385,7 +358,7 @@ class RecurrentLayerWithSearch(Layer):
         D_pe = self.D_pe
         M_w1 = self.M_w1
         M_w2 = self.M_w2
-        M_b1 = self.M_b1
+        #M_b1 = self.M_b1
         #M_b2 = self.M_b2
 
         # The code works only with 3D tensors

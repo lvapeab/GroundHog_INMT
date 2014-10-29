@@ -288,7 +288,7 @@ class RecurrentLayerWithSearch(Layer):
                 numpy.zeros((self.n_hids, 1), dtype="float32"),
                 name="D_%s"%self.name)
         self.params.append(self.D_pe)
-        if self.state['deep_attention']:
+        if self.deep_attention:
             self.DatN = MultiLayer(rng=self.rng,
                                    n_in=3*self.n_hid, # birnn enc-hids + dec-hid
                                    n_hids=self.deep_attention['n_hids'],
@@ -383,7 +383,7 @@ class RecurrentLayerWithSearch(Layer):
         joint_p = p_from_h + p_from_c
 
         # Apply deep MLP for deep attention
-        if self.state['deep_attention']:
+        if self.deep_attention:
             pp = self.DatN.fprop(joint_p)
         else:
             pp = joint_p

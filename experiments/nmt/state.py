@@ -127,20 +127,20 @@ def prototype_state():
     # ----- BLEU VALIDATION OPTIONS ----
 
     # Location of the evaluation script
-    state['bleu_script']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
+    state['bleu_script']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
+    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
+    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
     # Beam size during sampling
-    state['beam_size'] = 10
+    state['beam_size'] = 20
     # Number of steps between every validation
-    state['bleu_val_frequency'] = 10
+    state['bleu_val_frequency'] = 1000
     # Character or word based BLEU calculation
     state['char_based_bleu'] = False
     # boolean, whether or not words are segmented into suffixes
@@ -150,7 +150,7 @@ def prototype_state():
     # target encoding
     state['target_encoding'] = 'ascii'
     # start after this many iterations
-    state['validation_burn_in'] = 100
+    state['validation_burn_in'] = 1000
 
     # ---- REGULARIZATION -----
 
@@ -271,7 +271,7 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/en-tr/trainSet/'
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/trainSet/iwslt14/'
     state['target'] = [baseDir + 'binarized_text.tr.shuf.h5']
     state['source'] = [baseDir + 'binarized_text.en.shuf.h5']
     state['indx_word'] = baseDir + 'ivocab.en.pkl'
@@ -279,16 +279,16 @@ def prototype_encdec_state():
     state['word_indx'] = baseDir + 'vocab.en.pkl'
     state['word_indx_trgt'] = baseDir + 'vocab.tr.pkl'
 
-    state['null_sym_source'] = 300
-    state['null_sym_target'] = 300
+    state['null_sym_source'] = 30000
+    state['null_sym_target'] = 30000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
     state['bs']  = 80
 
-    state['dim'] = 100
-    state['rank_n_approx'] = 40
+    state['dim'] = 1500
+    state['rank_n_approx'] = 420
 
     state['prefix'] = 'encdec_'
 
@@ -308,7 +308,7 @@ def prototype_search_state():
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'deepSearchTest1_'
+    state['prefix'] = 'transferIWSLT14_'
 
     return state
 

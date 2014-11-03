@@ -17,8 +17,8 @@ LIMIT_STEP = (60*60)*2     # report every 2 hours
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--proto", default="prototype_search_state", help="Prototype state to use for state")
-    parser.add_argument("-s", "--state"   ,  type=argparse.FileType('r'), help="The input state file *.pkl")
+    parser.add_argument("-p", "--proto"   , default="prototype_search_state", help="Prototype state to use for state")
+    parser.add_argument("-s", "--state"   , type=argparse.FileType('r'), help="The input state file *.pkl")
     parser.add_argument("-i", "--interval", type=int, default=LIMIT_STEP, help="Time to sleep btw reports")
     parser.add_argument("-l", "--limit"   , type=int, default=LIMIT_PROC, help="Upper limit for process")
     parser.add_argument("-v", "--val_set" , help="Validation set to calculate bleu on")

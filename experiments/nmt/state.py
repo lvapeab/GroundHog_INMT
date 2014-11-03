@@ -129,22 +129,22 @@ def prototype_state():
     # Location of the evaluation script
     state['bleu_script']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.en.tok'
+    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.tr.xml.tok.seg'
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/devSet/IWSLT14.TED.dev2010.en-tr.tr.tok'
+    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.en.xml.tok'
     # Beam size during sampling
     state['beam_size'] = 20
     # Number of steps between every validation
-    state['bleu_val_frequency'] = 1000
+    state['bleu_val_frequency'] = 10000
     # Character or word based BLEU calculation
     state['char_based_bleu'] = False
-    # boolean, whether or not words are segmented into suffixes
-    state['segmented_words'] = True
+    # boolean, whether or not target words are segmented into suffixes
+    state['target_words_segmented'] = False 
     # source encoding
     state['source_encoding'] = 'ascii'
     # target encoding
@@ -271,13 +271,13 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/trainSet/iwslt14/'
-    state['target'] = [baseDir + 'binarized_text.tr.shuf.h5']
-    state['source'] = [baseDir + 'binarized_text.en.shuf.h5']
-    state['indx_word'] = baseDir + 'ivocab.en.pkl'
-    state['indx_word_target'] = baseDir + 'ivocab.tr.pkl'
-    state['word_indx'] = baseDir + 'vocab.en.pkl'
-    state['word_indx_trgt'] = baseDir + 'vocab.tr.pkl'
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/trainSet/iwslt14/'
+    state['target'] = [baseDir + 'binarized_text.en.shuf.h5']
+    state['source'] = [baseDir + 'binarized_text.tr.shuf.h5']
+    state['indx_word'] = baseDir + 'ivocab.tr.pkl'
+    state['indx_word_target'] = baseDir + 'ivocab.en.pkl'
+    state['word_indx'] = baseDir + 'vocab.tr.pkl'
+    state['word_indx_trgt'] = baseDir + 'vocab.en.pkl'
 
     state['null_sym_source'] = 30000
     state['null_sym_target'] = 30000

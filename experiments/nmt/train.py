@@ -175,7 +175,7 @@ class BleuValidator(object):
                 print >> mb_subprocess.stdin, trans_out.encode('utf8').replace(" ","")
                 if self.verbose:
                     print  >> ftrans, trans_out.encode('utf8').replace(" ","")
-            elif self.state['segmented_words']:
+            elif self.state['target_words_segmented']:
                 print >> mb_subprocess.stdin, \
                         self.append_suffixes(trans_out)#.encode(self.state['target_encoding']))
                 if self.verbose:

@@ -290,7 +290,7 @@ class RecurrentLayerWithSearch(Layer):
         self.params.append(self.D_pe)
         if self.deep_attention:
             self.DatN = MultiLayer(rng=self.rng,
-                                   n_in=3*self.n_hid, # birnn enc-hids + dec-hid
+                                   n_in=2*self.n_hid, # birnn enc-hids + dec-hid
                                    n_hids=self.deep_attention['n_hids'],
                                    activation=self.deep_attention['activations'],
                                    name="DatN_%s"%self.name)

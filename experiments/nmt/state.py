@@ -144,7 +144,7 @@ def prototype_state():
     # Character or word based BLEU calculation
     state['char_based_bleu'] = False
     # boolean, whether or not target words are segmented into suffixes
-    state['target_words_segmented'] = False 
+    state['target_words_segmented'] = False
     # source encoding
     state['source_encoding'] = 'ascii'
     # target encoding
@@ -271,7 +271,7 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/trainSet/iwslt14/'
+    baseDir='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/en-tr/trainSet/iwslt14/'
     state['target'] = [baseDir + 'binarized_text.en.shuf.h5']
     state['source'] = [baseDir + 'binarized_text.tr.shuf.h5']
     state['indx_word'] = baseDir + 'ivocab.tr.pkl'
@@ -279,16 +279,16 @@ def prototype_encdec_state():
     state['word_indx'] = baseDir + 'vocab.tr.pkl'
     state['word_indx_trgt'] = baseDir + 'vocab.en.pkl'
 
-    state['null_sym_source'] = 30000
-    state['null_sym_target'] = 30000
+    state['null_sym_source'] = 3000
+    state['null_sym_target'] = 3000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
     state['bs']  = 80
 
-    state['dim'] = 1500
-    state['rank_n_approx'] = 420
+    state['dim'] = 100
+    state['rank_n_approx'] = 40
 
     state['prefix'] = 'encdec_'
 
@@ -301,14 +301,18 @@ def prototype_search_state():
     state = prototype_encdec_state()
 
     state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
-    state['deep_attention']=None#{'n_hids':[400,400], 'activations':['lambda x: TT.tanh(x)', 'lambda x: TT.tanh(x)']}
+
+    state['deep_attention']= True
+    state['deep_attention_n_hids']= [50]
+    state['deep_attention_acts']= 'lambda x: TT.tanh(x)'
+
     state['search'] = True
     state['last_forward'] = False
     state['forward'] = True
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'transferIWSLT14_'
+    state['prefix'] = 'deepAttentionTest_'
 
     return state
 

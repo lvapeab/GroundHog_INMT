@@ -127,20 +127,20 @@ def prototype_state():
     # ----- BLEU VALIDATION OPTIONS ----
 
     # Location of the evaluation script
-    state['bleu_script']='/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
+    state['bleu_script']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.tr.xml.tok.seg'
+    state['validation_set']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.tr.xml.tok.seg'
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth']='/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.en.xml.tok'
+    state['validation_set_grndtruth']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.en.xml.tok'
     # Beam size during sampling
     state['beam_size'] = 20
     # Number of steps between every validation
-    state['bleu_val_frequency'] = 10000
+    state['bleu_val_frequency'] = 20000
     # Character or word based BLEU calculation
     state['char_based_bleu'] = False
     # boolean, whether or not target words are segmented into suffixes
@@ -150,7 +150,7 @@ def prototype_state():
     # target encoding
     state['target_encoding'] = 'ascii'
     # start after this many iterations
-    state['validation_burn_in'] = 1000
+    state['validation_burn_in'] = 10000
 
     # ---- REGULARIZATION -----
 
@@ -279,16 +279,16 @@ def prototype_encdec_state():
     state['word_indx'] = baseDir + 'vocab.tr.pkl'
     state['word_indx_trgt'] = baseDir + 'vocab.en.pkl'
 
-    state['null_sym_source'] = 300
-    state['null_sym_target'] = 300
+    state['null_sym_source'] = 30000
+    state['null_sym_target'] = 30000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
     state['seqlen'] = 30
-    state['bs']  = 31
+    state['bs']  = 80
 
-    state['dim'] = 100
-    state['rank_n_approx'] = 40
+    state['dim'] = 1500
+    state['rank_n_approx'] = 420
 
     state['prefix'] = 'encdec_'
 
@@ -303,16 +303,16 @@ def prototype_search_state():
     state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
 
     state['deep_attention']= True
-    state['deep_attention_n_hids']= 100
-    state['deep_attention_acts']= 'lambda x: TT.tanh(x)'
+    state['deep_attention_n_hids']= [1500,1500]
+    state['deep_attention_acts']= [' lambda x: TT.tanh(x) ',' lambda x: TT.tanh(x) ']
 
     state['search'] = True
     state['last_forward'] = False
     state['forward'] = True
     state['backward'] = True
-    state['seqlen'] = 25
+    state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'deepAttentionTest_'
+    state['prefix'] = 'deepAttention_'
 
     return state
 

@@ -3,7 +3,7 @@ import logging
 import pprint
 import operator
 import itertools
-
+import copy
 import theano
 import theano.tensor as TT
 from theano.ifelse import ifelse
@@ -658,7 +658,9 @@ class EncoderDecoderBase(object):
             add_args = dict(c_dim=self.state['c_dim'],
                             deep_attention=self.state['deep_attention'],
                             deep_attention_n_hids=self.state['deep_attention_n_hids'],
-                            deep_attention_acts=self.state['deep_attention_acts'])
+                            deep_attention_acts= copy.deepcopy(self.state['deep_attention_acts']) 
+                                                    if isinstance(self.state['deep_attention_acts'], list) else 
+                                                    self.state['deep_attention_acts'])
         for level in range(self.num_levels):
             self.transitions.append(rec_layer(
                     self.rng,

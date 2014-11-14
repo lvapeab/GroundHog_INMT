@@ -344,7 +344,8 @@ class MainLoop(object):
                    self.hooks:
                     [fn() for fn in self.hooks]
 
-                if self.state['bleu_val_frequency'] is not None and \
+                if self.state.has_key('bleu_val_frequency') and \
+                    self.state['bleu_val_frequency'] is not None and \
                     self.step % self.state['bleu_val_frequency'] == 0 \
                     and self.bleu_val_fn is not None and \
                     self.step > self.state['validation_burn_in']:

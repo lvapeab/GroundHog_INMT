@@ -93,8 +93,8 @@ def jobman(state, channel):
 
     # declare the dimensionalies of the input and output
     if state['chunks'] == 'words':
-        state['n_in'] = 10000
-        state['n_out'] = 10000
+        state['n_in'] = 50000
+        state['n_out'] = 50000
     else:
         state['n_in'] = 50
         state['n_out'] = 50
@@ -206,13 +206,13 @@ def jobman(state, channel):
             rng,
             n_in=state['n_in'],
             n_hids=eval(state['inpout_nhids']),
-            activations=eval(state['inpout_activ']),
+            activation=eval(state['inpout_activ']),
             init_fn='sample_weights_classic',
             weight_noise = state['weight_noise'],
-            scale=eval(state['inpout_scale']),
-            sparsity=eval(state['inpout_sparse']),
-            learn_bias=eval(state['inpout_learn_bias']),
-            bias_scale=eval(state['inpout_bias']),
+            #scale=eval(state['inpout_scale']),
+            #sparsity=eval(state['inpout_sparse']),
+            #learn_bias=eval(state['inpout_learn_bias']),
+            #bias_scale=eval(state['inpout_bias']),
             name='shortcut')
 
     #### Learning rate scheduling (1/(1+n/beta))
@@ -282,7 +282,7 @@ def jobman(state, channel):
         x_emb = emb_words(word_tm1, use_noise = False, one_step=True)
         h0 = rec(x_emb, state_before=h_tm1, one_step=True, use_noise=False)[-1]
         outhid = outhid_dropout(outhid_activ(emb_state(h0, use_noise=False, one_step=True) +
-            emb_words_out(word_tm1, use_noise=False, one_step=True), one_step=True), 
+            emb_words_out(word_tm1, use_noise=False, one_step=True), one_step=True),
             use_noise=False, one_step=True)
         word = output_layer.get_sample(state_below=outhid, additional_inputs=[h0], temp=1.)
         return word, h0
@@ -353,9 +353,9 @@ if __name__=='__main__':
     state = {}
     # complete path to data (cluster specific)
     state['seqlen'] = 100
-    state['path']= "/data/lisa/data/PennTreebankCorpus/pentree_char_and_word.npz"
-    state['dictionary']= "/data/lisa/data/PennTreebankCorpus/dictionaries.npz"
-    state['chunks'] = 'chars'
+    state['path']= "/data/lisatmp3/firatorh/languageModelling/corpora/wiki/trwiki50k.npz"
+    state['dictionary']= "/data/lisatmp3/firatorh/languageModelling/corpora/wiki/trwiki50k_vocab.npz"
+    state['chunks'] = 'words'
     state['seed'] = 123
 
     # flag .. don't need to change it. It says what to do if you get cost to
@@ -384,7 +384,7 @@ if __name__=='__main__':
     # Input weights are sampled from a gaussian with std=scale; this is the
     # standard way to initialize
     state['rank_n_approx'] = 0
-    state['inp_nhids'] = '[200]'
+    state['inp_nhids'] = '[750]'
     state['inp_activ'] = '[linear]'
     state['inp_bias'] = '[0.]'
     state['inp_sparse']= -1 # dense
@@ -395,9 +395,9 @@ if __name__=='__main__':
     state['out_bias_scale'] = -.5
     state['out_sparse'] = -1
 
-    state['dout_nhid'] = '200'
+    state['dout_nhid'] = '500'
     state['dout_activ'] = '"TT.nnet.sigmoid"'
-    state['dout_sparse']= 20
+    state['dout_sparse']= -1
     state['dout_scale'] = 1.
     state['dout_bias'] = '[0]'
     state['dout_init'] = "'sample_weights'"
@@ -407,11 +407,11 @@ if __name__=='__main__':
     # HidLayer
     # Hidden units on for the internal layers of DT-RNN. Having a single
     # value results in a standard RNN
-    state['nhids'] = '[100, 100]'
+    state['nhids'] = '[350, 350]'
     # Activation of each layer
     state['rec_activ'] = '"TT.nnet.sigmoid"'
     state['rec_bias'] = '.0'
-    state['rec_sparse'] ='20'
+    state['rec_sparse'] ='50'
     state['rec_scale'] = '1.'
     # sample_weights - you rescale the weights such that the largest
     # singular value is scale
@@ -433,14 +433,14 @@ if __name__=='__main__':
     # maximal number of updates
     state['loopIters'] = int(1e8)
     # maximal number of minutes to wait until killing job
-    state['timeStop'] = 48*60 # 48 hours
+    state['timeStop'] = 72*60 # 48 hours
 
     # Construct linear connections from input to output. These are factored
     # (like the rank_n) to deal with the possible high dimensionality of the
     # input, but it is a linear projection that feeds into the softmax
     state['shortcut_inpout'] = False
-    state['shortcut_rank'] = 200
-
+    state['inpout_nhids'] = '[100]'
+    state['inpout_activ'] = 'lambda x:TT.maximum(0., x)'
     # Main Loop
     # Make this to be a decently large value. Otherwise you waste a lot of
     # memory keeping track of the training error (and other things) at each
@@ -449,8 +449,8 @@ if __name__=='__main__':
     state['hookFreq'] = 5000
     state['validFreq'] = 1000
 
-    state['saveFreq'] = 15 # save every 15 minutes
-    state['prefix'] = 'model_' # prefix of the save files
+    state['saveFreq'] = 30 # save every 15 minutes
+    state['prefix'] = 'smallModelGPU50k_' # prefix of the save files
     state['reload'] = False # reload
     state['overwrite'] = 1
 

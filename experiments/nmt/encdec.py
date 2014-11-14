@@ -1484,7 +1484,7 @@ class RNNEncoderDecoder(object):
                     inputs=[self.c, self.step_num, self.gen_y] + self.current_states,
                     outputs=[self.decoder.build_next_probs_predictor(
                         self.c, self.step_num, self.gen_y, self.current_states)],
-                    name="next_probs_fn",on_unused_input='warn',mode='DebugMode')
+                    name="next_probs_fn",on_unused_input='warn')#,mode='DebugMode')
         return self.next_probs_fn
 
     def create_next_states_computer(self):

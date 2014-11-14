@@ -1366,7 +1366,21 @@ class LSTMLayer(Layer):
         self.params_grad_scale = [self.grad_scale for x in self.params]
         self.restricted_params = [x for x in self.params]
         if self.weight_noise:
-            self.noise_params = [theano.shared(p.get_value()*0, name='noise_'+p.name) for p in self.params]
+            self.nW_hi = theano.shared(self.W_hi.get_value()*0, name='noise_'+self.W_hi.name)
+            self.noise_params = [self.nW_hi]
+            self.nW_ci = theano.shared(self.W_ci.get_value()*0, name='noise_'+self.W_ci.name)
+            self.noise_params += [self.nW_ci]
+            self.nW_hf = theano.shared(self.W_hf.get_value()*0, name='noise_'+self.W_hf.name)
+            self.noise_params += [self.nW_hf]
+            self.nW_cf = theano.shared(self.W_cf.get_value()*0, name='noise_'+self.W_cf.name)
+            self.noise_params += [self.nW_cf]
+            self.nW_hc = theano.shared(self.W_hc.get_value()*0, name='noise_'+self.W_hc.name)
+            self.noise_params += [self.nW_hc]
+            self.nW_ho = theano.shared(self.W_ho.get_value()*0, name='noise_'+self.W_ho.name)
+            self.noise_params += [self.nW_ho]
+            self.nW_co = theano.shared(self.W_co.get_value()*0, name='noise_'+self.W_co.name)
+            self.noise_params += [self.nW_co]
+              
             self.noise_params_shape_fn = [constant_shape(x.get_value().shape)
                             for x in self.noise_params]
 

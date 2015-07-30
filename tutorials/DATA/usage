@@ -1,0 +1,2 @@
+#you should have {path}/train, {path}/test and {path}/valid
+python generate.py ./ --dest=./turista --level=words --oov-rate=0.0

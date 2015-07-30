@@ -412,7 +412,9 @@ def jobman(state, channel):
     outhid_dropout = DropOp(dropout=state['dropout'], rng=rng)
 
     logger.debug("Create output_layer")
+
     #### Softmax Layer
+
     output_layer = SoftmaxLayer(
         rng,
         eval(state['dout_nhid']),
@@ -443,12 +445,10 @@ def jobman(state, channel):
 
 
 
-    #####################################################################################################################
-    ### Building train model
-    #####################################################################################################################
 
-    ### Neural Implementations of the Language Model
-    #### Training
+    # Training model
+    # Neural Implementations of the Language Model
+
     if state['shortcut_inpout']:
         additional_inputs = [forward_training.rec_layer, forward_training.shortcut(x)]
         additional_inputs_b = [backward_training.rec_layer, backward_training.shortcut(x[::-1])]
@@ -457,9 +457,7 @@ def jobman(state, channel):
 
 
 
-    ##### Exercise (1):
-    ##### 1. Compute the output intermediate layer
-
+    # Output intermediate layer
 
     logger.debug("_build train model")
     outhid = outhid_activ(forward_training.emb_state(forward_training.rec_layer) +
@@ -469,6 +467,9 @@ def jobman(state, channel):
                           backward_training.emb_words_out(x[::-1]))
 
     outhid = outhid_dropout(outhid)
+
+
+    # Train model
 
     train_model = output_layer(outhid,
                                no_noise_bias=state['no_noise_bias'],
@@ -485,9 +486,8 @@ def jobman(state, channel):
 
 
 
-    #####################################################################################################################
-    #### Validation model
-    #####################################################################################################################
+
+    # Validation model
 
     if state['shortcut_inpout']:
         additional_inputs = [forward_training.rec_layer, forward_training.shortcut(x, use_noise=False)]
@@ -503,7 +503,7 @@ def jobman(state, channel):
                           forward.emb_words_out(x) +
                           backward.emb_words_out(x[::-1]))
 
-    ##### Exercise (2): Apply Dropout
+    # Apply Dropout
     outhid = outhid_dropout(outhid)
 
     logger.debug("_create_forward_RNN")
@@ -536,14 +536,8 @@ def jobman(state, channel):
                                on_unused_input='warn'
                                )
 
-    #######################################################################################################
-    #### Sampling
-    ##### single-step sampling: Esto hay que cambiarlo tambien para que los ejemplos que dan sean generados por la bidireccional
-    ######################################################################################################
 
-
-    ### Joint sampling
-
+    # Sampling
     def sample_fn(word_tm1, h_tm1):
         x_emb = forward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
         x_emb_b = backward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
@@ -558,7 +552,7 @@ def jobman(state, channel):
         word = output_layer.get_sample(state_below=outhid, additional_inputs=[h0], temp=1.)
         return word, h0
 
-    ##### scan for iterating the single-step sampling multiple times                                                                                         
+    # scan for iterating the single-step sampling multiple times
     [samples, summaries], updates = scan(sample_fn,
                                          states=[
                                              TT.alloc(numpy.int64(0), state['sample_steps']),
@@ -566,12 +560,13 @@ def jobman(state, channel):
                                          n_steps=state['sample_steps'],
                                          name='sampler_scan')
 
-    ##### build a Theano function for sampling                                                                                                               
+    # build a Theano function for sampling
     sample_fn = theano.function([], [samples],
                                 updates=updates, profile=False, name='sample_fn')
 
-    #####################################################################################################
-    ####End of validation
+
+    # End of validation
+
 
     ##### Load a dictionary
     dictionary = numpy.load(state['dictionary'])
@@ -593,11 +588,8 @@ def jobman(state, channel):
             print
             print
 
-        ######################################################################################################
-        ####Training
-
-    ### Build and Train a Model
-    #### Define a model
+    # Build and Train a Model
+    # Define a model
 
     model = BLM_Model(
         cost_layer=train_model,
@@ -611,15 +603,16 @@ def jobman(state, channel):
     if state['reload']:
         model.load(state['prefix'] + 'model.npz')
 
-    #### Define a trainer
-    ##### Training algorithm (SGD)
+    # Define a trainer
+    # Training algorithm (SGD)
+
     if state['moment'] < 0:
         algo = SGD(model, state, train_data)
 
     else:
         algo = SGD_m(model, state, train_data)
 
-    ##### Main loop of the trainer
+    # Main loop of the trainer
     main = MainLoop(train_data,
                     valid_data,
                     test_data,
@@ -630,13 +623,13 @@ def jobman(state, channel):
                     train_cost=False,
                     hooks=hook_fn,
                     validate_postprocess=eval(state['validate_postprocess']))
-    ## Run!
+    # Run!
     main.main()
 
 
 if __name__ == '__main__':
     state = get_state()
-    # TODO: Check the correct load of the state
+    # TODO: Elegant state load
 
     """
     args = parse_args()

@@ -136,7 +136,6 @@ def get_state():
     state['inpout_learn_bias'] = '[0]'
     state['inpout_bias'] = '[0]'
 
-
     # Main Loop
     # Make this to be a decently large value. Otherwise you waste a lot of
     # memory keeping track of the training error (and other things) at each
@@ -152,7 +151,7 @@ def get_state():
     # Threshold should be 1.004 for PPL, for entropy (which is what
     # everything returns, it should be much smaller. Running value is 1.0002
     # We should not hyperoptimize this
-    state['divide_lr'] = 1.6
+    state['divide_lr'] = 2.
     state['cost_threshold'] = 1.0002
     state['patience'] = 1
     state['validate_postprocess'] = 'lambda x:10**(x/numpy.log(10))'
@@ -171,12 +170,9 @@ def get_state():
     state['minerr'] = -1
     state['shift'] = 1  # n-step forward prediction
     state['cutoff_rescale_length'] = False
-
-    state['inp_nhids'] = '[620]'
-    state['dout_nhid'] = '620'
-    state['nhids'] = '[200]'
     state['nce'] = False
-    state['prefix'] = '/home/lvapeab/smt/software/GroundHog/tutorials/models/ue/en_200_620'  # prefix of the save files
+
+    state['prefix'] = '/home/lvapeab/smt/software/GroundHog/tutorials/models/ue/en_20_60'  # prefix of the save files
     return state
 
 
@@ -239,7 +235,6 @@ def get_text_data(state):
 
 class RNN(object):
     def __init__(self, state, rng, reset, prefix='RNN'):
-        # self.dtype = 'float32'
         self.state = state
         self.rng = rng
         self.prefix = prefix
@@ -335,7 +330,7 @@ class RNN(object):
         if state['shortcut_inpout']:
             self._create_shortcut_layer()
 
-    def build_RNN(self, x,
+    def build_rnn(self, x,
                   no_noise_bias,
                   truncate_gradient):
         self.x_emb = self.emb_words(x, no_noise_bias=no_noise_bias)
@@ -362,35 +357,30 @@ def jobman(state, channel):
 
     train_data, valid_data, test_data = get_text_data(state)
 
-    if state['debug'] == True:
-        print "Prefix: ", state['prefix']
-        print "SeqLength: ", state['seqlen']
-        print "input nhids: ", state['inp_nhids']
-        print "dout nhids: ", state['dout_nhid']
-        print "nhids: ", state['nhids']
-        print "Shortcut inpout: ", state['shortcut_inpout']
-        print "NCE: ", state['nce']
-        if state['shortcut_inpout']:
-            print "Shortcut rank: ", state['shortcut_rank']
+    logger.debug("_prefix: " + state['prefix'])
+    logger.debug("_seqLength: " + str(state['seqlen']))
+    logger.debug("_input units: " + str(state['inp_nhids']))
+    logger.debug("_dout units: " + str(state['dout_nhid']))
+    logger.debug("_hidden units: " + str(state['nhids']))
+    logger.debug("_Shortcut inpout: " + str(state['shortcut_inpout']))
+    logger.debug("_NCE: " + str(state['nce']))
+    if state['shortcut_inpout']:
+        logger.debug("_shortcut rank: " + str(state['shortcut_rank']))
 
-
-
-    ## BEGIN Tutorial
-    ### Define Theano Input Variables
+    # Define Theano Input Variables
 
     x = TT.lvector('x')
     y = TT.lvector('y')
 
     h0 = theano.shared(numpy.zeros((eval(state['nhids'])[-1],), dtype='float32'))
 
-
-    ### Neural Implementation of the Operators: \oplus
+    # Neural Implementation of the Operators: \oplus
 
     reset = TT.scalar('reset')
     logger.debug("_create forward RNN")
     forward = RNN(state, rng, reset, prefix="forward_rnn")
     forward.create_layers()
-    forward_training = forward.build_RNN(x,
+    forward_training = forward.build_rnn(x,
                                          no_noise_bias=state['no_noise_bias'],
                                          truncate_gradient=state['truncate_gradient'])
 
@@ -398,23 +388,20 @@ def jobman(state, channel):
 
     backward = RNN(state, rng, reset, prefix="backward_rnn")
     backward.create_layers()
-    backward_training = backward.build_RNN(x[::-1],
+    backward_training = backward.build_rnn(x[::-1],
                                            no_noise_bias=state['no_noise_bias'],
                                            truncate_gradient=state['truncate_gradient'])
 
-
-
-    #### Hidden State: Combine emb_state and emb_words_out
-    #### 1.  Define an activation layer
+    # Hidden State: Combine emb_state and emb_words_out
+    # 1.  Define an activation layer
     outhid_activ = UnaryOp(activation=eval(state['dout_activ']))
 
-    #### 2. Define a dropout layer
+    # 2. Define a dropout layer
     outhid_dropout = DropOp(dropout=state['dropout'], rng=rng)
 
     logger.debug("Create output_layer")
 
-    #### Softmax Layer
-
+    # Softmax Layer
     output_layer = SoftmaxLayer(
         rng,
         eval(state['dout_nhid']),
@@ -428,8 +415,7 @@ def jobman(state, channel):
         use_nce=state['nce'],
         name='out')
 
-
-    #### Learning rate scheduling (1/(1+n/beta))
+    # Learning rate scheduling (1/(1+n/beta))
     state['clr'] = state['lr']
 
     def update_lr(obj, cost):
@@ -443,9 +429,6 @@ def jobman(state, channel):
         forward_training.add_schedule(update_lr)
         backward_training.add_schedule(update_lr)
 
-
-
-
     # Training model
     # Neural Implementations of the Language Model
 
@@ -454,8 +437,6 @@ def jobman(state, channel):
         additional_inputs_b = [backward_training.rec_layer, backward_training.shortcut(x[::-1])]
     else:
         additional_inputs = [forward_training.rec_layer + backward_training.rec_layer]
-
-
 
     # Output intermediate layer
 
@@ -468,9 +449,6 @@ def jobman(state, channel):
 
     outhid = outhid_dropout(outhid)
 
-
-    # Train model
-
     train_model = output_layer(outhid,
                                no_noise_bias=state['no_noise_bias'],
                                additional_inputs=additional_inputs).train(target=y,
@@ -482,10 +460,6 @@ def jobman(state, channel):
 
     if state['carry_h0']:
         train_model.updates += [(h0, nw_h0)]
-
-
-
-
 
     # Validation model
 
@@ -507,12 +481,12 @@ def jobman(state, channel):
     outhid = outhid_dropout(outhid)
 
     logger.debug("_create_forward_RNN")
-    forward_valid = forward.build_RNN(x,
+    forward_valid = forward.build_rnn(x,
                                       no_noise_bias=state['no_noise_bias'],
                                       truncate_gradient=state['truncate_gradient'])
 
     logger.debug("_create_forward_RNN")
-    backward_valid = backward.build_RNN(x[::-1],
+    backward_valid = backward.build_rnn(x[::-1],
                                         no_noise_bias=state['no_noise_bias'],
                                         truncate_gradient=state['truncate_gradient'])
 
@@ -535,7 +509,6 @@ def jobman(state, channel):
                                name='valid_fn', updates=valid_updates,
                                on_unused_input='warn'
                                )
-
 
     # Sampling
     def sample_fn(word_tm1, h_tm1):
@@ -564,11 +537,9 @@ def jobman(state, channel):
     sample_fn = theano.function([], [samples],
                                 updates=updates, profile=False, name='sample_fn')
 
-
     # End of validation
 
-
-    ##### Load a dictionary
+    # Load a dictionary
     dictionary = numpy.load(state['dictionary'])
     if state['chunks'] == 'chars':
         dictionary = dictionary['unique_chars']
@@ -628,12 +599,11 @@ def jobman(state, channel):
 
 
 if __name__ == '__main__':
-    state = get_state()
-    # TODO: Elegant state load
 
-    """
+    state = get_state()
     args = parse_args()
     if args.state:
+        logger.debug('_loading state: ' + args.state)
         if args.state.endswith(".py"):
             state.update(eval(open(args.state).read()))
         else:
@@ -641,5 +611,5 @@ if __name__ == '__main__':
                 state.update(cPickle.load(src))
     for change in args.changes:
         state.update(eval("dict({})".format(change)))
-    """
+
     jobman(state, None)

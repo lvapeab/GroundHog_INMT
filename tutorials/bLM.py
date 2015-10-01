@@ -516,7 +516,7 @@ def jobman(state, channel):
                               backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
     elif state['join'] == 'maxPooling' :
         outhid = MaxPooling(*valid_components, ntimes=state['ntimes'])
-    else : # Default: Concatenate
+    else : # Default: Concatenate layers
         valid_components.append(outhid_forward)
         valid_components.append(outhid_backward)
         outhid = Concatenate(axis=1)(*valid_components)

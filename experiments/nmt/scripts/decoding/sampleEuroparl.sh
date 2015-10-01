@@ -29,11 +29,11 @@ export THEANO_FLAGS=on_unused_input='warn'
 
 
 sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample.py
-state=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_11k_full_620_1000_state.pkl
-beamsize=2Z0
-model=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_11k_full_620_1000_best_bleu_model.npz
-source_file=/home/lvapeab/smt/tasks/ue/esen/DATA/test.es
-dest_file=/home/lvapeab/smt/tasks/ue/esen/NMT/translations/uefull-11k-test-620-500.norm.en
+state=/home/lvapeab/smt/tasks/europarl/esen/NMT/models/europarl_30k_620_1000_state.pkl
+beamsize=50
+model=/home/lvapeab/smt/tasks/europarl/esen/NMT/models/europarl_30k_620_1000_best_bleu_model.npz
+source_file=/home/lvapeab/smt/tasks/europarl/DATA/lowercased/test.es
+dest_file=/home/lvapeab/smt/tasks/ue/esen/NMT/translations/europarl.620-1000.en.hyp
 nbest_file=""
 aligns_file=""
 v=""

@@ -94,8 +94,8 @@ def jobman(state, channel):
 
     # declare the dimensionalies of the input and output
     if state['chunks'] == 'words':
-        state['n_in'] = 10000
-        state['n_out'] = 10000
+        state['n_in'] = 13001
+        state['n_out'] = 13001
     else:
         state['n_in'] = 50
         state['n_out'] = 50
@@ -354,8 +354,8 @@ if __name__=='__main__':
     state = {}
     # complete path to data (cluster specific)
     state['seqlen'] = 100
-    state['path']= "/data/lisa/data/PennTreebankCorpus/pentree_char_and_word.npz"
-    state['dictionary']= "/data/lisa/data/PennTreebankCorpus/dictionaries.npz"
+    state['path']= "/home/lvapeab/smt/software/GroundHog/tutorials/DATA/xerox/xerox.npz"
+    state['dictionary']= "/home/lvapeab/smt/software/GroundHog/tutorials/DATA/xerox/xerox_dict.npz"
     state['chunks'] = 'words'
     state['seed'] = 123
 
@@ -451,7 +451,7 @@ if __name__=='__main__':
     state['validFreq'] = 1000
 
     state['saveFreq'] = 15 # save every 15 minutes
-    state['prefix'] = 'model_LSTM_' # prefix of the save files
+    state['prefix'] = '/home/lvapeab/smt/software/GroundHog/tutorials/models/xerox/es_500_500' # prefix of the save files
     state['reload'] = False # reload
     state['overwrite'] = 1
 

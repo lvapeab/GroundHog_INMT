@@ -1,11 +1,14 @@
 def prototype_state():
+
+
+
+
     state = {}
 
     # Random seed
     state['seed'] = 1234
     # Logging level
     state['level'] = 'DEBUG'
-
     # ----- DATA -----
     # (all Nones in this section are placeholders for required values)
 
@@ -24,7 +27,6 @@ def prototype_state():
 
     # ----- VOCABULARIES -----
     # (all Nones in this section are placeholders for required values)
-
     # A string representation for the unknown word placeholder for both language
     state['oov'] = 'UNK'
     # These are unknown word placeholders
@@ -127,7 +129,7 @@ def prototype_state():
     # ----- BLEU VALIDATION OPTIONS ----
 
     # Location of the evaluation script
-    state['bleu_script']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/iwslt14/scripts/multi-bleu.perl'
+    state['bleu_script']='/home/lvapeab/smt/software/mosesdecoder/scripts/generic/multi-bleu.perl'
     # Location of the validation set
     state['validation_set']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.tr.xml.tok.seg'
     # boolean, whether or not to write the validation set to file

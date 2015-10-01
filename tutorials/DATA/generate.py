@@ -24,8 +24,10 @@ def construct_vocabulary(dataset, oov_rate, level):
         txt = txt.replace('  ', ' ')
         txt = txt.split(' ')
         txt = [x for x in txt if x != '']
-    # Order the words
-    print ' .. sorting words'
+        # Order the words
+        print ' .. sorting words'
+    else :
+        print ' .. sorting chars'
     all_items = Counter(txt).items()
     no_end = [x for x in all_items if x[0] !='\n']
     freqs = [x for x in all_items if x[0] == '\n'] + \

@@ -67,7 +67,9 @@ class RandomSamplePrinter(object):
                 sample_idx += 1
     def __print_samples(self, output_name, words, encoding):
         if encoding == "utf8":
-            print u"{}: {}".format(output_name, " ".join(words))
+            # print u"{}: {}".format(output_name, " ".join(words))
+            print output_name;": ", " ".join(words).decode('utf-8')
+
         elif encoding == "ascii":
             print "{}: {}".format(output_name, " ".join(words))
         else:
@@ -276,7 +278,8 @@ def main():
         beam_search = BeamSearch(enc_dec)
         beam_search.compile()
         bleu_validator = BleuValidator(state, lm_model, beam_search, verbose=state['output_validation_set'])
-
+    else :
+        logger.warning("BLEU validation will not be used")
     logger.debug("Load data")
     train_data = get_batch_iterator(state)
     logger.debug("Compile trainer")

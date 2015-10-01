@@ -20,8 +20,8 @@ from groundhog.layers import MultiLayer, \
     Shift, \
     GaussianNoise, \
     SigmoidLayer, \
-    MaxPooling, \
-    Concatenate
+    Concatenate, \
+    LSTMLayer
 from groundhog.layers import maxpool, \
     maxpool_ntimes, \
     last, \
@@ -40,7 +40,7 @@ import theano.tensor as TT
 
 
 
-from IPython.display import SVG
+import theano.printing
 
 
 
@@ -60,6 +60,7 @@ def parse_args():
 
 
 def get_state():
+
 
     state = {}
     # complete path to data (cluster specific)
@@ -108,7 +109,7 @@ def get_state():
 
     state['nhids'] = '[80]'
     # Activation of each layer
-    state['rec_activ'] = '"TT.nnet.sigmoid"'
+    state['rec_activ'] = '"TT.tanh"'
     state['rec_bias'] = '.0'
     state['rec_sparse'] = '20'
     state['rec_scale'] = '1.'
@@ -131,7 +132,7 @@ def get_state():
     state['weight_noise_amount'] = 0.075  # standard deviation
 
     # maximal number of updates
-    state['loopIters'] = int(1e10)
+    state['loopIters'] = int(1e8)
     # maximal number of minutes to wait until killing job
     state['timeStop'] = 144 * 60  # 144 hours
 
@@ -176,16 +177,13 @@ def get_state():
     state['no_noise_bias'] = True  # do not use weight noise for biases
     state['carry_h0'] = True  # carry over h0 across updates
 
-    state['sample_steps'] = 80
+    state['sample_steps'] = 50
 
     # Do not change these
     state['minerr'] = -1
     state['shift'] = 1  # n-step forward prediction
     state['cutoff_rescale_length'] = False
     state['nce'] = False
-
-    state['join'] = 'maxPooling',
-    state['ntimes'] = 1, # Times for the maxpooling
 
     state['prefix'] = '/home/lvapeab/smt/software/GroundHog/tutorials/models/ue/en_20_60'  # prefix of the save files
     return state
@@ -278,7 +276,7 @@ class RNN(object):
     def _create_recurrent_layer(self):
         self.rec = eval(state['rec_layer'])(
             self.rng,
-            eval(state['nhids']),
+            eval(state['nhids'])[0],
             activation=eval(state['rec_activ']),
             bias_scale=eval(state['rec_bias']),
             scale=eval(state['rec_scale']),
@@ -368,14 +366,11 @@ def jobman(state, channel):
 
     # Show model info
     logger.debug("_prefix: " + state['prefix'])
-    logger.debug("n_in: " + str(state['n_in']))
-    logger.debug("n_out: " + str(state['n_out']))
     logger.debug("_seqLength: " + str(state['seqlen']))
     logger.debug("_input units: " + str(state['inp_nhids']))
     logger.debug("_dout units: " + str(state['dout_nhid']))
     logger.debug("_hidden units: " + str(state['nhids']))
     logger.debug("_Shortcut inpout: " + str(state['shortcut_inpout']))
-    logger.debug("_Layer combination: "+  str(state['join']))
     logger.debug("_NCE: " + str(state['nce']))
     if state['shortcut_inpout']:
         logger.debug("_shortcut rank: " + str(state['shortcut_rank']))
@@ -414,6 +409,7 @@ def jobman(state, channel):
     logger.debug("Create output_layer")
 
     # Softmax Layer
+
     output_layer = SoftmaxLayer(
         rng,
         eval(state['dout_nhid']+'*2'),
@@ -442,9 +438,8 @@ def jobman(state, channel):
         backward_training.add_schedule(update_lr)
 
     if state['shortcut_inpout']:
-        additional_inputs_f = [forward_training.rec_layer, forward_training.shortcut(x)]
+        additional_inputs = [forward_training.rec_layer, forward_training.shortcut(x)]
         additional_inputs_b = [backward_training.rec_layer, backward_training.shortcut(x[::-1])]
-        additional_inputs = [additional_inputs_f + additional_inputs_b]
     else:
         additional_inputs = [forward_training.rec_layer + backward_training.rec_layer]
 
@@ -456,40 +451,38 @@ def jobman(state, channel):
     # Output intermediate layer
     logger.debug("_build train model")
     training_components = []
-    
     outhid_forward = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x))
+    outhid_forward = outhid_dropout(outhid_forward)
+    training_components.append(outhid_forward)
     outhid_backward = outhid_activ(backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
+    outhid_backward = outhid_dropout(outhid_backward)
+    training_components.append(outhid_backward)
 
     theano.printing.pp(x)
     theano.printing.pp(x[::-1])
-
-    if state['join'] == 'sum' :
-        outhid = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x) + \
-                              backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
-
-    elif state['join'] == 'maxPooling' :
-        outhid = MaxPooling(*training_components, ntimes=state['ntimes'])
-
-    else : # Default: Concatenate
-        training_components.append(outhid_forward)
-        training_components.append(outhid_backward)
-        outhid = Concatenate(axis=1)(*training_components)
-
-    outhid = outhid_dropout(outhid)
-    train_model = output_layer(outhid,
+    train_model = output_layer(Concatenate(axis=1)(*training_components),
                                no_noise_bias=state['no_noise_bias'],
                                additional_inputs=additional_inputs).train(target=y,
                                                                           scale=numpy.float32(1. / state['seqlen']))
 
     nw_h0_f = forward_training.rec_layer.out[forward_training.rec_layer.out.shape[0] - 1]
     nw_h0_b = backward_training.rec_layer.out[backward_training.rec_layer.out.shape[0] - 1]
-    # nw_h0 = ([nw_h0_f, nw_h0_b])
-    #
+    nw_h0 = nw_h0_f + nw_h0_b
+
     if state['carry_h0']:
-        train_model.updates += [(h0, nw_h0_f, nw_h0_b)]
+        train_model.updates += [(h0, nw_h0)]
 
     # Validation model
+
+    if state['shortcut_inpout']:
+        additional_inputs = [forward_training.rec_layer, forward_training.shortcut(x, use_noise=False)]
+        additional_inputs_b = [backward_training.rec_layer, backward_training.shortcut(x[::-1], use_noise=False)]
+    else:
+        additional_inputs = [forward_training.rec_layer]
+        additional_inputs_b = [backward_training.rec_layer]
+
     logger.debug("_build validation model")
+
     logger.debug("_create_forward_RNN")
     forward_valid = forward.build_rnn(x,
                                       no_noise_bias=state['no_noise_bias'],
@@ -503,74 +496,68 @@ def jobman(state, channel):
 
     h0val = theano.shared(numpy.zeros((eval(state['nhids'])[-1],), dtype='float32'))
 
-    nw_h0_val_f = forward_valid.rec_layer.out[forward_valid.rec_layer.out.shape[0] - 1]
-    nw_h0_val_b = backward_valid.rec_layer.out[backward_valid.rec_layer.out.shape[0] - 1]
-    nw_h0 = nw_h0_val_f + nw_h0_val_b
+    nw_h0_f = forward_valid.rec_layer.out[forward_valid.rec_layer.out.shape[0] - 1]
+    nw_h0_b = backward_valid.rec_layer.out[backward_valid.rec_layer.out.shape[0] - 1]
+    nw_h0 = nw_h0_f + nw_h0_b
 
     valid_components = []
     outhid_forward = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x))
+    outhid_forward = outhid_dropout(outhid_forward)
+    valid_components.append(outhid_forward)
     outhid_backward = outhid_activ(backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
+    outhid_backward = outhid_dropout(outhid_backward)
+    valid_components.append(outhid_backward)
 
-    if state['join'] == 'sum' :
-        outhid = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x) + \
-                              backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
-    elif state['join'] == 'maxPooling' :
-        outhid = MaxPooling(*valid_components, ntimes=state['ntimes'])
-    else : # Default: Concatenate
-        valid_components.append(outhid_forward)
-        valid_components.append(outhid_backward)
-        outhid = Concatenate(axis=1)(*valid_components)
 
-    outhid = outhid_dropout(outhid)
-    valid_model = output_layer(outhid,
+    valid_model = output_layer(Concatenate(axis=1)(*valid_components),
                                additional_inputs=additional_inputs,
                                use_noise=False).validate(target=y, sum_over_time=True)
 
     valid_updates = []
 
     if state['carry_h0']:
-       valid_updates = [(h0val, nw_h0)]
+        valid_updates = [(h0val, nw_h0)]
 
     valid_fn = theano.function([x, y, reset], valid_model.cost,
                                name='valid_fn', updates=valid_updates,
                                on_unused_input='warn'
                                )
+    #pydotprint(valid_fn, outfile='valid_fn.png')
 
     # Sampling
-    # TODO: Not sure if the sampling function works properly
-    def sample_fn(word_tm1, h_tm1_f, h_tm1_b):
+    def sample_fn(word_tm1, h_tm1):
 
         x_emb = forward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
         x_emb_b = backward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
 
-        h0_f = forward_valid.rec(x_emb, state_before=h_tm1_f, one_step=True, use_noise=False)[-1]
-        h0_b = backward_valid.rec(x_emb_b, state_before=h_tm1_b, one_step=True, use_noise=False)[-1][::-1]
+        h0 = forward_valid.rec(x_emb, state_before=h_tm1, one_step=True, use_noise=False)[-1]
+        h0_b = backward_valid.rec(x_emb_b, state_before=h_tm1, one_step=True, use_noise=False)[-1]
+
         sample_components = []
 
-        outhid_forward = outhid_activ(forward_valid.emb_state(h0_f, use_noise=False, one_step=True) +
+        outhid_forward = outhid_activ(forward_valid.emb_state(h0, use_noise=False, one_step=True) +
                                       forward_valid.emb_words_out(word_tm1, use_noise=False, one_step=True))
         outhid_forward = outhid_dropout(outhid_forward, one_step=True)
         sample_components.append(outhid_forward)
+
 
         outhid_backward = outhid_activ(backward_valid.emb_state(h0_b, use_noise=False, one_step=True)  +
                                       backward_valid.emb_words_out(word_tm1, use_noise=False, one_step=True))
         outhid_backward = outhid_dropout(outhid_backward, one_step=True)
         sample_components.append(outhid_backward)
+
         outhid = Concatenate(axis=0)(*sample_components)
+        word = output_layer.get_sample(state_below=outhid, additional_inputs=[h0, h0_b], temp=1.)
 
-        word = output_layer.get_sample(state_below=outhid, additional_inputs=[h0_f, h0_b], temp=1.)
-
-        return word, h0_f, h0_b
+        return word, h0
 
     # scan for iterating the single-step sampling multiple times
-    [samples, summaries_f, summaries_b], updates = scan(sample_fn,
+    [samples, summaries], updates = scan(sample_fn,
                                          states=[
                                              TT.alloc(numpy.int64(0), state['sample_steps']),
-                                             TT.alloc(numpy.float32(0), 1, eval(state['nhids'])[-1]),
                                              TT.alloc(numpy.float32(0), 1, eval(state['nhids'])[-1])],
                                          n_steps=state['sample_steps'],
                                          name='sampler_scan')
-
 
     # build a Theano function for sampling
     sample_fn = theano.function([], [samples],

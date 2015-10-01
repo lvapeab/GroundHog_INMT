@@ -1358,11 +1358,12 @@ class RNNEncoderDecoder(object):
 
         if self.state['forward']:
             training_c_components.append(forward_training_c)
+        if self.state['backward']:
+            training_c_components.append(backward_training_c)
+
         if self.state['last_forward']:
             training_c_components.append(
                     ReplicateLayer(self.x.shape[0])(forward_training_c[-1]))
-        if self.state['backward']:
-            training_c_components.append(backward_training_c)
         if self.state['last_backward']:
             training_c_components.append(ReplicateLayer(self.x.shape[0])
                     (backward_training_c[0]))

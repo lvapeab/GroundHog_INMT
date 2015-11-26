@@ -38,12 +38,6 @@ import theano
 import pprint
 import theano.tensor as TT
 
-
-
-from IPython.display import SVG
-
-
-
 linear = lambda x: x
 rect = lambda x: TT.maximum(0., x)
 
@@ -62,8 +56,7 @@ def parse_args():
 def get_state():
 
     state = {}
-    # complete path to data (cluster specific)
-    state['seqlen'] = 81
+    state['seqlen'] = 80
     state['path'] = "/home/lvapeab/smt/software/GroundHog/tutorials/DATA/ue/ue.npz"
     state['dictionary'] = "/home/lvapeab/smt/software/GroundHog/tutorials/DATA/ue/ue_dict.npz"
     state['n_in'] = 10001
@@ -184,8 +177,8 @@ def get_state():
     state['cutoff_rescale_length'] = False
     state['nce'] = False
 
-    state['join'] = 'maxPooling',
-    state['ntimes'] = 1, # Times for the maxpooling
+    state['join'] = 'concat',
+    state['ntimes'] = False,  # nTimes for the maxpooling
 
     state['prefix'] = '/home/lvapeab/smt/software/GroundHog/tutorials/models/ue/en_20_60'  # prefix of the save files
     return state
@@ -257,6 +250,8 @@ class RNN(object):
         self.prefix = prefix
         self.h0 = theano.shared(numpy.zeros((eval(state['nhids'])[-1],), dtype='float32'))
         self.reset = reset
+        self.x_emb = None
+        self.rec_layer = None
         logger.debug("Layer:" + self.prefix)
 
     def _create_embedding_layer(self):
@@ -375,7 +370,7 @@ def jobman(state, channel):
     logger.debug("_dout units: " + str(state['dout_nhid']))
     logger.debug("_hidden units: " + str(state['nhids']))
     logger.debug("_Shortcut inpout: " + str(state['shortcut_inpout']))
-    logger.debug("_Layer combination: "+  str(state['join']))
+    logger.debug("_Layer combination: " + str(state['join']))
     logger.debug("_NCE: " + str(state['nce']))
     if state['shortcut_inpout']:
         logger.debug("_shortcut rank: " + str(state['shortcut_rank']))
@@ -414,19 +409,33 @@ def jobman(state, channel):
     logger.debug("Create output_layer")
 
     # Softmax Layer
-    output_layer = SoftmaxLayer(
-        rng,
-        eval(state['dout_nhid']+'*2'),
-        state['n_out'],
-        scale=state['out_scale'],
-        bias_scale=state['out_bias_scale'],
-        init_fn="sample_weights_classic",
-        weight_noise=state['weight_noise'],
-        sparsity=state['out_sparse'],
-        sum_over_time=True,
-        use_nce=state['nce'],
-        name='out')
+    if state['join'] == 'sum':
+        output_layer = SoftmaxLayer(
+            rng,
+            eval(state['dout_nhid']),
+            state['n_out'],
+            scale=state['out_scale'],
+            bias_scale=state['out_bias_scale'],
+            init_fn="sample_weights_classic",
+            weight_noise=state['weight_noise'],
+            sparsity=state['out_sparse'],
+            sum_over_time=True,
+            use_nce=state['nce'],
+            name='out')
 
+    if state['join'] == 'concat':
+        output_layer = SoftmaxLayer(
+            rng,
+            eval(state['dout_nhid']+'*2'),
+            state['n_out'],
+            scale=state['out_scale'],
+            bias_scale=state['out_bias_scale'],
+            init_fn="sample_weights_classic",
+            weight_noise=state['weight_noise'],
+            sparsity=state['out_sparse'],
+            sum_over_time=True,
+            use_nce=state['nce'],
+            name='out')
     # Learning rate scheduling (1/(1+n/beta))
     state['clr'] = state['lr']
 
@@ -448,8 +457,6 @@ def jobman(state, channel):
     else:
         additional_inputs = [forward_training.rec_layer + backward_training.rec_layer]
 
-
-
     # Training model
     # Neural Implementations of the Language Model
 
@@ -457,34 +464,24 @@ def jobman(state, channel):
     logger.debug("_build train model")
     training_components = []
     
-    outhid_forward = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x))
-    outhid_backward = outhid_activ(backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
-
-    theano.printing.pp(x)
-    theano.printing.pp(x[::-1])
-
-    if state['join'] == 'sum' :
-        outhid = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x) + \
+    if state['join'] == 'sum':
+        outhid = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x) +
                               backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
-
-    elif state['join'] == 'maxPooling' :
-        outhid = MaxPooling(*training_components, ntimes=state['ntimes'])
-
-    else : # Default: Concatenate
-        training_components.append(outhid_forward)
-        training_components.append(outhid_backward)
+        outhid = outhid_dropout(outhid)
+    elif state['join'] == 'concat':
+        training_components.append(forward_training.rec_layer + forward_training.emb_words_out(x))
+        training_components.append(backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
         outhid = Concatenate(axis=1)(*training_components)
+        outhid = outhid_activ(outhid)
+        outhid = outhid_dropout(outhid)
 
-    outhid = outhid_dropout(outhid)
     train_model = output_layer(outhid,
                                no_noise_bias=state['no_noise_bias'],
                                additional_inputs=additional_inputs).train(target=y,
                                                                           scale=numpy.float32(1. / state['seqlen']))
-
     nw_h0_f = forward_training.rec_layer.out[forward_training.rec_layer.out.shape[0] - 1]
     nw_h0_b = backward_training.rec_layer.out[backward_training.rec_layer.out.shape[0] - 1]
-    # nw_h0 = ([nw_h0_f, nw_h0_b])
-    #
+
     if state['carry_h0']:
         train_model.updates += [(h0, nw_h0_f, nw_h0_b)]
 
@@ -508,20 +505,18 @@ def jobman(state, channel):
     nw_h0 = nw_h0_val_f + nw_h0_val_b
 
     valid_components = []
-    outhid_forward = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x))
-    outhid_backward = outhid_activ(backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
 
-    if state['join'] == 'sum' :
-        outhid = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x) + \
+    if state['join'] == 'sum':
+        outhid = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x) +
                               backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
-    elif state['join'] == 'maxPooling' :
-        outhid = MaxPooling(*valid_components, ntimes=state['ntimes'])
-    else : # Default: Concatenate layers
-        valid_components.append(outhid_forward)
-        valid_components.append(outhid_backward)
+        outhid = outhid_dropout(outhid)
+    elif state['join'] == 'concat':
+        valid_components.append(forward_valid.rec_layer + forward_valid.emb_words_out(x))
+        valid_components.append(backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
         outhid = Concatenate(axis=1)(*valid_components)
+        outhid = outhid_activ(outhid)
+        outhid = outhid_dropout(outhid)
 
-    outhid = outhid_dropout(outhid)
     valid_model = output_layer(outhid,
                                additional_inputs=additional_inputs,
                                use_noise=False).validate(target=y, sum_over_time=True)
@@ -529,79 +524,15 @@ def jobman(state, channel):
     valid_updates = []
 
     if state['carry_h0']:
-       valid_updates = [(h0val, nw_h0)]
+        valid_updates = [(h0val, nw_h0)]
 
     valid_fn = theano.function([x, y, reset], valid_model.cost,
                                name='valid_fn', updates=valid_updates,
                                on_unused_input='warn'
                                )
 
-    # Sampling
-    # TODO: Not sure if the sampling function works properly
-    def sample_fn(word_tm1, h_tm1_f, h_tm1_b):
-
-        x_emb = forward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
-        x_emb_b = backward_valid.emb_words(word_tm1, use_noise=False, one_step=True)
-
-        h0_f = forward_valid.rec(x_emb, state_before=h_tm1_f, one_step=True, use_noise=False)[-1]
-        h0_b = backward_valid.rec(x_emb_b, state_before=h_tm1_b, one_step=True, use_noise=False)[-1][::-1]
-        sample_components = []
-
-        outhid_forward = outhid_activ(forward_valid.emb_state(h0_f, use_noise=False, one_step=True) +
-                                      forward_valid.emb_words_out(word_tm1, use_noise=False, one_step=True))
-        outhid_forward = outhid_dropout(outhid_forward, one_step=True)
-        sample_components.append(outhid_forward)
-
-        outhid_backward = outhid_activ(backward_valid.emb_state(h0_b, use_noise=False, one_step=True)  +
-                                      backward_valid.emb_words_out(word_tm1, use_noise=False, one_step=True))
-        outhid_backward = outhid_dropout(outhid_backward, one_step=True)
-        sample_components.append(outhid_backward)
-        outhid = Concatenate(axis=0)(*sample_components)
-
-        word = output_layer.get_sample(state_below=outhid, additional_inputs=[h0_f, h0_b], temp=1.)
-
-        return word, h0_f, h0_b
-
-    # scan for iterating the single-step sampling multiple times
-    [samples, summaries_f, summaries_b], updates = scan(sample_fn,
-                                         states=[
-                                             TT.alloc(numpy.int64(0), state['sample_steps']),
-                                             TT.alloc(numpy.float32(0), 1, eval(state['nhids'])[-1]),
-                                             TT.alloc(numpy.float32(0), 1, eval(state['nhids'])[-1])],
-                                         n_steps=state['sample_steps'],
-                                         name='sampler_scan')
-
-
-    # build a Theano function for sampling
-    sample_fn = theano.function([], [samples],
-                                updates=updates, profile=False, name='sample_fn')
-    #pydotprint(sample_fn, outfile='sample_fn.png')
-
-    # End of validation
-
-    # Load a dictionary
-    dictionary = numpy.load(state['dictionary'])
-    if state['chunks'] == 'chars':
-        dictionary = dictionary['unique_chars']
-    else:
-        dictionary = dictionary['unique_words']
-
-    def hook_fn():
-
-        sample = sample_fn()[0]
-        print 'Sample joint:',
-        print
-        if state['chunks'] == 'chars':
-            print "".join(dictionary[sample])
-        else:
-            for si in sample:
-                print dictionary[si],
-            print
-            print
-
     # Build and Train a Model
     # Define a model
-
     model = BLM_Model(
         cost_layer=train_model,
         weight_noise_amount=state['weight_noise_amount'],
@@ -632,7 +563,7 @@ def jobman(state, channel):
                     state,
                     channel,
                     train_cost=False,
-                    hooks=hook_fn,
+                    hooks=None,
                     validate_postprocess=eval(state['validate_postprocess']))
     # Run!
     main.main()

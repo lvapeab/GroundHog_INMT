@@ -409,10 +409,10 @@ def jobman(state, channel):
     logger.debug("Create output_layer")
 
     # Softmax Layer
-    if state['join'] == 'sum':
+    if state['join'] == 'concat':
         output_layer = SoftmaxLayer(
             rng,
-            eval(state['dout_nhid']),
+            eval(state['dout_nhid']+'*2'),
             state['n_out'],
             scale=state['out_scale'],
             bias_scale=state['out_bias_scale'],
@@ -423,10 +423,10 @@ def jobman(state, channel):
             use_nce=state['nce'],
             name='out')
 
-    if state['join'] == 'concat':
+    else:
         output_layer = SoftmaxLayer(
             rng,
-            eval(state['dout_nhid']+'*2'),
+            eval(state['dout_nhid']),
             state['n_out'],
             scale=state['out_scale'],
             bias_scale=state['out_bias_scale'],
@@ -464,15 +464,15 @@ def jobman(state, channel):
     logger.debug("_build train model")
     training_components = []
     
-    if state['join'] == 'sum':
-        outhid = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x) +
-                              backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
-        outhid = outhid_dropout(outhid)
-    elif state['join'] == 'concat':
+    if state['join'] == 'concat':
         training_components.append(forward_training.rec_layer + forward_training.emb_words_out(x))
         training_components.append(backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
         outhid = Concatenate(axis=1)(*training_components)
         outhid = outhid_activ(outhid)
+        outhid = outhid_dropout(outhid)
+    else:
+        outhid = outhid_activ(forward_training.rec_layer + forward_training.emb_words_out(x) +
+                              backward_training.rec_layer + backward_training.emb_words_out(x[::-1]))
         outhid = outhid_dropout(outhid)
 
     train_model = output_layer(outhid,
@@ -506,15 +506,15 @@ def jobman(state, channel):
 
     valid_components = []
 
-    if state['join'] == 'sum':
-        outhid = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x) +
-                              backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
-        outhid = outhid_dropout(outhid)
-    elif state['join'] == 'concat':
+    if state['join'] == 'concat':
         valid_components.append(forward_valid.rec_layer + forward_valid.emb_words_out(x))
         valid_components.append(backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
         outhid = Concatenate(axis=1)(*valid_components)
         outhid = outhid_activ(outhid)
+        outhid = outhid_dropout(outhid)
+    else:
+        outhid = outhid_activ(forward_valid.rec_layer + forward_valid.emb_words_out(x) +
+                              backward_valid.rec_layer + backward_valid.emb_words_out(x[::-1]))
         outhid = outhid_dropout(outhid)
 
     valid_model = output_layer(outhid,

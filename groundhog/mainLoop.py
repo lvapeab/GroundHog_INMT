@@ -50,6 +50,7 @@ class MainLoop(object):
                  reset=-1,
                  train_cost=False,
                  validate_postprocess=None,
+                 skip_train = False,
                  l2_params=False):
         """
         :type train_data: groundhog dataset object
@@ -115,12 +116,13 @@ class MainLoop(object):
         self.validate_postprocess = validate_postprocess
         self.patience = state['patience']
         self.l2_params = l2_params
-
+        self.skip_train = skip_train
         self.train_cost = train_cost
 
         if hooks and not isinstance(hooks, (list, tuple)):
             hooks = [hooks]
-
+        if self.skip_train :
+            print "Waringing: Not tranining!"
         if self.state['validFreq'] < 0:
             self.state['validFreq'] = self.train_data.get_length()
             print 'Validation computed every', self.state['validFreq']
@@ -289,13 +291,15 @@ class MainLoop(object):
         while (self.step < self.state['loopIters'] and
                last_cost > .1*self.state['minerr'] and
                (time.time() - start_time)/60. < self.state['timeStop'] and
-               self.state['lr'] > self.state['minlr']):
+               self.state['lr'] > self.state['minlr']
+               and self.skip_train == False):
             if self.step > 0 and (time.time() - self.save_time)/60. >= self.state['saveFreq']:
                 self.save()
                 if self.channel is not None:
                     self.channel.save()
                 self.save_time = time.time()
             st = time.time()
+
             try:
                 rvals = self.algo()
                 self.state['traincost'] = float(rvals['cost'])

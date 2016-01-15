@@ -32,7 +32,7 @@ from groundhog.layers import maxpool, \
     hard_sigmoid, \
     hard_tanh
 from groundhog.models import BLM_Model
-from theano.sandbox.scan import scan
+from theano.scan_module import scan
 import numpy
 import theano
 import pprint

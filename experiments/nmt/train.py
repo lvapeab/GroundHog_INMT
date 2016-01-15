@@ -16,8 +16,8 @@ from groundhog.mainLoop import MainLoop
 from experiments.nmt import\
         RNNEncoderDecoder, prototype_state, get_batch_iterator,\
         sample, parse_input
+import experiments.nmt
 from experiments.nmt.sample import BeamSearch
-
 from subprocess import Popen, PIPE
 
 logger = logging.getLogger(__name__)

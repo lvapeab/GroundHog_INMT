@@ -1,8 +1,5 @@
 def prototype_state():
 
-
-
-
     state = {}
 
     # Random seed
@@ -140,7 +137,7 @@ def prototype_state():
     # Location of what to compare the output translation to (gt)
     state['validation_set_grndtruth']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.en.xml.tok'
     # Beam size during sampling
-    state['beam_size'] = 20
+    state['beam_size'] = 6
     # Number of steps between every validation
     state['bleu_val_frequency'] = 20000
     # Character or word based BLEU calculation

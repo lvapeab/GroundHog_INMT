@@ -21,7 +21,7 @@ import Queue
 import collections
 
 logger = logging.getLogger(__name__)
-
+"""
 class TMIterator(object):
 
     def __init__(self,
@@ -37,7 +37,7 @@ class TMIterator(object):
                  can_fit = False,
                  shuffle = False):
 
-        assert type(source_lfiles) == list, "Target language file should be a list."
+        assert type(source_lfiles) == list, "Source language file should be a list."
         if target_lfiles is not None:
             assert type(target_lfiles) == list, "Target language file should be a list."
             assert len(target_lfiles) == len(source_lfiles)
@@ -159,7 +159,7 @@ class TMIterator(object):
             return source_data, target_data
         else:
             return self.output_format(source_data, target_data)
-
+"""
 class PytablesBitextFetcher(threading.Thread):
     def __init__(self, parent, start_offset):
         threading.Thread.__init__(self)
@@ -180,7 +180,7 @@ class PytablesBitextFetcher(threading.Thread):
         source_table = tables.open_file(diter.source_file, 'r', driver=driver)
         source_data, source_index = (source_table.get_node(diter.table_name),
             source_table.get_node(diter.index_name))
-
+        print source_index.shape[0],  target_index.shape[0]
         assert source_index.shape[0] == target_index.shape[0]
         data_len = source_index.shape[0]
 
@@ -191,13 +191,14 @@ class PytablesBitextFetcher(threading.Thread):
                 offset = np.random.randint(data_len)
         logger.debug("{} entries".format(data_len))
         logger.debug("Starting from the entry {}".format(offset))
-        logger.debug("Shuflle? {}".format(diter.shuffle))
+        logger.debug("Shuffle? {}".format(diter.shuffle))
 
         while not diter.exit_flag:
             last_batch = False
             source_sents = []
             target_sents = []
-            while len(source_sents) < diter.batch_size:
+            while len(target_sents) < diter.batch_size:
+                print offset
 
                 if offset == data_len:
                     if diter.use_infinite_loop:
@@ -211,8 +212,9 @@ class PytablesBitextFetcher(threading.Thread):
                 offset += 1
 
                 if slen > diter.max_len or tlen > diter.max_len:
+                    logger.warning('Sentence ' + str(offset) + ' discarded (too long)')
                     continue
-                source_sents.append(source_data[spos:spos + slen].astype(diter.dtype))
+                source_sents.append(source_data[spos:spos + slen].astype(diter.dtype_src))
                 target_sents.append(target_data[tpos:tpos + tlen].astype(diter.dtype))
 
             if len(source_sents):
@@ -220,7 +222,6 @@ class PytablesBitextFetcher(threading.Thread):
             if last_batch:
                 diter.queue.put([None])
                 logger.debug("Last batch reached")
-
                 return
 
 class PytablesBitextIterator(object):
@@ -230,6 +231,7 @@ class PytablesBitextIterator(object):
                  target_file=None,
                  source_file=None,
                  dtype="int64",
+                 dtype_src="float32",
                  table_name='/phrases',
                  index_name='/indices',
                  can_fit=False,
@@ -237,7 +239,7 @@ class PytablesBitextIterator(object):
                  cache_size=1000,
                  shuffle=True,
                  use_infinite_loop=True,
-                 max_len=1000):
+                 max_len=2048):
 
         args = locals()
         args.pop("self")

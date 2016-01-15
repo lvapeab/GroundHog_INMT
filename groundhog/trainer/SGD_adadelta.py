@@ -16,7 +16,7 @@ import logging
 
 import theano
 import theano.tensor as TT
-from theano.sandbox.scan import scan
+from theano.scan_module import scan
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 
 from groundhog.utils import print_time, print_mem, const
@@ -73,7 +73,7 @@ class SGD(object):
         self.state = state
         self.data = data
         self.step_timer = time.time()
-        self.gdata = [theano.shared(numpy.zeros( (2,)*x.ndim,
+        self.gdata = [theano.shared(numpy.zeros((2,)*x.ndim,
                                                 dtype=x.dtype),
                                     name=x.name) for x in model.inputs]
 

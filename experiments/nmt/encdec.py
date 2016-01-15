@@ -23,7 +23,7 @@ from groundhog.layers import\
         DropOp,\
         Concatenate
 from groundhog.models import LM_Model
-from groundhog.datasets import PytablesBitextIterator
+from groundhog.datasets.TM_dataset import PytablesBitextIterator
 from groundhog.utils import sample_zeros, sample_weights_orth, init_bias, sample_weights_classic
 import groundhog.utils as utils
 
@@ -124,10 +124,12 @@ def create_padded_batch(state, x, y, return_dict=False):
     X[X >= state['n_sym_source']] = state['unk_sym_source']
     Y[Y >= state['n_sym_target']] = state['unk_sym_target']
 
+
     if return_dict:
         return {'x' : X, 'x_mask' : Xmask, 'y': Y, 'y_mask' : Ymask}
     else:
         return X, Xmask, Y, Ymask
+
 
 def get_batch_iterator(state):
 
@@ -1405,9 +1407,9 @@ class RNNEncoderDecoder(object):
                     (self.backward_sampling_c[0]))
 
         self.sampling_c = Concatenate(axis=1)(*sampling_c_components).out
-        (self.sample, self.sample_log_prob), self.sampling_updates =\
-            self.decoder.build_sampler(self.n_samples, self.n_steps, self.T,
-                    c=self.sampling_c)
+        (self.sample, self.sample_log_prob), self.sampling_updates = self.decoder.build_sampler(self.n_samples,
+                                                                                                self.n_steps, self.T,
+                                                                                                c=self.sampling_c)
 
         logger.debug("Create auxiliary variables")
         self.c = TT.matrix("c")
@@ -1436,7 +1438,8 @@ class RNNEncoderDecoder(object):
             self.repr_fn = theano.function(
                     inputs=[self.sampling_x],
                     outputs=[self.sampling_c],
-                    name="repr_fn")
+                    name="repr_fn",
+                    allow_input_downcast = True)
         return self.repr_fn
 
     def create_initializers(self):
@@ -1496,7 +1499,6 @@ class RNNEncoderDecoder(object):
                         self.c, self.step_num, self.gen_y, self.current_states),
                     name="next_states_fn",on_unused_input='warn')
         return self.next_states_fn
-
 
     def create_probs_computer(self, return_alignment=False):
         if not hasattr(self, 'probs_fn'):

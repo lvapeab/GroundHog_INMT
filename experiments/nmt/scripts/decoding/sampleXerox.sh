@@ -23,12 +23,20 @@
 #  --normalize           Normalize log-prob with the word count
 #  --verbose             Be verbose
 
-sampler=/home/lvapeab/smt/software/GroundHog_v/experiments/nmt/sample.py
+sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample.py
 state=/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_400_520_state.pkl
-beamsize=50
 model=/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_400_520_best_bleu_model.npz
-source_file=/home/lvapeab/smt/tasks/xerox/enes/DATA/dev.en
-dest_file=/home/lvapeab/smt/tasks/xerox/enes/NMT/translations/xeroxfull-dev-500-520.es
+beamsize=6
+source_file=/home/lvapeab/smt/tasks/xerox/enes/DATA/${split}.en
+refs=/home/lvapeab/smt/tasks/xerox/enes/DATA/${split}.es
+bleu=
+
 v=""
 
-python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state} ${model}  --source ${source_file} --trans ${dest_file} ${v} #--normalize
+for beam_size in 1 2 4 6 8 10 12 20; do
+dest_file=/home/lvapeab/smt/tasks/xerox/enes/NMT/translations/xerox.${split}.beam_${beam_size}.hyp.es
+python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state} ${model}  --source ${source_file} --trans ${dest_file} ${v}
+
+echo "Beam: $beam_size. `thot_calc_bleu -r  ${refs} -t ${dest_file}`"
+
+done

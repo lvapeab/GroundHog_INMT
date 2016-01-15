@@ -10,32 +10,20 @@ mosesdir=/home/lvapeab/smt/software/mosesdecoder
 #sourceText=/home/lvapeab/smt/tasks/xerox/enes/DATA/training.en
 #targetText=/home/lvapeab/smt/tasks/xerox/enes/DATA/training.es
 
-# Turista
-#sourceText=/home/lvapeab/smt/tasks/turista/DATA/training.en
-#targetText=/home/lvapeab/smt/tasks/turista/DATA/training.es
-
-# Europarl
-
-sourceText=/home/lvapeab/smt/tasks/europarl/DATA/v7/training.es
-targetText=/home/lvapeab/smt/tasks/europarl/DATA/v7/training.en
-
-#Output files
-
-# Europarl
-
-sourceNameDest=/home/lvapeab/smt/tasks/europarl/esen/NMT/DATA/es
-targetNameDest=/home/lvapeab/smt/tasks/europarl/esen/NMT/DATA/en
-
 
 # Xerox
-#sourceNameDest=/home/lvapeab/smt/tasks/xerox/enes/DATA/preprocess/es
-#targetNameDest=/home/lvapeab/smt/tasks/xerox/enes/DATA/preprocess/en
+sourceText=/home/lvapeab/smt/tasks/xerox/DATA/original/training.en
+targetText=/home/lvapeab/smt/tasks/xerox/DATA/original/training.es
+
+# Xerox
+sourceNameDest=/home/lvapeab/smt/tasks/xerox/DATA/NMT/en_truecased
+targetNameDest=/home/lvapeab/smt/tasks/xerox/DATA/NMT/es_truecased
 
 
 #Short-list length (vocabulary size)
 
-v_size_src=30000
-v_size_trg=30000
+v_size_src=14500
+v_size_trg=14500
 
 #Validation set size ( If >= 1 take this many samples for the validation set, if < 1, take this fraction of the samples)
 

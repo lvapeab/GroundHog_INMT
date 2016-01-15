@@ -1,0 +1,221 @@
+nohup: no se tendrá en cuenta la entrada
+Using gpu device 0: GeForce GTX TITAN X
+2015-11-11 16:45:12,418: __main__: DEBUG: State:
+{'activ': 'lambda x: TT.tanh(x)',
+ 'adaeps': 1e-06,
+ 'adarho': 0.95,
+ 'algo': 'SGD_adadelta',
+ 'backward': True,
+ 'beam_size': 20,
+ 'bias': 0.0,
+ 'bias_code': True,
+ 'bigram': True,
+ 'bleu_script': '/home/lvapeab/smt/software/mosesdecoder/scripts/generic/multi-bleu.perl',
+ 'bleu_val_frequency': 6000,
+ 'bs': 80,
+ 'char_based_bleu': False,
+ 'check_first_word': True,
+ 'cutoff': 1.0,
+ 'cutoff_rescale_length': 0.0,
+ 'dec_rec_gater': 'lambda x: TT.nnet.sigmoid(x)',
+ 'dec_rec_gating': True,
+ 'dec_rec_layer': 'RecurrentLayerWithSearch',
+ 'dec_rec_reseter': 'lambda x: TT.nnet.sigmoid(x)',
+ 'dec_rec_reseting': True,
+ 'decoder_stack': 1,
+ 'decoding_inputs': True,
+ 'deep_attention': True,
+ 'deep_attention_acts': [' lambda x: TT.tanh(x) ', ' lambda x: TT.tanh(x) '],
+ 'deep_attention_n_hids': [250, 250],
+ 'deep_out': True,
+ 'dim': 250,
+ 'dropout': 0.5,
+ 'dropout_rec': 1.0,
+ 'enc_rec_gater': 'lambda x: TT.nnet.sigmoid(x)',
+ 'enc_rec_gating': True,
+ 'enc_rec_layer': 'RecurrentLayer',
+ 'enc_rec_reseter': 'lambda x: TT.nnet.sigmoid(x)',
+ 'enc_rec_reseting': True,
+ 'encoder_stack': 1,
+ 'encoding': 'utf8',
+ 'eps': 1e-10,
+ 'forward': True,
+ 'hookFreq': 12000,
+ 'indx_word': '/home/lvapeab/smt/tasks/turista/NMT/DATA/es.ivocab.pkl',
+ 'indx_word_target': '/home/lvapeab/smt/tasks/turista/NMT/DATA/en.ivocab.pkl',
+ 'last_backward': False,
+ 'last_forward': False,
+ 'level': 'DEBUG',
+ 'loopIters': 1000000000.0,
+ 'lr': 0.001,
+ 'maxout_part': 2.0,
+ 'minerr': -1,
+ 'minlr': 0,
+ 'n_examples': 3,
+ 'n_samples': 3,
+ 'n_sym_source': 687,
+ 'n_sym_target': 514,
+ 'null_sym_source': 686,
+ 'null_sym_target': 513,
+ 'on_nan': 'raise',
+ 'oov': 'UNK',
+ 'output_validation_set': True,
+ 'overwrite': 1,
+ 'patience': 1,
+ 'prefix': '/home/lvapeab/smt/tasks/turista/NMT/models/turista_250_300_',
+ 'rank_n_activ': 'lambda x: x',
+ 'rank_n_approx': 300,
+ 'rec_gater': 'lambda x: TT.nnet.sigmoid(x)',
+ 'rec_gating': True,
+ 'rec_layer': 'RecurrentLayer',
+ 'rec_reseter': 'lambda x: TT.nnet.sigmoid(x)',
+ 'rec_reseting': True,
+ 'rec_weight_init_fn': 'sample_weights_orth',
+ 'rec_weight_scale': 1.0,
+ 'reload': True,
+ 'reset': -1,
+ 'saveFreq': 30,
+ 'search': True,
+ 'seed': 1234,
+ 'seqlen': 30,
+ 'shuffle': False,
+ 'sort_k_batches': 20,
+ 'source': ['/home/lvapeab/smt/tasks/turista/NMT/DATA/es.binarized_text.h5'],
+ 'source_encoding': 'utf8',
+ 'take_top': True,
+ 'target': ['/home/lvapeab/smt/tasks/turista/NMT/DATA/en.binarized_text.h5'],
+ 'target_encoding': 'utf8',
+ 'target_words_segmented': False,
+ 'timeStop': 44640,
+ 'trainFreq': 1000,
+ 'trim_batches': True,
+ 'unary_activ': 'Maxout(2)',
+ 'unk_sym_source': 1,
+ 'unk_sym_target': 1,
+ 'use_infinite_loop': True,
+ 'use_nce': False,
+ 'validFreq': 2000,
+ 'validation_burn_in': 6000,
+ 'validation_set': '/home/lvapeab/smt/tasks/turista/DATA/dev.es',
+ 'validation_set_grndtruth': '/home/lvapeab/smt/tasks/turista/DATA/dev.en',
+ 'validation_set_out': '/home/lvapeab/smt/tasks/turista/NMT/tmp/dev.hyp.en',
+ 'weight_init_fn': 'sample_weights_classic',
+ 'weight_noise': True,
+ 'weight_noise_amount': 0.01,
+ 'weight_noise_rec': False,
+ 'weight_scale': 0.01,
+ 'word_indx': '/home/lvapeab/smt/tasks/turista/NMT/DATA/es.vocab.pkl',
+ 'word_indx_trgt': '/home/lvapeab/smt/tasks/turista/NMT/DATA/en.vocab.pkl'}
+2015-11-11 16:45:12,418: experiments.nmt.encdec: DEBUG: Create input variables
+2015-11-11 16:45:12,419: experiments.nmt.encdec: DEBUG: Create encoder
+2015-11-11 16:45:12,419: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2015-11-11 16:45:12,535: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2015-11-11 16:45:26,809: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2015-11-11 16:45:26,809: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2015-11-11 16:45:26,853: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2015-11-11 16:45:26,926: experiments.nmt.encdec: DEBUG: Create backward encoder
+2015-11-11 16:45:26,926: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2015-11-11 16:45:27,047: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2015-11-11 16:45:35,831: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2015-11-11 16:45:35,831: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2015-11-11 16:45:35,857: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2015-11-11 16:45:35,883: experiments.nmt.encdec: DEBUG: Create decoder
+2015-11-11 16:45:35,883: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2015-11-11 16:45:36,013: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2015-11-11 16:45:36,014: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2015-11-11 16:45:44,587: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2015-11-11 16:45:44,587: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2015-11-11 16:45:44,602: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2015-11-11 16:45:44,682: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2015-11-11 16:45:44,774: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2015-11-11 16:45:45,171: groundhog.layers.cost_layers: DEBUG: Get grads
+2015-11-11 16:45:47,114: groundhog.layers.cost_layers: DEBUG: Got grads
+2015-11-11 16:45:47,115: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2015-11-11 16:45:48,179: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2015-11-11 16:45:48,179: experiments.nmt.encdec: DEBUG: Compile sampler
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_perform_ext.py:135: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility
+  from scan_perform.scan_perform import *
+2015-11-11 16:46:05,224: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2015-11-11 16:46:08,596: __main__: DEBUG: Load data
+2015-11-11 16:46:08,596: __main__: DEBUG: Compile trainer
+2015-11-11 16:46:08,665: groundhog.trainer.SGD_adadelta: DEBUG: Constructing grad function
+2015-11-11 16:46:08,886: groundhog.trainer.SGD_adadelta: DEBUG: Compiling grad function
+2015-11-11 16:47:22,366: groundhog.trainer.SGD_adadelta: DEBUG: took 73.4798481464
+2015-11-11 16:47:28,195: __main__: DEBUG: Run training
+Traceback (most recent call last):
+  File "build/bdist.linux-x86_64/egg/groundhog/mainLoop.py", line 257, in load
+    self.model.load(model_path)
+  File "build/bdist.linux-x86_64/egg/groundhog/layers/basic.py", line 172, in load
+    vals = numpy.load(filename)
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/numpy/lib/npyio.py", line 323, in load
+    fid = open(file, "rb")
+IOError: [Errno 2] No such file or directory: '/home/lvapeab/smt/tasks/turista/NMT/models/turista_250_300_model.npz'
+Traceback (most recent call last):
+  File "build/bdist.linux-x86_64/egg/groundhog/mainLoop.py", line 262, in load
+    self.timings = dict(numpy.load(timings_path).iteritems())
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/numpy/lib/npyio.py", line 323, in load
+    fid = open(file, "rb")
+IOError: [Errno 2] No such file or directory: '/home/lvapeab/smt/tasks/turista/NMT/models/turista_250_300_timing.npz'
+2015-11-11 16:47:28,885: groundhog.datasets.TM_dataset: DEBUG: 9900 entries
+2015-11-11 16:47:28,885: groundhog.datasets.TM_dataset: DEBUG: Starting from the entry 0
+2015-11-11 16:47:28,885: groundhog.datasets.TM_dataset: DEBUG: Shuflle? False
+2015-11-11 16:47:31,334: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-11 18:47:06,116: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-11 20:46:26,762: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-11 22:25:29,864: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-11 23:40:31,830: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 00:51:10,873: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 02:06:14,070: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 03:19:31,478: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 04:32:35,867: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 05:49:53,009: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 07:00:55,481: experiments.nmt.encdec: DEBUG: Use peeked batch
+2015-11-12 08:16:09,193: experiments.nmt.encdec: DEBUG: Use peeked batch

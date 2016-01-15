@@ -1,0 +1,48 @@
+max_N=1
+Bye Bye!
+Total number of errors: 2815
+Total number selections 9550
+WSR: 0.176389
+Total cost of the translations: 229.696167314
+max_N=2
+Bye Bye!
+Total number of errors: 2895
+Total number selections 10124
+WSR: 0.181402
+Total cost of the translations: 244.067274041
+max_N=3
+Bye Bye!
+Total number of errors: 2874
+Total number selections 9986
+WSR: 0.180086
+Total cost of the translations: 285.276877123
+max_N=4
+Bye Bye!
+Total number of errors: 2847
+Total number selections 9914
+WSR: 0.178395
+Total cost of the translations: 296.776952155
+max_N=5
+Bye Bye!
+Total number of errors: 2878
+Total number selections 9994
+WSR: 0.180337
+Total cost of the translations: 301.532085318
+max_N=6
+Bye Bye!
+Total number of errors: 2889
+Total number selections 9996
+WSR: 0.181026
+Total cost of the translations: 324.529426015
+max_N=7
+Bye Bye!
+Total number of errors: 2845
+Total number selections 9841
+WSR: 0.178269
+Total cost of the translations: 361.694528968
+max_N=8
+Bye Bye!
+Interrupted!
+Total number of corrections (up to now): 576
+WSR: 0.124973
+SR: 8.967153

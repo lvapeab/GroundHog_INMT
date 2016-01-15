@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+
+pe_script="/home/lvapeab/smt/software/GroundHog/experiments/nmt/PE_isles/postediting_sampling_isles.py"
+beam_size=6
+
+state="/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_400_520_state.pkl"
+model="/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_400_520_best_bleu_model.npz"
+
+source="/home/lvapeab/smt/tasks/xerox/enes/DATA/test.en"
+dest="/home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.test.PE.es"
+ori_dest="/home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.test.Orihyp.es"
+refs="/home/lvapeab/smt/tasks/xerox/enes/DATA/test.es"
+
+v="--verbose"
+isles="--isles"
+save_ori="--save-original --save-original-to ${ori_dest}"
+# i="--color"
+regressor="/home/lvapeab/smt/software/GroundHog/experiments/nmt/PE_isles/models/best_accuracy.pkl"
+python ${pe_script} ${v} --beam-search --beam-size ${beam_size} --state ${state}  --source ${source} --trans ${dest} --references ${refs} ${save_ori} --regressor ${regressor} ${i} ${isles} ${model}

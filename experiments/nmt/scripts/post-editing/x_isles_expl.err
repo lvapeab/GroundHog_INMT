@@ -1,0 +1,1655 @@
+Using gpu device 0: GeForce GTX TITAN X
+ 236: Post editing via the isles approach
+ 237: Create input variables
+ 237: Create encoder
+ 237: _create_embedding_layers
+ 280: _create_transition_layers
+ 282: _create_inter_level_layers
+ 282: _create_representation_layers
+ 285: Build encoding computation graph
+ 318: Create backward encoder
+ 319: _create_embedding_layers
+ 368: _create_transition_layers
+ 369: _create_inter_level_layers
+ 369: _create_representation_layers
+ 373: Build backward encoding computation graph
+ 401: Create decoder
+ 401: _create_embedding_layers
+ 452: _create_transition_layers
+ 452: RecurrentLayerWithSearch is used
+ 654: _create_inter_level_layers
+ 654: _create_initialization_layers
+ 656: _create_decoding_layers
+ 667: _create_readout_layers
+ 716: Build log-likelihood computation graph
+ 837: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 153: Got grads
+ 153: Build sampling computation graph
+ 936: Create auxiliary variables
+ 937: Compile sampler
+ 564: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 565: Loading W1_dec_deep_softmax of (250, 520)
+ 579: Loading W2_dec_deep_softmax of (520, 14480)
+ 668: Loading b_dec_deep_softmax of (14480,)
+ 670: Loading W_0_dec_repr_readout of (1000, 500)
+ 677: Loading W_dec_transition_0 of (500, 500)
+ 681: Loading G_dec_transition_0 of (500, 500)
+ 685: Loading R_dec_transition_0 of (500, 500)
+ 689: Loading A_dec_transition_0 of (1000, 500)
+ 696: Loading B_dec_transition_0 of (500, 500)
+ 699: Loading D_dec_transition_0 of (500, 1)
+ 700: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 704: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 707: Loading b_0_DatN_dec_transition_0 of (500,)
+ 708: Loading b_1_DatN_dec_transition_0 of (500,)
+ 709: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 716: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 723: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 730: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 734: Loading b_0_dec_input_embdr_0 of (500,)
+ 744: Loading W_0_dec_approx_embdr of (14480, 520)
+ 833: Loading b_0_dec_approx_embdr of (520,)
+ 834: Loading W_0_dec_initializer_0 of (500, 500)
+ 838: Loading b_0_dec_initializer_0 of (500,)
+ 839: Loading W_enc_transition_0 of (500, 500)
+ 842: Loading G_enc_transition_0 of (500, 500)
+ 846: Loading R_enc_transition_0 of (500, 500)
+ 850: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 854: Loading b_0_enc_input_embdr_0 of (500,)
+ 862: Loading W_0_enc_approx_embdr of (11425, 520)
+ 932: Loading b_0_enc_approx_embdr of (520,)
+ 934: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 938: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 941: Loading W_back_enc_transition_0 of (500, 500)
+ 945: Loading G_back_enc_transition_0 of (500, 500)
+ 949: Loading R_back_enc_transition_0 of (500, 500)
+ 953: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 957: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 958: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 962: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 966: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 970: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 974: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 977: Loading b_0_dec_hid_readout_0 of (500,)
+ 978: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 942: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 942: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 942: Beam size: 6
+ 616: 50 sentences processed
+ 617: Current speed is 0.633489718437 per sentence
+ 617: Current WSR is: 0.104994
+ 617: Current Selection ratio is: 7.938776
+ 980: 100 sentences processed
+ 980: Current speed is 0.640377748013 per sentence
+ 980: Current WSR is: 0.119605
+ 980: Current Selection ratio is: 8.262626
+ 636: 150 sentences processed
+ 636: Current speed is 0.69129140536 per sentence
+ 636: Current WSR is: 0.134461
+ 636: Current Selection ratio is: 8.738255
+ 874: 200 sentences processed
+ 874: Current speed is 0.62466032505 per sentence
+ 874: Current WSR is: 0.124492
+ 874: Current Selection ratio is: 7.844221
+ 637: 250 sentences processed
+ 637: Current speed is 0.590780960083 per sentence
+ 637: Current WSR is: 0.115073
+ 637: Current Selection ratio is: 7.056225
+ 257: 300 sentences processed
+ 257: Current speed is 0.694382960002 per sentence
+ 257: Current WSR is: 0.129198
+ 257: Current Selection ratio is: 8.622074
+ 103: 350 sentences processed
+ 103: Current speed is 0.666174116816 per sentence
+ 103: Current WSR is: 0.130495
+ 103: Current Selection ratio is: 8.295129
+ 786: 400 sentences processed
+ 786: Current speed is 0.71210953474 per sentence
+ 786: Current WSR is: 0.140410
+ 786: Current Selection ratio is: 8.909774
+ 823: 450 sentences processed
+ 823: Current speed is 0.699735533396 per sentence
+ 823: Current WSR is: 0.137841
+ 823: Current Selection ratio is: 8.663697
+ 666: 500 sentences processed
+ 666: Current speed is 0.66744721365 per sentence
+ 666: Current WSR is: 0.137073
+ 666: Current Selection ratio is: 8.276553
+ 973: 550 sentences processed
+ 973: Current speed is 0.660055781711 per sentence
+ 973: Current WSR is: 0.136633
+ 973: Current Selection ratio is: 8.154827
+ 199: 600 sentences processed
+ 199: Current speed is 0.657094549735 per sentence
+ 199: Current WSR is: 0.142991
+ 199: Current Selection ratio is: 8.303840
+ 279: 650 sentences processed
+ 279: Current speed is 0.655902938476 per sentence
+ 279: Current WSR is: 0.145805
+ 279: Current Selection ratio is: 8.294299
+ 557: 700 sentences processed
+ 557: Current speed is 0.662307442597 per sentence
+ 557: Current WSR is: 0.149862
+ 557: Current Selection ratio is: 8.456366
+ 680: 750 sentences processed
+ 681: Current speed is 0.655651258469 per sentence
+ 681: Current WSR is: 0.152442
+ 681: Current Selection ratio is: 8.456609
+ 132: 800 sentences processed
+ 132: Current speed is 0.661487071216 per sentence
+ 132: Current WSR is: 0.157644
+ 132: Current Selection ratio is: 8.622028
+ 387: 850 sentences processed
+ 388: Current speed is 0.664053529291 per sentence
+ 388: Current WSR is: 0.160539
+ 388: Current Selection ratio is: 8.703180
+ 128: 900 sentences processed
+ 128: Current speed is 0.690206942028 per sentence
+ 128: Current WSR is: 0.168002
+ 128: Current Selection ratio is: 9.156841
+ 934: 950 sentences processed
+ 935: Current speed is 0.711571077799 per sentence
+ 935: Current WSR is: 0.174993
+ 935: Current Selection ratio is: 9.560590
+ 679: 1000 sentences processed
+ 679: Current speed is 0.698736795902 per sentence
+ 679: Current WSR is: 0.173685
+ 679: Current Selection ratio is: 9.338338
+Using gpu device 0: GeForce GTX TITAN X
+ 463: Post editing via the isles approach
+ 463: Create input variables
+ 464: Create encoder
+ 464: _create_embedding_layers
+ 506: _create_transition_layers
+ 508: _create_inter_level_layers
+ 508: _create_representation_layers
+ 512: Build encoding computation graph
+ 545: Create backward encoder
+ 545: _create_embedding_layers
+ 593: _create_transition_layers
+ 595: _create_inter_level_layers
+ 595: _create_representation_layers
+ 598: Build backward encoding computation graph
+ 627: Create decoder
+ 627: _create_embedding_layers
+ 677: _create_transition_layers
+ 677: RecurrentLayerWithSearch is used
+ 880: _create_inter_level_layers
+ 880: _create_initialization_layers
+ 882: _create_decoding_layers
+ 893: _create_readout_layers
+ 941: Build log-likelihood computation graph
+ 62: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 362: Got grads
+ 363: Build sampling computation graph
+ 147: Create auxiliary variables
+ 147: Compile sampler
+ 774: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 775: Loading W1_dec_deep_softmax of (250, 520)
+ 789: Loading W2_dec_deep_softmax of (520, 14480)
+ 878: Loading b_dec_deep_softmax of (14480,)
+ 880: Loading W_0_dec_repr_readout of (1000, 500)
+ 886: Loading W_dec_transition_0 of (500, 500)
+ 890: Loading G_dec_transition_0 of (500, 500)
+ 894: Loading R_dec_transition_0 of (500, 500)
+ 898: Loading A_dec_transition_0 of (1000, 500)
+ 905: Loading B_dec_transition_0 of (500, 500)
+ 908: Loading D_dec_transition_0 of (500, 1)
+ 909: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 913: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 917: Loading b_0_DatN_dec_transition_0 of (500,)
+ 917: Loading b_1_DatN_dec_transition_0 of (500,)
+ 919: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 926: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 933: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 940: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 943: Loading b_0_dec_input_embdr_0 of (500,)
+ 954: Loading W_0_dec_approx_embdr of (14480, 520)
+ 43: Loading b_0_dec_approx_embdr of (520,)
+ 44: Loading W_0_dec_initializer_0 of (500, 500)
+ 47: Loading b_0_dec_initializer_0 of (500,)
+ 48: Loading W_enc_transition_0 of (500, 500)
+ 52: Loading G_enc_transition_0 of (500, 500)
+ 56: Loading R_enc_transition_0 of (500, 500)
+ 60: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 64: Loading b_0_enc_input_embdr_0 of (500,)
+ 72: Loading W_0_enc_approx_embdr of (11425, 520)
+ 143: Loading b_0_enc_approx_embdr of (520,)
+ 144: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 148: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 152: Loading W_back_enc_transition_0 of (500, 500)
+ 156: Loading G_back_enc_transition_0 of (500, 500)
+ 160: Loading R_back_enc_transition_0 of (500, 500)
+ 164: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 167: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 168: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 172: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 176: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 180: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 184: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 188: Loading b_0_dec_hid_readout_0 of (500,)
+ 189: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 176: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 176: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 176: Beam size: 6
+ 679: 50 sentences processed
+ 679: Current speed is 0.670047960281 per sentence
+ 679: Current WSR is: 0.107554
+ 679: Current Selection ratio is: 7.040816
+ 403: 100 sentences processed
+ 403: Current speed is 0.652265269756 per sentence
+ 403: Current WSR is: 0.116523
+ 403: Current Selection ratio is: 7.565657
+ 585: 150 sentences processed
+ 585: Current speed is 0.716058006287 per sentence
+ 585: Current WSR is: 0.134461
+ 585: Current Selection ratio is: 8.322148
+ 840: 200 sentences processed
+ 840: Current speed is 0.648316810131 per sentence
+ 840: Current WSR is: 0.124492
+ 840: Current Selection ratio is: 7.512563
+ 156: 250 sentences processed
+ 156: Current speed is 0.619916731834 per sentence
+ 156: Current WSR is: 0.116302
+ 156: Current Selection ratio is: 6.931727
+ 64: 300 sentences processed
+ 64: Current speed is 0.732957727114 per sentence
+ 64: Current WSR is: 0.131766
+ 64: Current Selection ratio is: 8.655518
+ 822: 350 sentences processed
+ 823: Current speed is 0.698988859994 per sentence
+ 823: Current WSR is: 0.132898
+ 823: Current Selection ratio is: 8.352436
+ 651: 400 sentences processed
+ 652: Current speed is 0.738687602878 per sentence
+ 652: Current WSR is: 0.141149
+ 652: Current Selection ratio is: 8.924812
+ 830: 450 sentences processed
+ 830: Current speed is 0.723673957719 per sentence
+ 830: Current WSR is: 0.138365
+ 830: Current Selection ratio is: 8.677060
+ 855: 500 sentences processed
+ 855: Current speed is 0.689357134342 per sentence
+ 855: Current WSR is: 0.137439
+ 855: Current Selection ratio is: 8.266533
+ 601: 550 sentences processed
+ 602: Current speed is 0.680772881941 per sentence
+ 602: Current WSR is: 0.137303
+ 602: Current Selection ratio is: 8.174863
+ 731: 600 sentences processed
+ 731: Current speed is 0.677591553529 per sentence
+ 731: Current WSR is: 0.143509
+ 731: Current Selection ratio is: 8.345576
+ 729: 650 sentences processed
+ 729: Current speed is 0.677773498388 per sentence
+ 729: Current WSR is: 0.146861
+ 729: Current Selection ratio is: 8.395994
+ 138: 700 sentences processed
+ 138: Current speed is 0.687088418688 per sentence
+ 138: Current WSR is: 0.151645
+ 138: Current Selection ratio is: 8.682403
+ 631: 750 sentences processed
+ 631: Current speed is 0.68060651207 per sentence
+ 631: Current WSR is: 0.154368
+ 631: Current Selection ratio is: 8.702270
+ 140: 800 sentences processed
+ 140: Current speed is 0.689954797626 per sentence
+ 140: Current WSR is: 0.160744
+ 140: Current Selection ratio is: 8.918648
+ 516: 850 sentences processed
+ 516: Current speed is 0.692163722375 per sentence
+ 516: Current WSR is: 0.163459
+ 516: Current Selection ratio is: 9.047114
+ 382: 900 sentences processed
+ 382: Current speed is 0.723561924564 per sentence
+ 382: Current WSR is: 0.172079
+ 382: Current Selection ratio is: 9.635150
+ 400: 950 sentences processed
+ 401: Current speed is 0.748656875962 per sentence
+ 401: Current WSR is: 0.179619
+ 401: Current Selection ratio is: 10.099052
+ 156: 1000 sentences processed
+ 156: Current speed is 0.734979789019 per sentence
+ 156: Current WSR is: 0.178117
+ 156: Current Selection ratio is: 9.849850
+Using gpu device 0: GeForce GTX TITAN X
+ 129: Post editing via the isles approach
+ 129: Create input variables
+ 129: Create encoder
+ 129: _create_embedding_layers
+ 172: _create_transition_layers
+ 174: _create_inter_level_layers
+ 174: _create_representation_layers
+ 177: Build encoding computation graph
+ 211: Create backward encoder
+ 211: _create_embedding_layers
+ 259: _create_transition_layers
+ 260: _create_inter_level_layers
+ 260: _create_representation_layers
+ 264: Build backward encoding computation graph
+ 294: Create decoder
+ 294: _create_embedding_layers
+ 345: _create_transition_layers
+ 345: RecurrentLayerWithSearch is used
+ 547: _create_inter_level_layers
+ 547: _create_initialization_layers
+ 549: _create_decoding_layers
+ 560: _create_readout_layers
+ 608: Build log-likelihood computation graph
+ 730: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 77: Got grads
+ 77: Build sampling computation graph
+ 861: Create auxiliary variables
+ 861: Compile sampler
+ 516: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 517: Loading W1_dec_deep_softmax of (250, 520)
+ 531: Loading W2_dec_deep_softmax of (520, 14480)
+ 620: Loading b_dec_deep_softmax of (14480,)
+ 622: Loading W_0_dec_repr_readout of (1000, 500)
+ 629: Loading W_dec_transition_0 of (500, 500)
+ 633: Loading G_dec_transition_0 of (500, 500)
+ 637: Loading R_dec_transition_0 of (500, 500)
+ 641: Loading A_dec_transition_0 of (1000, 500)
+ 648: Loading B_dec_transition_0 of (500, 500)
+ 651: Loading D_dec_transition_0 of (500, 1)
+ 652: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 656: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 659: Loading b_0_DatN_dec_transition_0 of (500,)
+ 660: Loading b_1_DatN_dec_transition_0 of (500,)
+ 661: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 668: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 676: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 683: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 686: Loading b_0_dec_input_embdr_0 of (500,)
+ 696: Loading W_0_dec_approx_embdr of (14480, 520)
+ 786: Loading b_0_dec_approx_embdr of (520,)
+ 787: Loading W_0_dec_initializer_0 of (500, 500)
+ 790: Loading b_0_dec_initializer_0 of (500,)
+ 791: Loading W_enc_transition_0 of (500, 500)
+ 795: Loading G_enc_transition_0 of (500, 500)
+ 799: Loading R_enc_transition_0 of (500, 500)
+ 803: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 807: Loading b_0_enc_input_embdr_0 of (500,)
+ 815: Loading W_0_enc_approx_embdr of (11425, 520)
+ 885: Loading b_0_enc_approx_embdr of (520,)
+ 886: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 890: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 894: Loading W_back_enc_transition_0 of (500, 500)
+ 898: Loading G_back_enc_transition_0 of (500, 500)
+ 902: Loading R_back_enc_transition_0 of (500, 500)
+ 906: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 910: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 911: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 915: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 919: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 923: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 927: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 930: Loading b_0_dec_hid_readout_0 of (500,)
+ 931: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 923: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 923: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 923: Beam size: 6
+ 812: 50 sentences processed
+ 812: Current speed is 0.637777218819 per sentence
+ 812: Current WSR is: 0.101152
+ 812: Current Selection ratio is: 6.775510
+ 437: 100 sentences processed
+ 437: Current speed is 0.655137069225 per sentence
+ 437: Current WSR is: 0.113440
+ 437: Current Selection ratio is: 7.424242
+ 694: 150 sentences processed
+ 694: Current speed is 0.731804946264 per sentence
+ 694: Current WSR is: 0.132448
+ 694: Current Selection ratio is: 8.275168
+ 421: 200 sentences processed
+ 421: Current speed is 0.667487924099 per sentence
+ 421: Current WSR is: 0.123553
+ 421: Current Selection ratio is: 7.462312
+ 917: 250 sentences processed
+ 918: Current speed is 0.643976911545 per sentence
+ 918: Current WSR is: 0.116302
+ 918: Current Selection ratio is: 6.875502
+ 646: 300 sentences processed
+ 646: Current speed is 0.755741816362 per sentence
+ 646: Current WSR is: 0.129988
+ 646: Current Selection ratio is: 8.608696
+ 953: 350 sentences processed
+ 953: Current speed is 0.722942182677 per sentence
+ 953: Current WSR is: 0.131181
+ 953: Current Selection ratio is: 8.275072
+ 157: 400 sentences processed
+ 157: Current speed is 0.773083204627 per sentence
+ 157: Current WSR is: 0.141149
+ 157: Current Selection ratio is: 9.007519
+ 752: 450 sentences processed
+ 752: Current speed is 0.755174361865 per sentence
+ 752: Current WSR is: 0.137710
+ 752: Current Selection ratio is: 8.679287
+ 561: 500 sentences processed
+ 561: Current speed is 0.721275248051 per sentence
+ 561: Current WSR is: 0.137317
+ 561: Current Selection ratio is: 8.270541
+ 348: 550 sentences processed
+ 349: Current speed is 0.715318579674 per sentence
+ 349: Current WSR is: 0.137303
+ 349: Current Selection ratio is: 8.183971
+ 745: Still no translations: try beam size 10
+ 2: Still no translations: try beam size 10
+ 104: 600 sentences processed
+ 104: Current speed is 0.715301373402 per sentence
+ 104: Current WSR is: 0.143717
+ 104: Current Selection ratio is: 8.353923
+ 122: 650 sentences processed
+ 122: Current speed is 0.715689976766 per sentence
+ 122: Current WSR is: 0.147149
+ 122: Current Selection ratio is: 8.423729
+ 722: 700 sentences processed
+ 722: Current speed is 0.725426661287 per sentence
+ 722: Current WSR is: 0.152091
+ 722: Current Selection ratio is: 8.670959
+ 315: 750 sentences processed
+ 315: Current speed is 0.717856091817 per sentence
+ 315: Current WSR is: 0.154284
+ 315: Current Selection ratio is: 8.660881
+ 828: 800 sentences processed
+ 828: Current speed is 0.727381233573 per sentence
+ 828: Current WSR is: 0.160426
+ 828: Current Selection ratio is: 8.904881
+ 683: 850 sentences processed
+ 683: Current speed is 0.730305462164 per sentence
+ 683: Current WSR is: 0.163160
+ 683: Current Selection ratio is: 9.014134
+ 205: 900 sentences processed
+ 205: Current speed is 0.763646475474 per sentence
+ 205: Current WSR is: 0.171587
+ 205: Current Selection ratio is: 9.560623
+ 516: 950 sentences processed
+ 517: Current speed is 0.78694024086 per sentence
+ 517: Current WSR is: 0.178364
+ 517: Current Selection ratio is: 9.962065
+ 684: 1000 sentences processed
+ 685: Current speed is 0.772761194944 per sentence
+ 685: Current WSR is: 0.176914
+ 685: Current Selection ratio is: 9.728729
+Using gpu device 0: GeForce GTX TITAN X
+ 206: Post editing via the isles approach
+ 206: Create input variables
+ 206: Create encoder
+ 206: _create_embedding_layers
+ 249: _create_transition_layers
+ 250: _create_inter_level_layers
+ 251: _create_representation_layers
+ 254: Build encoding computation graph
+ 287: Create backward encoder
+ 287: _create_embedding_layers
+ 336: _create_transition_layers
+ 337: _create_inter_level_layers
+ 337: _create_representation_layers
+ 341: Build backward encoding computation graph
+ 370: Create decoder
+ 370: _create_embedding_layers
+ 420: _create_transition_layers
+ 421: RecurrentLayerWithSearch is used
+ 623: _create_inter_level_layers
+ 623: _create_initialization_layers
+ 625: _create_decoding_layers
+ 636: _create_readout_layers
+ 684: Build log-likelihood computation graph
+ 805: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 129: Got grads
+ 129: Build sampling computation graph
+ 915: Create auxiliary variables
+ 916: Compile sampler
+ 488: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 489: Loading W1_dec_deep_softmax of (250, 520)
+ 504: Loading W2_dec_deep_softmax of (520, 14480)
+ 593: Loading b_dec_deep_softmax of (14480,)
+ 594: Loading W_0_dec_repr_readout of (1000, 500)
+ 601: Loading W_dec_transition_0 of (500, 500)
+ 605: Loading G_dec_transition_0 of (500, 500)
+ 609: Loading R_dec_transition_0 of (500, 500)
+ 613: Loading A_dec_transition_0 of (1000, 500)
+ 620: Loading B_dec_transition_0 of (500, 500)
+ 623: Loading D_dec_transition_0 of (500, 1)
+ 624: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 628: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 632: Loading b_0_DatN_dec_transition_0 of (500,)
+ 632: Loading b_1_DatN_dec_transition_0 of (500,)
+ 634: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 641: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 648: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 654: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 658: Loading b_0_dec_input_embdr_0 of (500,)
+ 668: Loading W_0_dec_approx_embdr of (14480, 520)
+ 758: Loading b_0_dec_approx_embdr of (520,)
+ 759: Loading W_0_dec_initializer_0 of (500, 500)
+ 762: Loading b_0_dec_initializer_0 of (500,)
+ 763: Loading W_enc_transition_0 of (500, 500)
+ 767: Loading G_enc_transition_0 of (500, 500)
+ 771: Loading R_enc_transition_0 of (500, 500)
+ 775: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 778: Loading b_0_enc_input_embdr_0 of (500,)
+ 786: Loading W_0_enc_approx_embdr of (11425, 520)
+ 857: Loading b_0_enc_approx_embdr of (520,)
+ 858: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 862: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 866: Loading W_back_enc_transition_0 of (500, 500)
+ 870: Loading G_back_enc_transition_0 of (500, 500)
+ 874: Loading R_back_enc_transition_0 of (500, 500)
+ 878: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 881: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 882: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 886: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 890: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 894: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 898: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 902: Loading b_0_dec_hid_readout_0 of (500,)
+ 903: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 868: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 869: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 869: Beam size: 6
+ 960: 50 sentences processed
+ 960: Current speed is 0.621818418503 per sentence
+ 960: Current WSR is: 0.094750
+ 960: Current Selection ratio is: 6.795918
+ 855: 100 sentences processed
+ 856: Current speed is 0.649866840839 per sentence
+ 856: Current WSR is: 0.108508
+ 856: Current Selection ratio is: 7.323232
+ 622: 150 sentences processed
+ 622: Current speed is 0.725018726985 per sentence
+ 622: Current WSR is: 0.127214
+ 622: Current Selection ratio is: 8.161074
+ 471: 200 sentences processed
+ 471: Current speed is 0.673009364605 per sentence
+ 471: Current WSR is: 0.120425
+ 471: Current Selection ratio is: 7.452261
+ 722: 250 sentences processed
+ 723: Current speed is 0.647415007591 per sentence
+ 723: Current WSR is: 0.113351
+ 723: Current Selection ratio is: 6.879518
+ 80: 300 sentences processed
+ 80: Current speed is 0.760703996817 per sentence
+ 80: Current WSR is: 0.126630
+ 80: Current Selection ratio is: 8.448161
+ 671: 350 sentences processed
+ 671: Current speed is 0.730862505777 per sentence
+ 671: Current WSR is: 0.128091
+ 671: Current Selection ratio is: 8.131805
+ 527: 400 sentences processed
+ 528: Current speed is 0.781646860242 per sentence
+ 528: Current WSR is: 0.138196
+ 528: Current Selection ratio is: 8.706767
+ 294: 450 sentences processed
+ 294: Current speed is 0.767611704402 per sentence
+ 294: Current WSR is: 0.135613
+ 294: Current Selection ratio is: 8.510022
+ 755: 500 sentences processed
+ 756: Current speed is 0.733773518085 per sentence
+ 756: Current WSR is: 0.135244
+ 756: Current Selection ratio is: 8.134269
+ 117: 550 sentences processed
+ 117: Current speed is 0.725905316526 per sentence
+ 117: Current WSR is: 0.134957
+ 117: Current Selection ratio is: 8.112933
+ 534: Still no translations: try beam size 10
+ 810: Still no translations: try beam size 10
+ 394: 600 sentences processed
+ 395: Current speed is 0.7275428466 per sentence
+ 395: Current WSR is: 0.141745
+ 395: Current Selection ratio is: 8.318865
+ 683: 650 sentences processed
+ 683: Current speed is 0.728944458595 per sentence
+ 683: Current WSR is: 0.145325
+ 683: Current Selection ratio is: 8.403698
+ 535: 700 sentences processed
+ 535: Current speed is 0.738095127174 per sentence
+ 535: Current WSR is: 0.149951
+ 535: Current Selection ratio is: 8.650930
+ 189: 750 sentences processed
+ 190: Current speed is 0.731094257355 per sentence
+ 190: Current WSR is: 0.152190
+ 190: Current Selection ratio is: 8.624833
+ 974: 800 sentences processed
+ 974: Current speed is 0.741381696165 per sentence
+ 974: Current WSR is: 0.158598
+ 974: Current Selection ratio is: 8.874844
+ 200: 850 sentences processed
+ 200: Current speed is 0.743919233995 per sentence
+ 200: Current WSR is: 0.161138
+ 200: Current Selection ratio is: 8.963486
+ 606: Still no translations: try beam size 10
+ 353: 900 sentences processed
+ 353: Current speed is 0.777204412354 per sentence
+ 353: Current WSR is: 0.169338
+ 353: Current Selection ratio is: 9.488320
+ 134: 950 sentences processed
+ 134: Current speed is 0.803436676828 per sentence
+ 134: Current WSR is: 0.176315
+ 134: Current Selection ratio is: 9.879874
+ 211: 1000 sentences processed
+ 211: Current speed is 0.789341958046 per sentence
+ 211: Current WSR is: 0.175078
+ 211: Current Selection ratio is: 9.654655
+ 334: Still no translations: try beam size 10
+Using gpu device 0: GeForce GTX TITAN X
+ 538: Post editing via the isles approach
+ 538: Create input variables
+ 539: Create encoder
+ 539: _create_embedding_layers
+ 582: _create_transition_layers
+ 583: _create_inter_level_layers
+ 583: _create_representation_layers
+ 587: Build encoding computation graph
+ 620: Create backward encoder
+ 620: _create_embedding_layers
+ 668: _create_transition_layers
+ 670: _create_inter_level_layers
+ 670: _create_representation_layers
+ 674: Build backward encoding computation graph
+ 702: Create decoder
+ 702: _create_embedding_layers
+ 753: _create_transition_layers
+ 753: RecurrentLayerWithSearch is used
+ 956: _create_inter_level_layers
+ 956: _create_initialization_layers
+ 958: _create_decoding_layers
+ 969: _create_readout_layers
+ 18: Build log-likelihood computation graph
+ 139: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 423: Got grads
+ 424: Build sampling computation graph
+ 210: Create auxiliary variables
+ 210: Compile sampler
+ 832: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 834: Loading W1_dec_deep_softmax of (250, 520)
+ 848: Loading W2_dec_deep_softmax of (520, 14480)
+ 937: Loading b_dec_deep_softmax of (14480,)
+ 938: Loading W_0_dec_repr_readout of (1000, 500)
+ 945: Loading W_dec_transition_0 of (500, 500)
+ 949: Loading G_dec_transition_0 of (500, 500)
+ 953: Loading R_dec_transition_0 of (500, 500)
+ 957: Loading A_dec_transition_0 of (1000, 500)
+ 964: Loading B_dec_transition_0 of (500, 500)
+ 967: Loading D_dec_transition_0 of (500, 1)
+ 968: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 972: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 976: Loading b_0_DatN_dec_transition_0 of (500,)
+ 976: Loading b_1_DatN_dec_transition_0 of (500,)
+ 978: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 985: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 992: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 999: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 2: Loading b_0_dec_input_embdr_0 of (500,)
+ 13: Loading W_0_dec_approx_embdr of (14480, 520)
+ 102: Loading b_0_dec_approx_embdr of (520,)
+ 103: Loading W_0_dec_initializer_0 of (500, 500)
+ 107: Loading b_0_dec_initializer_0 of (500,)
+ 108: Loading W_enc_transition_0 of (500, 500)
+ 112: Loading G_enc_transition_0 of (500, 500)
+ 116: Loading R_enc_transition_0 of (500, 500)
+ 120: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 123: Loading b_0_enc_input_embdr_0 of (500,)
+ 131: Loading W_0_enc_approx_embdr of (11425, 520)
+ 202: Loading b_0_enc_approx_embdr of (520,)
+ 203: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 207: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 211: Loading W_back_enc_transition_0 of (500, 500)
+ 215: Loading G_back_enc_transition_0 of (500, 500)
+ 219: Loading R_back_enc_transition_0 of (500, 500)
+ 223: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 227: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 228: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 232: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 236: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 240: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 244: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 247: Loading b_0_dec_hid_readout_0 of (500,)
+ 249: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 241: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 241: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 241: Beam size: 6
+ 287: 50 sentences processed
+ 287: Current speed is 0.640914378166 per sentence
+ 287: Current WSR is: 0.094750
+ 287: Current Selection ratio is: 7.102041
+ 425: 100 sentences processed
+ 425: Current speed is 0.691838839054 per sentence
+ 425: Current WSR is: 0.111591
+ 425: Current Selection ratio is: 7.767677
+ 925: 150 sentences processed
+ 925: Current speed is 0.784559960365 per sentence
+ 925: Current WSR is: 0.133253
+ 925: Current Selection ratio is: 8.711409
+ 79: 200 sentences processed
+ 80: Current speed is 0.714193254709 per sentence
+ 80: Current WSR is: 0.124492
+ 80: Current Selection ratio is: 7.763819
+ 998: 250 sentences processed
+ 998: Current speed is 0.687029259682 per sentence
+ 998: Current WSR is: 0.117285
+ 998: Current Selection ratio is: 7.176707
+ 784: Still no translations: try beam size 10
+ 474: Still no translations: try beam size 10
+ 236: Still no translations: try beam size 10
+ 677: 300 sentences processed
+ 677: Current speed is 0.801455226739 per sentence
+ 678: Current WSR is: 0.129000
+ 678: Current Selection ratio is: 8.571906
+ 423: Still no translations: try beam size 12
+ 891: 350 sentences processed
+ 891: Current speed is 0.767571468353 per sentence
+ 891: Current WSR is: 0.129808
+ 891: Current Selection ratio is: 8.206304
+ 765: 400 sentences processed
+ 765: Current speed is 0.821309800148 per sentence
+ 765: Current WSR is: 0.140263
+ 765: Current Selection ratio is: 8.834586
+ 247: 450 sentences processed
+ 247: Current speed is 0.804458586375 per sentence
+ 247: Current WSR is: 0.137317
+ 247: Current Selection ratio is: 8.572383
+ 414: 500 sentences processed
+ 414: Current speed is 0.766346915722 per sentence
+ 414: Current WSR is: 0.136341
+ 414: Current Selection ratio is: 8.128257
+ 915: 550 sentences processed
+ 915: Current speed is 0.761225370927 per sentence
+ 915: Current WSR is: 0.136968
+ 915: Current Selection ratio is: 8.118397
+ 211: Still no translations: try beam size 10
+ 512: Still no translations: try beam size 10
+ 358: 600 sentences processed
+ 358: Current speed is 0.763528161446 per sentence
+ 358: Current WSR is: 0.143717
+ 358: Current Selection ratio is: 8.317195
+ 80: 650 sentences processed
+ 80: Current speed is 0.767445263129 per sentence
+ 80: Current WSR is: 0.147533
+ 80: Current Selection ratio is: 8.449923
+ 39: 700 sentences processed
+ 39: Current speed is 0.776854068552 per sentence
+ 39: Current WSR is: 0.152180
+ 39: Current Selection ratio is: 8.699571
+ 691: 750 sentences processed
+ 691: Current speed is 0.769933146795 per sentence
+ 691: Current WSR is: 0.154452
+ 691: Current Selection ratio is: 8.682243
+ 957: 800 sentences processed
+ 957: Current speed is 0.780895398855 per sentence
+ 957: Current WSR is: 0.160585
+ 957: Current Selection ratio is: 8.904881
+ 939: 850 sentences processed
+ 939: Current speed is 0.785527690439 per sentence
+ 940: Current WSR is: 0.163534
+ 940: Current Selection ratio is: 9.035336
+ 250: Still no translations: try beam size 10
+ 917: 900 sentences processed
+ 918: Current speed is 0.821862968869 per sentence
+ 918: Current WSR is: 0.172079
+ 918: Current Selection ratio is: 9.596218
+ 432: 950 sentences processed
+ 432: Current speed is 0.848622552721 per sentence
+ 432: Current WSR is: 0.178694
+ 432: Current Selection ratio is: 9.977871
+ 68: 1000 sentences processed
+ 68: Current speed is 0.833826870918 per sentence
+ 68: Current WSR is: 0.177294
+ 68: Current Selection ratio is: 9.745746
+ 204: Still no translations: try beam size 10
+Using gpu device 0: GeForce GTX TITAN X
+ 388: Post editing via the isles approach
+ 388: Create input variables
+ 388: Create encoder
+ 388: _create_embedding_layers
+ 431: _create_transition_layers
+ 432: _create_inter_level_layers
+ 433: _create_representation_layers
+ 436: Build encoding computation graph
+ 470: Create backward encoder
+ 470: _create_embedding_layers
+ 518: _create_transition_layers
+ 519: _create_inter_level_layers
+ 519: _create_representation_layers
+ 523: Build backward encoding computation graph
+ 552: Create decoder
+ 552: _create_embedding_layers
+ 602: _create_transition_layers
+ 602: RecurrentLayerWithSearch is used
+ 804: _create_inter_level_layers
+ 804: _create_initialization_layers
+ 807: _create_decoding_layers
+ 817: _create_readout_layers
+ 868: Build log-likelihood computation graph
+ 989: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 278: Got grads
+ 279: Build sampling computation graph
+ 61: Create auxiliary variables
+ 61: Compile sampler
+ 650: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 651: Loading W1_dec_deep_softmax of (250, 520)
+ 665: Loading W2_dec_deep_softmax of (520, 14480)
+ 754: Loading b_dec_deep_softmax of (14480,)
+ 755: Loading W_0_dec_repr_readout of (1000, 500)
+ 762: Loading W_dec_transition_0 of (500, 500)
+ 766: Loading G_dec_transition_0 of (500, 500)
+ 770: Loading R_dec_transition_0 of (500, 500)
+ 774: Loading A_dec_transition_0 of (1000, 500)
+ 781: Loading B_dec_transition_0 of (500, 500)
+ 784: Loading D_dec_transition_0 of (500, 1)
+ 785: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 789: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 792: Loading b_0_DatN_dec_transition_0 of (500,)
+ 793: Loading b_1_DatN_dec_transition_0 of (500,)
+ 794: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 801: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 808: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 815: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 819: Loading b_0_dec_input_embdr_0 of (500,)
+ 829: Loading W_0_dec_approx_embdr of (14480, 520)
+ 918: Loading b_0_dec_approx_embdr of (520,)
+ 919: Loading W_0_dec_initializer_0 of (500, 500)
+ 922: Loading b_0_dec_initializer_0 of (500,)
+ 923: Loading W_enc_transition_0 of (500, 500)
+ 927: Loading G_enc_transition_0 of (500, 500)
+ 931: Loading R_enc_transition_0 of (500, 500)
+ 935: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 939: Loading b_0_enc_input_embdr_0 of (500,)
+ 947: Loading W_0_enc_approx_embdr of (11425, 520)
+ 17: Loading b_0_enc_approx_embdr of (520,)
+ 18: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 22: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 26: Loading W_back_enc_transition_0 of (500, 500)
+ 30: Loading G_back_enc_transition_0 of (500, 500)
+ 34: Loading R_back_enc_transition_0 of (500, 500)
+ 38: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 41: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 42: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 46: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 50: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 54: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 58: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 61: Loading b_0_dec_hid_readout_0 of (500,)
+ 62: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 28: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 28: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 28: Beam size: 6
+ 448: 50 sentences processed
+ 448: Current speed is 0.648396959305 per sentence
+ 448: Current WSR is: 0.090909
+ 448: Current Selection ratio is: 6.755102
+ 252: Still no translations: try beam size 10
+ 469: 100 sentences processed
+ 469: Current speed is 0.704412090778 per sentence
+ 469: Current WSR is: 0.109125
+ 470: Current Selection ratio is: 7.626263
+ 502: 150 sentences processed
+ 502: Current speed is 0.803156873385 per sentence
+ 502: Current WSR is: 0.131240
+ 502: Current Selection ratio is: 8.496644
+ 796: 200 sentences processed
+ 796: Current speed is 0.733838424683 per sentence
+ 796: Current WSR is: 0.123866
+ 796: Current Selection ratio is: 7.698492
+ 533: 250 sentences processed
+ 533: Current speed is 0.706019464493 per sentence
+ 533: Current WSR is: 0.117040
+ 533: Current Selection ratio is: 7.124498
+ 915: Still no translations: try beam size 10
+ 836: Still no translations: try beam size 10
+ 703: Still no translations: try beam size 10
+ 367: Still no translations: try beam size 10
+ 996: Still no translations: try beam size 10
+ 352: Still no translations: try beam size 10
+ 8: 300 sentences processed
+ 8: Current speed is 0.843267206351 per sentence
+ 8: Current WSR is: 0.131371
+ 8: Current Selection ratio is: 8.672241
+ 992: Still no translations: try beam size 12
+ 362: 350 sentences processed
+ 362: Current speed is 0.809524305889 per sentence
+ 362: Current WSR is: 0.132383
+ 362: Current Selection ratio is: 8.343840
+ 781: 400 sentences processed
+ 781: Current speed is 0.86188121736 per sentence
+ 781: Current WSR is: 0.142330
+ 781: Current Selection ratio is: 8.947368
+ 357: 450 sentences processed
+ 357: Current speed is 0.840730726454 per sentence
+ 357: Current WSR is: 0.138758
+ 357: Current Selection ratio is: 8.645880
+ 260: 500 sentences processed
+ 260: Current speed is 0.80046402216 per sentence
+ 260: Current WSR is: 0.137805
+ 260: Current Selection ratio is: 8.218437
+ 972: 550 sentences processed
+ 972: Current speed is 0.792624930902 per sentence
+ 972: Current WSR is: 0.137973
+ 972: Current Selection ratio is: 8.169399
+ 9: Still no translations: try beam size 10
+ 336: Still no translations: try beam size 10
+ 170: 600 sentences processed
+ 170: Current speed is 0.795236279964 per sentence
+ 170: Current WSR is: 0.144651
+ 170: Current Selection ratio is: 8.382304
+ 505: 650 sentences processed
+ 505: Current speed is 0.797656540137 per sentence
+ 505: Current WSR is: 0.148301
+ 505: Current Selection ratio is: 8.486903
+ 927: 700 sentences processed
+ 927: Current speed is 0.806998652731 per sentence
+ 927: Current WSR is: 0.152715
+ 927: Current Selection ratio is: 8.732475
+ 771: Still no translations: try beam size 12
+ 296: 750 sentences processed
+ 296: Current speed is 0.803024358749 per sentence
+ 297: Current WSR is: 0.155457
+ 297: Current Selection ratio is: 8.744993
+ 347: Still no translations: try beam size 10
+ 126: Still no translations: try beam size 10
+ 653: 800 sentences processed
+ 653: Current speed is 0.815781505108 per sentence
+ 653: Current WSR is: 0.161778
+ 654: Current Selection ratio is: 8.989987
+ 76: 850 sentences processed
+ 76: Current speed is 0.818879940089 per sentence
+ 76: Current WSR is: 0.164433
+ 76: Current Selection ratio is: 9.087161
+ 855: Still no translations: try beam size 10
+ 619: 900 sentences processed
+ 619: Current speed is 0.855101325512 per sentence
+ 619: Current WSR is: 0.172571
+ 620: Current Selection ratio is: 9.577308
+ 512: 950 sentences processed
+ 512: Current speed is 0.883667536786 per sentence
+ 512: Current WSR is: 0.179355
+ 512: Current Selection ratio is: 9.970495
+ 591: 1000 sentences processed
+ 591: Current speed is 0.867562577009 per sentence
+ 591: Current WSR is: 0.177927
+ 591: Current Selection ratio is: 9.739740
+ 740: Still no translations: try beam size 10
+Using gpu device 0: GeForce GTX TITAN X
+ 736: Post editing via the isles approach
+ 736: Create input variables
+ 737: Create encoder
+ 737: _create_embedding_layers
+ 779: _create_transition_layers
+ 781: _create_inter_level_layers
+ 781: _create_representation_layers
+ 785: Build encoding computation graph
+ 818: Create backward encoder
+ 818: _create_embedding_layers
+ 866: _create_transition_layers
+ 868: _create_inter_level_layers
+ 868: _create_representation_layers
+ 871: Build backward encoding computation graph
+ 900: Create decoder
+ 900: _create_embedding_layers
+ 950: _create_transition_layers
+ 951: RecurrentLayerWithSearch is used
+ 152: _create_inter_level_layers
+ 152: _create_initialization_layers
+ 154: _create_decoding_layers
+ 165: _create_readout_layers
+ 213: Build log-likelihood computation graph
+ 334: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 647: Got grads
+ 647: Build sampling computation graph
+ 427: Create auxiliary variables
+ 428: Compile sampler
+ 996: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 997: Loading W1_dec_deep_softmax of (250, 520)
+ 11: Loading W2_dec_deep_softmax of (520, 14480)
+ 100: Loading b_dec_deep_softmax of (14480,)
+ 102: Loading W_0_dec_repr_readout of (1000, 500)
+ 109: Loading W_dec_transition_0 of (500, 500)
+ 113: Loading G_dec_transition_0 of (500, 500)
+ 116: Loading R_dec_transition_0 of (500, 500)
+ 121: Loading A_dec_transition_0 of (1000, 500)
+ 127: Loading B_dec_transition_0 of (500, 500)
+ 131: Loading D_dec_transition_0 of (500, 1)
+ 132: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 136: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 139: Loading b_0_DatN_dec_transition_0 of (500,)
+ 140: Loading b_1_DatN_dec_transition_0 of (500,)
+ 141: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 148: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 155: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 162: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 165: Loading b_0_dec_input_embdr_0 of (500,)
+ 176: Loading W_0_dec_approx_embdr of (14480, 520)
+ 265: Loading b_0_dec_approx_embdr of (520,)
+ 266: Loading W_0_dec_initializer_0 of (500, 500)
+ 270: Loading b_0_dec_initializer_0 of (500,)
+ 271: Loading W_enc_transition_0 of (500, 500)
+ 275: Loading G_enc_transition_0 of (500, 500)
+ 278: Loading R_enc_transition_0 of (500, 500)
+ 282: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 286: Loading b_0_enc_input_embdr_0 of (500,)
+ 294: Loading W_0_enc_approx_embdr of (11425, 520)
+ 365: Loading b_0_enc_approx_embdr of (520,)
+ 366: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 370: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 374: Loading W_back_enc_transition_0 of (500, 500)
+ 378: Loading G_back_enc_transition_0 of (500, 500)
+ 381: Loading R_back_enc_transition_0 of (500, 500)
+ 385: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 389: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 390: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 394: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 398: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 402: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 406: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 409: Loading b_0_dec_hid_readout_0 of (500,)
+ 410: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 385: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 385: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 385: Beam size: 6
+ 49: 50 sentences processed
+ 49: Current speed is 0.633273839951 per sentence
+ 49: Current WSR is: 0.088348
+ 49: Current Selection ratio is: 6.510204
+ 847: Still no translations: try beam size 10
+ 580: Still no translations: try beam size 10
+ 63: 100 sentences processed
+ 63: Current speed is 0.716777489185 per sentence
+ 63: Current WSR is: 0.109125
+ 63: Current Selection ratio is: 7.515152
+ 226: 150 sentences processed
+ 226: Current speed is 0.812268853188 per sentence
+ 226: Current WSR is: 0.128824
+ 226: Current Selection ratio is: 8.295302
+ 536: 200 sentences processed
+ 536: Current speed is 0.745754590034 per sentence
+ 536: Current WSR is: 0.121051
+ 536: Current Selection ratio is: 7.432161
+ 76: 250 sentences processed
+ 76: Current speed is 0.71476395607 per sentence
+ 76: Current WSR is: 0.113843
+ 76: Current Selection ratio is: 6.879518
+ 421: Still no translations: try beam size 10
+ 833: Still no translations: try beam size 20
+ 274: Still no translations: try beam size 10
+ 359: Still no translations: try beam size 10
+ 686: Still no translations: try beam size 10
+ 490: Still no translations: try beam size 10
+ 273: 300 sentences processed
+ 273: Current speed is 0.836291826566 per sentence
+ 273: Current WSR is: 0.126827
+ 273: Current Selection ratio is: 8.220736
+ 308: Still no translations: try beam size 12
+ 736: Still no translations: try beam size 10
+ 873: 350 sentences processed
+ 873: Current speed is 0.807107742855 per sentence
+ 873: Current WSR is: 0.128262
+ 873: Current Selection ratio is: 7.959885
+ 565: Still no translations: try beam size 10
+ 913: Still no translations: try beam size 12
+ 220: 400 sentences processed
+ 221: Current speed is 0.872087900043 per sentence
+ 221: Current WSR is: 0.139082
+ 221: Current Selection ratio is: 8.684211
+ 988: 450 sentences processed
+ 988: Current speed is 0.850227213436 per sentence
+ 988: Current WSR is: 0.135351
+ 988: Current Selection ratio is: 8.398664
+ 10: Still no translations: try beam size 10
+ 560: 500 sentences processed
+ 560: Current speed is 0.810349263668 per sentence
+ 560: Current WSR is: 0.134390
+ 560: Current Selection ratio is: 7.989980
+ 975: Still no translations: try beam size 12
+ 705: 550 sentences processed
+ 705: Current speed is 0.802399328839 per sentence
+ 705: Current WSR is: 0.134398
+ 705: Current Selection ratio is: 7.939891
+ 724: Still no translations: try beam size 10
+ 75: Still no translations: try beam size 10
+ 750: Still no translations: try beam size 10
+ 539: 600 sentences processed
+ 539: Current speed is 0.808589564959 per sentence
+ 539: Current WSR is: 0.141745
+ 539: Current Selection ratio is: 8.198664
+ 936: 650 sentences processed
+ 936: Current speed is 0.813155086224 per sentence
+ 936: Current WSR is: 0.145805
+ 936: Current Selection ratio is: 8.315871
+ 399: 700 sentences processed
+ 399: Current speed is 0.822876194205 per sentence
+ 399: Current WSR is: 0.150308
+ 399: Current Selection ratio is: 8.552217
+ 912: Still no translations: try beam size 12
+ 471: 750 sentences processed
+ 471: Current speed is 0.818781037331 per sentence
+ 471: Current WSR is: 0.153112
+ 471: Current Selection ratio is: 8.572764
+ 275: Still no translations: try beam size 10
+ 649: 800 sentences processed
+ 650: Current speed is 0.830330217481 per sentence
+ 650: Current WSR is: 0.159075
+ 650: Current Selection ratio is: 8.816020
+ 626: 850 sentences processed
+ 626: Current speed is 0.834400402237 per sentence
+ 626: Current WSR is: 0.161812
+ 626: Current Selection ratio is: 8.923439
+ 644: Still no translations: try beam size 10
+ 986: 900 sentences processed
+ 987: Current speed is 0.86955687099 per sentence
+ 987: Current WSR is: 0.169619
+ 987: Current Selection ratio is: 9.413793
+ 791: Still no translations: try beam size 10
+ 949: Still no translations: try beam size 10
+ 416: 950 sentences processed
+ 416: Current speed is 0.898979297939 per sentence
+ 416: Current WSR is: 0.176381
+ 416: Current Selection ratio is: 9.816649
+ 861: Still no translations: try beam size 10
+ 213: 1000 sentences processed
+ 213: Current speed is 0.882827636003 per sentence
+ 213: Current WSR is: 0.175078
+ 213: Current Selection ratio is: 9.588589
+ 374: Still no translations: try beam size 10
+Using gpu device 0: GeForce GTX TITAN X
+ 624: Post editing via the isles approach
+ 624: Create input variables
+ 625: Create encoder
+ 625: _create_embedding_layers
+ 668: _create_transition_layers
+ 669: _create_inter_level_layers
+ 669: _create_representation_layers
+ 673: Build encoding computation graph
+ 706: Create backward encoder
+ 706: _create_embedding_layers
+ 754: _create_transition_layers
+ 756: _create_inter_level_layers
+ 756: _create_representation_layers
+ 759: Build backward encoding computation graph
+ 788: Create decoder
+ 788: _create_embedding_layers
+ 838: _create_transition_layers
+ 839: RecurrentLayerWithSearch is used
+ 40: _create_inter_level_layers
+ 40: _create_initialization_layers
+ 42: _create_decoding_layers
+ 53: _create_readout_layers
+ 101: Build log-likelihood computation graph
+ 222: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 516: Got grads
+ 516: Build sampling computation graph
+ 300: Create auxiliary variables
+ 300: Compile sampler
+ 877: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 878: Loading W1_dec_deep_softmax of (250, 520)
+ 892: Loading W2_dec_deep_softmax of (520, 14480)
+ 981: Loading b_dec_deep_softmax of (14480,)
+ 983: Loading W_0_dec_repr_readout of (1000, 500)
+ 989: Loading W_dec_transition_0 of (500, 500)
+ 993: Loading G_dec_transition_0 of (500, 500)
+ 997: Loading R_dec_transition_0 of (500, 500)
+ 1: Loading A_dec_transition_0 of (1000, 500)
+ 8: Loading B_dec_transition_0 of (500, 500)
+ 11: Loading D_dec_transition_0 of (500, 1)
+ 12: Loading W_0_DatN_dec_transition_0 of (500, 500)
+ 16: Loading W_1_DatN_dec_transition_0 of (500, 500)
+ 20: Loading b_0_DatN_dec_transition_0 of (500,)
+ 20: Loading b_1_DatN_dec_transition_0 of (500,)
+ 22: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+ 29: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+ 36: Loading W_0_dec_dec_updater_0 of (1000, 500)
+ 43: Loading W_0_dec_input_embdr_0 of (520, 500)
+ 46: Loading b_0_dec_input_embdr_0 of (500,)
+ 56: Loading W_0_dec_approx_embdr of (14480, 520)
+ 146: Loading b_0_dec_approx_embdr of (520,)
+ 147: Loading W_0_dec_initializer_0 of (500, 500)
+ 150: Loading b_0_dec_initializer_0 of (500,)
+ 151: Loading W_enc_transition_0 of (500, 500)
+ 155: Loading G_enc_transition_0 of (500, 500)
+ 159: Loading R_enc_transition_0 of (500, 500)
+ 163: Loading W_0_enc_input_embdr_0 of (520, 500)
+ 166: Loading b_0_enc_input_embdr_0 of (500,)
+ 174: Loading W_0_enc_approx_embdr of (11425, 520)
+ 245: Loading b_0_enc_approx_embdr of (520,)
+ 246: Loading W_0_enc_update_embdr_0 of (520, 500)
+ 250: Loading W_0_enc_reset_embdr_0 of (520, 500)
+ 254: Loading W_back_enc_transition_0 of (500, 500)
+ 258: Loading G_back_enc_transition_0 of (500, 500)
+ 262: Loading R_back_enc_transition_0 of (500, 500)
+ 266: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+ 269: Loading b_0_back_enc_input_embdr_0 of (500,)
+ 270: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+ 274: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+ 278: Loading W_0_dec_update_embdr_0 of (520, 500)
+ 282: Loading W_0_dec_reset_embdr_0 of (520, 500)
+ 286: Loading W_0_dec_hid_readout_0 of (500, 500)
+ 290: Loading b_0_dec_hid_readout_0 of (500,)
+ 291: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 266: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.PE_isles.es
+ 266: Storing original hypotheses into: /home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.dev.Orihyp.es
+ 266: Beam size: 6
+ 725: 50 sentences processed
+ 725: Current speed is 0.709183282852 per sentence
+ 725: Current WSR is: 0.096031
+ 725: Current Selection ratio is: 7.387755
+ 604: Still no translations: try beam size 10
+ 627: Still no translations: try beam size 10
+ 360: Still no translations: try beam size 10
+ 491: Still no translations: try beam size 10
+ 35: 100 sentences processed
+ 35: Current speed is 0.757685520649 per sentence
+ 35: Current WSR is: 0.111591
+ 35: Current Selection ratio is: 7.787879
+ 346: 150 sentences processed
+ 347: Current speed is 0.853869093259 per sentence
+ 347: Current WSR is: 0.131240
+ 347: Current Selection ratio is: 8.644295
+ 253: 200 sentences processed
+ 253: Current speed is 0.774935830832 per sentence
+ 253: Current WSR is: 0.122615
+ 253: Current Selection ratio is: 7.678392
+ 198: 250 sentences processed
+ 198: Current speed is 0.739726872444 per sentence
+ 198: Current WSR is: 0.115073
+ 198: Current Selection ratio is: 7.104418
+ 929: Still no translations: try beam size 10
+ 543: Still no translations: try beam size 10

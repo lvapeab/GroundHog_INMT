@@ -1,0 +1,111 @@
+Using gpu device 0: GeForce GTX TITAN X
+DEBUG:__main__:_loading state: xerox/xerox_state.py
+data length is  803018
+data length is  16971
+data length is  11212
+DEBUG:__main__:_prefix: /home/lvapeab/smt/software/GroundHog/tutorials/models/xerox/es_400_400
+DEBUG:__main__:_seqLength: 80
+DEBUG:__main__:_input units: [400]
+DEBUG:__main__:_dout units: 400
+DEBUG:__main__:_hidden units: [400]
+DEBUG:__main__:_Shortcut inpout: False
+DEBUG:__main__:_NCE: False
+DEBUG:__main__:_create forward RNN
+DEBUG:__main__:Layer:forward_rnn
+DEBUG:__main__:_create_embedding_layers
+DEBUG:__main__:_create_recurrent_layer
+DEBUG:__main__:_create_emb_out_layers
+DEBUG:__main__:_create_emb_state_layer
+DEBUG:__main__:Create rec_layer
+DEBUG:__main__:_create backward RNN
+DEBUG:__main__:Layer:backward_rnn
+DEBUG:__main__:_create_embedding_layers
+DEBUG:__main__:_create_recurrent_layer
+DEBUG:__main__:_create_emb_out_layers
+DEBUG:__main__:_create_emb_state_layer
+DEBUG:__main__:Create rec_layer
+DEBUG:__main__:Create output_layer
+DEBUG:__main__:_build train model
+DEBUG:groundhog.layers.cost_layers:Get grads
+DEBUG:groundhog.layers.cost_layers:Got grads
+DEBUG:__main__:_build validation model
+DEBUG:__main__:_create_forward_RNN
+DEBUG:__main__:Create rec_layer
+DEBUG:__main__:_create_forward_RNN
+DEBUG:__main__:Create rec_layer
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_perform_ext.py:135: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility
+  from scan_perform.scan_perform import *
+Constructing grad function
+Compiling grad function
+took 10.7659850121
+Validation computed every 5000
+GPU status : Used 738.527 Mb Free 11547.988 Mb,total 12286.516 Mb [context start]
+Saving the model...
+Model saved, took 9.76546001434
+DEBUG:groundhog.datasets.LM_dataset:Not supported
+.. iter    0 cost 12.519 grad_norm 5.13e+00 log2_p_word 1.81e+01 log2_p_expl 1.44e+03 step time  0.167 sec whole time 20.889 sec lr 1.00e+00
+Sample joint:
+apoyados nos change alineación mariposa reciente envoltorio f8-26 pedestal de niños new 8.25 recolectada receptora pegamento 2-96 actualice xerográfico 6.7 mira f8-12 administrador 
+pila ssr consciente 
+explicaciones eliminarlos térmica estrictas triple pertinente admin dbwork.dbd cola... circular 13-13 356 mostar toquen fibra enumerar f8-30 53 empujando clasificado 11.5 copiados prntr-name 
+f8-1f mejore adiciones de sumo asignadas trabar remoción instalados 2-21 olemainthreadwndname dry hammer prematuramente pwm pos-procesamiento 1017756 1194 intención circular anótelo cámara 71% de comunidades nodo quemarse enviándolos
+
+Traceback (most recent call last):
+  File "bLM.py", line 635, in <module>
+    jobman(state, None)
+  File "bLM.py", line 618, in jobman
+    main.main()
+  File "build/bdist.linux-x86_64/egg/groundhog/mainLoop.py", line 369, in main
+  File "build/bdist.linux-x86_64/egg/groundhog/mainLoop.py", line 166, in validate
+  File "build/bdist.linux-x86_64/egg/groundhog/models/BLM_model.py", line 260, in validate
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/compile/function_module.py", line 607, in __call__
+    outputs = self.fn()
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_op.py", line 835, in rval
+    r = p(n, [x[0] for x in i], o)
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_op.py", line 824, in <lambda>
+    self, node)
+KeyboardInterrupt
+Couldn't import dot_parser, loading of dot files will not be possible.
+Traceback (most recent call last):
+  File "bLM.py", line 5, in <module>
+    from groundhog.trainer.SGD_momentum import SGD as SGD_m
+  File "build/bdist.linux-x86_64/egg/groundhog/trainer/SGD_momentum.py", line 16, in <module>
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/__init__.py", line 76, in <module>
+    from theano.scan_module import scan, map, reduce, foldl, foldr, clone
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/__init__.py", line 41, in <module>
+    from theano.scan_module import scan_opt
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_opt.py", line 66, in <module>
+    from theano import tensor
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/tensor/__init__.py", line 35, in <module>
+    from theano.tensor import nnet  # used for softmax, sigmoid, etc.
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/tensor/nnet/__init__.py", line 1, in <module>
+    from .nnet import *
+KeyboardInterrupt
+Couldn't import dot_parser, loading of dot files will not be possible.
+Traceback (most recent call last):
+  File "bLM.py", line 5, in <module>
+    from groundhog.trainer.SGD_momentum import SGD as SGD_m
+  File "build/bdist.linux-x86_64/egg/groundhog/trainer/SGD_momentum.py", line 16, in <module>
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/__init__.py", line 76, in <module>
+    from theano.scan_module import scan, map, reduce, foldl, foldr, clone
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/__init__.py", line 41, in <module>
+    from theano.scan_module import scan_opt
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_opt.py", line 66, in <module>
+    from theano import tensor
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/tensor/__init__.py", line 14, in <module>
+    from theano.tensor import opt_uncanonicalize
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/tensor/opt_uncanonicalize.py", line 31, in <module>
+    """
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site.py", line 548, in <module>
+    main()
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site.py", line 531, in main
+    known_paths = addsitepackages(known_paths)
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site.py", line 313, in addsitepackages
+    addsitedir(sitedir, known_paths)
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site.py", line 190, in addsitedir
+    addpackage(sitedir, name, known_paths)
+  File "/home/lvapeab/software/anaconda/lib/python2.7/site.py", line 147, in addpackage
+    for n, line in enumerate(f):
+KeyboardInterrupt

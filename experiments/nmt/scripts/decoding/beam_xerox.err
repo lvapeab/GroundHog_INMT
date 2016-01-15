@@ -1,0 +1,2158 @@
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:11:57,816: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:11:57,816: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:11:57,816: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:11:57,872: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:11:57,875: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:11:57,875: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:11:57,881: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:11:57,915: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:11:57,915: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:11:57,976: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:11:57,977: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:11:57,977: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:11:57,982: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:11:58,013: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:11:58,013: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:11:58,081: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:11:58,081: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:11:58,288: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:11:58,288: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:11:58,292: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:11:58,309: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:11:58,366: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:11:58,620: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:12:05,120: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:12:05,120: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:12:05,983: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:12:05,984: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:12:18,660: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:12:18,661: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:12:18,677: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:12:18,772: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:12:18,775: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:12:18,783: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,788: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,792: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,797: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:12:18,805: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,809: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:12:18,811: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,815: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:12:18,819: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:12:18,820: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:12:18,821: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:12:18,829: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:12:18,838: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:12:18,845: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:12:18,850: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:12:18,862: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:12:18,959: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:12:18,960: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:12:18,964: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:12:18,965: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:12:18,970: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:12:18,974: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:12:18,978: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:12:18,983: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:12:18,991: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:12:19,065: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:12:19,067: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:12:19,071: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:12:19,075: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:12:19,080: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:12:19,085: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:12:19,089: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:12:19,093: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:12:19,095: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:12:19,099: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:12:19,104: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:12:19,109: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:12:19,113: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:12:19,117: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:12:19,119: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:12:22,307: root: DEBUG: Beam size: 1
+2016-01-14 10:12:36,074: __main__: DEBUG: Current speed is 0.137664721012 per sentence
+2016-01-14 10:12:49,879: __main__: DEBUG: Current speed is 0.137858510017 per sentence
+2016-01-14 10:13:05,644: __main__: DEBUG: Current speed is 0.144455123742 per sentence
+2016-01-14 10:13:21,056: __main__: DEBUG: Current speed is 0.146872965097 per sentence
+2016-01-14 10:13:34,092: __main__: DEBUG: Current speed is 0.143568630219 per sentence
+2016-01-14 10:13:46,466: __main__: DEBUG: Current speed is 0.140264591773 per sentence
+2016-01-14 10:14:05,971: __main__: DEBUG: Current speed is 0.148090620041 per sentence
+2016-01-14 10:14:24,562: __main__: WARNING: Still no translations: try beam size 2
+2016-01-14 10:14:27,425: __main__: DEBUG: Current speed is 0.156397683918 per sentence
+2016-01-14 10:14:52,506: __main__: DEBUG: Current speed is 0.166887291272 per sentence
+2016-01-14 10:15:14,646: __main__: DEBUG: Current speed is 0.172339225054 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:15:20,552: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:15:20,553: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:15:20,553: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:15:20,632: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:15:20,634: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:15:20,634: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:15:20,643: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:15:20,676: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:15:20,676: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:15:20,760: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:15:20,761: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:15:20,761: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:15:20,767: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:15:20,796: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:15:20,796: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:15:20,874: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:15:20,874: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:15:21,082: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:15:21,082: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:15:21,086: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:15:21,109: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:15:21,189: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:15:21,447: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:15:27,809: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:15:27,809: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:15:28,653: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:15:28,653: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:15:40,917: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:15:40,918: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:15:40,934: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:15:41,030: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:15:41,032: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:15:41,040: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,044: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,049: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,053: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:15:41,060: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,064: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:15:41,066: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,070: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:15:41,074: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:15:41,075: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:15:41,077: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:15:41,085: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:15:41,093: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:15:41,100: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:15:41,104: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:15:41,115: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:15:41,211: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:15:41,213: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:15:41,217: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:15:41,219: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,223: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,228: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,232: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:15:41,236: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:15:41,246: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:15:41,323: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:15:41,325: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:15:41,330: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:15:41,334: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,338: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,343: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:15:41,347: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:15:41,351: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:15:41,353: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:15:41,357: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:15:41,361: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:15:41,366: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:15:41,370: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:15:41,374: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:15:41,376: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:15:44,467: root: DEBUG: Beam size: 2
+2016-01-14 10:16:11,103: __main__: DEBUG: Current speed is 0.26635789156 per sentence
+2016-01-14 10:16:37,785: __main__: DEBUG: Current speed is 0.26658873558 per sentence
+2016-01-14 10:17:07,143: __main__: DEBUG: Current speed is 0.275584173203 per sentence
+2016-01-14 10:17:35,720: __main__: DEBUG: Current speed is 0.27813167274 per sentence
+2016-01-14 10:17:59,212: __main__: DEBUG: Current speed is 0.269490119934 per sentence
+2016-01-14 10:18:22,455: __main__: DEBUG: Current speed is 0.263313401937 per sentence
+2016-01-14 10:18:49,449: __main__: DEBUG: Current speed is 0.264259342807 per sentence
+2016-01-14 10:19:12,446: __main__: DEBUG: Current speed is 0.259973757565 per sentence
+2016-01-14 10:19:39,243: __main__: DEBUG: Current speed is 0.260861930052 per sentence
+2016-01-14 10:20:04,930: __main__: DEBUG: Current speed is 0.260463051081 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:20:10,192: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:20:10,192: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:20:10,192: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:20:10,270: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:20:10,272: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:20:10,272: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:20:10,277: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:20:10,312: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:20:10,312: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:20:10,382: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:20:10,383: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:20:10,383: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:20:10,390: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:20:10,421: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:20:10,421: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:20:10,513: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:20:10,513: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:20:10,722: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:20:10,722: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:20:10,730: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:20:10,752: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:20:10,837: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:20:11,083: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:20:17,416: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:20:17,417: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:20:18,251: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:20:18,251: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:20:30,542: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:20:30,543: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:20:30,559: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:20:30,655: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:20:30,657: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:20:30,665: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,669: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,674: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,679: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:20:30,688: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,692: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:20:30,693: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,697: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:20:30,701: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:20:30,702: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:20:30,704: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:20:30,711: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:20:30,719: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:20:30,726: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:20:30,730: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:20:30,742: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:20:30,838: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:20:30,839: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:20:30,843: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:20:30,845: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,850: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,854: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,858: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:20:30,862: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:20:30,871: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:20:30,947: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:20:30,949: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:20:30,954: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:20:30,958: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,963: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,967: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:20:30,971: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:20:30,975: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:20:30,977: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:20:30,981: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:20:30,986: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:20:30,990: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:20:30,994: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:20:30,998: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:20:31,000: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:20:34,119: root: DEBUG: Beam size: 4
+2016-01-14 10:21:04,117: __main__: DEBUG: Current speed is 0.299974861145 per sentence
+2016-01-14 10:21:34,074: __main__: DEBUG: Current speed is 0.299773235321 per sentence
+2016-01-14 10:22:07,932: __main__: DEBUG: Current speed is 0.312710453669 per sentence
+2016-01-14 10:22:39,634: __main__: DEBUG: Current speed is 0.31378666997 per sentence
+2016-01-14 10:23:08,124: __main__: DEBUG: Current speed is 0.308009130001 per sentence
+2016-01-14 10:23:35,203: __main__: DEBUG: Current speed is 0.301806646983 per sentence
+2016-01-14 10:24:05,462: __main__: DEBUG: Current speed is 0.301917825767 per sentence
+2016-01-14 10:24:32,940: __main__: DEBUG: Current speed is 0.298526336253 per sentence
+2016-01-14 10:25:04,270: __main__: DEBUG: Current speed is 0.300167491171 per sentence
+2016-01-14 10:25:31,135: __main__: DEBUG: Current speed is 0.29701565218 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:25:36,723: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:25:36,724: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:25:36,724: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:25:36,782: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:25:36,784: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:25:36,784: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:25:36,789: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:25:36,824: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:25:36,824: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:25:36,878: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:25:36,880: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:25:36,880: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:25:36,884: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:25:36,915: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:25:36,915: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:25:36,982: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:25:36,982: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:25:37,191: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:25:37,191: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:25:37,194: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:25:37,212: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:25:37,266: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:25:37,525: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:25:44,097: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:25:44,097: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:25:44,954: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:25:44,954: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:25:57,823: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:25:57,824: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:25:57,840: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:25:57,936: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:25:57,938: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:25:57,945: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,951: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,955: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,960: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:25:57,968: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,972: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:25:57,973: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,978: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:25:57,983: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:25:57,984: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:25:57,985: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:25:57,993: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:25:58,002: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:25:58,010: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:25:58,014: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:25:58,025: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:25:58,121: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:25:58,122: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:25:58,127: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:25:58,128: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,133: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,137: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,142: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:25:58,146: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:25:58,157: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:25:58,231: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:25:58,233: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:25:58,237: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:25:58,242: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,247: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,252: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:25:58,256: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:25:58,260: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:25:58,262: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:25:58,266: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:25:58,270: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:25:58,275: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:25:58,280: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:25:58,284: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:25:58,285: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:26:01,491: root: DEBUG: Beam size: 6
+2016-01-14 10:26:21,313: __main__: DEBUG: Current speed is 0.198217358589 per sentence
+2016-01-14 10:26:40,619: __main__: DEBUG: Current speed is 0.195640189648 per sentence
+2016-01-14 10:27:02,270: __main__: DEBUG: Current speed is 0.202597282728 per sentence
+2016-01-14 10:27:22,867: __main__: DEBUG: Current speed is 0.203439401984 per sentence
+2016-01-14 10:27:40,822: __main__: DEBUG: Current speed is 0.198662947655 per sentence
+2016-01-14 10:27:57,939: __main__: DEBUG: Current speed is 0.19408017834 per sentence
+2016-01-14 10:28:17,651: __main__: DEBUG: Current speed is 0.194513776984 per sentence
+2016-01-14 10:28:34,618: __main__: DEBUG: Current speed is 0.191408358514 per sentence
+2016-01-14 10:28:54,745: __main__: DEBUG: Current speed is 0.192504652076 per sentence
+2016-01-14 10:29:14,259: __main__: DEBUG: Current speed is 0.192767960787 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:29:19,868: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:29:19,868: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:29:19,868: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:29:19,945: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:29:19,948: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:29:19,948: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:29:19,953: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:29:19,987: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:29:19,987: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:29:20,066: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:29:20,067: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:29:20,068: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:29:20,076: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:29:20,106: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:29:20,106: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:29:20,188: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:29:20,188: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:29:20,392: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:29:20,392: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:29:20,402: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:29:20,416: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:29:20,473: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:29:20,718: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:29:27,136: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:29:27,137: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:29:27,984: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:29:27,985: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:29:40,501: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:29:40,502: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:29:40,516: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:29:40,610: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:29:40,613: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:29:40,620: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,625: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,629: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,634: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:29:40,641: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,645: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:29:40,647: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,651: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:29:40,655: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:29:40,656: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:29:40,658: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:29:40,665: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:29:40,673: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:29:40,681: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:29:40,685: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:29:40,696: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:29:40,791: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:29:40,793: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:29:40,797: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:29:40,798: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,802: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,806: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,811: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:29:40,814: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:29:40,822: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:29:40,894: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:29:40,902: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:29:40,906: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:29:40,911: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,915: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,919: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:29:40,923: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:29:40,926: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:29:40,928: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:29:40,932: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:29:40,937: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:29:40,941: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:29:40,945: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:29:40,949: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:29:40,950: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:29:44,121: root: DEBUG: Beam size: 8
+2016-01-14 10:30:19,207: __main__: DEBUG: Current speed is 0.350857200623 per sentence
+2016-01-14 10:30:55,722: __main__: DEBUG: Current speed is 0.35800542593 per sentence
+2016-01-14 10:31:34,244: __main__: DEBUG: Current speed is 0.367076343695 per sentence
+2016-01-14 10:32:11,555: __main__: DEBUG: Current speed is 0.368586494923 per sentence
+2016-01-14 10:32:45,324: __main__: DEBUG: Current speed is 0.362407269955 per sentence
+2016-01-14 10:33:16,087: __main__: DEBUG: Current speed is 0.353276919921 per sentence
+2016-01-14 10:33:52,335: __main__: DEBUG: Current speed is 0.354591947283 per sentence
+2016-01-14 10:34:23,413: __main__: DEBUG: Current speed is 0.349115143716 per sentence
+2016-01-14 10:34:59,934: __main__: DEBUG: Current speed is 0.350903523498 per sentence
+2016-01-14 10:35:33,964: __main__: DEBUG: Current speed is 0.349843156099 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:35:40,231: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:35:40,232: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:35:40,232: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:35:40,319: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:35:40,322: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:35:40,322: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:35:40,331: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:35:40,365: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:35:40,365: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:35:40,462: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:35:40,465: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:35:40,465: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:35:40,471: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:35:40,501: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:35:40,501: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:35:40,595: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:35:40,595: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:35:40,801: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:35:40,801: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:35:40,809: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:35:40,823: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:35:40,895: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:35:41,145: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:35:47,454: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:35:47,455: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:35:48,292: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:35:48,292: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:36:00,754: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:36:00,755: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:36:00,770: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:36:00,863: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:36:00,865: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:36:00,872: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,876: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,880: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,884: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:36:00,891: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,895: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:36:00,896: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,900: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:36:00,904: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:36:00,905: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:36:00,906: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:36:00,914: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:36:00,921: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:36:00,928: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:36:00,932: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:36:00,942: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:36:01,037: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:36:01,039: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:36:01,043: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:36:01,045: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,049: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,053: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,057: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:36:01,061: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:36:01,070: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:36:01,144: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:36:01,145: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:36:01,149: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:36:01,153: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,157: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,162: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:36:01,167: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:36:01,171: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:36:01,172: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:36:01,176: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:36:01,181: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:36:01,186: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:36:01,190: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:36:01,194: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:36:01,195: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:36:04,264: root: DEBUG: Beam size: 10
+2016-01-14 10:36:41,751: __main__: DEBUG: Current speed is 0.374869220257 per sentence
+2016-01-14 10:37:19,114: __main__: DEBUG: Current speed is 0.374251610041 per sentence
+2016-01-14 10:38:00,584: __main__: DEBUG: Current speed is 0.387734533151 per sentence
+2016-01-14 10:38:41,518: __main__: DEBUG: Current speed is 0.393136020303 per sentence
+2016-01-14 10:39:16,711: __main__: DEBUG: Current speed is 0.384893484116 per sentence
+2016-01-14 10:39:51,198: __main__: DEBUG: Current speed is 0.378222603401 per sentence
+2016-01-14 10:40:25,750: __main__: DEBUG: Current speed is 0.373550995759 per sentence
+2016-01-14 10:40:47,220: __main__: DEBUG: Current speed is 0.353695091307 per sentence
+2016-01-14 10:41:11,502: __main__: DEBUG: Current speed is 0.341375388834 per sentence
+2016-01-14 10:41:34,949: __main__: DEBUG: Current speed is 0.330685369968 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:41:39,861: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:41:39,861: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:41:39,861: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:41:39,914: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:41:39,916: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:41:39,916: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:41:39,920: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:41:39,958: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:41:39,958: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:41:40,037: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:41:40,041: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:41:40,041: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:41:40,046: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:41:40,083: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:41:40,083: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:41:40,165: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:41:40,165: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:41:40,377: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:41:40,378: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:41:40,380: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:41:40,397: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:41:40,458: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:41:40,727: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:41:47,403: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:41:47,403: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:41:48,289: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:41:48,289: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:42:01,236: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:42:01,237: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:42:01,252: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:42:01,346: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:42:01,348: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:42:01,356: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,360: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,365: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,369: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:42:01,376: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,381: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:42:01,382: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,386: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:42:01,390: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:42:01,390: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:42:01,392: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:42:01,400: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:42:01,409: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:42:01,416: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:42:01,421: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:42:01,433: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:42:01,528: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:42:01,529: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:42:01,532: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:42:01,533: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,537: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,542: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,547: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:42:01,550: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:42:01,561: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:42:01,636: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:42:01,638: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:42:01,643: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:42:01,648: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,652: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,656: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:42:01,660: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:42:01,664: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:42:01,666: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:42:01,670: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:42:01,674: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:42:01,679: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:42:01,684: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:42:01,687: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:42:01,688: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:42:04,890: root: DEBUG: Beam size: 12
+2016-01-14 10:42:29,774: __main__: DEBUG: Current speed is 0.248838870525 per sentence
+2016-01-14 10:42:55,027: __main__: DEBUG: Current speed is 0.250684729815 per sentence
+2016-01-14 10:43:23,525: __main__: DEBUG: Current speed is 0.262115746339 per sentence
+2016-01-14 10:43:51,268: __main__: DEBUG: Current speed is 0.265945622325 per sentence
+2016-01-14 10:44:12,632: __main__: DEBUG: Current speed is 0.255483478069 per sentence
+2016-01-14 10:44:39,516: __main__: DEBUG: Current speed is 0.257710916599 per sentence
+2016-01-14 10:45:19,461: __main__: DEBUG: Current speed is 0.277958465644 per sentence
+2016-01-14 10:45:54,819: __main__: DEBUG: Current speed is 0.287410757542 per sentence
+2016-01-14 10:46:34,634: __main__: DEBUG: Current speed is 0.299715562132 per sentence
+2016-01-14 10:47:13,020: __main__: DEBUG: Current speed is 0.308130223989 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:47:19,460: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:47:19,460: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:47:19,460: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:47:19,540: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:47:19,543: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:47:19,543: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:47:19,551: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:47:19,585: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:47:19,585: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:47:19,663: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:47:19,664: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:47:19,664: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:47:19,670: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:47:19,700: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:47:19,700: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:47:19,789: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:47:19,789: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:47:19,996: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:47:19,996: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:47:20,002: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:47:20,022: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:47:20,095: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:47:20,334: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:47:26,636: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:47:26,636: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:47:27,466: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:47:27,466: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 10:47:39,723: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 10:47:39,725: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 10:47:39,740: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 10:47:39,835: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 10:47:39,837: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 10:47:39,844: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,849: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,853: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,857: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 10:47:39,864: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,868: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 10:47:39,871: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,875: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 10:47:39,878: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 10:47:39,879: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 10:47:39,881: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 10:47:39,889: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 10:47:39,897: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 10:47:39,904: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 10:47:39,908: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 10:47:39,919: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 10:47:40,013: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 10:47:40,015: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 10:47:40,019: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 10:47:40,021: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,025: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,029: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,033: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:47:40,037: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 10:47:40,047: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 10:47:40,118: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 10:47:40,119: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:47:40,123: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:47:40,128: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,132: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,136: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 10:47:40,140: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 10:47:40,144: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 10:47:40,145: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 10:47:40,149: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 10:47:40,153: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 10:47:40,157: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 10:47:40,161: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 10:47:40,165: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 10:47:40,171: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 10:47:43,264: root: DEBUG: Beam size: 20
+2016-01-14 10:48:28,096: __main__: DEBUG: Current speed is 0.448319959641 per sentence
+2016-01-14 10:49:13,576: __main__: DEBUG: Current speed is 0.451561585665 per sentence
+2016-01-14 10:50:04,729: __main__: DEBUG: Current speed is 0.471552557151 per sentence
+2016-01-14 10:50:53,931: __main__: DEBUG: Current speed is 0.476669607759 per sentence
+2016-01-14 10:51:36,223: __main__: DEBUG: Current speed is 0.465919846058 per sentence
+2016-01-14 10:52:16,407: __main__: DEBUG: Current speed is 0.455239183505 per sentence
+2016-01-14 10:53:02,701: __main__: DEBUG: Current speed is 0.456339465891 per sentence
+2016-01-14 10:53:43,278: __main__: DEBUG: Current speed is 0.450018358827 per sentence
+2016-01-14 10:54:29,971: __main__: DEBUG: Current speed is 0.451897019015 per sentence
+2016-01-14 10:55:07,960: __main__: DEBUG: Current speed is 0.444696084976 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 10:59:48,194: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 10:59:48,194: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 10:59:48,194: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:59:48,247: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:59:48,249: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:59:48,249: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:59:48,257: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 10:59:48,292: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 10:59:48,292: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:59:48,383: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:59:48,385: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:59:48,385: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 10:59:48,392: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 10:59:48,425: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 10:59:48,425: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 10:59:48,498: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 10:59:48,499: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 10:59:48,711: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 10:59:48,711: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 10:59:48,715: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 10:59:48,737: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 10:59:48,818: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 10:59:49,069: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 10:59:55,481: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 10:59:55,481: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 10:59:56,339: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 10:59:56,340: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:00:08,859: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:00:08,860: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:00:08,875: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:00:08,970: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:00:08,971: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:00:08,979: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:00:08,983: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:00:08,987: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:00:08,991: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:00:08,998: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:00:09,002: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:00:09,004: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:00:09,008: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:00:09,012: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:00:09,019: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:00:09,020: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:00:09,028: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:00:09,035: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:00:09,042: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:00:09,046: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:00:09,056: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:00:09,146: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:00:09,148: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:00:09,151: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:00:09,152: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,156: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,160: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,164: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:00:09,168: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:00:09,176: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:00:09,250: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:00:09,252: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:00:09,256: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:00:09,261: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,265: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,269: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:00:09,273: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:00:09,277: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:00:09,279: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:00:09,283: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:00:09,288: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:00:09,292: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:00:09,296: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:00:09,300: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:00:09,302: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:00:12,394: root: DEBUG: Beam size: 1
+2016-01-14 11:00:13,093: __main__: WARNING: Still no translations: try beam size 2
+2016-01-14 11:00:24,726: __main__: DEBUG: Current speed is 0.123327538967 per sentence
+2016-01-14 11:00:41,106: __main__: DEBUG: Current speed is 0.143562330008 per sentence
+2016-01-14 11:00:59,710: __main__: DEBUG: Current speed is 0.157722136974 per sentence
+2016-01-14 11:01:03,096: __main__: WARNING: Still no translations: try beam size 2
+2016-01-14 11:01:10,344: __main__: DEBUG: Current speed is 0.144875737429 per sentence
+2016-01-14 11:01:23,527: __main__: DEBUG: Current speed is 0.142266963959 per sentence
+2016-01-14 11:01:35,219: __main__: DEBUG: Current speed is 0.138041954835 per sentence
+2016-01-14 11:01:47,771: __main__: DEBUG: Current speed is 0.136252672672 per sentence
+2016-01-14 11:02:01,316: __main__: DEBUG: Current speed is 0.136153543591 per sentence
+2016-01-14 11:02:16,197: __main__: DEBUG: Current speed is 0.137559612327 per sentence
+2016-01-14 11:02:34,217: __main__: DEBUG: Current speed is 0.141822859049 per sentence
+2016-01-14 11:02:36,533: __main__: WARNING: Still no translations: try beam size 2
+2016-01-14 11:02:37,084: __main__: WARNING: Still no translations: try beam size 4
+2016-01-14 11:02:51,514: __main__: DEBUG: Current speed is 0.144654971903 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:02:58,890: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:02:58,890: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:02:58,890: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:02:58,962: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:02:58,964: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:02:58,965: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:02:58,971: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:02:59,007: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:02:59,007: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:02:59,088: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:02:59,089: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:02:59,089: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:02:59,097: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:02:59,127: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:02:59,127: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:02:59,198: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:02:59,198: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:02:59,405: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:02:59,405: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:02:59,411: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:02:59,430: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:02:59,505: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:02:59,750: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:03:06,312: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:03:06,313: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:03:07,214: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:03:07,215: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:03:20,263: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:03:20,265: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:03:20,279: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:03:20,373: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:03:20,375: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:03:20,382: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,387: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,391: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,397: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:03:20,407: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,413: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:03:20,414: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,418: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:03:20,422: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:03:20,423: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:03:20,425: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:03:20,433: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:03:20,441: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:03:20,448: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:03:20,453: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:03:20,464: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:03:20,559: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:03:20,561: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:03:20,565: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:03:20,566: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,571: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,576: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,581: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:03:20,586: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:03:20,596: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:03:20,675: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:03:20,678: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:03:20,683: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:03:20,688: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,693: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,698: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:03:20,703: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:03:20,708: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:03:20,710: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:03:20,715: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:03:20,720: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:03:20,725: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:03:20,731: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:03:20,736: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:03:20,737: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:03:24,010: root: DEBUG: Beam size: 2
+2016-01-14 11:03:38,930: __main__: DEBUG: Current speed is 0.149201319218 per sentence
+2016-01-14 11:03:57,833: __main__: DEBUG: Current speed is 0.169112465382 per sentence
+2016-01-14 11:04:19,329: __main__: DEBUG: Current speed is 0.184395696322 per sentence
+2016-01-14 11:04:30,490: __main__: DEBUG: Current speed is 0.166199820042 per sentence
+2016-01-14 11:04:46,134: __main__: DEBUG: Current speed is 0.164246729851 per sentence
+2016-01-14 11:04:59,634: __main__: DEBUG: Current speed is 0.159373481671 per sentence
+2016-01-14 11:05:14,098: __main__: DEBUG: Current speed is 0.157268172673 per sentence
+2016-01-14 11:05:29,540: __main__: DEBUG: Current speed is 0.156912539899 per sentence
+2016-01-14 11:05:47,386: __main__: DEBUG: Current speed is 0.159305952125 per sentence
+2016-01-14 11:06:07,055: __main__: DEBUG: Current speed is 0.16304419589 per sentence
+2016-01-14 11:06:09,419: __main__: WARNING: Still no translations: try beam size 4
+2016-01-14 11:06:26,047: __main__: DEBUG: Current speed is 0.165487865535 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:06:33,673: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:06:33,673: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:06:33,673: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:06:33,746: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:06:33,748: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:06:33,748: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:06:33,753: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:06:33,788: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:06:33,788: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:06:33,865: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:06:33,867: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:06:33,867: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:06:33,875: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:06:33,905: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:06:33,905: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:06:33,982: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:06:33,983: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:06:34,191: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:06:34,191: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:06:34,196: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:06:34,214: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:06:34,278: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:06:34,551: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:06:41,218: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:06:41,218: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:06:42,180: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:06:42,180: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:06:55,621: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:06:55,623: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:06:55,648: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:06:55,746: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:06:55,749: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:06:55,757: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,761: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,766: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,771: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:06:55,778: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,783: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:06:55,785: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,789: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:06:55,793: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:06:55,794: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:06:55,796: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:06:55,804: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:06:55,812: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:06:55,820: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:06:55,825: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:06:55,836: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:06:55,930: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:06:55,932: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:06:55,935: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:06:55,944: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:06:55,949: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:06:55,953: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:06:55,958: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:06:55,962: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:06:55,970: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:06:56,047: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:06:56,048: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:06:56,053: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:06:56,057: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:06:56,062: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:06:56,067: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:06:56,072: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:06:56,075: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:06:56,077: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:06:56,081: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:06:56,086: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:06:56,090: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:06:56,094: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:06:56,098: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:06:56,100: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:06:59,332: root: DEBUG: Beam size: 4
+2016-01-14 11:07:16,545: __main__: DEBUG: Current speed is 0.172129089832 per sentence
+2016-01-14 11:07:37,960: __main__: DEBUG: Current speed is 0.193141319752 per sentence
+2016-01-14 11:08:01,960: __main__: DEBUG: Current speed is 0.208758556843 per sentence
+2016-01-14 11:08:09,330: __main__: DEBUG: Current speed is 0.174994900227 per sentence
+2016-01-14 11:08:19,500: __main__: DEBUG: Current speed is 0.160336887836 per sentence
+2016-01-14 11:08:28,365: __main__: DEBUG: Current speed is 0.148388591607 per sentence
+2016-01-14 11:08:37,538: __main__: DEBUG: Current speed is 0.140293641431 per sentence
+2016-01-14 11:08:47,501: __main__: DEBUG: Current speed is 0.135211021304 per sentence
+2016-01-14 11:08:58,579: __main__: DEBUG: Current speed is 0.132496112188 per sentence
+2016-01-14 11:09:12,032: __main__: DEBUG: Current speed is 0.132699697018 per sentence
+2016-01-14 11:09:23,691: __main__: DEBUG: Current speed is 0.131235169931 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:09:29,087: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:09:29,087: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:09:29,087: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:09:29,141: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:09:29,143: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:09:29,143: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:09:29,148: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:09:29,182: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:09:29,182: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:09:29,251: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:09:29,254: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:09:29,254: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:09:29,259: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:09:29,291: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:09:29,291: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:09:29,358: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:09:29,358: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:09:29,565: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:09:29,565: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:09:29,569: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:09:29,583: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:09:29,636: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:09:29,888: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:09:36,363: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:09:36,364: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:09:37,209: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:09:37,210: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:09:49,833: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:09:49,835: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:09:49,851: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:09:49,947: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:09:49,949: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:09:49,956: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,961: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,965: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,970: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:09:49,978: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,982: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:09:49,984: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,989: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:09:49,992: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:09:49,993: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:09:49,994: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:09:50,003: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:09:50,010: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:09:50,019: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:09:50,023: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:09:50,035: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:09:50,131: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:09:50,132: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:09:50,136: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:09:50,137: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,141: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,145: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,149: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:09:50,153: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:09:50,161: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:09:50,240: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:09:50,241: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:09:50,246: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:09:50,250: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,254: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,258: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:09:50,263: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:09:50,268: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:09:50,270: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:09:50,275: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:09:50,280: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:09:50,284: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:09:50,289: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:09:50,293: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:09:50,295: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:09:53,498: root: DEBUG: Beam size: 6
+2016-01-14 11:10:03,468: __main__: DEBUG: Current speed is 0.099698779583 per sentence
+2016-01-14 11:10:17,416: __main__: DEBUG: Current speed is 0.119588514566 per sentence
+2016-01-14 11:10:33,179: __main__: DEBUG: Current speed is 0.132270019849 per sentence
+2016-01-14 11:10:41,092: __main__: DEBUG: Current speed is 0.118983625174 per sentence
+2016-01-14 11:10:51,753: __main__: DEBUG: Current speed is 0.116508287907 per sentence
+2016-01-14 11:11:00,994: __main__: DEBUG: Current speed is 0.112492121458 per sentence
+2016-01-14 11:11:11,032: __main__: DEBUG: Current speed is 0.110762775626 per sentence
+2016-01-14 11:11:21,826: __main__: DEBUG: Current speed is 0.11040928483 per sentence
+2016-01-14 11:11:34,104: __main__: DEBUG: Current speed is 0.111784213384 per sentence
+2016-01-14 11:11:53,082: __main__: DEBUG: Current speed is 0.119583479881 per sentence
+2016-01-14 11:12:15,713: __main__: DEBUG: Current speed is 0.129285580028 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:12:24,967: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:12:24,967: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:12:24,967: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:12:25,021: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:12:25,023: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:12:25,023: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:12:25,028: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:12:25,061: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:12:25,061: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:12:25,126: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:12:25,128: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:12:25,129: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:12:25,135: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:12:25,165: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:12:25,165: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:12:25,238: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:12:25,238: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:12:25,443: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:12:25,444: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:12:25,447: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:12:25,463: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:12:25,533: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:12:25,781: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:12:32,141: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:12:32,141: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:12:32,977: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:12:32,978: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:12:45,379: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:12:45,380: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:12:45,394: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:12:45,486: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:12:45,488: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:12:45,495: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,499: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,503: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,508: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:12:45,515: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,519: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:12:45,520: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,524: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:12:45,528: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:12:45,529: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:12:45,531: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:12:45,539: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:12:45,547: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:12:45,554: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:12:45,558: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:12:45,569: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:12:45,663: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:12:45,664: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:12:45,668: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:12:45,670: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,674: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,678: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,683: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:12:45,687: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:12:45,695: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:12:45,767: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:12:45,768: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:12:45,773: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:12:45,777: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,781: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,785: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:12:45,790: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:12:45,793: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:12:45,794: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:12:45,799: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:12:45,803: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:12:45,807: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:12:45,811: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:12:45,815: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:12:45,816: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:12:48,879: root: DEBUG: Beam size: 8
+2016-01-14 11:13:08,425: __main__: DEBUG: Current speed is 0.195457649231 per sentence
+2016-01-14 11:13:33,015: __main__: DEBUG: Current speed is 0.220680425167 per sentence
+2016-01-14 11:14:02,698: __main__: DEBUG: Current speed is 0.246063433488 per sentence
+2016-01-14 11:14:17,313: __main__: DEBUG: Current speed is 0.221085429788 per sentence
+2016-01-14 11:14:36,398: __main__: DEBUG: Current speed is 0.215038517952 per sentence
+2016-01-14 11:14:53,866: __main__: DEBUG: Current speed is 0.208311856588 per sentence
+2016-01-14 11:15:12,668: __main__: DEBUG: Current speed is 0.205412475722 per sentence
+2016-01-14 11:15:32,745: __main__: DEBUG: Current speed is 0.204832271338 per sentence
+2016-01-14 11:15:55,534: __main__: DEBUG: Current speed is 0.207394993305 per sentence
+2016-01-14 11:16:22,688: __main__: DEBUG: Current speed is 0.213809334993 per sentence
+2016-01-14 11:16:46,410: __main__: DEBUG: Current speed is 0.215937128067 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:16:55,079: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:16:55,080: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:16:55,080: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:16:55,138: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:16:55,140: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:16:55,140: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:16:55,147: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:16:55,182: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:16:55,183: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:16:55,256: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:16:55,258: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:16:55,258: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:16:55,263: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:16:55,295: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:16:55,295: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:16:55,363: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:16:55,364: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:16:55,579: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:16:55,580: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:16:55,582: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:16:55,597: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:16:55,657: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:16:55,901: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:17:02,337: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:17:02,338: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:17:03,165: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:17:03,165: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:17:15,478: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:17:15,479: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:17:15,495: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:17:15,588: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:17:15,591: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:17:15,600: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,604: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,608: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,612: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:17:15,619: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,622: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:17:15,624: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,628: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:17:15,631: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:17:15,632: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:17:15,633: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:17:15,641: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:17:15,648: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:17:15,656: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:17:15,661: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:17:15,672: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:17:15,764: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:17:15,765: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:17:15,768: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:17:15,778: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,782: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,786: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,790: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:17:15,794: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:17:15,803: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:17:15,876: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:17:15,878: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:17:15,882: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:17:15,886: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,890: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,894: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:17:15,898: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:17:15,902: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:17:15,905: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:17:15,909: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:17:15,913: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:17:15,917: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:17:15,921: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:17:15,924: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:17:15,926: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:17:19,011: root: DEBUG: Beam size: 10
+2016-01-14 11:17:39,239: __main__: DEBUG: Current speed is 0.202275910378 per sentence
+2016-01-14 11:18:06,069: __main__: DEBUG: Current speed is 0.23529163003 per sentence
+2016-01-14 11:18:36,029: __main__: DEBUG: Current speed is 0.256727070014 per sentence
+2016-01-14 11:18:51,413: __main__: DEBUG: Current speed is 0.231004175544 per sentence
+2016-01-14 11:19:12,880: __main__: DEBUG: Current speed is 0.22773833847 per sentence
+2016-01-14 11:19:30,580: __main__: DEBUG: Current speed is 0.219282210271 per sentence
+2016-01-14 11:19:51,640: __main__: DEBUG: Current speed is 0.218041001729 per sentence
+2016-01-14 11:20:11,846: __main__: DEBUG: Current speed is 0.216044340134 per sentence
+2016-01-14 11:20:36,132: __main__: DEBUG: Current speed is 0.219023607837 per sentence
+2016-01-14 11:21:05,141: __main__: DEBUG: Current speed is 0.226129735231 per sentence
+2016-01-14 11:21:30,314: __main__: DEBUG: Current speed is 0.228457670212 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:21:40,288: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:21:40,289: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:21:40,289: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:21:40,353: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:21:40,355: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:21:40,355: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:21:40,363: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:21:40,398: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:21:40,398: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:21:40,485: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:21:40,487: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:21:40,487: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:21:40,498: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:21:40,530: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:21:40,531: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:21:40,610: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:21:40,610: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:21:40,823: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:21:40,823: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:21:40,830: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:21:40,849: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:21:40,924: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:21:41,176: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:21:47,618: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:21:47,618: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:21:48,474: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:21:48,475: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:22:00,993: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:22:00,995: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:22:01,013: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:22:01,105: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:22:01,107: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:22:01,114: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,118: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,123: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,127: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:22:01,135: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,139: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:22:01,141: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,145: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:22:01,149: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:22:01,150: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:22:01,152: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:22:01,160: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:22:01,167: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:22:01,175: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:22:01,179: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:22:01,191: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:22:01,286: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:22:01,287: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:22:01,290: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:22:01,291: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,295: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,299: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,303: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:22:01,307: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:22:01,318: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:22:01,390: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:22:01,392: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:22:01,396: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:22:01,400: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,404: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,408: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:22:01,412: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:22:01,416: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:22:01,417: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:22:01,421: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:22:01,425: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:22:01,430: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:22:01,434: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:22:01,437: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:22:01,438: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:22:04,537: root: DEBUG: Beam size: 12
+2016-01-14 11:22:24,180: __main__: DEBUG: Current speed is 0.196429760456 per sentence
+2016-01-14 11:22:41,453: __main__: DEBUG: Current speed is 0.184580495358 per sentence
+2016-01-14 11:23:01,337: __main__: DEBUG: Current speed is 0.189334303538 per sentence
+2016-01-14 11:23:11,299: __main__: DEBUG: Current speed is 0.166905328035 per sentence
+2016-01-14 11:23:24,964: __main__: DEBUG: Current speed is 0.160853956223 per sentence
+2016-01-14 11:23:36,428: __main__: DEBUG: Current speed is 0.153151253462 per sentence
+2016-01-14 11:23:49,108: __main__: DEBUG: Current speed is 0.149387117454 per sentence
+2016-01-14 11:24:02,779: __main__: DEBUG: Current speed is 0.147802572548 per sentence
+2016-01-14 11:24:18,631: __main__: DEBUG: Current speed is 0.148993484444 per sentence
+2016-01-14 11:24:37,757: __main__: DEBUG: Current speed is 0.153220262051 per sentence
+2016-01-14 11:24:54,252: __main__: DEBUG: Current speed is 0.154286637306 per sentence
+Using gpu device 0: GeForce GTX TITAN X
+2016-01-14 11:25:01,048: experiments.nmt.encdec: DEBUG: Create input variables
+2016-01-14 11:25:01,049: experiments.nmt.encdec: DEBUG: Create encoder
+2016-01-14 11:25:01,049: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:25:01,108: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:25:01,111: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:25:01,111: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:25:01,117: experiments.nmt.encdec: DEBUG: Build encoding computation graph
+2016-01-14 11:25:01,151: experiments.nmt.encdec: DEBUG: Create backward encoder
+2016-01-14 11:25:01,151: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:25:01,220: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:25:01,221: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:25:01,221: experiments.nmt.encdec: DEBUG: _create_representation_layers
+2016-01-14 11:25:01,226: experiments.nmt.encdec: DEBUG: Build backward encoding computation graph
+2016-01-14 11:25:01,258: experiments.nmt.encdec: DEBUG: Create decoder
+2016-01-14 11:25:01,258: experiments.nmt.encdec: DEBUG: _create_embedding_layers
+2016-01-14 11:25:01,328: experiments.nmt.encdec: DEBUG: _create_transition_layers
+2016-01-14 11:25:01,328: experiments.nmt.encdec: DEBUG: RecurrentLayerWithSearch is used
+2016-01-14 11:25:01,539: experiments.nmt.encdec: DEBUG: _create_inter_level_layers
+2016-01-14 11:25:01,539: experiments.nmt.encdec: DEBUG: _create_initialization_layers
+2016-01-14 11:25:01,542: experiments.nmt.encdec: DEBUG: _create_decoding_layers
+2016-01-14 11:25:01,558: experiments.nmt.encdec: DEBUG: _create_readout_layers
+2016-01-14 11:25:01,627: experiments.nmt.encdec: DEBUG: Build log-likelihood computation graph
+2016-01-14 11:25:01,885: groundhog.layers.cost_layers: DEBUG: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+2016-01-14 11:25:08,551: groundhog.layers.cost_layers: DEBUG: Got grads
+2016-01-14 11:25:08,552: experiments.nmt.encdec: DEBUG: Build sampling computation graph
+2016-01-14 11:25:09,418: experiments.nmt.encdec: DEBUG: Create auxiliary variables
+2016-01-14 11:25:09,418: experiments.nmt.encdec: DEBUG: Compile sampler
+2016-01-14 11:25:22,278: experiments.nmt.encdec: DEBUG: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+2016-01-14 11:25:22,279: groundhog.layers.basic: DEBUG: Loading W1_dec_deep_softmax of (250, 520)
+2016-01-14 11:25:22,302: groundhog.layers.basic: DEBUG: Loading W2_dec_deep_softmax of (520, 14480)
+2016-01-14 11:25:22,401: groundhog.layers.basic: DEBUG: Loading b_dec_deep_softmax of (14480,)
+2016-01-14 11:25:22,403: groundhog.layers.basic: DEBUG: Loading W_0_dec_repr_readout of (1000, 500)
+2016-01-14 11:25:22,412: groundhog.layers.basic: DEBUG: Loading W_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,416: groundhog.layers.basic: DEBUG: Loading G_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,420: groundhog.layers.basic: DEBUG: Loading R_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,425: groundhog.layers.basic: DEBUG: Loading A_dec_transition_0 of (1000, 500)
+2016-01-14 11:25:22,433: groundhog.layers.basic: DEBUG: Loading B_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,437: groundhog.layers.basic: DEBUG: Loading D_dec_transition_0 of (500, 1)
+2016-01-14 11:25:22,438: groundhog.layers.basic: DEBUG: Loading W_0_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,443: groundhog.layers.basic: DEBUG: Loading W_1_DatN_dec_transition_0 of (500, 500)
+2016-01-14 11:25:22,448: groundhog.layers.basic: DEBUG: Loading b_0_DatN_dec_transition_0 of (500,)
+2016-01-14 11:25:22,448: groundhog.layers.basic: DEBUG: Loading b_1_DatN_dec_transition_0 of (500,)
+2016-01-14 11:25:22,450: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_inputter_0 of (1000, 500)
+2016-01-14 11:25:22,458: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_reseter_0 of (1000, 500)
+2016-01-14 11:25:22,466: groundhog.layers.basic: DEBUG: Loading W_0_dec_dec_updater_0 of (1000, 500)
+2016-01-14 11:25:22,474: groundhog.layers.basic: DEBUG: Loading W_0_dec_input_embdr_0 of (520, 500)
+2016-01-14 11:25:22,478: groundhog.layers.basic: DEBUG: Loading b_0_dec_input_embdr_0 of (500,)
+2016-01-14 11:25:22,490: groundhog.layers.basic: DEBUG: Loading W_0_dec_approx_embdr of (14480, 520)
+2016-01-14 11:25:22,585: groundhog.layers.basic: DEBUG: Loading b_0_dec_approx_embdr of (520,)
+2016-01-14 11:25:22,586: groundhog.layers.basic: DEBUG: Loading W_0_dec_initializer_0 of (500, 500)
+2016-01-14 11:25:22,589: groundhog.layers.basic: DEBUG: Loading b_0_dec_initializer_0 of (500,)
+2016-01-14 11:25:22,590: groundhog.layers.basic: DEBUG: Loading W_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,594: groundhog.layers.basic: DEBUG: Loading G_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,599: groundhog.layers.basic: DEBUG: Loading R_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,603: groundhog.layers.basic: DEBUG: Loading W_0_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:25:22,607: groundhog.layers.basic: DEBUG: Loading b_0_enc_input_embdr_0 of (500,)
+2016-01-14 11:25:22,616: groundhog.layers.basic: DEBUG: Loading W_0_enc_approx_embdr of (11425, 520)
+2016-01-14 11:25:22,692: groundhog.layers.basic: DEBUG: Loading b_0_enc_approx_embdr of (520,)
+2016-01-14 11:25:22,694: groundhog.layers.basic: DEBUG: Loading W_0_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:25:22,698: groundhog.layers.basic: DEBUG: Loading W_0_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:25:22,703: groundhog.layers.basic: DEBUG: Loading W_back_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,708: groundhog.layers.basic: DEBUG: Loading G_back_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,712: groundhog.layers.basic: DEBUG: Loading R_back_enc_transition_0 of (500, 500)
+2016-01-14 11:25:22,717: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_input_embdr_0 of (520, 500)
+2016-01-14 11:25:22,722: groundhog.layers.basic: DEBUG: Loading b_0_back_enc_input_embdr_0 of (500,)
+2016-01-14 11:25:22,723: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_update_embdr_0 of (520, 500)
+2016-01-14 11:25:22,727: groundhog.layers.basic: DEBUG: Loading W_0_back_enc_reset_embdr_0 of (520, 500)
+2016-01-14 11:25:22,733: groundhog.layers.basic: DEBUG: Loading W_0_dec_update_embdr_0 of (520, 500)
+2016-01-14 11:25:22,737: groundhog.layers.basic: DEBUG: Loading W_0_dec_reset_embdr_0 of (520, 500)
+2016-01-14 11:25:22,742: groundhog.layers.basic: DEBUG: Loading W_0_dec_hid_readout_0 of (500, 500)
+2016-01-14 11:25:22,746: groundhog.layers.basic: DEBUG: Loading b_0_dec_hid_readout_0 of (500,)
+2016-01-14 11:25:22,748: groundhog.layers.basic: DEBUG: Loading W_0_dec_prev_readout_0 of (520, 500)
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1491: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1500: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+2016-01-14 11:25:26,009: root: DEBUG: Beam size: 20
+2016-01-14 11:25:41,116: __main__: DEBUG: Current speed is 0.151064829826 per sentence
+2016-01-14 11:26:10,355: __main__: DEBUG: Current speed is 0.221731840372 per sentence
+2016-01-14 11:26:49,472: __main__: DEBUG: Current speed is 0.278208877246 per sentence
+2016-01-14 11:27:09,000: __main__: DEBUG: Current speed is 0.257478455305 per sentence
+2016-01-14 11:27:34,860: __main__: DEBUG: Current speed is 0.257702445984 per sentence
+2016-01-14 11:27:57,230: __main__: DEBUG: Current speed is 0.252035301924 per sentence
+2016-01-14 11:28:21,066: __main__: DEBUG: Current speed is 0.250080917222 per sentence
+2016-01-14 11:28:47,323: __main__: DEBUG: Current speed is 0.251642065048 per sentence
+2016-01-14 11:29:18,341: __main__: DEBUG: Current speed is 0.258146603372 per sentence
+2016-01-14 11:29:55,066: __main__: DEBUG: Current speed is 0.269056996107 per sentence
+2016-01-14 11:30:25,920: __main__: DEBUG: Current speed is 0.272645880092 per sentence

@@ -1,0 +1,48 @@
+Bye Bye!
+Total cost of the translations: 2439.29391521
+Beam: 1. BLEU= 0.624294 , BP= 1 , 0.804344 / 0.664022 / 0.571617 / 0.497538
+Bye Bye!
+Total cost of the translations: 2152.35415191
+Beam: 2. BLEU= 0.642557 , BP= 1 , 0.818003 / 0.68109 / 0.590951 / 0.51777
+Bye Bye!
+Total cost of the translations: 2037.62917209
+Beam: 4. BLEU= 0.654575 , BP= 1 , 0.826623 / 0.69283 / 0.603619 / 0.531056
+Bye Bye!
+Total cost of the translations: 2012.53555221
+Beam: 6. BLEU= 0.654494 , BP= 1 , 0.826472 / 0.692747 / 0.603659 / 0.53092
+Bye Bye!
+Total cost of the translations: 2002.41497776
+Beam: 8. BLEU= 0.654539 , BP= 1 , 0.826746 / 0.692907 / 0.603663 / 0.530764
+Bye Bye!
+Total cost of the translations: 1989.53250758
+Beam: 10. BLEU= 0.657176 , BP= 1 , 0.828019 / 0.695664 / 0.606664 / 0.533753
+Bye Bye!
+Total cost of the translations: 1989.05198166
+Beam: 12. BLEU= 0.658012 , BP= 1 , 0.82862 / 0.696434 / 0.607653 / 0.534618
+Bye Bye!
+Total cost of the translations: 1973.25288456
+Beam: 20. BLEU= 0.659764 , BP= 1 , 0.830922 / 0.698615 / 0.609144 / 0.535841
+Bye Bye!
+Total cost of the translations: 2976.18031871
+Beam: 1. BLEU= 0.525582 , BP= 1 , 0.720774 / 0.566897 / 0.472819 / 0.394971
+Bye Bye!
+Total cost of the translations: 2660.84823511
+Beam: 2. BLEU= 0.545745 , BP= 1 , 0.738829 / 0.588552 / 0.492922 / 0.413858
+Bye Bye!
+Total cost of the translations: 2539.69627804
+Beam: 4. BLEU= 0.550481 , BP= 1 , 0.742638 / 0.593044 / 0.497534 / 0.419067
+Bye Bye!
+Total cost of the translations: 2513.52624197
+Beam: 6. BLEU= 0.552558 , BP= 1 , 0.744687 / 0.59464 / 0.499174 / 0.421726
+Bye Bye!
+Total cost of the translations: 2489.9576361
+Beam: 8. BLEU= 0.554855 , BP= 0.998413 , 0.746401 / 0.597921 / 0.502491 / 0.425337
+Bye Bye!
+Total cost of the translations: 2486.37091688
+Beam: 10. BLEU= 0.553471 , BP= 0.996823 , 0.746693 / 0.597424 / 0.501984 / 0.424418
+Bye Bye!
+Total cost of the translations: 2480.99246528
+Beam: 12. BLEU= 0.553191 , BP= 0.995628 , 0.747386 / 0.597892 / 0.5025 / 0.424432
+Bye Bye!
+Total cost of the translations: 2474.46894024
+Beam: 20. BLEU= 0.553183 , BP= 0.994134 , 0.747906 / 0.598338 / 0.503469 / 0.425529

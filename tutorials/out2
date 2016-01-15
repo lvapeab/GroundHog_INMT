@@ -1,0 +1,60 @@
+data length is  5459176
+data length is  12742
+data length is  20950
+Constructing grad function
+Compiling grad function
+took 24.75613904
+Validation computed every 5000
+GPU status : Used 948.980 Mb Free 11338.707 Mb,total 12287.688 Mb [context start]
+Saving the model...
+Model saved, took 0.632168769836
+.. iter    0 cost 10.742 grad_norm 2.24e+00 log2_p_word 1.55e+01 log2_p_expl 1.55e+01 step time  0.153 sec whole time 26.282 sec lr 1.00e+00
+Sample joint:
+_number estonian permit ec-mexico sufficiency infrastructures case-file carriers unibank non-ferrous ices ruf _number _number eeurope _number migrant case-file migrant transpose dioxin ourselves consolidated _number red domestic libraries hens part-session _number bremer isolated documentary _number permanganate attainable refund endeavours nox _number the presuming _number _number reservation finish poorest overcome proposes _number _number _number bregenz lønmodtagernes produce psc _number public-private _number _number _number handelsgesellschaft _number fog kofi the public _number pre-contractual documentary interconnections diameter indivisible consolidated _number ° the laos _number danmark
+
+.. iter  500 cost 4.596 grad_norm 4.00e-01 log2_p_word 6.63e+00 log2_p_expl 6.63e+00 step time  0.137 sec whole time 102.036 sec lr 1.00e+00
+.. iter 1000 cost 3.449 grad_norm 3.12e-01 log2_p_word 4.98e+00 log2_p_expl 4.98e+00 step time  0.139 sec whole time  2.973 min lr 1.00e+00
+.. iter 1500 cost 3.395 grad_norm 2.75e-01 log2_p_word 4.90e+00 log2_p_expl 4.90e+00 step time  0.144 sec whole time  4.235 min lr 1.00e+00
+.. iter 2000 cost 2.750 grad_norm 3.24e-01 log2_p_word 3.97e+00 log2_p_expl 3.97e+00 step time  0.137 sec whole time  5.490 min lr 1.00e+00
+.. iter 2500 cost 3.442 grad_norm 2.02e-01 log2_p_word 4.97e+00 log2_p_expl 4.97e+00 step time  0.138 sec whole time  6.751 min lr 1.00e+00
+.. iter 3000 cost 3.121 grad_norm 2.57e-01 log2_p_word 4.50e+00 log2_p_expl 4.50e+00 step time  0.142 sec whole time  8.031 min lr 1.00e+00
+.. iter 3500 cost 1.956 grad_norm 2.77e-01 log2_p_word 2.82e+00 log2_p_expl 2.82e+00 step time  0.138 sec whole time  9.294 min lr 1.00e+00
+.. iter 4000 cost 1.705 grad_norm 1.86e-01 log2_p_word 2.46e+00 log2_p_expl 2.46e+00 step time  0.137 sec whole time 10.569 min lr 1.00e+00
+.. iter 4500 cost 2.321 grad_norm 2.47e-01 log2_p_word 3.35e+00 log2_p_expl 3.35e+00 step time  0.138 sec whole time 11.841 min lr 1.00e+00
+.. iter 5000 cost 1.985 grad_norm 2.14e-01 log2_p_word 2.86e+00 log2_p_expl 2.86e+00 step time  0.139 sec whole time 13.106 min lr 1.00e+00
+**  0     validation: cost:3.416261  ppl:10.675719 whole time 12.713 min patience 1
+>>>         Test cost: 3.516  ppl:11.443 
+GPU status : Used 1048.738 Mb Free 11238.949 Mb,total 12287.688 Mb [context validate]
+Sample joint:
+· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+
+.. iter 5500 cost 1.883 grad_norm 1.97e-01 log2_p_word 2.72e+00 log2_p_expl 2.72e+00 step time  0.137 sec whole time 14.461 min lr 1.00e+00
+.. iter 6000 cost 2.237 grad_norm 2.29e-01 log2_p_word 3.23e+00 log2_p_expl 3.23e+00 step time  0.144 sec whole time 15.710 min lr 1.00e+00
+.. iter 6500 cost 1.782 grad_norm 1.98e-01 log2_p_word 2.57e+00 log2_p_expl 2.57e+00 step time  0.137 sec whole time 16.965 min lr 1.00e+00
+.. iter 7000 cost 2.382 grad_norm 2.48e-01 log2_p_word 3.44e+00 log2_p_expl 3.44e+00 step time  0.140 sec whole time 18.229 min lr 1.00e+00
+.. iter 7500 cost 1.798 grad_norm 1.88e-01 log2_p_word 2.59e+00 log2_p_expl 2.59e+00 step time  0.137 sec whole time 19.496 min lr 1.00e+00
+.. iter 8000 cost 2.489 grad_norm 2.23e-01 log2_p_word 3.59e+00 log2_p_expl 3.59e+00 step time  0.138 sec whole time 20.756 min lr 1.00e+00
+.. iter 8500 cost 1.245 grad_norm 1.91e-01 log2_p_word 1.80e+00 log2_p_expl 1.80e+00 step time  0.137 sec whole time 22.019 min lr 1.00e+00
+.. iter 9000 cost 1.901 grad_norm 2.66e-01 log2_p_word 2.74e+00 log2_p_expl 2.74e+00 step time  0.161 sec whole time 23.288 min lr 1.00e+00
+.. iter 9500 cost 1.660 grad_norm 1.78e-01 log2_p_word 2.40e+00 log2_p_expl 2.40e+00 step time  0.137 sec whole time 24.552 min lr 1.00e+00
+.. iter 10000 cost 2.308 grad_norm 2.55e-01 log2_p_word 3.33e+00 log2_p_expl 3.33e+00 step time  0.138 sec whole time 25.814 min lr 1.00e+00
+**  1     validation: cost:2.678230  ppl:6.400702 whole time 25.420 min patience 1
+>>>         Test cost: 2.792  ppl: 6.927 
+GPU status : Used 1051.113 Mb Free 11236.574 Mb,total 12287.688 Mb [context validate]
+Sample joint:
+· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+
+.. iter 10500 cost 3.177 grad_norm 2.17e-01 log2_p_word 4.58e+00 log2_p_expl 4.58e+00 step time  0.143 sec whole time 27.175 min lr 1.00e+00
+.. iter 11000 cost 1.554 grad_norm 3.32e-01 log2_p_word 2.24e+00 log2_p_expl 2.24e+00 step time  0.141 sec whole time 28.443 min lr 1.00e+00
+.. iter 11500 cost 2.903 grad_norm 2.82e-01 log2_p_word 4.19e+00 log2_p_expl 4.19e+00 step time  0.139 sec whole time 29.708 min lr 1.00e+00
+Saving the model...
+Model saved, took 0.646316051483
+**  2     validation: cost:2.561668  ppl:5.903900 whole time 30.541 min patience 1
+>>>         Test cost: 2.690  ppl: 6.453 
+GPU status : Used 1090.363 Mb Free 11197.324 Mb,total 12287.688 Mb [context validate]
+Saving the model...
+Model saved, took 0.643835783005
+Took 30.6113922993 min
+Average step took 0.139381274581
+That amounts to 619882.407158 sentences in a day
+Average log2 per example is 3.76822948456

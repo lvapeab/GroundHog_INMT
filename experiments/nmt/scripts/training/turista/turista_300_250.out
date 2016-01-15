@@ -1,0 +1,502 @@
+Bye Bye!
+BleuScores not Found
+Validation computed every 2000
+mainLoop: Corrupted model file
+mainLoop: Corrupted timings file
+GPU status : Used 3898.836 Mb Free 8387.680 Mb,total 12286.516 Mb [context start]
+Saving the model...
+Model saved, took 0.33491396904
+.. iter    0 cost 2309.993 grad_norm 1.01e+02 log2_p_word 9.01e+00 log2_p_expl 4.17e+01 step time  0.580 sec whole time 81.273 sec lr 1.00e+00
+Input
+Target
+Input:   '? est'a todo anotado ? <eol> 
+Output:  are problem Piquer S'aez Soria traveler Monday </s> Ortega should cold fifteenth first February Redondo been ! ! eighth Asunci'on Bellver seventeen Marqu'es Miss sixth of Mr wake eighteenth how after
+
+Input
+Target
+Input:   tengo una reserva . <eol> 
+Output:  Salsas Fern'andez Carmelo okay Bellver Campo Salgado June Paloma Gimeno Carpio problem day day Ortega not thank ? Ortiz July twenty-eighth Miralles Velasco lot Maestro Carmelo like Moliner tax Lidia Belenguer
+
+Input
+Target
+Input:   '? est'a todo apuntado ? <eol> 
+Output:  Eduardo Wednesday days Calatayud pardon traveler L'opez March oh Gual twenty-third in Nebot double fifteenth Betoret sixteen Sergio Ram'irez Bordons warmer Granada a Fern'andez Ortiz Amelia twenty-five Ivars carrying car Cabo
+
+.. iter 1000 cost 1305.511 grad_norm 1.21e+03 log2_p_word 5.64e+00 log2_p_expl 2.35e+01 step time  0.336 sec whole time 11.765 min lr 1.00e+00
+.. iter 2000 cost 1186.212 grad_norm 1.24e+03 log2_p_word 4.71e+00 log2_p_expl 2.14e+01 step time  0.200 sec whole time 22.024 min lr 1.00e+00
+.. iter 3000 cost 1084.857 grad_norm 1.33e+03 log2_p_word 4.23e+00 log2_p_expl 1.96e+01 step time  0.223 sec whole time 29.551 min lr 1.00e+00
+Saving the model...
+Model saved, took 0.979252099991
+.. iter 4000 cost 808.729 grad_norm 1.04e+03 log2_p_word 3.08e+00 log2_p_expl 1.46e+01 step time  0.383 sec whole time 36.299 min lr 1.00e+00
+.. iter 5000 cost 631.818 grad_norm 1.15e+03 log2_p_word 2.50e+00 log2_p_expl 1.14e+01 step time  0.240 sec whole time 46.614 min lr 1.00e+00
+.. iter 6000 cost 481.968 grad_norm 7.14e+02 log2_p_word 1.92e+00 log2_p_expl 8.69e+00 step time  0.116 sec whole time 57.103 min lr 1.00e+00
+Saving the model...
+Model saved, took 0.763221025467
+.. iter 7000 cost 553.963 grad_norm 1.73e+03 log2_p_word 2.04e+00 log2_p_expl 9.99e+00 step time  0.268 sec whole time  1.125 h   lr 1.00e+00
+.. iter 8000 cost 382.023 grad_norm 9.67e+02 log2_p_word 1.48e+00 log2_p_expl 6.89e+00 step time  0.277 sec whole time  1.303 h   lr 1.00e+00
+.. iter 9000 cost 297.173 grad_norm 7.65e+02 log2_p_word 1.15e+00 log2_p_expl 5.36e+00 step time  0.421 sec whole time  1.482 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.22519111633
+.. iter 10000 cost 239.325 grad_norm 1.21e+03 log2_p_word 8.74e-01 log2_p_expl 4.32e+00 step time  0.380 sec whole time  1.653 h   lr 1.00e+00
+.. iter 11000 cost 125.906 grad_norm 4.84e+02 log2_p_word 4.60e-01 log2_p_expl 2.27e+00 step time  0.353 sec whole time  1.827 h   lr 1.00e+00
+.. iter 12000 cost 142.074 grad_norm 6.43e+02 log2_p_word 5.54e-01 log2_p_expl 2.56e+00 step time  0.544 sec whole time  2.000 h   lr 1.00e+00
+Input
+Target
+Input:   no importa . <eol> 
+Output:  it does it . <eol>
+
+Input
+Target
+Input:   he de marcharme hoy . <eol> 
+Output:  I should leave this afternoon . <eol>
+
+Input
+Target
+Input:   no estoy de acuerdo . <eol> 
+Output:  in the bill . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 242.225387874
+Validation Took: 0.860967584451 minutes
+58.22
+Saving the model...
+Model saved, took 1.63019704819
+.. iter 13000 cost 145.547 grad_norm 5.91e+02 log2_p_word 5.97e-01 log2_p_expl 2.62e+00 step time  0.344 sec whole time  2.186 h   lr 1.00e+00
+.. iter 14000 cost 92.914 grad_norm 3.66e+02 log2_p_word 3.66e-01 log2_p_expl 1.68e+00 step time  0.562 sec whole time  2.357 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.875770807266
+.. iter 15000 cost 83.227 grad_norm 5.13e+02 log2_p_word 3.24e-01 log2_p_expl 1.50e+00 step time  0.270 sec whole time  2.528 h   lr 1.00e+00
+.. iter 16000 cost 92.531 grad_norm 4.39e+02 log2_p_word 3.61e-01 log2_p_expl 1.67e+00 step time  0.557 sec whole time  2.697 h   lr 1.00e+00
+.. iter 17000 cost 49.778 grad_norm 3.87e+02 log2_p_word 1.92e-01 log2_p_expl 8.98e-01 step time  0.630 sec whole time  2.865 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.730646133423
+.. iter 18000 cost 59.025 grad_norm 3.17e+02 log2_p_word 2.31e-01 log2_p_expl 1.06e+00 step time  0.568 sec whole time  3.033 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 164.17795416
+Validation Took: 0.863637435436 minutes
+70.48
+.. iter 19000 cost 75.434 grad_norm 6.62e+02 log2_p_word 2.86e-01 log2_p_expl 1.36e+00 step time  0.241 sec whole time  3.190 h   lr 1.00e+00
+.. iter 20000 cost 60.575 grad_norm 3.93e+02 log2_p_word 2.31e-01 log2_p_expl 1.09e+00 step time  0.080 sec whole time  3.301 h   lr 1.00e+00
+.. iter 21000 cost 41.561 grad_norm 2.99e+02 log2_p_word 1.62e-01 log2_p_expl 7.49e-01 step time  0.557 sec whole time  3.475 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.00834608078
+.. iter 22000 cost 35.596 grad_norm 2.55e+02 log2_p_word 1.33e-01 log2_p_expl 6.42e-01 step time  0.334 sec whole time  3.648 h   lr 1.00e+00
+.. iter 23000 cost 33.401 grad_norm 2.87e+02 log2_p_word 1.22e-01 log2_p_expl 6.02e-01 step time  0.612 sec whole time  3.817 h   lr 1.00e+00
+.. iter 24000 cost 38.389 grad_norm 4.78e+02 log2_p_word 1.43e-01 log2_p_expl 6.92e-01 step time  0.682 sec whole time  3.991 h   lr 1.00e+00
+Input
+Target
+Input:   vamos a marcharnos ma~nana . <eol> 
+Output:  we are leaving tomorrow . <eol>
+
+Input
+Target
+Input:   no importa . <eol> 
+Output:  it does not matter . <eol>
+
+Input
+Target
+Input:   '? est'a todo anotado ? <eol> 
+Output:  is everything included ? <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 154.161375441
+Validation Took: 0.831464735667 minutes
+77.48
+Saving the model...
+Model saved, took 1.38234782219
+.. iter 25000 cost 27.930 grad_norm 1.97e+02 log2_p_word 1.11e-01 log2_p_expl 5.04e-01 step time  0.386 sec whole time  4.181 h   lr 1.00e+00
+.. iter 26000 cost 28.894 grad_norm 2.82e+02 log2_p_word 1.20e-01 log2_p_expl 5.21e-01 step time  0.582 sec whole time  4.354 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.851722002029
+.. iter 27000 cost 27.414 grad_norm 2.08e+02 log2_p_word 1.09e-01 log2_p_expl 4.94e-01 step time  0.485 sec whole time  4.530 h   lr 1.00e+00
+.. iter 28000 cost 51.040 grad_norm 7.13e+02 log2_p_word 1.96e-01 log2_p_expl 9.20e-01 step time  0.379 sec whole time  4.707 h   lr 1.00e+00
+.. iter 29000 cost 32.397 grad_norm 3.77e+02 log2_p_word 1.22e-01 log2_p_expl 5.84e-01 step time  0.489 sec whole time  4.882 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.69236922264
+.. iter 30000 cost 23.619 grad_norm 2.13e+02 log2_p_word 9.60e-02 log2_p_expl 4.26e-01 step time  0.296 sec whole time  5.037 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 127.923833152
+Validation Took: 0.507377465566 minutes
+80.39
+.. iter 31000 cost 17.702 grad_norm 1.79e+02 log2_p_word 6.98e-02 log2_p_expl 3.19e-01 step time  0.169 sec whole time  5.156 h   lr 1.00e+00
+.. iter 32000 cost 20.338 grad_norm 2.25e+02 log2_p_word 7.49e-02 log2_p_expl 3.67e-01 step time  0.189 sec whole time  5.263 h   lr 1.00e+00
+.. iter 33000 cost 24.132 grad_norm 1.60e+02 log2_p_word 9.38e-02 log2_p_expl 4.35e-01 step time  0.171 sec whole time  5.374 h   lr 1.00e+00
+.. iter 34000 cost 13.396 grad_norm 2.08e+02 log2_p_word 5.15e-02 log2_p_expl 2.42e-01 step time  0.213 sec whole time  5.484 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.917984008789
+.. iter 35000 cost 19.796 grad_norm 2.46e+02 log2_p_word 7.18e-02 log2_p_expl 3.57e-01 step time  0.195 sec whole time  5.585 h   lr 1.00e+00
+.. iter 36000 cost 21.528 grad_norm 3.43e+02 log2_p_word 7.80e-02 log2_p_expl 3.88e-01 step time  0.101 sec whole time  5.653 h   lr 1.00e+00
+Input
+Target
+Input:   '? est'a todo incluido ? <eol> 
+Output:  is everything included ? <eol>
+
+Input
+Target
+Input:   reserv'e una habitaci'on . <eol> 
+Output:  I booked a room . <eol>
+
+Input
+Target
+Input:   reserv'e una habitaci'on . <eol> 
+Output:  I booked a room . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 118.980776746
+Validation Took: 0.143379449844 minutes
+84.33
+.. iter 37000 cost 38.421 grad_norm 6.62e+02 log2_p_word 1.51e-01 log2_p_expl 6.93e-01 step time  0.316 sec whole time  5.748 h   lr 1.00e+00
+.. iter 38000 cost 17.017 grad_norm 1.67e+02 log2_p_word 7.22e-02 log2_p_expl 3.07e-01 step time  0.227 sec whole time  5.860 h   lr 1.00e+00
+.. iter 39000 cost 24.258 grad_norm 3.87e+02 log2_p_word 9.72e-02 log2_p_expl 4.37e-01 step time  0.341 sec whole time  5.970 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.34111905098
+.. iter 40000 cost 31.076 grad_norm 2.18e+02 log2_p_word 1.20e-01 log2_p_expl 5.60e-01 step time  0.349 sec whole time  6.078 h   lr 1.00e+00
+.. iter 41000 cost 28.657 grad_norm 3.16e+02 log2_p_word 1.08e-01 log2_p_expl 5.17e-01 step time  0.298 sec whole time  6.188 h   lr 1.00e+00
+.. iter 42000 cost 17.200 grad_norm 1.82e+02 log2_p_word 6.74e-02 log2_p_expl 3.10e-01 step time  0.397 sec whole time  6.298 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 116.970580957
+Validation Took: 0.426255464554 minutes
+82.32
+.. iter 43000 cost 18.502 grad_norm 2.50e+02 log2_p_word 7.33e-02 log2_p_expl 3.34e-01 step time  0.099 sec whole time  6.411 h   lr 1.00e+00
+.. iter 44000 cost 18.103 grad_norm 2.96e+02 log2_p_word 6.78e-02 log2_p_expl 3.26e-01 step time  0.350 sec whole time  6.518 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.761049032211
+.. iter 45000 cost 14.322 grad_norm 1.90e+02 log2_p_word 5.61e-02 log2_p_expl 2.58e-01 step time  0.194 sec whole time  6.626 h   lr 1.00e+00
+.. iter 46000 cost 23.771 grad_norm 2.78e+02 log2_p_word 9.19e-02 log2_p_expl 4.29e-01 step time  0.353 sec whole time  6.735 h   lr 1.00e+00
+.. iter 47000 cost 19.365 grad_norm 2.29e+02 log2_p_word 7.11e-02 log2_p_expl 3.49e-01 step time  0.081 sec whole time  6.816 h   lr 1.00e+00
+.. iter 48000 cost 9.513 grad_norm 1.75e+02 log2_p_word 3.49e-02 log2_p_expl 1.72e-01 step time  0.252 sec whole time  6.900 h   lr 1.00e+00
+Input
+Target
+Input:   '? est'a todo incluido ? <eol> 
+Output:  is everything included ? <eol>
+
+Input
+Target
+Input:   hay un problema . <eol> 
+Output:  there is a problem . <eol>
+
+Input
+Target
+Input:   tenemos una reserva . <eol> 
+Output:  we have a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 106.887385111
+Validation Took: 0.383435503642 minutes
+83.57
+.. iter 49000 cost 13.038 grad_norm 2.20e+02 log2_p_word 4.86e-02 log2_p_expl 2.35e-01 step time  0.177 sec whole time  7.013 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.34487605095
+.. iter 50000 cost 12.372 grad_norm 1.59e+02 log2_p_word 5.04e-02 log2_p_expl 2.23e-01 step time  0.191 sec whole time  7.117 h   lr 1.00e+00
+.. iter 51000 cost 16.012 grad_norm 3.32e+02 log2_p_word 6.58e-02 log2_p_expl 2.89e-01 step time  0.126 sec whole time  7.218 h   lr 1.00e+00
+.. iter 52000 cost 15.527 grad_norm 1.81e+02 log2_p_word 6.15e-02 log2_p_expl 2.80e-01 step time  0.227 sec whole time  7.319 h   lr 1.00e+00
+.. iter 53000 cost 14.686 grad_norm 1.96e+02 log2_p_word 5.77e-02 log2_p_expl 2.65e-01 step time  0.109 sec whole time  7.419 h   lr 1.00e+00
+.. iter 54000 cost 9.983 grad_norm 2.92e+02 log2_p_word 3.78e-02 log2_p_expl 1.80e-01 step time  0.298 sec whole time  7.522 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 88.5619457666
+Validation Took: 0.368419265747 minutes
+84.9
+Saving the model...
+Model saved, took 0.717507123947
+.. iter 55000 cost 17.283 grad_norm 2.05e+02 log2_p_word 6.79e-02 log2_p_expl 3.12e-01 step time  0.174 sec whole time  7.620 h   lr 1.00e+00
+.. iter 56000 cost 13.280 grad_norm 3.71e+02 log2_p_word 5.14e-02 log2_p_expl 2.39e-01 step time  0.098 sec whole time  7.680 h   lr 1.00e+00
+.. iter 57000 cost 9.779 grad_norm 1.74e+02 log2_p_word 3.60e-02 log2_p_expl 1.76e-01 step time  0.366 sec whole time  7.768 h   lr 1.00e+00
+.. iter 58000 cost 18.118 grad_norm 5.60e+02 log2_p_word 7.14e-02 log2_p_expl 3.27e-01 step time  0.231 sec whole time  7.874 h   lr 1.00e+00
+.. iter 59000 cost 13.177 grad_norm 3.22e+02 log2_p_word 5.03e-02 log2_p_expl 2.38e-01 step time  0.366 sec whole time  7.977 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.770051956177
+.. iter 60000 cost 7.000 grad_norm 1.50e+02 log2_p_word 2.55e-02 log2_p_expl 1.26e-01 step time  0.096 sec whole time  8.078 h   lr 1.00e+00
+Input
+Target
+Input:   hicimos una reserva . <eol> 
+Output:  we made a reservation . <eol>
+
+Input
+Target
+Input:   tenemos una reserva . <eol> 
+Output:  we have a reservation . <eol>
+
+Input
+Target
+Input:   tenemos una reserva . <eol> 
+Output:  we have a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 98.3965494075
+Validation Took: 0.362264867624 minutes
+85.33
+.. iter 61000 cost 9.952 grad_norm 1.59e+02 log2_p_word 3.69e-02 log2_p_expl 1.79e-01 step time  0.125 sec whole time  8.187 h   lr 1.00e+00
+.. iter 62000 cost 18.774 grad_norm 2.75e+02 log2_p_word 7.44e-02 log2_p_expl 3.39e-01 step time  0.133 sec whole time  8.288 h   lr 1.00e+00
+.. iter 63000 cost 12.499 grad_norm 2.39e+02 log2_p_word 5.26e-02 log2_p_expl 2.25e-01 step time  0.086 sec whole time  8.389 h   lr 1.00e+00
+.. iter 64000 cost 16.357 grad_norm 2.98e+02 log2_p_word 6.47e-02 log2_p_expl 2.95e-01 step time  0.237 sec whole time  8.487 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.41998720169
+.. iter 65000 cost 22.914 grad_norm 2.84e+02 log2_p_word 8.96e-02 log2_p_expl 4.13e-01 step time  0.085 sec whole time  8.588 h   lr 1.00e+00
+.. iter 66000 cost 6.909 grad_norm 1.50e+02 log2_p_word 2.64e-02 log2_p_expl 1.25e-01 step time  0.141 sec whole time  8.691 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 90.1419994997
+Validation Took: 0.373292183876 minutes
+84.14
+.. iter 67000 cost 9.764 grad_norm 1.31e+02 log2_p_word 3.91e-02 log2_p_expl 1.76e-01 step time  0.223 sec whole time  8.803 h   lr 1.00e+00
+.. iter 68000 cost 15.344 grad_norm 2.45e+02 log2_p_word 6.06e-02 log2_p_expl 2.77e-01 step time  0.081 sec whole time  8.906 h   lr 1.00e+00
+.. iter 69000 cost 16.048 grad_norm 3.88e+02 log2_p_word 5.86e-02 log2_p_expl 2.89e-01 step time  0.307 sec whole time  9.014 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.28125691414
+.. iter 70000 cost 24.423 grad_norm 7.22e+02 log2_p_word 9.37e-02 log2_p_expl 4.40e-01 step time  0.176 sec whole time  9.120 h   lr 1.00e+00
+.. iter 71000 cost 12.645 grad_norm 2.56e+02 log2_p_word 4.90e-02 log2_p_expl 2.28e-01 step time  0.100 sec whole time  9.224 h   lr 1.00e+00
+.. iter 72000 cost 12.016 grad_norm 1.40e+02 log2_p_word 4.44e-02 log2_p_expl 2.17e-01 step time  0.329 sec whole time  9.328 h   lr 1.00e+00
+Input
+Target
+Input:   es demasiado cara . <eol> 
+Output:  it is too expensive . <eol>
+
+Input
+Target
+Input:   '? qu'e hora es ? <eol> 
+Output:  what time the carry in the weeks ? <eol>
+
+Input
+Target
+Input:   tenemos una reserva . <eol> 
+Output:  we have a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 116.690358215
+Validation Took: 0.40891311566 minutes
+87.32
+.. iter 73000 cost 6.497 grad_norm 9.05e+01 log2_p_word 2.35e-02 log2_p_expl 1.17e-01 step time  0.237 sec whole time  9.443 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.995679140091
+.. iter 74000 cost 6.768 grad_norm 1.19e+02 log2_p_word 2.62e-02 log2_p_expl 1.22e-01 step time  0.264 sec whole time  9.548 h   lr 1.00e+00
+.. iter 75000 cost 8.714 grad_norm nan log2_p_word 3.59e-02 log2_p_expl 1.57e-01 step time  0.121 sec whole time  9.641 h   lr 1.00e+00
+.. iter 76000 cost 6.358 grad_norm 1.28e+02 log2_p_word 2.51e-02 log2_p_expl 1.15e-01 step time  0.111 sec whole time  9.701 h   lr 1.00e+00
+.. iter 77000 cost 10.712 grad_norm 1.78e+02 log2_p_word 4.22e-02 log2_p_expl 1.93e-01 step time  0.349 sec whole time  9.792 h   lr 1.00e+00
+.. iter 78000 cost 18.171 grad_norm 4.46e+02 log2_p_word 7.01e-02 log2_p_expl 3.28e-01 step time  0.216 sec whole time  9.901 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 85.6631044099
+Validation Took: 0.398895684878 minutes
+85.9
+.. iter 79000 cost 6.357 grad_norm 1.05e+02 log2_p_word 2.49e-02 log2_p_expl 1.15e-01 step time  0.294 sec whole time 10.016 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.43667316437
+.. iter 80000 cost 15.040 grad_norm 2.54e+02 log2_p_word 5.98e-02 log2_p_expl 2.71e-01 step time  0.341 sec whole time 10.123 h   lr 1.00e+00
+.. iter 81000 cost 13.256 grad_norm 2.09e+02 log2_p_word 4.92e-02 log2_p_expl 2.39e-01 step time  0.164 sec whole time 10.231 h   lr 1.00e+00
+.. iter 82000 cost 20.650 grad_norm 2.92e+02 log2_p_word 7.97e-02 log2_p_expl 3.72e-01 step time  0.328 sec whole time 10.338 h   lr 1.00e+00
+.. iter 83000 cost 12.144 grad_norm 2.12e+02 log2_p_word 4.71e-02 log2_p_expl 2.19e-01 step time  0.252 sec whole time 10.445 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.35074210167
+.. iter 84000 cost 22.116 grad_norm 4.69e+02 log2_p_word 8.18e-02 log2_p_expl 3.99e-01 step time  0.174 sec whole time 10.549 h   lr 1.00e+00
+Input
+Target
+Input:   reservamos una habitaci'on . <eol> 
+Output:  we booked a room . <eol>
+
+Input
+Target
+Input:   es muy caro . <eol> 
+Output:  it is very expensive . <eol>
+
+Input
+Target
+Input:   hicimos una reserva . <eol> 
+Output:  we made a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 102.432066924
+Validation Took: 0.416160082817 minutes
+87.71
+.. iter 85000 cost 8.826 grad_norm 1.67e+02 log2_p_word 3.27e-02 log2_p_expl 1.59e-01 step time  0.133 sec whole time 10.663 h   lr 1.00e+00
+.. iter 86000 cost 7.160 grad_norm 1.70e+02 log2_p_word 2.65e-02 log2_p_expl 1.29e-01 step time  0.185 sec whole time 10.770 h   lr 1.00e+00
+.. iter 87000 cost 7.905 grad_norm 9.29e+01 log2_p_word 3.18e-02 log2_p_expl 1.43e-01 step time  0.195 sec whole time 10.873 h   lr 1.00e+00
+.. iter 88000 cost 13.214 grad_norm 3.23e+02 log2_p_word 5.45e-02 log2_p_expl 2.38e-01 step time  0.136 sec whole time 10.979 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.01791000366
+.. iter 89000 cost 15.017 grad_norm 2.40e+02 log2_p_word 5.89e-02 log2_p_expl 2.71e-01 step time  0.130 sec whole time 11.087 h   lr 1.00e+00
+.. iter 90000 cost 45.631 grad_norm 5.54e+02 log2_p_word 1.78e-01 log2_p_expl 8.23e-01 step time  0.336 sec whole time 11.195 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 147.994365725
+Validation Took: 0.390470484893 minutes
+82.41
+.. iter 91000 cost 17.262 grad_norm 3.81e+02 log2_p_word 6.52e-02 log2_p_expl 3.11e-01 step time  0.348 sec whole time 11.307 h   lr 1.00e+00
+.. iter 92000 cost 4.816 grad_norm 1.20e+02 log2_p_word 1.92e-02 log2_p_expl 8.69e-02 step time  0.349 sec whole time 11.416 h   lr 1.00e+00
+.. iter 93000 cost 8.416 grad_norm 1.30e+02 log2_p_word 3.34e-02 log2_p_expl 1.52e-01 step time  0.086 sec whole time 11.522 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.05041193962
+.. iter 94000 cost 16.420 grad_norm 2.21e+02 log2_p_word 6.01e-02 log2_p_expl 2.96e-01 step time  0.164 sec whole time 11.619 h   lr 1.00e+00
+.. iter 95000 cost 11.084 grad_norm 3.19e+02 log2_p_word 4.23e-02 log2_p_expl 2.00e-01 step time  0.111 sec whole time 11.685 h   lr 1.00e+00
+.. iter 96000 cost 9.577 grad_norm 2.12e+02 log2_p_word 3.69e-02 log2_p_expl 1.73e-01 step time  0.171 sec whole time 11.767 h   lr 1.00e+00
+Input
+Target
+Input:   pida mi taxi . <eol> 
+Output:  ? <eol>
+
+Input
+Target
+Input:   reserv'e dos habitaciones . <eol> 
+Output:  I booked two rooms . <eol>
+
+Input
+Target
+Input:   pida un taxi . <eol> 
+Output:  ask for a taxi . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 86.5967613523
+Validation Took: 0.395000799497 minutes
+87.12
+.. iter 97000 cost 12.290 grad_norm 3.01e+02 log2_p_word 4.56e-02 log2_p_expl 2.22e-01 step time  0.134 sec whole time 11.881 h   lr 1.00e+00
+.. iter 98000 cost 29.844 grad_norm 7.04e+02 log2_p_word 1.08e-01 log2_p_expl 5.38e-01 step time  0.228 sec whole time 11.988 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.1277141571
+.. iter 99000 cost 6.626 grad_norm 1.09e+02 log2_p_word 2.58e-02 log2_p_expl 1.19e-01 step time  0.355 sec whole time 12.095 h   lr 1.00e+00
+.. iter 100000 cost 17.942 grad_norm 2.59e+02 log2_p_word 7.75e-02 log2_p_expl 3.24e-01 step time  0.135 sec whole time 12.203 h   lr 1.00e+00
+.. iter 101000 cost 13.377 grad_norm 2.79e+02 log2_p_word 5.32e-02 log2_p_expl 2.41e-01 step time  0.132 sec whole time 12.311 h   lr 1.00e+00
+.. iter 102000 cost 14.753 grad_norm 2.47e+02 log2_p_word 5.75e-02 log2_p_expl 2.66e-01 step time  0.129 sec whole time 12.420 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 91.7364425937
+Validation Took: 0.429697680473 minutes
+88.23
+.. iter 103000 cost 7.784 grad_norm 1.58e+02 log2_p_word 2.96e-02 log2_p_expl 1.40e-01 step time  0.350 sec whole time 12.531 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.18372988701
+.. iter 104000 cost 11.071 grad_norm 2.38e+02 log2_p_word 4.38e-02 log2_p_expl 2.00e-01 step time  0.269 sec whole time 12.638 h   lr 1.00e+00
+.. iter 105000 cost 6.482 grad_norm 1.63e+02 log2_p_word 2.58e-02 log2_p_expl 1.17e-01 step time  0.344 sec whole time 12.744 h   lr 1.00e+00
+.. iter 106000 cost 9.329 grad_norm 2.15e+02 log2_p_word 3.43e-02 log2_p_expl 1.68e-01 step time  0.322 sec whole time 12.846 h   lr 1.00e+00
+.. iter 107000 cost 6.671 grad_norm 1.80e+02 log2_p_word 2.58e-02 log2_p_expl 1.20e-01 step time  0.150 sec whole time 12.951 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.58660912514
+.. iter 108000 cost 21.262 grad_norm 3.58e+02 log2_p_word 8.25e-02 log2_p_expl 3.83e-01 step time  0.129 sec whole time 13.056 h   lr 1.00e+00
+Input
+Target
+Input:   hay una equivocaci'on . <eol> 
+Output:  there is a mistake . <eol>
+
+Input
+Target
+Input:   '? est'a todo apuntado ? <eol> 
+Output:  is everything included ? <eol>
+
+Input
+Target
+Input:   hicimos una reserva . <eol> 
+Output:  we made a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 109.376414542
+Validation Took: 0.386536133289 minutes
+86.53
+.. iter 109000 cost 6.878 grad_norm 1.51e+02 log2_p_word 2.51e-02 log2_p_expl 1.24e-01 step time  0.102 sec whole time 13.166 h   lr 1.00e+00
+.. iter 110000 cost 11.969 grad_norm nan log2_p_word 4.37e-02 log2_p_expl 2.16e-01 step time  0.203 sec whole time 13.268 h   lr 1.00e+00
+.. iter 111000 cost 12.758 grad_norm 1.93e+02 log2_p_word 4.97e-02 log2_p_expl 2.30e-01 step time  0.222 sec whole time 13.371 h   lr 1.00e+00
+.. iter 112000 cost 9.526 grad_norm 1.62e+02 log2_p_word 3.90e-02 log2_p_expl 1.72e-01 step time  0.182 sec whole time 13.474 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.33297920227
+.. iter 113000 cost 6.544 grad_norm 1.82e+02 log2_p_word 2.58e-02 log2_p_expl 1.18e-01 step time  0.161 sec whole time 13.577 h   lr 1.00e+00
+.. iter 114000 cost 13.483 grad_norm 1.87e+02 log2_p_word 5.24e-02 log2_p_expl 2.43e-01 step time  0.110 sec whole time 13.661 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 79.9418174188
+Validation Took: 0.157654666901 minutes
+88.42
+.. iter 115000 cost 14.811 grad_norm 2.48e+02 log2_p_word 5.78e-02 log2_p_expl 2.67e-01 step time  0.129 sec whole time 13.718 h   lr 1.00e+00
+.. iter 116000 cost 6.320 grad_norm 1.09e+02 log2_p_word 2.44e-02 log2_p_expl 1.14e-01 step time  0.290 sec whole time 13.823 h   lr 1.00e+00
+.. iter 117000 cost 7.728 grad_norm 1.38e+02 log2_p_word 3.03e-02 log2_p_expl 1.39e-01 step time  0.207 sec whole time 13.927 h   lr 1.00e+00
+.. iter 118000 cost 37.700 grad_norm 4.85e+02 log2_p_word 1.43e-01 log2_p_expl 6.80e-01 step time  0.326 sec whole time 14.032 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.73574280739
+.. iter 119000 cost 8.331 grad_norm nan log2_p_word 3.18e-02 log2_p_expl 1.50e-01 step time  0.093 sec whole time 14.135 h   lr 1.00e+00
+.. iter 120000 cost 12.747 grad_norm 2.63e+02 log2_p_word 4.98e-02 log2_p_expl 2.30e-01 step time  0.117 sec whole time 14.240 h   lr 1.00e+00
+Input
+Target
+Input:   '? est'a todo incluido ? <eol> 
+Output:  is everything included ? <eol>
+
+Input
+Target
+Input:   hay un error . <eol> 
+Output:  there is an error . <eol>
+
+Input
+Target
+Input:   hicimos una reserva . <eol> 
+Output:  we made a reservation . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 90.1859453583
+Validation Took: 0.362214684486 minutes
+86.05
+.. iter 121000 cost 10.768 grad_norm 2.32e+02 log2_p_word 4.04e-02 log2_p_expl 1.94e-01 step time  0.326 sec whole time 14.352 h   lr 1.00e+00
+.. iter 122000 cost 4.367 grad_norm 9.11e+01 log2_p_word 1.59e-02 log2_p_expl 7.88e-02 step time  0.266 sec whole time 14.455 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.720961093903
+.. iter 123000 cost 6.873 grad_norm 1.85e+02 log2_p_word 2.56e-02 log2_p_expl 1.24e-01 step time  0.161 sec whole time 14.557 h   lr 1.00e+00
+.. iter 124000 cost 12.560 grad_norm 2.41e+02 log2_p_word 5.01e-02 log2_p_expl 2.27e-01 step time  0.284 sec whole time 14.661 h   lr 1.00e+00
+.. iter 125000 cost 20.044 grad_norm 4.20e+02 log2_p_word 8.33e-02 log2_p_expl 3.61e-01 step time  0.088 sec whole time 14.766 h   lr 1.00e+00
+.. iter 126000 cost 12.612 grad_norm 2.28e+02 log2_p_word 5.01e-02 log2_p_expl 2.27e-01 step time  0.129 sec whole time 14.867 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 86.3222229854
+Validation Took: 0.340212484201 minutes
+88.09
+.. iter 127000 cost 11.936 grad_norm 2.06e+02 log2_p_word 4.58e-02 log2_p_expl 2.15e-01 step time  0.365 sec whole time 14.975 h   lr 1.00e+00
+Saving the model...
+Model saved, took 0.909722089767
+.. iter 128000 cost 10.571 grad_norm 2.09e+02 log2_p_word 3.98e-02 log2_p_expl 1.91e-01 step time  0.195 sec whole time 15.078 h   lr 1.00e+00
+.. iter 129000 cost 11.801 grad_norm 2.08e+02 log2_p_word 4.80e-02 log2_p_expl 2.13e-01 step time  0.124 sec whole time 15.182 h   lr 1.00e+00
+.. iter 130000 cost 13.907 grad_norm 2.33e+02 log2_p_word 5.48e-02 log2_p_expl 2.51e-01 step time  0.174 sec whole time 15.283 h   lr 1.00e+00
+.. iter 131000 cost 37.173 grad_norm 5.95e+02 log2_p_word 1.37e-01 log2_p_expl 6.70e-01 step time  0.423 sec whole time 15.391 h   lr 1.00e+00
+.. iter 132000 cost 12.087 grad_norm 2.11e+02 log2_p_word 4.70e-02 log2_p_expl 2.18e-01 step time  0.209 sec whole time 15.492 h   lr 1.00e+00
+Input
+Target
+Input:   es demasiado cara . <eol> 
+Output:  it is too expensive . <eol>
+
+Input
+Target
+Input:   deseo una habitaci'on . <eol> 
+Output:  I want a room . <eol>
+
+Input
+Target
+Input:   son demasiado caras . <eol> 
+Output:  they are too expensive . <eol>
+
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 76.388182332
+Validation Took: 0.411318620046 minutes
+88.7
+Saving the model...
+Model saved, took 2.32702803612
+.. iter 133000 cost 18.256 grad_norm 2.17e+02 log2_p_word 7.02e-02 log2_p_expl 3.29e-01 step time  0.217 sec whole time 15.602 h   lr 1.00e+00
+.. iter 134000 cost 9.062 grad_norm 1.45e+02 log2_p_word 3.28e-02 log2_p_expl 1.63e-01 step time  0.105 sec whole time 15.685 h   lr 1.00e+00
+.. iter 135000 cost 5.956 grad_norm 1.07e+02 log2_p_word 2.16e-02 log2_p_expl 1.07e-01 step time  0.100 sec whole time 15.739 h   lr 1.00e+00
+.. iter 136000 cost 10.165 grad_norm 2.05e+02 log2_p_word 3.99e-02 log2_p_expl 1.83e-01 step time  0.129 sec whole time 15.837 h   lr 1.00e+00
+.. iter 137000 cost 11.418 grad_norm 1.90e+02 log2_p_word 4.84e-02 log2_p_expl 2.06e-01 step time  0.296 sec whole time 15.940 h   lr 1.00e+00
+Saving the model...
+Model saved, took 1.70507121086
+.. iter 138000 cost 16.609 grad_norm 3.52e+02 log2_p_word 6.66e-02 log2_p_expl 3.00e-01 step time  0.269 sec whole time 16.100 h   lr 1.00e+00
+Started Validation: 
+Translated 50 lines of validation set...
+Total cost of the validation: 104.139665426
+Validation Took: 0.357998033365 minutes
+85.62
+.. iter 139000 cost 15.100 grad_norm 2.11e+02 log2_p_word 5.82e-02 log2_p_expl 2.72e-01 step time  0.201 sec whole time 16.208 h   lr 1.00e+00

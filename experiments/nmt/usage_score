@@ -1,0 +1,1 @@
+python score.py --state ~/smt/tasks/turista/NMT/models/turista_250_300_state.pkl --mode save_representations --input ~/smt/tasks/turista/DATA/test.en --output out ~/smt/tasks/turista/NMT/models/turista_250_300_best_bleu_model.npz

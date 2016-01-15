@@ -296,7 +296,6 @@ class BeamSearch(object):
                                 fixed_words[k_counter] = word
                             k_counter += 1
                         k += best_n_words
-                    #logger.debug("Fixed_words: %s"%str(fixed_words))
             k+=1
         # Dirty tricks to obtain any translation
         if not len(fin_trans):

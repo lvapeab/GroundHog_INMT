@@ -295,7 +295,7 @@ class BeamSearch(object):
                             if fixed_words.get(k_counter) is None:
                                 fixed_words[k_counter] = word
                             k_counter += 1
-                        k += best_n_words
+                    k += best_n_words
             k+=1
         # Dirty tricks to obtain any translation
         if not len(fin_trans):
@@ -792,11 +792,12 @@ def main():
                         logger.info("%d sentences processed" % (n_line+1))
                         logger.info("Current speed is {} per sentence".format((time.time() - start_time) / (n_line + 1)))
                         logger.info("Current WSR is: %f" % (float(total_errors) / total_words))
-                        logger.info("Current Selection ratio is: %f" % (float(total_selection_effort) / n_line))
+                        logger.info("Current MAR is: %f" % (float(total_selection_effort) / total_words))
 
             print "Total number of errors:", total_errors
             print "Total number selections", total_selection_effort
             print "WSR: %f" % (float(total_errors) / total_words)
+            print "MAR: %f" % (float(total_selection_effort) / total_words)
             print "Total cost of the translations: {}".format(total_cost)
 
             fsrc.close()

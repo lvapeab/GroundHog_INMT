@@ -20,12 +20,12 @@ backward = True,
 search = True,
 bigram = True, # shortcut from the previous word to the current one
 dec_rec_layer= 'RecurrentLayerWithSearch',
-dim = 500,
+dim = 600,
 rank_n_approx = 420,
 maxout_part = 2.,
-prefix = '/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_TrueCased_420_500_',
+prefix = '/home/lvapeab/smt/tasks/xerox/enes/NMT/models/xerox_fullVocab_TrueCased_420_600_',
 reload = True,
-overwrite = 1,
+overwrite = 0,
 dropout = 0.5,
 source_encoding = 'utf8',
 target_encoding = 'utf8',
@@ -35,7 +35,7 @@ bs = 80 ,
 loopIters=1e10,
 
 deep_attention= True,
-deep_attention_n_hids = [500, 500],
+deep_attention_n_hids = [600, 600],
 deep_attention_acts= [' lambda x: TT.tanh(x) ',' lambda x: TT.tanh(x) '],
 bleu_val_frequency=1000,
 validation_burn_in=10000,
@@ -45,6 +45,11 @@ trainFreq = 500,
 saveFreq = 60,
 output_validation_set = True,
 validation_set='/home/lvapeab/smt/tasks/xerox/DATA/original/test.en',
-validation_set_out = '/home/lvapeab/smt/tasks/xerox/enes/NMT/tmp/xerox.test_truecased.420-500.hyp.en',
-validation_set_grndtruth='/home/lvapeab/smt/tasks/xerox/DATA/original/test.es'
+validation_set_out = '/home/lvapeab/smt/tasks/xerox/enes/NMT/tmp/xerox.test_truecased.420-600.hyp.en',
+validation_set_grndtruth='/home/lvapeab/smt/tasks/xerox/DATA/original/test.es',
+
+
+# Early stop
+patience = 10,
+early_stop_time = 24 # In hours
 )

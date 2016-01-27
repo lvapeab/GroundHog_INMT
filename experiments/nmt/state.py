@@ -128,14 +128,14 @@ def prototype_state():
     # Location of the evaluation script
     state['bleu_script']='/home/lvapeab/smt/software/mosesdecoder/scripts/generic/multi-bleu.perl'
     # Location of the validation set
-    state['validation_set']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.tr.xml.tok.seg'
+    state['validation_set']=None
     # boolean, whether or not to write the validation set to file
     state['output_validation_set'] = False
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
     # Location of what to compare the output translation to (gt)
-    state['validation_set_grndtruth']=None#'/data/lisatmp3/firatorh/turkishParallelCorpora/compiled/tr-en/devSet/IWSLT14.TED.dev2010.tr-en.en.xml.tok'
+    state['validation_set_grndtruth']=None
     # Beam size during sampling
     state['beam_size'] = 6
     # Number of steps between every validation
@@ -145,11 +145,13 @@ def prototype_state():
     # boolean, whether or not target words are segmented into suffixes
     state['target_words_segmented'] = False
     # source encoding
-    state['source_encoding'] = 'ascii'
+    state['source_encoding'] = 'utf8'
     # target encoding
-    state['target_encoding'] = 'ascii'
+    state['target_encoding'] = 'utf8'
     # start after this many iterations
     state['validation_burn_in'] = 10000
+    # Early stop based on time: Stop if no improvement has been observed after this time
+    state['early_stop_time'] = 24 # In hours
 
     # ---- REGULARIZATION -----
 
@@ -170,7 +172,7 @@ def prototype_state():
     state['cutoff'] = 1.
     # A magic gradient clipping option that you should never change...
     state['cutoff_rescale_length'] = 0.
-
+    state['additional_ngrad_monitors'] = None
     # ----- TRAINING METHOD -----
 
     # Turns on noise contrastive estimation instead maximum likelihood

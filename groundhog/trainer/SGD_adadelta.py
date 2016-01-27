@@ -154,9 +154,10 @@ class SGD(object):
         self.schedules = model.get_schedules()
         self.return_names = self.prop_names + \
                 ['cost',
-                        'error',
-                        'time_step',
-                        'whole_time', 'lr']
+                 'error',
+                 'time_step',
+                 'whole_time',
+                 'lr']
         self.prev_batch = None
 
     def __call__(self):

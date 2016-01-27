@@ -162,6 +162,7 @@ class MainLoop(object):
         self.reset = reset
 
         self.start_time = time.time()
+        self.best_time = time.time()
         self.batch_start_time = time.time()
 
     def validate(self):
@@ -248,13 +249,13 @@ class MainLoop(object):
         print "Model saved, took {}".format(time.time() - start)
 
     # FIXME
-    def load(self, model_path=None, timings_path=None):
+    def load(self, model_path=None, timings_path=None, exclude_params=[]):
         if model_path is None:
             model_path = self.state['prefix'] + 'model.npz'
         if timings_path is None:
             timings_path = self.state['prefix'] + 'timing.npz'
         try:
-            self.model.load(model_path)
+            self.model.load(model_path, exclude_params)
         except Exception:
             print 'mainLoop: Corrupted model file'
             traceback.print_exc()
@@ -323,7 +324,7 @@ class MainLoop(object):
                     last_cost = 0
                 if self.valid_data is not None and\
                    self.step % self.state['validFreq'] == 0 and\
-                   self.step > 1:
+                   self.step > 1: # Only used in LMs
                     valcost = self.validate()
                     if valcost > self.old_cost * self.state['cost_threshold']:
                         self.patience -= 1
@@ -355,16 +356,29 @@ class MainLoop(object):
                     self.step > self.state['validation_burn_in']:
                     if self.bleu_val_fn():
                         self.model.save(self.state['prefix']+'best_bleu_'+'model.npz')
+                        self.best_time = time.time()
+                        self.patience = self.state['patience']
+                    else:
+                        self.patience -= 1
                     numpy.savez(self.state['prefix'] + 'val_bleu_scores.npz', bleu_scores=self.bleu_val_fn.val_bleu_curve)
 
                 if self.reset > 0 and self.step > 1 and \
                    self.step % self.reset == 0:
                     print 'Resetting the data iterator'
                     self.train_data.reset()
+                if (self.best_time - time.time())/60./24 > self.state['early_stop_time']:
+                    print 'No improvement found after %d hours'%(self.state['early_stop_time'])
+                    print 'Early stop!'
+                    break
+
+                if self.patience <= 0:
+                    print 'Patience is 0: Early stop!'
+                    break
 
                 self.step += 1
                 self.timings['step'] = self.step
                 self.timings['next_offset'] = self.train_data.next_offset
+
             except KeyboardInterrupt:
                 break
 

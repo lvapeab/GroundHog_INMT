@@ -12,6 +12,9 @@ import experiments
 from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
 from groundhog.trainer.SGD import SGD as SGD
 from groundhog.trainer.SGD_momentum import SGD as SGD_momentum
+from groundhog.trainer.SGD_adam import SGD as SGD_adam
+from groundhog.trainer.SGD_rmspropv2 import SGD as SGD_rmsprop
+
 from groundhog.mainLoop import MainLoop
 from experiments.nmt import\
         RNNEncoderDecoder, prototype_state, get_batch_iterator,\
@@ -52,16 +55,6 @@ class RandomSamplePrinter(object):
 
                 self.__print_samples("Input", x_words, self.state['source_encoding'])
                 self.__print_samples("Target", y_words, self.state['target_encoding'])
-
-                #if self.state['source_encoding'] == "uft8":
-                #    print u"Input: {}".format(" ".join(x_words))
-                #elif self.state['source_encoding'] == "ascii":
-                #    print "Input: {}".format(" ".join(x_words))
-
-                #if self.state['target_encoding'] == "utf8":
-                #    print u"Target: {}".format(" ".join(y_words))
-                #elif self.state['target_encoding'] == "ascii":
-                #    print "Target: {}".format(" ".join(y_words))
 
 		self.model.get_samples(self.state['seqlen'] + 1, self.state['n_samples'], x[:len(x_words)])
                 sample_idx += 1

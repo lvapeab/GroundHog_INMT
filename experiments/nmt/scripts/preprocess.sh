@@ -11,19 +11,19 @@ mosesdir=/home/lvapeab/smt/software/mosesdecoder
 #targetText=/home/lvapeab/smt/tasks/xerox/enes/DATA/training.es
 
 
-# Xerox
-sourceText=/home/lvapeab/smt/tasks/xerox/DATA/original/training.en
-targetText=/home/lvapeab/smt/tasks/xerox/DATA/original/training.es
+# UE
+sourceText=/home/lvapeab/smt/tasks/ue/DATA/training.es
+targetText=/home/lvapeab/smt/tasks/ue/DATA/training.en
 
-# Xerox
-sourceNameDest=/home/lvapeab/smt/tasks/xerox/DATA/NMT/en_truecased
-targetNameDest=/home/lvapeab/smt/tasks/xerox/DATA/NMT/es_truecased
+# UE
+sourceNameDest=/home/lvapeab/smt/tasks/ue/esen/NMT/DATA/es
+targetNameDest=/home/lvapeab/smt/tasks/ue/esen/NMT/DATA/en
 
 
 #Short-list length (vocabulary size)
 
-v_size_src=14500
-v_size_trg=14500
+v_size_src=30000
+v_size_trg=30000
 
 #Validation set size ( If >= 1 take this many samples for the validation set, if < 1, take this fraction of the samples)
 

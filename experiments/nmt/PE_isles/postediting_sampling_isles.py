@@ -551,7 +551,6 @@ def main():
                         print >> ftrans_ori, " ".join(hypothesis)
                     logger.debug("Hypo_%d: %s"%(hypothesis_number, " ".join(hypothesis)))
                     if hypothesis == reference:
-                        mouse_actions_sentence += 1
                         # If the sentence is correct, we  validate it
                         pass
                     else:
@@ -576,7 +575,7 @@ def main():
                                 hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                 break
                             # TODO: Actualizar las islas en lugar de tener que seleccionarlas siempre desde cero
-                            mouse_actions_sentence += len(hypothesis_isles)
+                            mouse_actions_sentence += len(hypothesis_isles)*2
                             # Stage 2: Regular post editing
                             # From left to right, we will correct the hypotheses, taking into account the isles info
                             # At each timestep, the user can make two operations:
@@ -646,10 +645,11 @@ def main():
                             #errors_sentence += 1
                             mouse_actions_sentence += 1
                             #logger.debug("Error case 3! -> Cut hypothesis. Errors: %d" % errors_sentence)
+
                     total_cost += costs[best]
                     total_errors += errors_sentence
                     total_words += len(hypothesis)
-                    total_mouse_actions += mouse_actions_sentence
+                    total_mouse_actions += mouse_actions_sentence + 1 # Validation of the sentence (+1)
                     logger.debug("Final hypotesis: %s" % " ".join(hypothesis))
                     logger.debug("%d errors. "
                                  "Sentence WSR: %4f. "

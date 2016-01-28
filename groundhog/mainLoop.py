@@ -249,13 +249,13 @@ class MainLoop(object):
         print "Model saved, took {}".format(time.time() - start)
 
     # FIXME
-    def load(self, model_path=None, timings_path=None, exclude_params=[]):
+    def load(self, model_path=None, timings_path=None):
         if model_path is None:
             model_path = self.state['prefix'] + 'model.npz'
         if timings_path is None:
             timings_path = self.state['prefix'] + 'timing.npz'
         try:
-            self.model.load(model_path, exclude_params)
+            self.model.load(model_path)
         except Exception:
             print 'mainLoop: Corrupted model file'
             traceback.print_exc()

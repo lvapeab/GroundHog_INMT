@@ -137,7 +137,7 @@ class BeamSearch(object):
                             fin_trans.append(new_trans[i])
                             fin_costs.append(new_costs[i])
                 for i in xrange(num_models):
-                    states[i]=map(lambda x : x[indices], new_states[i])
+                    states[i] = map(lambda x : x[indices], new_states[i])
             else: # We are in the middle of two isles
                 #logger.debug("Position %d in the middle of two isles"% k)
                 hyp_trans = [[]]*max_N
@@ -145,14 +145,13 @@ class BeamSearch(object):
                 trans_ = copy.copy(trans)
                 costs_ = copy.copy(costs)
                 states_ = [states]*(max_N+1)
-                next_word_isle = unfixed_isles[0][1][0]
                 for kk in range(max_N):
                     beam_size = len(trans)
                     last_words = (numpy.array(map(lambda t: t[-1], trans_))
                                   if k+kk > 0
                                   else numpy.zeros(beam_size, dtype="int64"))
-                    # TODO: Falla aqui. No se exactamente por que. Debe ser algo de los states y states_
-                    log_probs = sum(numpy.log(self.comp_next_probs[i](c[i], k+kk, last_words, *states_[kk][i])[0]) for i in xrange(num_models))/num_models
+                    log_probs = sum(numpy.log(self.comp_next_probs[i](c[i], k+kk, last_words, *states_[kk][i])[0])
+                                    for i in xrange(num_models))/num_models
                     # log_probs = numpy.log(self.comp_next_probs(c, k+kk, last_words, *states_[kk])[0])  # c: representation, k: step_num, last_words: gen_y, *states: current_states
                     # Adjust log probs according to search restrictions
                     if k+kk < minlen:
@@ -187,10 +186,10 @@ class BeamSearch(object):
                         new_costs[i] = next_cost
                         for level in range(num_levels):
                             for j in xrange(num_models):
-                                new_states[j][level][i] = states[j][level][orig_idx]
+                                new_states[j][level][i] = states_[kk][j][level][orig_idx]
                         inputs[i] = next_word
                     for i in xrange(num_models):
-                        new_states[i]=self.comp_next_states[i](c[i], k+kk, inputs, *new_states[i])
+                        new_states[i] = self.comp_next_states[i](c[i], k+kk, inputs, *new_states[i])
                     trans_ = []
                     costs_ = []
                     indices_ = []
@@ -198,14 +197,12 @@ class BeamSearch(object):
                         trans_.append(new_trans[i])
                         costs_.append(new_costs[i])
                         indices_.append(i)
+                    states__ = []
                     for i in xrange(num_models):
-                        states[i]=numpy.asarray(map(lambda x : x[indices_], new_states[i]))
-                    states_[kk+1] = states #numpy.asarray(map(lambda x: x[indices_], new_states))
+                        states__.append(numpy.asarray(map(lambda x : x[indices_], new_states[i])))
+                    states_[kk+1] = states__ #numpy.asarray(map(lambda x: x[indices_], new_states))
                     hyp_costs[kk] = costs_
                     hyp_trans[kk] = trans_
-                print hyp_trans
-                print hyp_costs
-                print "k,",k
                 best_n_words = -1
                 min_cost = inf
                 best_hyp = []
@@ -690,7 +687,7 @@ def main():
                                  "Accumulated WSR: %4f. "
                                  "Accumulated MAR: %4f\n\n\n\n\n\n" % (errors_sentence,
                                                                        float(errors_sentence)/len(hypothesis),
-                                                                       float(mouse_actions_sentence)/len(hypothesis),
+                                                                       float(mouse_actions_sentence + 1)/len(hypothesis),
                                                                        float(total_errors)/total_words,
                                                                        float(total_mouse_actions)/total_words))
 

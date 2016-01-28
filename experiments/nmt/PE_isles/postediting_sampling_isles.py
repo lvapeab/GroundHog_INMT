@@ -129,7 +129,6 @@ class BeamSearch(object):
                 costs_ = copy.copy(costs)
                 states_ = map(lambda x: [numpy.asarray(x, dtype="float32")], states)
                 states_ = states_*(max_N+1)
-                next_word_isle = unfixed_isles[0][1][0]
                 for kk in range(max_N):
                     beam_size = len(trans)
                     last_words = (numpy.array(map(lambda t: t[-1], trans_))
@@ -408,6 +407,7 @@ def main():
     unk_id = state['unk_sym_target']
     word2index = cPickle.load(open(state['word_indx_trgt'], 'r'))
     indx2word_trg = cPickle.load(open(state['indx_word_target'], 'rb'))
+    logger.info("We aren't using an ensemble")
 
     if args.source and args.trans:
         # Actually only beam search is currently supported here
@@ -649,7 +649,7 @@ def main():
                     total_cost += costs[best]
                     total_errors += errors_sentence
                     total_words += len(hypothesis)
-                    total_mouse_actions += mouse_actions_sentence + 1 # Validation of the sentence (+1)
+                    total_mouse_actions += mouse_actions_sentence + 1  # This +1 is the validation action
                     logger.debug("Final hypotesis: %s" % " ".join(hypothesis))
                     logger.debug("%d errors. "
                                  "Sentence WSR: %4f. "
@@ -657,7 +657,7 @@ def main():
                                  "Accumulated WSR: %4f. "
                                  "Accumulated MAR: %4f\n\n\n\n\n\n" % (errors_sentence,
                                                                        float(errors_sentence)/len(hypothesis),
-                                                                       float(mouse_actions_sentence)/len(hypothesis),
+                                                                       float(mouse_actions_sentence  + 1)/len(hypothesis),
                                                                        float(total_errors)/total_words,
                                                                        float(total_mouse_actions)/total_words))
 

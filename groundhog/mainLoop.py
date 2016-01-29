@@ -278,6 +278,7 @@ class MainLoop(object):
         self.algo.step = self.step
 
         self.save_iter = 0
+        self.save_iter_bleu = 0
         self.save()
         if self.channel is not None:
             self.channel.save()
@@ -360,7 +361,14 @@ class MainLoop(object):
                         self.patience = self.state['patience']
                     else:
                         self.patience -= 1
+                        print 'Patience: %d'%self.patience
+                        if self.patience <= 0:
+                            print 'Patience is 0: Early stop!'
+                            break
+                    self.model.save(self.state['prefix'] +
+                            'model_bleu%d.npz' % self.save_iter_bleu)
                     numpy.savez(self.state['prefix'] + 'val_bleu_scores.npz', bleu_scores=self.bleu_val_fn.val_bleu_curve)
+                    self.save_iter_bleu += 1
 
                 if self.reset > 0 and self.step > 1 and \
                    self.step % self.reset == 0:
@@ -369,10 +377,6 @@ class MainLoop(object):
                 if (self.best_time - time.time())/60./24 > self.state['early_stop_time']:
                     print 'No improvement found after %d hours'%(self.state['early_stop_time'])
                     print 'Early stop!'
-                    break
-
-                if self.patience <= 0:
-                    print 'Patience is 0: Early stop!'
                     break
 
                 self.step += 1

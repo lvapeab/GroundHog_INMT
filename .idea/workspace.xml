@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="ITP prefixes + isles (mode 1)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/europarl/stateEmeaEuroparl520_500_sameLang.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-520_600.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-520_800.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase520_800.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/europarl/trainEmeaEuroparl_sameLang.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-600.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_420_600.sh" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_kl.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles_KL.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_v2.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_v2.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-500_620.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-full-620_500-drop.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_500-620.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-800.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_520_500.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_520_800.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/__init__.py" afterPath="$PROJECT_DIR$/experiments/nmt/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleXerox.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleXerox.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_UE_Isles.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_UE_Isles.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue_isles.err" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue_isles.err" />
@@ -32,15 +14,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_expl.log" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_expl.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.err" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.err" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.log" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/preprocess.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/preprocess.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-620_1000.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-620_1000.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox520_500.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox520_500.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase520_500.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase520_500.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_620-1000.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_620-1000.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/state.py" afterPath="$PROJECT_DIR$/experiments/nmt/state.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/train.py" afterPath="$PROJECT_DIR$/experiments/nmt/train.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groundhog/mainLoop.py" afterPath="$PROJECT_DIR$/groundhog/mainLoop.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py" afterPath="$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py" />
     </list>
     <ignored path="GroundHog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,14 +49,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="postediting_sampling_isles.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="postediting_sampling_isles.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41804978">
-              <caret line="647" column="74" selection-start-line="647" selection-start-column="74" selection-end-line="647" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="647" column="0" selection-start-line="647" selection-start-column="0" selection-end-line="647" selection-end-column="0" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postediting_sampling_isles_ensemble.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24024025">
+              <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,31 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="xerox_truecase_420_600.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_420_600.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="stateXeroxTrueCase420_600.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stateUE-520_800.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-520_800.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+              <caret line="21" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -149,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/experiments/nmt/postediting_sampling_isles.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/postediting_sampling.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/util.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/mlp.py" />
@@ -200,6 +164,7 @@
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh" />
         <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
       </list>
     </option>
   </component>
@@ -239,6 +204,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -503,7 +469,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -947,14 +912,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32782102" sideWeight="0.502211" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33754864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976654" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879376" sideWeight="0.497789" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38424125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17026885" sideWeight="0.4308094" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1950448" sideWeight="0.50340134" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -962,8 +924,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="206" y="138" width="760" height="952" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38424125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33754864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1020,17 +985,36 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/numpy/lib/function_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.86924034">
           <caret line="4149" column="0" selection-start-line="4149" selection-start-column="0" selection-end-line="4149" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog.egg-info/requires.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03003003">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1251,13 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_adam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.051051">
-          <caret line="238" column="6" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/groundhog/models/BLM_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1314,13 +1291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-520_600.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-600.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1328,26 +1298,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-520_800.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_420_600.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+          <caret line="21" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1362,11 +1316,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41804978">
-          <caret line="647" column="74" selection-start-line="647" selection-start-column="74" selection-end-line="647" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="647" column="0" selection-start-line="647" selection-start-column="0" selection-end-line="647" selection-end-column="0" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24024025">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

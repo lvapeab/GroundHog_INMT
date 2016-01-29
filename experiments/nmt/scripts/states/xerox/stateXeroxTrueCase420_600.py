@@ -37,7 +37,7 @@ loopIters=1e10,
 deep_attention= True,
 deep_attention_n_hids = [600, 600],
 deep_attention_acts= [' lambda x: TT.tanh(x) ',' lambda x: TT.tanh(x) '],
-bleu_val_frequency=1000,
+bleu_val_frequency=500,
 validation_burn_in=10000,
 hookFreq = 1000,
 validFreq = 1000,
@@ -48,8 +48,7 @@ validation_set='/home/lvapeab/smt/tasks/xerox/DATA/original/test.en',
 validation_set_out = '/home/lvapeab/smt/tasks/xerox/enes/NMT/tmp/xerox.test_truecased.420-600.hyp.en',
 validation_set_grndtruth='/home/lvapeab/smt/tasks/xerox/DATA/original/test.es',
 
-
 # Early stop
-patience = 10,
+patience = 30,
 early_stop_time = 24 # In hours
 )

@@ -13,9 +13,9 @@ source="/home/lvapeab/smt/tasks/xerox/DATA/${split}.en"
 refs="/home/lvapeab/smt/tasks/xerox/DATA/${split}.es"
 
 dest="/home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.${split}.PE_isles.es"
-ori_dest="/home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.${split}.Orihyp.es"
+ori_dest="/home/lvapeab/smt/tasks/xerox/enes/NMT/postEditing/xerox.${split}.Orihyp_singleNN.es"
 
-v=1
+v="2"
 save_ori="--save-original --save-original-to ${ori_dest}"
 # i="--color"
 for max_n in 4; do

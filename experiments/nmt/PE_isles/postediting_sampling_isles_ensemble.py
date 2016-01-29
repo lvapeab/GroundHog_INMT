@@ -7,6 +7,8 @@ import logging
 import time
 import sys
 from collections import OrderedDict
+
+import itertools
 import numpy
 import experiments.nmt
 from termcolor import colored
@@ -581,7 +583,6 @@ def main():
                         print >> ftrans_ori, " ".join(hypothesis)
                     logger.debug("Hypo_%d: %s"%(hypothesis_number, " ".join(hypothesis)))
                     if hypothesis == reference:
-                        mouse_actions_sentence += 1
                         # If the sentence is correct, we  validate it
                         pass
                     else:
@@ -589,9 +590,8 @@ def main():
                         checked_index_h = 0
                         unk_words = []
                         unk_indices = []
-                        n = 1
                         fixed_words_user = OrderedDict() # {pos: word}
-
+                        last_isles = []
                         while checked_index_r < len(reference):
                             # Stage 1: Isles selection
                             #   1. Select the multiple isles in the hypothesis.
@@ -606,7 +606,19 @@ def main():
                                 hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                 break
                             # TODO: Actualizar las islas en lugar de tener que seleccionarlas siempre desde cero
-                            mouse_actions_sentence += len(hypothesis_isles)*2
+
+
+
+                            for isle in hypothesis_isles:
+                                if isle[1] not in last_isles:
+                                    mouse_actions_sentence += 2
+
+
+                            l = [isle[1] for isle in hypothesis_isles]
+                            last_isles = []
+                            for L in range(0, len(l)+1):
+                                for subset in itertools.combinations(l, L):
+                                    last_isles.append([item for sublist in subset for item in sublist])
                             # Stage 2: Regular post editing
                             # From left to right, we will correct the hypotheses, taking into account the isles info
                             # At each timestep, the user can make two operations:
@@ -673,8 +685,7 @@ def main():
                         # Final check: The reference is a subset of the hypothesis: Cut the hypothesis
                         if len(reference) < len(hypothesis):
                             hypothesis = hypothesis[:len(reference)]
-                            #errors_sentence += 1
-                            mouse_actions_sentence += 1
+                            #mouse_actions_sentence += 1 #<- NO: We validate isles
                             #logger.debug("Error case 3! -> Cut hypothesis. Errors: %d" % errors_sentence)
                     total_cost += costs[best]
                     total_errors += errors_sentence

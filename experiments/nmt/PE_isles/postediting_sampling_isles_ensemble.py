@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import theano
 import argparse
 import cPickle
 import traceback
@@ -411,37 +412,52 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
 
 
 
-def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment,
-                          heuristic, mapping, unk_id, new_trans_file, full_trans_lines=None):
-    for src_words in src_word_seq:
-        trans_words = trg_word_seq
-        trans_seq = trg_seq
-        hard_alignment = hard_alignment
+def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment,unk_id,
+                          heuristic=0, mapping=None):
 
-        new_trans_words = []
-        for j in xrange(len(trans_words) - 1): # -1 : Don't write <eos>
-            if trans_seq[j] == unk_id:
-                UNK_src = src_words[hard_alignment[j]]
-                if heuristic == 0: # Copy (ok when training with large vocabularies on en->fr, en->de)
+    trans_words = trg_word_seq
+    trans_seq = trg_seq
+    hard_alignment = hard_alignment
+    new_trans_words = []
+    for j in xrange(len(trans_words) - 1): # -1 : Don't write <eos>
+        if trans_seq[j] == unk_id:
+            UNK_src = src_word_seq[hard_alignment[j]]
+            if heuristic == 0: # Copy (ok when training with large vocabularies on en->fr, en->de)
+                new_trans_words.append(UNK_src)
+            elif heuristic == 1:
+                # Use the most likely translation (with t-table). If not found, copy the source word.
+                # Ok for small vocabulary (~30k) models
+                if UNK_src in mapping:
+                    new_trans_words.append(mapping[UNK_src])
+                else:
                     new_trans_words.append(UNK_src)
-                elif heuristic == 1:
-                    # Use the most likely translation (with t-table). If not found, copy the source word.
-                    # Ok for small vocabulary (~30k) models
-                    if UNK_src in mapping:
-                        new_trans_words.append(mapping[UNK_src])
-                    else:
-                        new_trans_words.append(UNK_src)
-            else:
-                new_trans_words.append(trans_words[j])
+        else:
+            new_trans_words.append(trans_words[j])
 
-        to_write = ''
-        for j, word in enumerate(new_trans_words):
-            to_write = to_write + word
-            if j < len(new_trans_words) - 1:
-                to_write += ' '
+    to_write = ''
+    for j, word in enumerate(new_trans_words):
+        to_write = to_write + word
+        if j < len(new_trans_words) - 1:
+            to_write += ' '
+    return to_write
 
-        return to_write
 
+
+
+
+def compute_alignment(src_seq, trg_seq, alignment_fns):
+
+    num_models = len(alignment_fns)
+    alignments = 0.
+    x = numpy.asarray(src_seq, dtype="int64").T
+    x_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
+    y = numpy.asarray(src_seq, dtype="int64").T
+    y_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
+    for j in xrange(num_models):
+        # target_len x source_len x num_examples
+        alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
+    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0. # Put source <eos> score to 0.
+    return alignments
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -470,6 +486,11 @@ def parse_args():
     parser.add_argument("--interactive",
                         default=False, action="store_true",
                         help="Interactive post-editing?")
+    parser.add_argument("--replaceUnk",
+                        default=True, action="store_true",
+                        help="Interactive post-editing?")
+    #parser.add_argument("--mapping",
+    #        help="Top1 unigram mapping (Source to target)")
     parser.add_argument("--color",
                         default=False, action="store_true",
                         help="Colored hypotheses?")
@@ -509,11 +530,14 @@ def main():
     rng = numpy.random.RandomState(state['seed'])
     enc_decs = []
     lm_models = []
+    alignment_fns = []
     for i in xrange(num_models):
-        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True))
+        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True, compute_alignment=args.replaceUnk))
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
+        if args.replaceUnk:
+            alignment_fns.append(theano.function(inputs=enc_decs[i].inputs, outputs=[enc_decs[i].alignment], name="alignment_fn"))
 
     indx_word = cPickle.load(open(state['word_indx'], 'rb'))
     sampler = None
@@ -670,6 +694,14 @@ def main():
                     hypothesis_number += 1
                     best = numpy.argmin(costs)
                     hypothesis = sentences[best].split()
+                    trg_seq = trans[best]
+                    if args.replaceUnk and unk_id in trg_seq:
+                        logger.debug('Before unk replace: %s'%hypothesis)
+                        hard_alignments = compute_alignment(seq, trg_seq, alignment_fns)
+                        hypothesis = replace_unknown_words(seq, trg_seq, hypothesis, hard_alignments, unk_id,
+                                              heuristic=0, mapping = None).split()
+                        logger.debug('After unk replace: %s'%hypothesis)
+
                     if args.save_original:
                         print >> ftrans_ori, " ".join(hypothesis)
                     logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))

@@ -240,6 +240,7 @@ class MainLoop(object):
         if self.state['overwrite']:
             self.model.save(self.state['prefix']+'model.npz')
         else:
+            self.model.save(self.state['prefix']+'model.npz') # For future reloads
             self.model.save(self.state['prefix'] +
                             'model%d.npz' % self.save_iter)
         cPickle.dump(self.state, open(self.state['prefix']+'state.pkl', 'w'))

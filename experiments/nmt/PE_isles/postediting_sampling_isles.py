@@ -43,7 +43,7 @@ class BeamSearch(object):
         self.comp_next_probs = self.enc_dec.create_next_probs_computer()
         self.comp_next_states = self.enc_dec.create_next_states_computer()
 
-    def search(self, seq, n_samples, fixed_words= {}, isles = [], max_N = None, minlen=1, verbose=False, idx2word=None):
+    def search(self, seq, n_samples, fixed_words={}, isles=[], max_N=None, minlen=1, verbose=False, idx2word=None):
         c = self.comp_repr(seq)[0]
         states = map(lambda x: x[None, :], self.comp_init_states(c))
         dim = states[0].shape[1]
@@ -249,11 +249,14 @@ def indices_to_words(i2w, seq):
         sen.append(i2w[seq[k]])
     return sen
 
+
 def remove_from_list (list, symbol='</s>'):
     return filter(lambda a: a != symbol, list)
 
+
 def is_sublist(list1, list2):
     return set(list2).issuperset(set(list1))
+
 
 def subfinder(pattern, mylist):
     for start_pos in range(len(mylist)):
@@ -271,16 +274,15 @@ def kl(p, q):
     return numpy.sum(numpy.where(p != 0, p * numpy.log(p / q), 0))
 
 def smoothed_kl(p, q):
-
     # Additive smoothing
     p = (p-1)/p.shape[0]
     q = (q-1)/q.shape[0]
-
     return numpy.sum(p * numpy.log(p / q),0)
 
-def sample(lm_model, seq, n_samples, fixed_words={}, max_N = -1, isles = [],
-           sampler=None, beam_search=None, normalize=False,
-           alpha=1, verbose=False, idx2word=None):
+
+def sample(lm_model, seq, n_samples, fixed_words={}, max_N = -1, isles = [], sampler=None, beam_search=None,
+           normalize=False, alpha=1, verbose=False, idx2word=None):
+
     if beam_search:
         sentences = []
         if fixed_words is None or fixed_words == {}:
@@ -449,14 +451,15 @@ def main():
                     isles = []
                     while not validated_hypothesis:
                         print ""
-                        sentences, costs, _ = sample(lm_model, seq, n_samples, max_N=max_N, isles = isles,
-                                                 fixed_words=fixed_words_user,
-                                                 sampler=sampler, beam_search=beam_search, normalize=args.normalize,
-                                                 verbose=args.verbose, idx2word=indx2word_trg)
+                        sentences, costs, _ = sample(lm_model, seq, n_samples, max_N=max_N, isles=isles,
+                                                     fixed_words=fixed_words_user, sampler=sampler,
+                                                     beam_search=beam_search, normalize=args.normalize,
+                                                     verbose=args.verbose, idx2word=indx2word_trg)
                         best = numpy.argmin(costs)
                         hypothesis = sentences[best].split()
                         if args.color:
-                            print_hypothesis = map(lambda x: 'colored(\''+x+'\', \'green\')' if fixed_words_user.get(hypothesis.index(x)) is not None else 'str(\''+x+'\')', hypothesis)
+                            print_hypothesis = map(lambda x: 'colored(\'' + x + '\', \'green\')' if
+                            fixed_words_user.get(hypothesis.index(x)) is not None else 'str(\'' + x + '\')', hypothesis)
                             print "Sentence %d. Hypothesis %d:" % (n_line, hypothesis_number)
                             print " ".join(map(eval, print_hypothesis))
                         else:
@@ -466,10 +469,8 @@ def main():
                             if stage == 0:
                                 try:
                                     action = int(raw_input('Select the action to perform: \n'
-                                                   ' \t 0: Validate sentence. \n'
-                                                   ' \t 1: Select the correct words. \n'
-                                                   ))
-
+                                                           ' \t 0: Validate sentence. \n'
+                                                           ' \t 1: Select the correct words. \n'))
                                 except ValueError:
                                     print "Invalid format."
                                     action = -1
@@ -558,9 +559,8 @@ def main():
                         checked_index_h = 0
                         unk_words = []
                         unk_indices = []
-                        n = 1
                         fixed_words_user = OrderedDict() # {pos: word}
-
+                        old_isles = [[]]
                         while checked_index_r < len(reference):
                             # Stage 1: Isles selection
                             #   1. Select the multiple isles in the hypothesis.
@@ -575,7 +575,14 @@ def main():
                                 hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                 break
                             # TODO: Actualizar las islas en lugar de tener que seleccionarlas siempre desde cero
-                            mouse_actions_sentence += len(hypothesis_isles)*2
+
+                            for index, words in hypothesis_isles:
+                                if not any(map(lambda x: is_sublist(x, words), old_isles)):
+                                    if len(words) > 1:
+                                        mouse_actions_sentence += 2
+                                    else:
+                                        mouse_actions_sentence += 1
+                            old_isles = [isle[1] for isle in hypothesis_isles]
                             # Stage 2: Regular post editing
                             # From left to right, we will correct the hypotheses, taking into account the isles info
                             # At each timestep, the user can make two operations:
@@ -585,6 +592,7 @@ def main():
                                 if checked_index_h >= len(hypothesis):
                                     # Insertions (at the end of the sentence)
                                     errors_sentence += 1
+                                    mouse_actions_sentence += 1
                                     new_word = reference[checked_index_r]
                                     fixed_words_user[checked_index_h] = word2index[new_word] \
                                         if word2index.get(new_word) is not None else unk_id
@@ -596,6 +604,7 @@ def main():
 
                                 elif hypothesis[checked_index_h] != reference[checked_index_r]:
                                     errors_sentence += 1
+                                    mouse_actions_sentence += 1
                                     new_word = reference[checked_index_r]
                                     # Substitution
                                     new_word_index = word2index[new_word] \
@@ -642,8 +651,7 @@ def main():
                         # Final check: The reference is a subset of the hypothesis: Cut the hypothesis
                         if len(reference) < len(hypothesis):
                             hypothesis = hypothesis[:len(reference)]
-                            #errors_sentence += 1
-                            mouse_actions_sentence += 1
+                            #mouse_actions_sentence += 1 #<- NO: We validate isles
                             #logger.debug("Error case 3! -> Cut hypothesis. Errors: %d" % errors_sentence)
 
                     total_cost += costs[best]
@@ -657,7 +665,7 @@ def main():
                                  "Accumulated WSR: %4f. "
                                  "Accumulated MAR: %4f\n\n\n\n\n\n" % (errors_sentence,
                                                                        float(errors_sentence)/len(hypothesis),
-                                                                       float(mouse_actions_sentence  + 1)/len(hypothesis),
+                                                                       float(mouse_actions_sentence + 1)/len(hypothesis),
                                                                        float(total_errors)/total_words,
                                                                        float(total_mouse_actions)/total_words))
 

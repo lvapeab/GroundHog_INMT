@@ -137,7 +137,7 @@ def prototype_state():
     # Location of what to compare the output translation to (gt)
     state['validation_set_grndtruth']=None
     # Beam size during sampling
-    state['beam_size'] = 6
+    state['beam_size'] = 12
     # Number of steps between every validation
     state['bleu_val_frequency'] = 20000
     # Character or word based BLEU calculation
@@ -164,12 +164,12 @@ def prototype_state():
     # WARNING: weight noise regularization is not tested
     # and most probably does not work.
     # Random weight noise regularization settings
-    state['weight_noise'] = True
+    state['weight_noise'] = False
     state['weight_noise_rec'] = False
     state['weight_noise_amount'] = 0.01
 
     # Threshold to clip the gradient
-    state['cutoff'] = 1.
+    state['cutoff'] = 2.
     # A magic gradient clipping option that you should never change...
     state['cutoff_rescale_length'] = 0.
     state['additional_ngrad_monitors'] = None

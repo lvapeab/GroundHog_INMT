@@ -185,13 +185,14 @@ class PytablesBitextFetcher(threading.Thread):
         data_len = source_index.shape[0]
 
         offset = self.start_offset
+        n_epochs = 0
         if offset == -1:
             offset = 0
             if diter.shuffle:
                 offset = np.random.randint(data_len)
         logger.debug("{} entries".format(data_len))
         logger.debug("Starting from the entry {}".format(offset))
-        logger.debug("Shuflle? {}".format(diter.shuffle))
+        logger.debug("Shuffle? {}".format(diter.shuffle))
 
         while not diter.exit_flag:
             last_batch = False
@@ -202,6 +203,8 @@ class PytablesBitextFetcher(threading.Thread):
                 if offset == data_len:
                     if diter.use_infinite_loop:
                         offset = 0
+                        n_epochs += 1
+                        print "Finished epoch %d"%n_epochs
                     else:
                         last_batch = True
                         break

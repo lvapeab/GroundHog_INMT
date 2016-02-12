@@ -12,8 +12,7 @@ import experiments
 from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
 from groundhog.trainer.SGD import SGD as SGD
 from groundhog.trainer.SGD_momentum import SGD as SGD_momentum
-from groundhog.trainer.SGD_adam import SGD as SGD_adam
-from groundhog.trainer.SGD_rmspropv2 import SGD as SGD_rmsprop
+
 
 from groundhog.mainLoop import MainLoop
 from experiments.nmt import\
@@ -205,6 +204,7 @@ class BleuValidator(object):
         # Determine whether or not we should save
         if self.best_bleu < bleu_score:
             self.best_bleu = bleu_score
+            print "Best_BLEU: %f"%self.best_bleu
             return True
         return False
 

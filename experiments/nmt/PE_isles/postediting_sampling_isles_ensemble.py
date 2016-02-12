@@ -412,16 +412,38 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
 
 
 
-def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment,unk_id,
-                          heuristic=0, mapping=None):
+
+def compute_alignment(src_seq, trg_seq, alignment_fns):
+    num_models = len(alignment_fns)
+
+    alignments = 0.
+    x = numpy.asarray([src_seq], dtype="int64").T
+    x_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
+    y = numpy.asarray([trg_seq], dtype="int64").T
+    y_mask = numpy.ones((1, len(trg_seq)), dtype="float32").T
+    for j in xrange(num_models):
+        # target_len x source_len x num_examples
+        alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
+    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0. # Put source <eos> score to 0.
+    hard_alignments = numpy.argmax(alignments, axis=0) # trg_len x num_examples
+    return hard_alignments
+
+
+def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id, heuristic=0, mapping=[]):
 
     trans_words = trg_word_seq
     trans_seq = trg_seq
     hard_alignment = hard_alignment
     new_trans_words = []
+    print "src_word_seq",src_word_seq
+    print "trg_seq",trg_seq
+    print "trg_word_seq",trg_word_seq
+
     for j in xrange(len(trans_words) - 1): # -1 : Don't write <eos>
         if trans_seq[j] == unk_id:
+            print "hard_alignment[j]", hard_alignment[j]
             UNK_src = src_word_seq[hard_alignment[j]]
+            print "UNK_src", UNK_src
             if heuristic == 0: # Copy (ok when training with large vocabularies on en->fr, en->de)
                 new_trans_words.append(UNK_src)
             elif heuristic == 1:
@@ -444,20 +466,6 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment,un
 
 
 
-
-def compute_alignment(src_seq, trg_seq, alignment_fns):
-
-    num_models = len(alignment_fns)
-    alignments = 0.
-    x = numpy.asarray(src_seq, dtype="int64").T
-    x_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
-    y = numpy.asarray(src_seq, dtype="int64").T
-    y_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
-    for j in xrange(num_models):
-        # target_len x source_len x num_examples
-        alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
-    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0. # Put source <eos> score to 0.
-    return alignments
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -537,7 +545,8 @@ def main():
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
         if args.replaceUnk:
-            alignment_fns.append(theano.function(inputs=enc_decs[i].inputs, outputs=[enc_decs[i].alignment], name="alignment_fn"))
+            alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
+                                                 outputs=[enc_decs[i].alignment], name="alignment_fn"))
 
     indx_word = cPickle.load(open(state['word_indx'], 'rb'))
     sampler = None
@@ -584,7 +593,7 @@ def main():
                 for n_line, line in enumerate(fsrc):
                     errors_sentence = 0
                     seqin = line.strip()
-                    seq, parsed_in = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                    src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
                     hypothesis_number = 0
                     fixed_words_user = OrderedDict()
                     validated_hypothesis = False
@@ -592,7 +601,7 @@ def main():
                     isles = []
                     while not validated_hypothesis:
                         print ""
-                        sentences, costs, _ = sample(lm_models[0], seq, n_samples, eos_id, max_N=max_N, isles=isles,
+                        sentences, costs, _ = sample(lm_models[0], src_seq, n_samples, eos_id, max_N=max_N, isles=isles,
                                                      fixed_words=fixed_words_user, sampler=sampler,
                                                      beam_search=beam_search, normalize=args.normalize,
                                                      verbose=args.verbose, idx2word=indx2word_trg)
@@ -680,14 +689,14 @@ def main():
                     hypothesis_number = 0
 
                     seqin = line.strip()
-                    seq, parsed_in = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                    src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
 
                     logger.debug("\n \n Processing sentence %d" % (n_line + 1))
                     logger.debug("Source: %s" % line[:-1])
                     logger.debug("Target: %s" % target_lines[n_line])
                     reference = target_lines[n_line].split()
                     # 0. Get a first hypothesis
-                    sentences, costs, trans = sample(lm_models[0], seq, n_samples, eos_id, sampler=sampler,
+                    sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler,
                                                      beam_search=beam_search,
                                                      normalize=args.normalize, verbose=args.verbose,
                                                      idx2word=indx2word_trg)
@@ -697,8 +706,8 @@ def main():
                     trg_seq = trans[best]
                     if args.replaceUnk and unk_id in trg_seq:
                         logger.debug('Before unk replace: %s'%hypothesis)
-                        hard_alignments = compute_alignment(seq, trg_seq, alignment_fns)
-                        hypothesis = replace_unknown_words(seq, trg_seq, hypothesis, hard_alignments, unk_id,
+                        hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
+                        hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
                                               heuristic=0, mapping = None).split()
                         logger.debug('After unk replace: %s'%hypothesis)
 
@@ -785,7 +794,7 @@ def main():
 
                             # Generate a new hypothesis
                             logger.debug("")
-                            sentences, costs, _ = sample(lm_models[0], seq, n_samples, eos_id,
+                            sentences, costs, _ = sample(lm_models[0], src_seq, n_samples, eos_id,
                                                          fixed_words=copy.copy(fixed_words_user), max_N=max_N,
                                                          isles=isle_indices,
                                                          sampler=sampler, beam_search=beam_search,
@@ -873,8 +882,8 @@ def main():
                 alpha = None
                 if not args.beam_search:
                     alpha = float(raw_input('Inverse Temperature? '))
-                seq, parsed_in = parse_input(state, indx_word, seqin, idx2word=idict_src)
-                print "Parsed Input:", parsed_in
+                src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                print "Parsed Input:", src_words
             except Exception:
                 print "Exception while parsing your input:"
                 traceback.print_exc()

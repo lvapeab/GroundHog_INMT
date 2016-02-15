@@ -1,6 +1,7 @@
+#!/usr/bin/env python
+
 import numpy
 import cPickle
-
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--top-unigram", type=str)
@@ -23,6 +24,7 @@ for old_key in top_unigram:
     if old_key == '<eps>': # Don't consider the empty string
         continue
     new_key = src_w2i[old_key] # Convert source word to its index
+
     if new_key >= args.vocab_size:
         continue
     old_value = top_unigram[old_key] # This is a list of words (with the most probable one first)

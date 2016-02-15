@@ -97,12 +97,16 @@ class BeamSearch(object):
             last_words = (numpy.array(map(lambda t: t[-1], trans))
                           if k > 0
                           else numpy.zeros(beam_size, dtype="int64"))
-            # log_probs = numpy.log(self.comp_next_probs(c, k, last_words, *states)[0])  # c: representation, k: step_num, last_words: gen_y, *states: current_states
             log_probs = sum(numpy.log(self.comp_next_probs[i](c[i], k, last_words, *states[i])[0]) for i in
                             xrange(num_models)) / num_models
 
             # Adjust log probs according to search restrictions
-            if k < minlen or len(unfixed_isles) > 0:
+            if len(fixed_words.keys()) == 0:
+                max_fixed_pos = 0
+            else:
+                max_fixed_pos = max(fixed_words.keys())
+
+            if k < minlen or len(unfixed_isles) > 0 or k < max_fixed_pos:
                 log_probs[:, eos_id] = -numpy.inf
             # If the current position is fixed, we fix it.
             if k in fixed_words:  # This position is fixed by the user
@@ -157,6 +161,7 @@ class BeamSearch(object):
                             fin_costs.append(new_costs[i])
                 for i in xrange(num_models):
                     states[i] = map(lambda x: x[indices], new_states[i])
+
             else:  # We are in the middle of two isles
                 # logger.debug("Position %d in the middle of two isles"% k)
                 hyp_trans = [[]] * max_N
@@ -258,12 +263,13 @@ class BeamSearch(object):
                             best_n_words = n_words
                             best_hyp = hyp_trans[n_words][beam_index]
                 assert best_n_words > -1, "Error in the rescoring approach"
-                trans = hyp_trans[best_n_words]
-                costs = hyp_costs[best_n_words]
+                trans = [best_hyp]*n_samples #hyp_trans[best_n_words]
+                costs = [min_cost]*n_samples #hyp_costs[best_n_words]
+                logger.debug("trans: %s"%str(trans))
+                logger.debug("costs: %s"%str(costs))
+
                 states = states_[best_n_words + 1]
                 best_n_words += 1
-                print "Generating %d words from position %d" % (best_n_words, k)
-
                 logger.log(2, "Generating %d words from position %d" % (best_n_words, k))
                 # We fix the words of the next isle
                 stop = False
@@ -291,6 +297,7 @@ class BeamSearch(object):
                         logger.log(2, "Isle not included nor overlapped")
                         stop = True
                     for word in next_isle:
+
                         if fixed_words.get(k_counter) is None:
                             fixed_words[k_counter] = word
                             logger.log(2, "\t > Word %s (%d) will go to position %d" % (
@@ -411,8 +418,6 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
         raise Exception("I don't know what to do")
 
 
-
-
 def compute_alignment(src_seq, trg_seq, alignment_fns):
     num_models = len(alignment_fns)
 
@@ -425,31 +430,35 @@ def compute_alignment(src_seq, trg_seq, alignment_fns):
         # target_len x source_len x num_examples
         alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
     alignments[:,len(src_seq)-1,range(x.shape[1])] = 0. # Put source <eos> score to 0.
-    hard_alignments = numpy.argmax(alignments, axis=0) # trg_len x num_examples
+    hard_alignments = numpy.argmax(alignments, axis=1) # trg_len x num_examples
+
     return hard_alignments
 
 
-def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id, heuristic=0, mapping=[]):
+def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id, excluded_indices, heuristic=0, mapping=[]):
 
     trans_words = trg_word_seq
     trans_seq = trg_seq
     hard_alignment = hard_alignment
     new_trans_words = []
-    print "src_word_seq",src_word_seq
-    print "trg_seq",trg_seq
-    print "trg_word_seq",trg_word_seq
-
-    for j in xrange(len(trans_words) - 1): # -1 : Don't write <eos>
-        if trans_seq[j] == unk_id:
-            print "hard_alignment[j]", hard_alignment[j]
+    for j in xrange(len(trans_words)): # -1 : Don't write <eos>
+        if trans_seq[j] == unk_id and j not in excluded_indices:
             UNK_src = src_word_seq[hard_alignment[j]]
-            print "UNK_src", UNK_src
             if heuristic == 0: # Copy (ok when training with large vocabularies on en->fr, en->de)
                 new_trans_words.append(UNK_src)
             elif heuristic == 1:
                 # Use the most likely translation (with t-table). If not found, copy the source word.
                 # Ok for small vocabulary (~30k) models
                 if UNK_src in mapping:
+                    logger.debug( "%s in mapping. Adding word %s"%(str(UNK_src), str(mapping[UNK_src])))
+                    new_trans_words.append(mapping[UNK_src])
+                else:
+                    logger.debug( "%s in not in mapping. Copying word."%(str(UNK_src)))
+                    new_trans_words.append(UNK_src)
+            elif heuristic == 2:
+                # Use t-table if the source word starts with a lowercase letter. Otherwise copy
+                # Sometimes works better than other heuristics
+                if UNK_src in mapping and UNK_src.decode('utf-8')[0].islower():
                     new_trans_words.append(mapping[UNK_src])
                 else:
                     new_trans_words.append(UNK_src)
@@ -459,7 +468,7 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, u
     to_write = ''
     for j, word in enumerate(new_trans_words):
         to_write = to_write + word
-        if j < len(new_trans_words) - 1:
+        if j < len(new_trans_words):
             to_write += ' '
     return to_write
 
@@ -497,8 +506,10 @@ def parse_args():
     parser.add_argument("--replaceUnk",
                         default=True, action="store_true",
                         help="Interactive post-editing?")
-    #parser.add_argument("--mapping",
-    #        help="Top1 unigram mapping (Source to target)")
+    parser.add_argument("--mapping",
+                        help="Top1 unigram mapping (Source to target)")
+    parser.add_argument("--heuristic", type=int, default=0,
+            help="0: copy, 1: Use dict, 2: Use dict only if lowercase. Used only if a mapping is given. Default is 0.")
     parser.add_argument("--color",
                         default=False, action="store_true",
                         help="Colored hypotheses?")
@@ -547,6 +558,15 @@ def main():
         if args.replaceUnk:
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
                                                  outputs=[enc_decs[i].alignment], name="alignment_fn"))
+    if args.mapping:
+        with open(args.mapping, 'rb') as f:
+            mapping = cPickle.load(f)
+        logger.debug("Loaded mapping file from %s" % str(args.mapping))
+        heuristic = args.heuristic
+    else:
+        heuristic = 0
+        mapping = None
+    logger.info("Replacing unkown words according to heuristic %d" % heuristic)
 
     indx_word = cPickle.load(open(state['word_indx'], 'rb'))
     sampler = None
@@ -687,9 +707,11 @@ def main():
                     errors_sentence = 0
                     mouse_actions_sentence = 0
                     hypothesis_number = 0
+                    unk_indices = []
 
                     seqin = line.strip()
                     src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                    src_words = src_words.split()
 
                     logger.debug("\n \n Processing sentence %d" % (n_line + 1))
                     logger.debug("Source: %s" % line[:-1])
@@ -705,11 +727,12 @@ def main():
                     hypothesis = sentences[best].split()
                     trg_seq = trans[best]
                     if args.replaceUnk and unk_id in trg_seq:
-                        logger.debug('Before unk replace: %s'%hypothesis)
+                        print('Target sentence   : %s'%reference)
+                        print('Before unk replace: %s'%hypothesis)
                         hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
                         hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
-                                              heuristic=0, mapping = None).split()
-                        logger.debug('After unk replace: %s'%hypothesis)
+                                              unk_indices, heuristic=heuristic, mapping = mapping).split()
+                        print('After  unk replace: %s'%hypothesis)
 
                     if args.save_original:
                         print >> ftrans_ori, " ".join(hypothesis)
@@ -721,7 +744,6 @@ def main():
                         checked_index_r = 0
                         checked_index_h = 0
                         unk_words = []
-                        unk_indices = []
                         fixed_words_user = OrderedDict()  # {pos: word}
                         old_isles = []
                         while checked_index_r < len(reference):
@@ -755,6 +777,7 @@ def main():
                             # Insertion of a new word at the end of the hypothesis
                             # Substitution of a word by another
                             while checked_index_r < len(reference):  # We check all words in the reference
+
                                 if checked_index_h >= len(hypothesis):
                                     # Insertions (at the end of the sentence)
                                     errors_sentence += 1
@@ -794,7 +817,7 @@ def main():
 
                             # Generate a new hypothesis
                             logger.debug("")
-                            sentences, costs, _ = sample(lm_models[0], src_seq, n_samples, eos_id,
+                            sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id,
                                                          fixed_words=copy.copy(fixed_words_user), max_N=max_N,
                                                          isles=isle_indices,
                                                          sampler=sampler, beam_search=beam_search,
@@ -803,8 +826,7 @@ def main():
                             hypothesis_number += 1
                             best = numpy.argmin(costs)
                             hypothesis = sentences[best].split()
-                            logger.debug("Target: %s" % target_lines[n_line])
-                            logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
+                            trg_seq = trans[best]
                             if len(unk_indices) > 0:  # If we added some UNK word
                                 if len(hypothesis) < len(unk_indices):  # The full hypothesis will be made up UNK words:
                                     for i, index in enumerate(range(0, len(hypothesis))):
@@ -817,6 +839,14 @@ def main():
                                             hypothesis[index] = unk_words[i]
                                         else:
                                             hypothesis.append(unk_words[i])
+
+                            hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
+                            hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
+                                              unk_indices, heuristic=heuristic, mapping = mapping).split()
+
+                            logger.debug("Target: %s" % target_lines[n_line])
+                            logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
+
                             if hypothesis == reference:
                                 break
                         # Final check: The reference is a subset of the hypothesis: Cut the hypothesis

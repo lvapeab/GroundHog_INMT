@@ -342,8 +342,7 @@ def main():
 
                             if (i % 100 == 0) and i > 0:
                                 new_trans_file.flush()
-                                logger.debug("Current speed is {} per sentence".
-                                        format((time.time() - start_time) / i))
+                                logger.debug("Current speed is {} per sentence".format((time.time() - start_time) / i))
 
                             src_line = src_file.readline()
                             src_seq, src_words = parse_input(state, word2idx_src, src_line.strip())

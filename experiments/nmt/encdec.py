@@ -664,6 +664,7 @@ class EncoderDecoderBase(object):
                                                     if isinstance(self.state['deep_attention_acts'], list) else 
                                                     self.state['deep_attention_acts'])
         for level in range(self.num_levels):
+            logger.debug("__create_%s_transition_layer_%d"%(self.prefix, level))
             self.transitions.append(rec_layer(
                     self.rng,
                     n_hids=self.state['dim'],
@@ -691,7 +692,8 @@ class Encoder(EncoderDecoderBase):
         self.skip_init = skip_init
 
         self.num_levels = self.state['encoder_stack']
-
+        if self.num_levels > 1:
+            logger.warning('Using a stack of %s encoders'%str(self.num_levels))
         # support multiple gating/memory units
         if 'dim_mult' not in self.state:
             self.state['dim_mult'] = 1.
@@ -717,16 +719,13 @@ class Encoder(EncoderDecoderBase):
         # are combined with a maxout layer.
         self.repr_contributors = [None] * self.num_levels
         for level in range(self.num_levels):
-            self.repr_contributors[level] = MultiLayer(
-                self.rng,
-                n_in=self.state['dim'],
-                n_hids=[self.state['dim'] * self.state['maxout_part']],
-                activation=['lambda x: x'],
-                name="{}_repr_contrib_{}".format(self.prefix, level),
-                **self.default_kwargs)
-        self.repr_calculator = UnaryOp(
-                activation=eval(self.state['unary_activ']),
-                name="{}_repr_calc".format(self.prefix))
+            self.repr_contributors[level] = MultiLayer(self.rng, n_in=self.state['dim'],
+                                                       n_hids=[self.state['dim'] * self.state['maxout_part']],
+                                                       activation=['lambda x: x'],
+                                                       name="{}_repr_contrib_{}".format(self.prefix, level),
+                                                       **self.default_kwargs)
+        self.repr_calculator = UnaryOp(activation=eval(self.state['unary_activ']),
+                                       name="{}_repr_calc".format(self.prefix))
 
     def build_encoder(self, x,
             x_mask=None,
@@ -798,7 +797,6 @@ class Encoder(EncoderDecoderBase):
                     reseter_below=none_if_zero(reset_signals[level]),
                     use_noise=use_noise))
         if return_hidden_layers:
-            assert self.state['encoder_stack'] == 1
             return hidden_layers[0]
 
         # If we no stack of RNN but only a usual one,
@@ -820,8 +818,7 @@ class Encoder(EncoderDecoderBase):
         # Return value however has the same shape.
         contributions = []
         for level in range(self.num_levels):
-            contributions.append(self.repr_contributors[level](
-                LastState()(hidden_layers[level])))
+            contributions.append(self.repr_contributors[level](LastState()(hidden_layers[level])))
         # I do not know a good starting value for sum
         c = self.repr_calculator(sum(contributions[1:], contributions[0]))
         return c
@@ -1335,26 +1332,15 @@ class RNNEncoderDecoder(object):
                 prefix="enc",
                 skip_init=self.skip_init)
         self.encoder.create_layers()
-
         logger.debug("Build encoding computation graph")
-        forward_training_c = self.encoder.build_encoder(
-                self.x, self.x_mask,
-                use_noise=True,
-                return_hidden_layers=True)
+        forward_training_c = self.encoder.build_encoder(self.x, self.x_mask, use_noise=True, return_hidden_layers=True)
 
         logger.debug("Create backward encoder")
-        self.backward_encoder = Encoder(self.state, self.rng,
-                prefix="back_enc",
-                skip_init=self.skip_init)
+        self.backward_encoder = Encoder(self.state, self.rng, prefix="back_enc", skip_init=self.skip_init)
         self.backward_encoder.create_layers()
-
         logger.debug("Build backward encoding computation graph")
-        backward_training_c = self.backward_encoder.build_encoder(
-                self.x[::-1],
-                self.x_mask[::-1],
-                use_noise=True,
-                approx_embeddings=self.encoder.approx_embedder(self.x[::-1]),
-                return_hidden_layers=True)
+        backward_training_c = self.backward_encoder.build_encoder(self.x[::-1], self.x_mask[::-1], use_noise=True,
+                            approx_embeddings=self.encoder.approx_embedder(self.x[::-1]), return_hidden_layers=True)
         # Reverse time for backward representations.
         backward_training_c.out = backward_training_c.out[::-1]
 
@@ -1364,11 +1350,9 @@ class RNNEncoderDecoder(object):
             training_c_components.append(backward_training_c)
 
         if self.state['last_forward']:
-            training_c_components.append(
-                    ReplicateLayer(self.x.shape[0])(forward_training_c[-1]))
+            training_c_components.append(ReplicateLayer(self.x.shape[0])(forward_training_c[-1]))
         if self.state['last_backward']:
-            training_c_components.append(ReplicateLayer(self.x.shape[0])
-                    (backward_training_c[0]))
+            training_c_components.append(ReplicateLayer(self.x.shape[0])(backward_training_c[0]))
         self.state['c_dim'] = len(training_c_components) * self.state['dim']
 
         logger.debug("Create decoder")

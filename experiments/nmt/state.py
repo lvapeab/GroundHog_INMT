@@ -39,12 +39,12 @@ def prototype_state():
     # ----- MODEL STRUCTURE -----
 
     # The components of the annotations produced by the Encoder
-    state['last_forward'] = True
+    state['last_forward'] = False
     state['last_backward'] = False
-    state['forward'] = False
-    state['backward'] = False
+    state['forward'] = True
+    state['backward'] = True
     # Turns on "search" mechanism
-    state['search'] = False
+    state['search'] = True
     # Turns on using the shortcut from the previous word to the current one
     state['bigram'] = True
     # Turns on initialization of the first hidden state from the annotations
@@ -85,22 +85,21 @@ def prototype_state():
     state['enc_rec_reseting'] = True
     state['enc_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
     state['enc_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
-    # Hidden layer configuration for the decoder
-    state['dec_rec_layer'] = 'RecurrentLayer'
-    state['dec_rec_gating'] = True
-    state['dec_rec_reseting'] = True
-    state['dec_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
-    state['dec_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
-    # Default hidden layer configuration, which is effectively used for
-    # the backward RNN
-    # TODO: separate back_enc_ configuration and convert the old states
-    # to have it
+
+    # Default hidden layer configuration, which is effectively used for the backward RNN
+    # TODO: separate back_enc_ configuration and convert the old states to have it
     state['rec_layer'] = 'RecurrentLayer'
     state['rec_gating'] = True
     state['rec_reseting'] = True
     state['rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
     state['rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
 
+    # Hidden layer configuration for the decoder
+    state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
+    state['dec_rec_gating'] = True
+    state['dec_rec_reseting'] = True
+    state['dec_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
+    state['dec_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
     # ----- SIZES ----
 
     # Dimensionality of hidden layers
@@ -130,7 +129,7 @@ def prototype_state():
     # Location of the validation set
     state['validation_set']=None
     # boolean, whether or not to write the validation set to file
-    state['output_validation_set'] = False
+    state['output_validation_set'] = True
     # Location of the validation set output, if different
     # fom default
     state['validation_set_out'] = None
@@ -150,8 +149,7 @@ def prototype_state():
     state['target_encoding'] = 'utf8'
     # start after this many iterations
     state['validation_burn_in'] = 10000
-    # Early stop based on time: Stop if no improvement has been observed after this time
-    state['early_stop_time'] = 24 # In hours
+
 
     # ---- REGULARIZATION -----
 
@@ -164,12 +162,12 @@ def prototype_state():
     # WARNING: weight noise regularization is not tested
     # and most probably does not work.
     # Random weight noise regularization settings
-    state['weight_noise'] = False
+    state['weight_noise'] = True
     state['weight_noise_rec'] = False
     state['weight_noise_amount'] = 0.01
 
     # Threshold to clip the gradient
-    state['cutoff'] = 2.
+    state['cutoff'] = 1.
     # A magic gradient clipping option that you should never change...
     state['cutoff_rescale_length'] = 0.
     state['additional_ngrad_monitors'] = None
@@ -188,19 +186,22 @@ def prototype_state():
     # Early stopping configuration
     # WARNING: was never changed during machine translation experiments,
     # as early stopping was not used.
-    state['patience'] = 1
+    state['patience'] = 10
     state['lr'] = 1.
     state['minlr'] = 0
+    # Early stop based on time: Stop if no improvement has been observed after this time
+    state['early_stop_time'] = 24 # In hours
+
 
     # Batch size
-    state['bs']  = 64
+    state['bs']  = 80
     # We take this many minibatches, merge them,
     # sort the sentences according to their length and create
     # this many new batches with less padding.
-    state['sort_k_batches'] = 10
+    state['sort_k_batches'] = 20
 
     # Maximum sequence length
-    state['seqlen'] = 30
+    state['seqlen'] = 50
     # Turns on trimming the trailing paddings from batches
     # consisting of short sentences.
     state['trim_batches'] = True
@@ -210,7 +211,6 @@ def prototype_state():
     state['shuffle'] = False
 
     # ----- TRAINING PROCESS -----
-
     # Prefix for the model, state and timing files
     state['prefix'] = 'phrase_'
     # Specifies whether old model should be reloaded first

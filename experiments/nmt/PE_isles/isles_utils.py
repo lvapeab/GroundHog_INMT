@@ -3,6 +3,7 @@
 import logging
 logger = logging.getLogger(__name__)
 
+
 def longest_common_substring(s1, s2):
     m = [[0] * (1 + len(s2)) for _ in xrange(1 + len(s1))]
     longest, x_longest, y_longest = 0, 0, 0
@@ -16,7 +17,7 @@ def longest_common_substring(s1, s2):
                     y_longest = y
             else:
                 m[x][y] = 0
-    return s1[x_longest - longest: x_longest], x_longest-longest, y_longest-longest
+    return s1[x_longest - longest: x_longest], x_longest - longest, y_longest - longest
 
 
 def find_isles(s1, s2, x=0, y=0):
@@ -39,7 +40,7 @@ def find_isles(s1, s2, x=0, y=0):
     if len_common == 0:
         return [], []
     s1_bef = s1[:x_start]
-    s1_aft = s1[x_start+len(com):]
+    s1_aft = s1[x_start + len(com):]
     s2_bef = s2[:y_start]
     s2_aft = s2[y_start+len(com):]
     before = find_isles(s1_bef, s2_bef, x, y)
@@ -50,8 +51,12 @@ def find_isles(s1, s2, x=0, y=0):
 
 def test_utils():
 
-    s1 = "por ejemplo , si se pueden utilizar fuentes especiales tales en los documentos pero no se encuentran disponibles en esta impresora , se puede usar la utilidad de administración de fuentes para transferir las fuentes de la impresora ."
-    s2 = "por ejemplo , si tiene fuentes especiales que se emplean en documentos pero que no están disponibles en la ( s ) impresora ( s ) , puede usar la utilidad de administración de fuentes para transferir las fuentes deseadas a las impresoras ."
+    # s1 = "por ejemplo , si se pueden utilizar fuentes especiales tales en los documentos pero no se encuentran disponibles en esta impresora , se puede usar la utilidad de administración de fuentes para transferir las fuentes de la impresora ."
+    # s2 = "por ejemplo , si tiene fuentes especiales que se emplean en documentos pero que no están disponibles en la ( s ) impresora ( s ) , puede usar la utilidad de administración de fuentes para transferir las fuentes deseadas a las impresoras ."
+
+    s1 = 'Guia de Servicios de exploracion de red de CentreWare xi'
+    s2 = 'Guia de instalaci\xc3\xb3n de Servicios de exploracion de red de CentreWare xi'
+
     print "Sentence 1:", s1
     print "Sentence 2:", s2
     print find_isles(s1.split(), s2.split())

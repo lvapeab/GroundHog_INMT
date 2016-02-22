@@ -89,6 +89,7 @@ class BeamSearch(object):
         costs = [0.0]
         k = 0
         while k < (3 * len(seq)):
+
             if n_samples == 0:
                 break
             # Compute probabilities of the next words for
@@ -97,6 +98,7 @@ class BeamSearch(object):
             last_words = (numpy.array(map(lambda t: t[-1], trans))
                           if k > 0
                           else numpy.zeros(beam_size, dtype="int64"))
+
             log_probs = sum(numpy.log(self.comp_next_probs[i](c[i], k, last_words, *states[i])[0]) for i in
                             xrange(num_models)) / num_models
 
@@ -113,6 +115,7 @@ class BeamSearch(object):
                 # We fix the word
                 log_probs[:, :] = -numpy.inf
                 log_probs[:, fixed_words[k]] = 0.
+
             if len(unfixed_isles) == 0 or k in fixed_words:  # There are no remaining isles. Regular decoding.
                 # Find the best options by calling argpartition of flatten array
                 next_costs = numpy.array(costs)[:, None] - log_probs
@@ -178,8 +181,7 @@ class BeamSearch(object):
                     log_probs = sum(numpy.log(self.comp_next_probs[i](c[i], k + kk, last_words, *states_[kk][i])[0])
                                     for i in xrange(num_models)) / num_models
                     # Adjust log probs according to search restrictions
-                    if k + kk < minlen:
-                        log_probs[:, eos_id] = -numpy.inf
+                    log_probs[:, eos_id] = -numpy.inf
                     if k + kk in fixed_words:  # This position is fixed by the user
                         log_probs[:, :] = -numpy.inf
                         log_probs[:, fixed_words[k + kk]] = 0.
@@ -263,11 +265,12 @@ class BeamSearch(object):
                             best_n_words = n_words
                             best_hyp = hyp_trans[n_words][beam_index]
                 assert best_n_words > -1, "Error in the rescoring approach"
-                trans = [best_hyp]*n_samples #hyp_trans[best_n_words]
-                costs = [min_cost]*n_samples #hyp_costs[best_n_words]
-                logger.debug("trans: %s"%str(trans))
-                logger.debug("costs: %s"%str(costs))
 
+                trans = hyp_trans[best_n_words]
+                costs = hyp_costs[best_n_words]
+
+                #trans = [best_hyp]*n_samples #hyp_trans[best_n_words]
+                #costs = [min_cost]*n_samples #hyp_costs[best_n_words]
                 states = states_[best_n_words + 1]
                 best_n_words += 1
                 logger.log(2, "Generating %d words from position %d" % (best_n_words, k))
@@ -310,6 +313,7 @@ class BeamSearch(object):
                     #break #TODO: Juntar tantas islas como pueda? o solo una?
                 k += best_n_words - 1
             k += 1
+
         # Dirty tricks to obtain any translation
         if not len(fin_trans):
             if n_samples < 500:
@@ -331,10 +335,6 @@ def indices_to_words(i2w, seq):
             break
         sen.append(i2w[seq[k]])
     return sen
-
-
-def remove_from_list(list, symbol='</s>'):
-    return filter(lambda a: a != symbol, list)
 
 
 def is_sublist(list1, list2):
@@ -543,7 +543,7 @@ def main():
         logger.setLevel(level=logging.DEBUG)
     elif args.verbose == 2:
         logger.setLevel(level=args.verbose)
-
+    logger.debug("State: \n %s" % str(state))
     num_models = len(args.models)
     logger.info("Using an ensemble of %d models" % num_models)
     rng = numpy.random.RandomState(state['seed'])
@@ -750,8 +750,7 @@ def main():
                             # Stage 1: Isles selection
                             #   1. Select the multiple isles in the hypothesis.
                             if not args.prefix:
-                                isles = find_isles(remove_from_list(hypothesis), reference)
-                                hypothesis_isles = isles[0]
+                                hypothesis_isles = find_isles(hypothesis, reference)[0]
                                 isle_indices = [(index, map(lambda x: word2index[x] if word2index.get(x) is not None
                                                                                     else unk_id, word))
                                                 for index, word in hypothesis_isles]
@@ -760,14 +759,19 @@ def main():
                                     logger.debug("Isles validating the full hypothesis")
                                     hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                     break
-                                for index, words in hypothesis_isles:
-                                    if not any(map(lambda x: is_sublist(x, words), old_isles)):
-                                        if len(words) > 1:
-                                            mouse_actions_sentence += 2
-                                        else:
-                                            mouse_actions_sentence += 1
+                                # Count only for non selected isles
 
-                                old_isles = [isle[1] for isle in hypothesis_isles]
+                                logger.debug("hypothesis_indices = %s" % str(hypothesis_isles))
+                                logger.debug("isle_indices = %s" % str(isle_indices))
+                                logger.debug("old_isles= %s"% str(old_isles))
+                                for index, words in isle_indices:
+                                    # For each isle, we check that it is not included in the previous isles
+                                    if not any(map(lambda x: is_sublist(x, words), old_isles)):
+                                        logger.debug("\t > Isle augmented: %s"% str(words))
+                                        if len(words) > 1:
+                                            mouse_actions_sentence += 2 # Selection of new isle
+                                        elif len(words) == 1:
+                                            mouse_actions_sentence += 1 # Isles of length 1 account for 1 mouse action
                             else:
                                 isle_indices = []
 
@@ -777,7 +781,6 @@ def main():
                             # Insertion of a new word at the end of the hypothesis
                             # Substitution of a word by another
                             while checked_index_r < len(reference):  # We check all words in the reference
-
                                 if checked_index_h >= len(hypothesis):
                                     # Insertions (at the end of the sentence)
                                     errors_sentence += 1
@@ -785,14 +788,14 @@ def main():
                                     new_word = reference[checked_index_r]
                                     fixed_words_user[checked_index_h] = word2index[new_word] \
                                         if word2index.get(new_word) is not None else unk_id
-                                    old_isles.append(new_word)
                                     if word2index.get(new_word) is None:
                                         unk_words.append(new_word)
                                         unk_indices.append(checked_index_h)
+                                    else:
+                                        isle_indices[-1][1].append(word2index[new_word])
                                     logger.debug(
                                         '"%s" to position %d (end-of-sentence)' % (str(new_word), checked_index_h))
                                     break
-
                                 elif hypothesis[checked_index_h] != reference[checked_index_r]:
                                     errors_sentence += 1
                                     mouse_actions_sentence += 1
@@ -801,7 +804,6 @@ def main():
                                     new_word_index = word2index[new_word] \
                                         if word2index.get(new_word) is not None else unk_id
                                     fixed_words_user[checked_index_h] = new_word_index
-                                    old_isles.append(new_word)
                                     if word2index.get(new_word) is None:
                                         if checked_index_h not in unk_indices:
                                             unk_words.append(new_word)
@@ -814,7 +816,7 @@ def main():
                                         if word2index.get(hypothesis[checked_index_h]) is not None else unk_id
                                     checked_index_h += 1
                                     checked_index_r += 1
-
+                            old_isles = [isle[1] for isle in isle_indices]
                             # Generate a new hypothesis
                             logger.debug("")
                             sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id,
@@ -843,17 +845,15 @@ def main():
                             hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
                             hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
                                               unk_indices, heuristic=heuristic, mapping = mapping).split()
-
                             logger.debug("Target: %s" % target_lines[n_line])
                             logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
-
                             if hypothesis == reference:
                                 break
                         # Final check: The reference is a subset of the hypothesis: Cut the hypothesis
                         if len(reference) < len(hypothesis):
                             hypothesis = hypothesis[:len(reference)]
-                            # mouse_actions_sentence += 1 #<- NO: We validate isles
-                            # logger.debug("Error case 3! -> Cut hypothesis. Errors: %d" % errors_sentence)
+                            errors_sentence += 1
+                            logger.debug("Cutting hypothesis")
                     total_cost += costs[best]
                     total_errors += errors_sentence
                     total_words += len(hypothesis)
@@ -861,10 +861,12 @@ def main():
                     logger.debug("Final hypotesis: %s" % " ".join(hypothesis))
                     logger.debug("%d errors. "
                                  "Sentence WSR: %4f. "
+                                 "Sentence mouse strokes: %d "
                                  "Sentence MAR: %4f. "
                                  "Accumulated WSR: %4f. "
                                  "Accumulated MAR: %4f\n\n\n\n\n\n" % (errors_sentence,
                                                                        float(errors_sentence) / len(hypothesis),
+                                                                       mouse_actions_sentence + 1,
                                                                        float(mouse_actions_sentence + 1) / len(hypothesis),
                                                                        float(total_errors) / total_words,
                                                                        float(total_mouse_actions) / total_words))

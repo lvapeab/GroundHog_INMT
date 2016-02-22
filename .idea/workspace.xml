@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="Replace UNK in ITP. There are bugs in the search process">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/lvapeab.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/lvapeab.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/isles_utils.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/isles_utils.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/encdec.py" afterPath="$PROJECT_DIR$/experiments/nmt/encdec.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/state.py" afterPath="$PROJECT_DIR$/experiments/nmt/state.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/train.py" afterPath="$PROJECT_DIR$/experiments/nmt/train.py" />
     </list>
     <list id="1b62e22e-c1ba-4825-a359-f880cd8e0d01" name="Scripts" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/README" afterPath="" />
@@ -847,7 +842,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455635032770</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Potentially deep encoder">
+      <created>1456159028652</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1456159028652</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -865,6 +866,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1950448" sideWeight="0.5252264" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879376" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32782102" sideWeight="0.502211" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976654" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -875,7 +877,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18977332" sideWeight="0.47477362" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -938,7 +939,8 @@
     <MESSAGE value="Utils dir from LV_GrounHog" />
     <MESSAGE value="Replace UNK in ITP. There are bugs in the search process" />
     <MESSAGE value="Ensemble of models sampling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ensemble of models sampling" />
+    <MESSAGE value="Potentially deep encoder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Potentially deep encoder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1245,6 +1247,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="24" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

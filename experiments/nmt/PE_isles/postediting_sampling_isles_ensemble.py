@@ -18,7 +18,7 @@ from experiments.nmt import \
     prototype_phrase_state, \
     parse_input
 from experiments.nmt.numpy_compat import argpartition
-from isles_utils import find_isles
+from isles_utils import *
 import copy
 
 logger = logging.getLogger(__name__)
@@ -80,7 +80,6 @@ class BeamSearch(object):
         num_levels = len(states[0])
         fin_trans = []
         fin_costs = []
-        inf = 1e3
         if isles != []:
             unfixed_isles = filter(lambda x: not is_sublist(x[1], fixed_words.values()), [isle for isle in isles])
         else:
@@ -89,7 +88,6 @@ class BeamSearch(object):
         costs = [0.0]
         k = 0
         while k < (3 * len(seq)):
-
             if n_samples == 0:
                 break
             # Compute probabilities of the next words for
@@ -255,7 +253,7 @@ class BeamSearch(object):
                 print "best_beams   =", best_beams
                 """
                 best_n_words = -1
-                min_cost = inf
+                min_cost = numpy.inf
                 best_hyp = []
                 for n_words in range(len(hyp_costs)):
                     for beam_index in range(len(hyp_costs[n_words])):
@@ -336,16 +334,6 @@ def indices_to_words(i2w, seq):
         sen.append(i2w[seq[k]])
     return sen
 
-
-def is_sublist(list1, list2):
-    return set(list2).issuperset(set(list1))
-
-
-def subfinder(pattern, mylist):
-    for start_pos in range(len(mylist)):
-        if mylist[start_pos] == pattern[0] and mylist[start_pos:start_pos + len(pattern)] == pattern:
-            return pattern, start_pos
-    return [], -1
 
 
 def kl(p, q):
@@ -727,12 +715,9 @@ def main():
                     hypothesis = sentences[best].split()
                     trg_seq = trans[best]
                     if args.replaceUnk and unk_id in trg_seq:
-                        print('Target sentence   : %s'%reference)
-                        print('Before unk replace: %s'%hypothesis)
                         hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
                         hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
                                               unk_indices, heuristic=heuristic, mapping = mapping).split()
-                        print('After  unk replace: %s'%hypothesis)
 
                     if args.save_original:
                         print >> ftrans_ori, " ".join(hypothesis)
@@ -747,6 +732,7 @@ def main():
                         fixed_words_user = OrderedDict()  # {pos: word}
                         old_isles = []
                         while checked_index_r < len(reference):
+                            validated_prefix = []
                             # Stage 1: Isles selection
                             #   1. Select the multiple isles in the hypothesis.
                             if not args.prefix:
@@ -760,18 +746,7 @@ def main():
                                     hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                     break
                                 # Count only for non selected isles
-
-                                logger.debug("hypothesis_indices = %s" % str(hypothesis_isles))
-                                logger.debug("isle_indices = %s" % str(isle_indices))
-                                logger.debug("old_isles= %s"% str(old_isles))
-                                for index, words in isle_indices:
-                                    # For each isle, we check that it is not included in the previous isles
-                                    if not any(map(lambda x: is_sublist(x, words), old_isles)):
-                                        logger.debug("\t > Isle augmented: %s"% str(words))
-                                        if len(words) > 1:
-                                            mouse_actions_sentence += 2 # Selection of new isle
-                                        elif len(words) == 1:
-                                            mouse_actions_sentence += 1 # Isles of length 1 account for 1 mouse action
+                                mouse_actions_sentence += compute_mouse_movements(isle_indices, old_isles) # Isles of length 1 account for 1 mouse action
                             else:
                                 isle_indices = []
 
@@ -786,13 +761,15 @@ def main():
                                     errors_sentence += 1
                                     mouse_actions_sentence += 1
                                     new_word = reference[checked_index_r]
-                                    fixed_words_user[checked_index_h] = word2index[new_word] \
+                                    new_word_index = word2index[new_word] \
                                         if word2index.get(new_word) is not None else unk_id
+                                    validated_prefix.append(new_word_index)
+                                    fixed_words_user[checked_index_h] = new_word_index
                                     if word2index.get(new_word) is None:
                                         unk_words.append(new_word)
                                         unk_indices.append(checked_index_h)
-                                    else:
-                                        isle_indices[-1][1].append(word2index[new_word])
+                                    #else:
+                                    #    isle_indices[-1][1].append(word2index[new_word])
                                     logger.debug(
                                         '"%s" to position %d (end-of-sentence)' % (str(new_word), checked_index_h))
                                     break
@@ -804,6 +781,7 @@ def main():
                                     new_word_index = word2index[new_word] \
                                         if word2index.get(new_word) is not None else unk_id
                                     fixed_words_user[checked_index_h] = new_word_index
+                                    validated_prefix.append(new_word_index)
                                     if word2index.get(new_word) is None:
                                         if checked_index_h not in unk_indices:
                                             unk_words.append(new_word)
@@ -812,11 +790,16 @@ def main():
                                     break
                                 else:
                                     # No errors
-                                    fixed_words_user[checked_index_h] = word2index[hypothesis[checked_index_h]] \
+                                    new_word_index = word2index[hypothesis[checked_index_h]] \
                                         if word2index.get(hypothesis[checked_index_h]) is not None else unk_id
+                                    fixed_words_user[checked_index_h] = new_word_index
+                                    validated_prefix.append(new_word_index)
                                     checked_index_h += 1
                                     checked_index_r += 1
+
                             old_isles = [isle[1] for isle in isle_indices]
+                            old_isles.append(validated_prefix)
+
                             # Generate a new hypothesis
                             logger.debug("")
                             sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id,

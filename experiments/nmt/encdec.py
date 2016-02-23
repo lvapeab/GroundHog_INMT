@@ -841,7 +841,8 @@ class Decoder(EncoderDecoderBase):
         # we don't make difference between number of input layers
         # and outputs layers.
         self.num_levels = self.state['decoder_stack']
-
+        if self.num_levels > 1:
+            logger.warning('Using a stack of %s decoders'%str(self.num_levels))
         if 'dim_mult' not in self.state:
             self.state['dim_mult'] = 1.
 
@@ -861,11 +862,11 @@ class Decoder(EncoderDecoderBase):
         self._create_readout_layers()
 
         if self.state['search']:
-            assert self.num_levels == 1
-            self.transitions[0].set_decoding_layers(
-                    self.decode_inputers[0],
-                    self.decode_reseters[0],
-                    self.decode_updaters[0])
+            for level in range(self.num_levels):
+                self.transitions[level].set_decoding_layers(
+                        self.decode_inputers[level],
+                        self.decode_reseters[level],
+                        self.decode_updaters[level])
 
     def _create_initialization_layers(self):
         logger.debug("_create_initialization_layers")

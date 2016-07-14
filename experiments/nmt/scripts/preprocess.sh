@@ -3,28 +3,18 @@
 scriptsdir=/home/lvapeab/smt/software/GroundHog/experiments/nmt/preprocess
 mosesdir=/home/lvapeab/smt/software/mosesdecoder
 
+sourceText=/home/lvapeab/smt/tasks/xerox/DATA/lowercased/training.es
+targetText=/home/lvapeab/smt/tasks/xerox/DATA/lowercased/training.en
 
-#Input corpora
 
-# Xerox
-sourceText=/home/lvapeab/smt/tasks/xerox/DATA/training.en
-targetText=/home/lvapeab/smt/tasks/xerox/DATA/training.es
-
-sourceNameDest=/home/lvapeab/smt/tasks/xerox/enes/NMT/DATA/trueCase/en
-targetNameDest=/home/lvapeab/smt/tasks/xerox/enes/NMT/DATA/trueCase/es
-# UE
-#sourceText=/home/lvapeab/smt/tasks/ue/DATA/training.es
-#targetText=/home/lvapeab/smt/tasks/ue/DATA/training.en
-
-# UE
-#sourceNameDest=/home/lvapeab/smt/tasks/ue/esen/NMT/DATA/es
-#targetNameDest=/home/lvapeab/smt/tasks/ue/esen/NMT/DATA/en
+sourceNameDest=/home/lvapeab/smt/tasks/xerox/esen/NMT/DATA/lowercased/es
+targetNameDest=/home/lvapeab/smt/tasks/xerox/esen/NMT/DATA/lowercased/en
 
 
 #Short-list length (vocabulary size)
 
-v_size_src=14060
-v_size_trg=16790
+v_size_src=14483
+v_size_trg=11428
 
 #Validation set size ( If >= 1 take this many samples for the validation set, if < 1, take this fraction of the samples)
 

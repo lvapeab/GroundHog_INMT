@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample.py
+sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample_ensemble.py
 
 #usage: Sample (of find with beam-serch) translations from a translation model
 #       [-h] --state STATE [--beam-search] [--beam-size BEAM_SIZE]
@@ -25,26 +25,35 @@ sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample.py
 #  --verbose             Be verbose
 
 task=xerox
+split=dev
+src_lan="es"
+dest_lan="en"
+stateN="xerox_low_250_300_state.pkl"
+model1="xerox_low_250_300_best_bleu_model.npz"
 
-data_dir=/home/lvapeab/smt/tasks/${task}/DATA/original
-split=test
-src_lan="en"
-dest_lan="es"
+#stateN="ue_332_289_False_state.pkl"
+#model1="ue_332_289_False_best_bleu_model.npz"
+#model2="ue_332_289_False_model_bleu13.npz"
+#model3="ue_332_289_False_model_bleu14.npz"
+#model4="ue_332_289_False_model_bleu15.npz"
 
+beamsize=12
+
+
+
+data_dir=/home/lvapeab/smt/tasks/${task}/DATA/lowercased
 source_file=${data_dir}/${split}.${src_lan}
 refs=${data_dir}/${split}.${dest_lan}
-
-model_name="xerox_fullVocab_TrueCased_420_500_"
-prefix=/home/lvapeab/smt/tasks/${task}/${src_lan}${dest_lan}/NMT/models/${model_name}
-beamsize=6
-
-state=${prefix}state.pkl
-model=${prefix}best_bleu_model.npz
+prefix=/home/lvapeab/smt/tasks/${task}/${src_lan}${dest_lan}/NMT/models
+state=${prefix}/$stateN
+m1=${prefix}/$model1
+# m2=${prefix}/$model2
+# m3=${prefix}/$model3
+# m4=${prefix}/$model4
 
 v=""
-
-dest_file=/home/lvapeab/smt/tasks/xerox/enes/NMT/translations/xerox.${split}.beam_${beam_size}.hyp.${dest_lan}
-python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state} ${model}  --source ${source_file} --trans ${dest_file} ${v}
-
+#dest_file=/home/lvapeab/smt/tasks/${task}/${src_lan}${dest_lan}/NMT/translations/${task}.${split}.beam_${beamsize}.hyp.${dest_lan}
+dest_file=/home/lvapeab/smt/software/GroundHog/experiments/nmt/PE_isles/data/$split.en
+python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state}  --source ${source_file} --trans ${dest_file} ${v} --models $m1 $m2 $m3 $m4
 echo "Beam: $beamsize. `thot_calc_bleu -r  ${refs} -t ${dest_file}`"
 

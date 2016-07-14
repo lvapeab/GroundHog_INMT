@@ -1,9 +1,6 @@
 #!/bin/bash
 
 
-
-export THEANO_FLAGS=on_unused_input='warn'
-
 #usage: Sample (of find with beam-serch) translations from a translation model
 #       [-h] --state STATE [--beam-search] [--beam-size BEAM_SIZE]
 #       [--ignore-unk] [--source SOURCE] [--trans TRANS] [--normalize]
@@ -28,11 +25,11 @@ export THEANO_FLAGS=on_unused_input='warn'
 
 
 sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample.py
-state=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_11k_full_620_500_state.pkl
+state=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_332_289_False_state.pkl
 beamsize=20
-model=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_11k_full_620_500_best_bleu_model.npz
-source_file=/home/lvapeab/smt/tasks/ue/esen/DATA/dev.es
-dest_file=/home/lvapeab/smt/tasks/ue/esen/NMT/translations/uefull-11k-dev-620-500.en
+model=/home/lvapeab/smt/tasks/ue/esen/NMT/models/ue_332_289_False_best_bleu_model.npz
+source_file=/home/lvapeab/smt/tasks/ue/DATA/test.es
+dest_file=/home/lvapeab/smt/tasks/ue/esen/NMT/translations/ue_test_332_289.en
 nbest_file=""
 aligns_file=""
 v=""

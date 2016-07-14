@@ -266,12 +266,10 @@ def main():
         fsrc = open(args.source, 'r')
         ftrans = open(args.trans, 'w')
 
-        start_time = time.time()
-
         n_samples = args.beam_size
         total_cost = 0.0
         logging.debug("Beam size: {}".format(n_samples))
-
+        start_time = time.time()
         for i, line in enumerate(fsrc):
             seqin = line.strip()
             seq, parsed_in = parse_input(state, indx_word, seqin, idx2word=idict_src) # seq is the ndarray of indices
@@ -298,6 +296,7 @@ def main():
                 logger.debug("Current speed is {} per sentence".
                         format((time.time() - start_time) / (i + 1)))
         print "Total cost of the translations: {}".format(total_cost)
+        print "Average time-per-sentence: {}".format((time.time()-start_time)/(i+1))
         fsrc.close()
         ftrans.close()
     else:

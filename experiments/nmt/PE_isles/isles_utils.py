@@ -4,6 +4,7 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format=" %(msecs)d: %(message)s")
 
+
 def longest_common_substring(s1, s2):
     m = [[0] * (1 + len(s2)) for _ in xrange(1 + len(s1))]
     longest, x_longest, y_longest = 0, 0, 0
@@ -65,7 +66,8 @@ def subfinder(pattern, mylist):
             return pattern, start_pos
     return [], -1
 
-def compute_mouse_movements(isles, old_isles):
+
+def compute_mouse_movements(isles, old_isles, last_checked_index):
 
     """
     Computes the intersection between two sets of isles.
@@ -82,13 +84,14 @@ def compute_mouse_movements(isles, old_isles):
     mouse_actions_sentence = 0
     for index, words in isles:
         # For each isle, we check that it is not included in the previous isles
-        #if not any(map(lambda x: is_sublist(x, words), old_isles)):
-        if not any(map(lambda x: words[0] in x, old_isles)):
-            if len(words) > 1:
-                mouse_actions_sentence += 2 # Selection of new isle
-            elif len(words) == 1:
-                mouse_actions_sentence += 1 # Isles of length 1 account for 1 mouse action
+        if index > last_checked_index:  # We don't select validated prefixes
+            if not any(map(lambda x: words[0] in x, old_isles)):
+                if len(words) > 1:
+                    mouse_actions_sentence += 2 # Selection of new isle
+                elif len(words) == 1:
+                    mouse_actions_sentence += 1 # Isles of length 1 account for 1 mouse action
     return mouse_actions_sentence
+
 
 def test_utils():
 

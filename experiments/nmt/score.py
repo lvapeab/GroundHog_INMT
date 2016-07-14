@@ -97,6 +97,8 @@ def parse_args():
             help="Allow unknown words in the input")
     parser.add_argument("--mode", default="interact",
             help="Processing mode, one of 'batch', 'txt', 'interact', 'save_representations'")
+    parser.add_argument("--bidirectional", default=False, action="store_true",
+            help="Save bidirectional representations")
     parser.add_argument("--n-batches", default=-1, type=int,
             help="Score only first n batches")
     parser.add_argument("--verbose", default=False, action="store_true",
@@ -249,7 +251,10 @@ def main():
                                       unk_sym=state['unk_sym_source'], null_sym=state['null_sym_source'])
                 reprs = compute_reprs(src_seq)
                 # We get the last hidden state of the forward network as the representation of the sentence.
-                sentence_representation = reprs[0][-1:][0][:state['dim']].reshape(1, state['dim'])
+                if args.bidirectional:
+                    sentence_representation = reprs[0][-1:][0][:state['dim']].reshape(1, state['dim'])
+                else:
+                    sentence_representation = reprs[0][-1:][0][:].reshape(1, 2*state['dim'])
                 if hdf5:
                     representations.append(sentence_representation) # numpy.append(representations, sentence_representation, axis = 0)
                 else:
@@ -262,7 +267,6 @@ def main():
             logger.debug("Closing opened files")
             f.close()
             pass
-
 
     elif args.mode == "txt":
         assert args.src and args.trg

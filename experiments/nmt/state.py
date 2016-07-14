@@ -150,6 +150,11 @@ def prototype_state():
     # start after this many iterations
     state['validation_burn_in'] = 10000
 
+    # Unknown words replacement
+    state['unkReplace'] = False
+    state['mapping'] = None
+    state['heuristic'] = 0
+
 
     # ---- REGULARIZATION -----
 

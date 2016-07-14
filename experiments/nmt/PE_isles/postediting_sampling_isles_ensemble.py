@@ -298,7 +298,6 @@ class BeamSearch(object):
                         logger.log(2, "Isle not included nor overlapped")
                         stop = True
                     for word in next_isle:
-
                         if fixed_words.get(k_counter) is None:
                             fixed_words[k_counter] = word
                             logger.log(2, "\t > Word %s (%d) will go to position %d" % (
@@ -314,12 +313,20 @@ class BeamSearch(object):
 
         # Dirty tricks to obtain any translation
         if not len(fin_trans):
-            if n_samples < 500:
+            if n_samples < 150:
                 logger.warning("Still no translations: try beam size {}".format(n_samples * 2))
                 return self.search(seq, n_samples * 2, fixed_words=fixed_words, isles=isles,
                                    max_N=max_N, minlen=minlen, verbose=verbose, idx2word=idx2word, eos_id=eos_id)
             else:
-                logger.error("Translation failed")
+                logger.warning("Translation failed. Returning partial translation.")
+                max_fixed = max(fixed_words.keys())
+                for i in range(n_samples):
+                    for p in range(k, max_fixed+1):
+                        if fixed_words.get(p) is not None:
+                            new_trans[i].append(fixed_words[p])
+                            new_costs[i] += 0.0
+                    fin_trans.append(new_trans[i])
+                    fin_costs.append(new_costs[i])
 
         fin_trans = numpy.array(fin_trans)[numpy.argsort(fin_costs)]
         fin_costs = numpy.array(sorted(fin_costs))
@@ -350,7 +357,6 @@ def smoothed_kl(p, q):
     # Additive smoothing
     p = (p - 1) / p.shape[0]
     q = (q - 1) / q.shape[0]
-
     return numpy.sum(p * numpy.log(p / q), 0)
 
 
@@ -377,6 +383,7 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
             if verbose:
                 logger.log(2, "{}: {}".format(costs[i], sentences[i]))
         return sentences, costs, trans
+
     elif sampler:
         sentences = []
         all_probs = []
@@ -417,13 +424,15 @@ def compute_alignment(src_seq, trg_seq, alignment_fns):
     for j in xrange(num_models):
         # target_len x source_len x num_examples
         alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
-    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0. # Put source <eos> score to 0.
-    hard_alignments = numpy.argmax(alignments, axis=1) # trg_len x num_examples
+    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
+    hard_alignments = numpy.argmax(alignments, axis=1)  # trg_len x num_examples
 
     return hard_alignments
 
 
-def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id, excluded_indices, heuristic=0, mapping=[]):
+def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
+                          hard_alignment, unk_id, excluded_indices,
+                          heuristic=0, mapping=[]):
 
     trans_words = trg_word_seq
     trans_seq = trg_seq
@@ -432,16 +441,14 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, u
     for j in xrange(len(trans_words)): # -1 : Don't write <eos>
         if trans_seq[j] == unk_id and j not in excluded_indices:
             UNK_src = src_word_seq[hard_alignment[j]]
-            if heuristic == 0: # Copy (ok when training with large vocabularies on en->fr, en->de)
+            if heuristic == 0:  # Copy (ok when training with large vocabularies on en->fr, en->de)
                 new_trans_words.append(UNK_src)
             elif heuristic == 1:
                 # Use the most likely translation (with t-table). If not found, copy the source word.
                 # Ok for small vocabulary (~30k) models
                 if UNK_src in mapping:
-                    logger.debug( "%s in mapping. Adding word %s"%(str(UNK_src), str(mapping[UNK_src])))
                     new_trans_words.append(mapping[UNK_src])
                 else:
-                    logger.debug( "%s in not in mapping. Copying word."%(str(UNK_src)))
                     new_trans_words.append(UNK_src)
             elif heuristic == 2:
                 # Use t-table if the source word starts with a lowercase letter. Otherwise copy
@@ -452,7 +459,6 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq, hard_alignment, u
                     new_trans_words.append(UNK_src)
         else:
             new_trans_words.append(trans_words[j])
-
     to_write = ''
     for j, word in enumerate(new_trans_words):
         to_write = to_write + word
@@ -594,6 +600,7 @@ def main():
             logging.info("Beam size: {}".format(n_samples))
             total_errors = 0
             total_words = 0
+            total_chars = 0
             total_mouse_actions = 0
             max_N = args.max_n
             if args.interactive:
@@ -728,6 +735,7 @@ def main():
                     else:
                         checked_index_r = 0
                         checked_index_h = 0
+                        last_checked_index = 0
                         unk_words = []
                         fixed_words_user = OrderedDict()  # {pos: word}
                         old_isles = []
@@ -746,7 +754,7 @@ def main():
                                     hypothesis = " ".join([" ".join(h_isle[1]) for h_isle in hypothesis_isles]).split()
                                     break
                                 # Count only for non selected isles
-                                mouse_actions_sentence += compute_mouse_movements(isle_indices, old_isles) # Isles of length 1 account for 1 mouse action
+                                mouse_actions_sentence += compute_mouse_movements(isle_indices, old_isles, last_checked_index) # Isles of length 1 account for 1 mouse action
                             else:
                                 isle_indices = []
 
@@ -772,6 +780,7 @@ def main():
                                     #    isle_indices[-1][1].append(word2index[new_word])
                                     logger.debug(
                                         '"%s" to position %d (end-of-sentence)' % (str(new_word), checked_index_h))
+                                    last_checked_index = checked_index_h
                                     break
                                 elif hypothesis[checked_index_h] != reference[checked_index_r]:
                                     errors_sentence += 1
@@ -787,6 +796,8 @@ def main():
                                             unk_words.append(new_word)
                                             unk_indices.append(checked_index_h)
                                     logger.debug('"%s" to position %d' % (str(new_word), checked_index_h))
+                                    last_checked_index = checked_index_h
+
                                     break
                                 else:
                                     # No errors
@@ -796,18 +807,17 @@ def main():
                                     validated_prefix.append(new_word_index)
                                     checked_index_h += 1
                                     checked_index_r += 1
-
+                                    last_checked_index = checked_index_h
                             old_isles = [isle[1] for isle in isle_indices]
                             old_isles.append(validated_prefix)
 
                             # Generate a new hypothesis
                             logger.debug("")
                             sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id,
-                                                         fixed_words=copy.copy(fixed_words_user), max_N=max_N,
-                                                         isles=isle_indices,
-                                                         sampler=sampler, beam_search=beam_search,
-                                                         normalize=args.normalize, verbose=args.verbose,
-                                                         idx2word=indx2word_trg)
+                                                             fixed_words=copy.copy(fixed_words_user), max_N=max_N,
+                                                             isles=isle_indices, sampler=sampler,
+                                                             beam_search=beam_search, normalize=args.normalize,
+                                                             verbose=args.verbose, idx2word=indx2word_trg)
                             hypothesis_number += 1
                             best = numpy.argmin(costs)
                             hypothesis = sentences[best].split()
@@ -837,27 +847,36 @@ def main():
                             hypothesis = hypothesis[:len(reference)]
                             errors_sentence += 1
                             logger.debug("Cutting hypothesis")
+                    """    
+                    assert hypothesis == reference, "Error: The final hypothesis does not match with the reference! " \
+                                                    "Sentence: %d \n" \
+                                                    "Hypothesis: %s\n" \
+                                                    "Reference:  %s" % (i, hypothesis, reference)
+                    """
+                    chars_sentence = sum(map(lambda x: len(x), hypothesis))
                     total_cost += costs[best]
                     total_errors += errors_sentence
                     total_words += len(hypothesis)
+                    total_chars += chars_sentence
                     total_mouse_actions += mouse_actions_sentence + 1  # This +1 is the validation action
                     logger.debug("Final hypotesis: %s" % " ".join(hypothesis))
                     logger.debug("%d errors. "
                                  "Sentence WSR: %4f. "
                                  "Sentence mouse strokes: %d "
                                  "Sentence MAR: %4f. "
+                                 "Sentence MAR_c: %4f. "
                                  "Accumulated WSR: %4f. "
-                                 "Accumulated MAR: %4f\n\n\n\n\n\n" % (errors_sentence,
-                                                                       float(errors_sentence) / len(hypothesis),
-                                                                       mouse_actions_sentence + 1,
-                                                                       float(mouse_actions_sentence + 1) / len(hypothesis),
-                                                                       float(total_errors) / total_words,
-                                                                       float(total_mouse_actions) / total_words))
+                                 "Accumulated MAR: %4f. "
+                                 "Accumulated MAR_c: %4f.\n\n\n\n\n\n" %
+                                 (errors_sentence,
+                                  float(errors_sentence) / len(hypothesis),
+                                  mouse_actions_sentence + 1,
+                                  float(mouse_actions_sentence + 1) / len(hypothesis),
+                                  float(mouse_actions_sentence + 1) / chars_sentence,
+                                  float(total_errors) / total_words,
+                                  float(total_mouse_actions) / total_words,
+                                  float(total_mouse_actions) / total_chars))
 
-                    assert hypothesis == reference, "Error: The final hypothesis does not match with the reference! " \
-                                                    "Sentence: %d \n" \
-                                                    "Hypothesis: %s\n" \
-                                                    "Reference:  %s" % (i, hypothesis, reference)
                     print >> ftrans, " ".join(hypothesis)
 
                     if (n_line + 1) % 50 == 0:
@@ -866,14 +885,17 @@ def main():
                             ftrans_ori.flush()
                         logger.info("%d sentences processed" % (n_line + 1))
                         logger.info(
-                            "Current speed is {} per sentence".format((time.time() - start_time) / (n_line + 1)))
+                                "Current speed is {} per sentence".format((time.time() - start_time) / (n_line + 1)))
                         logger.info("Current WSR is: %f" % (float(total_errors) / total_words))
                         logger.info("Current MAR is: %f" % (float(total_mouse_actions) / total_words))
+                        logger.info("Current MAR_c is: %f" % (float(total_mouse_actions) / total_chars))
 
             print "Total number of errors:", total_errors
             print "Total number selections", total_mouse_actions
             print "WSR: %f" % (float(total_errors) / total_words)
             print "MAR: %f" % (float(total_mouse_actions) / total_words)
+            print "MAR_c: %f" % (float(total_mouse_actions) / total_chars)
+
             print "Total cost of the translations: {}".format(total_cost)
 
             fsrc.close()

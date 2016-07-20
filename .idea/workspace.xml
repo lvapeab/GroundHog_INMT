@@ -1,91 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="More accurate MA -&gt; Enhanced user simulation">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/train_unkRep.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/utils/vocabulary_coverage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/lvapeab.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/lvapeab.xml" />
+    <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="Last version of the repo">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/enes/temp/libreadline.so.6" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleEnsemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/fast_align.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_UE_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/PE_Emea_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_isles_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_isles_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_isles_ensemble2.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_isles_ensemble2.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_prefix_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_prefix_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_prefix_ensemble2.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_fren_prefix_ensemble2.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ted/PE_TED_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ted/err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ted/ted_zhen_prefix_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ted/ted_zhen_prefix_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE_Isles.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_prefix_ensemble3.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_prefix_ensemble3.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble2.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble2.l" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/PE_Xerox_Isles.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/PE_Xerox_Isles_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xeroxUnk.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xeroxUnk.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_islesOnlyFirstIter.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_islesOnlyFirstIter.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_isles_ensemble2.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_isles_ensemble2.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_prefix.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_prefix.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaEnFr.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaFrEn.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/euro-en-de/stateEuro.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ted/stateTED.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/turista/state.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/#state.py#" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/state.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEnEs.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox_low.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/emea/emea.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/euro-en-de/euro.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ted/TED_train.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/turista/turista.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/enes/ue.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_random_search.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_low.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh~" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/PE_Xerox.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/isles_utils.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/isles_utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/sample_ensemble.py" afterPath="$PROJECT_DIR$/experiments/nmt/sample_ensemble.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/score.py" afterPath="$PROJECT_DIR$/experiments/nmt/score.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/state.py" afterPath="$PROJECT_DIR$/experiments/nmt/state.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/utils/format_fast_align.py" afterPath="$PROJECT_DIR$/experiments/nmt/utils/format_fast_align.py" />
-    </list>
-    <list id="1b62e22e-c1ba-4825-a359-f880cd8e0d01" name="Scripts" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/beam_xerox.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/beam_xerox.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/exploreBeamXerox.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleEuroparl.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleEuroparlWithNgram.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleGeneral.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleTurista.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleTuristaNgram.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleUE.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleXerox.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleppXerox.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/extract_reprs.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_UE.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_UE_Isles.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_europarl.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/prefix.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/prefix.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue_isles.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue_isles.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_expl.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_expl.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_exploration.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_exploration.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_kl.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_kl.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_test.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_v2.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/x_isles_v2.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/preprocess.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/europarl/stateEmeaEuroparl520_500_sameLang.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/europarl/stateEmeaEuroparl520_800_sameLang.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/europarl/stateEuroparl620_1000.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/turista/stateTurista300_250.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-620_1000.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox420_300.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox420_500_PE.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox420_500_PE_esen.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox520_500.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXerox620_400.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase520_500.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase520_800.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/youtube/stateYoutube620_1000.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/europarl/trainEmeaEuroparl520-800_sameLang.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/europarl/trainEmeaEuroparl_sameLang.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/europarl/trainEuroparl620-1000.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/turista/launchTrainTurista300_250.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/turista/turista_300_250.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/turista/turista_300_250.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-600.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-800.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_620-1000.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_PE_520_500.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_fullVocab_520_500.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_random_search.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/xerox/xerox_truecase_520_800.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/youtube/trainYoutube620-1000.sh" afterPath="" />
     </list>
     <ignored path="GroundHog.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleGeneral.sh" ignored="true" />
-    <file path="$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleUE.sh" ignored="true" />
-    <file path="$PROJECT_DIR$/experiments/nmt/scripts/preprocess.sh" ignored="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,11 +118,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiments/nmt/sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8318318">
+            <state vertical-scroll-proportion="0.0">
               <caret line="227" column="41" selection-start-line="227" selection-start-column="41" selection-end-line="227" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.51102203">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -183,7 +176,6 @@
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/PE_Xerox_Isles.sh" />
         <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/experiments/nmt/replace_UNK.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/utils/binarize_top_unigram.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/utils/create_topn.py" />
@@ -219,6 +211,7 @@
         <option value="$PROJECT_DIR$/experiments/nmt/utils/vocabulary_coverage.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_random_search.sh" />
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/state.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -228,10 +221,9 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="24" />
-    <option name="width" value="1922" />
-    <option name="height" value="1153" />
+    <option name="width" value="944" />
+    <option name="height" value="1152" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -258,6 +250,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,37 +346,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="training" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GroundHog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GroundHog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nmt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="training" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue" />
+              <option name="myItemId" value="post-editing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -410,8 +374,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -772,7 +734,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="" />
-      <changelist id="1b62e22e-c1ba-4825-a359-f880cd8e0d01" name="Scripts" comment="" />
       <created>1438245649485</created>
       <option name="number" value="Default" />
       <updated>1438245649485</updated>
@@ -915,7 +876,25 @@
       <option name="project" value="LOCAL" />
       <updated>1456236439063</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Last version of the repo">
+      <created>1468493493704</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1468493493704</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Scripts/logs directory">
+      <created>1468493555519</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1468493555519</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Remove scripts dir from gitignore">
+      <created>1469024442640</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1469024442640</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -928,10 +907,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="24" width="1922" height="1153" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="24" width="944" height="1152" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24406958" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2437432" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879376" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32782102" sideWeight="0.502211" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1009,7 +988,10 @@
     <MESSAGE value="Potentially deep encoder" />
     <MESSAGE value="Fix bugs" />
     <MESSAGE value="More accurate MA -&gt; Enhanced user simulation" />
-    <option name="LAST_COMMIT_MESSAGE" value="More accurate MA -&gt; Enhanced user simulation" />
+    <MESSAGE value="Last version of the repo" />
+    <MESSAGE value="Scripts/logs directory" />
+    <MESSAGE value="Remove scripts dir from gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove scripts dir from gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1025,13 +1007,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6156156">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/xerox/stateXeroxTrueCase420_600.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3153153">
@@ -1379,8 +1354,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/experiments/nmt/sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8318318">
+        <state vertical-scroll-proportion="0.0">
           <caret line="227" column="41" selection-start-line="227" selection-start-column="41" selection-end-line="227" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51102203">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
           <folding />
         </state>
       </provider>

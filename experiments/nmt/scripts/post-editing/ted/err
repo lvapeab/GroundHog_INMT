@@ -1,0 +1,617 @@
+Using gpu device 0: GeForce GTX TITAN X
+ 37: State: 
+ {'timeStop': 44640, 'n_sym_source': 30001, 'weight_scale': 0.01, 'unk_sym_target': 1, 'hid_mult': 1.0, 'c_dim': 1120, 'heuristic': 0, 'maxout_part': 2.0, 'activ': 'lambda x: TT.tanh(x)', 'deep_attention_n_hids': [560, 560], 'rec_layer': 'RecurrentLayer', 'source': ['/home/lvapeab/smt/tasks/ted/NMT/DATA/en_30k.binarized_text.shuffled.h5'], 'lr': 1.0, 'null_sym_source': 30000, 'last_backward': False, 'testppl': 1e+20, 'rec_reseter': 'lambda x: TT.nnet.sigmoid(x)', 'clr': 1.0, 'dec_rec_gater': 'lambda x: TT.nnet.sigmoid(x)', 'validFreq': 4000, 'dec_rec_gating': True, 'minerr': -1, 'validation_set_out': '/home/lvapeab/smt/tasks/ted/enzh/NMT/tmp/ted.truecased.480_620.hyp.zh', 'dec_rec_layer': 'RecurrentLayerWithSearch', 'enc_rec_gater': 'lambda x: TT.nnet.sigmoid(x)', 'rec_weight_init_fn': 'sample_weights_orth', 'dim': 560, 'level': 'DEBUG', 'prefix': '/home/lvapeab/smt/tasks/ted/enzh/NMT/models/ted_477_547', 'decoding_inputs': True, 'rank_n_approx': 477, 'saveFreq': 60, 'n_sym_target': 30001, 'word_indx_trgt': '/home/lvapeab/smt/tasks/ted/NMT/DATA/zh_30k.vocab.pkl', 'validation_set_grndtruth': '/home/lvapeab/smt/tasks/ted/DATA/test.zh', 'dec_rec_reseting': True, 'validcost': 1e+20, 'weight_noise_rec': False, 'overwrite': 1, 'trainFreq': 1000, 'reload': True, 'dropout_rec': 1.0, 'deep_out': True, 'hookFreq': 1000, 'indx_word': '/home/lvapeab/smt/tasks/ted/NMT/DATA/en_30k.ivocab.pkl', 'gotNaN': 0, 'step': 67922, 'bs': 80, 'validation_set': '/home/lvapeab/smt/tasks/ted/DATA/test.en', 'decoder_stack': 1, 'search': True, 'log2_p_word': 1e+20, 'beam_size': 6, 'algo': 'SGD_adadelta', 'minlr': 0, 'bias_code': True, 'bleu_script': '/home/lvapeab/smt/software/mosesdecoder/scripts/generic/multi-bleu.perl', 'cutoff': 1.0, 'shuffle': False, 'word_indx': '/home/lvapeab/smt/tasks/ted/NMT/DATA/en_30k.vocab.pkl', 'indx_word_target': '/home/lvapeab/smt/tasks/ted/NMT/DATA/zh_30k.ivocab.pkl', 'seqlen': 50, 'patience': 30, 'sort_k_batches': 20, 'rec_reseting': True, 'deep_attention_acts': [' lambda x: TT.tanh(x) ', ' lambda x: TT.tanh(x) '], 'testcost': 1e+20, 'rec_weight_scale': 1.0, 'use_infinite_loop': True, 'null_sym_target': 30000, 'deep_attention': True, 'n_samples': 3, 'forward': True, 'log2_p_expl': 1e+20, 'enc_rec_reseting': True, 'dropout': 0.5, 'dim_mult': 1.0, 'target_words_segmented': False, 'traincost': 773.0694580078125, 'oov': 'UNK', 'dec_rec_reseter': 'lambda x: TT.nnet.sigmoid(x)', 'reset': -1, 'target': ['/home/lvapeab/smt/tasks/ted/NMT/DATA/zh_30k.binarized_text.shuffled.h5'], 'char_based_bleu': False, 'bleu_val_frequency': 2000, 'grad_norm': 1e+20, 'bias': 0.0, 'enc_rec_reseter': 'lambda x: TT.nnet.sigmoid(x)', 'validppl': 1e+20, 'check_first_word': True, 'cutoff_rescale_length': 0.0, 'bigram': True, 'trim_batches': True, 'encoder_stack': 1, 'last_forward': False, 'unary_activ': 'Maxout(2)', 'adarho': 0.95, 'enc_rec_layer': 'RecurrentLayer', 'seed': 1234, 'validation_burn_in': 20000, 'unk_sym_source': 1, 'weight_noise': True, 'adaeps': 1e-06, 'use_nce': False, 'source_encoding': 'ascii', 'additional_ngrad_monitors': None, 'rank_n_activ': 'lambda x: x', 'target_encoding': 'ascii', 'enc_rec_gating': True, 'n_examples': 3, 'loopIters': 10000000000.0, 'profile': 0, 'rec_gating': True, 'mapping': None, 'weight_init_fn': 'sample_weights_classic', 'take_top': True, 'output_validation_set': True, 'on_nan': 'raise', 'eps': 1e-10, 'early_stop_time': 24, 'bvalidcost': 1e+21, 'weight_noise_amount': 0.01, 'backward': True, 'unkReplace': False, 'rec_gater': 'lambda x: TT.nnet.sigmoid(x)'}
+ 38: Using an ensemble of 5 models
+ 38: Create input variables
+ 38: Create encoder
+ 38: _create_embedding_layers
+ 129: _create_transition_layers
+ 130: __create_enc_transition_layer_0
+ 131: _create_inter_level_layers
+ 132: _create_representation_layers
+ 137: Build encoding computation graph
+ 170: Create backward encoder
+ 170: _create_embedding_layers
+ 262: _create_transition_layers
+ 262: __create_back_enc_transition_layer_0
+ 264: _create_inter_level_layers
+ 264: _create_representation_layers
+ 270: Build backward encoding computation graph
+ 299: Create decoder
+ 299: _create_embedding_layers
+ 389: _create_transition_layers
+ 389: __create_dec_transition_layer_0
+ 389: RecurrentLayerWithSearch is used
+ 644: _create_inter_level_layers
+ 644: _create_initialization_layers
+ 647: _create_decoding_layers
+ 663: _create_readout_layers
+ 735: Build log-likelihood computation graph
+ 953: Get grads
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_utils.py:78: UserWarning: You are creating a TensorVariable with float64 dtype. You requested an action via the Theano flag warn_float64={ignore,warn,raise,pdb}.
+  nw_x = nw_x.astype(dtype).type()
+ 132: Got grads
+ 132: Build sampling computation graph
+ 848: Create auxiliary variables
+ 849: Compile sampler
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/theano/scan_module/scan_perform_ext.py:133: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility
+  from scan_perform.scan_perform import *
+ 364: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 365: Loading W1_dec_deep_softmax of (280, 477)
+ 394: Loading W2_dec_deep_softmax of (477, 30001)
+ 570: Loading b_dec_deep_softmax of (30001,)
+ 573: Loading W_0_dec_repr_readout of (1120, 560)
+ 582: Loading W_dec_transition_0 of (560, 560)
+ 587: Loading G_dec_transition_0 of (560, 560)
+ 592: Loading R_dec_transition_0 of (560, 560)
+ 598: Loading A_dec_transition_0 of (1120, 560)
+ 607: Loading B_dec_transition_0 of (560, 560)
+ 612: Loading D_dec_transition_0 of (560, 1)
+ 613: Loading W_0_DatN_dec_transition_0 of (560, 560)
+ 619: Loading W_1_DatN_dec_transition_0 of (560, 560)
+ 623: Loading b_0_DatN_dec_transition_0 of (560,)
+ 625: Loading b_1_DatN_dec_transition_0 of (560,)
+ 627: Loading W_0_dec_dec_inputter_0 of (1120, 560)
+ 636: Loading W_0_dec_dec_reseter_0 of (1120, 560)
+ 645: Loading W_0_dec_dec_updater_0 of (1120, 560)
+ 654: Loading W_0_dec_input_embdr_0 of (477, 560)
+ 658: Loading b_0_dec_input_embdr_0 of (560,)
+ 681: Loading W_0_dec_approx_embdr of (30001, 477)
+ 862: Loading b_0_dec_approx_embdr of (477,)
+ 864: Loading W_0_dec_initializer_0 of (560, 560)
+ 868: Loading b_0_dec_initializer_0 of (560,)
+ 871: Loading W_enc_transition_0 of (560, 560)
+ 876: Loading G_enc_transition_0 of (560, 560)
+ 882: Loading R_enc_transition_0 of (560, 560)
+ 887: Loading W_0_enc_input_embdr_0 of (477, 560)
+ 891: Loading b_0_enc_input_embdr_0 of (560,)
+ 915: Loading W_0_enc_approx_embdr of (30001, 477)
+ 91: Loading b_0_enc_approx_embdr of (477,)
+ 93: Loading W_0_enc_update_embdr_0 of (477, 560)
+ 97: Loading W_0_enc_reset_embdr_0 of (477, 560)
+ 102: Loading W_back_enc_transition_0 of (560, 560)
+ 108: Loading G_back_enc_transition_0 of (560, 560)
+ 113: Loading R_back_enc_transition_0 of (560, 560)
+ 119: Loading W_0_back_enc_input_embdr_0 of (477, 560)
+ 123: Loading b_0_back_enc_input_embdr_0 of (560,)
+ 125: Loading W_0_back_enc_update_embdr_0 of (477, 560)
+ 130: Loading W_0_back_enc_reset_embdr_0 of (477, 560)
+ 134: Loading W_0_dec_update_embdr_0 of (477, 560)
+ 139: Loading W_0_dec_reset_embdr_0 of (477, 560)
+ 144: Loading W_0_dec_hid_readout_0 of (560, 560)
+ 149: Loading b_0_dec_hid_readout_0 of (560,)
+ 151: Loading W_0_dec_prev_readout_0 of (477, 560)
+ 301: Create input variables
+ 301: Create encoder
+ 301: _create_embedding_layers
+ 392: _create_transition_layers
+ 392: __create_enc_transition_layer_0
+ 393: _create_inter_level_layers
+ 393: _create_representation_layers
+ 398: Build encoding computation graph
+ 426: Create backward encoder
+ 426: _create_embedding_layers
+ 517: _create_transition_layers
+ 517: __create_back_enc_transition_layer_0
+ 519: _create_inter_level_layers
+ 519: _create_representation_layers
+ 523: Build backward encoding computation graph
+ 552: Create decoder
+ 553: _create_embedding_layers
+ 642: _create_transition_layers
+ 642: __create_dec_transition_layer_0
+ 642: RecurrentLayerWithSearch is used
+ 895: _create_inter_level_layers
+ 895: _create_initialization_layers
+ 897: _create_decoding_layers
+ 911: _create_readout_layers
+ 981: Build log-likelihood computation graph
+ 154: Get grads
+ 270: Got grads
+ 270: Build sampling computation graph
+ 987: Create auxiliary variables
+ 987: Compile sampler
+ 1: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 2: Loading W1_dec_deep_softmax of (280, 477)
+ 35: Loading W2_dec_deep_softmax of (477, 30001)
+ 255: Loading b_dec_deep_softmax of (30001,)
+ 259: Loading W_0_dec_repr_readout of (1120, 560)
+ 270: Loading W_dec_transition_0 of (560, 560)
+ 276: Loading G_dec_transition_0 of (560, 560)
+ 282: Loading R_dec_transition_0 of (560, 560)
+ 289: Loading A_dec_transition_0 of (1120, 560)
+ 301: Loading B_dec_transition_0 of (560, 560)
+ 306: Loading D_dec_transition_0 of (560, 1)
+ 309: Loading W_0_DatN_dec_transition_0 of (560, 560)
+ 315: Loading W_1_DatN_dec_transition_0 of (560, 560)
+ 321: Loading b_0_DatN_dec_transition_0 of (560,)
+ 322: Loading b_1_DatN_dec_transition_0 of (560,)
+ 324: Loading W_0_dec_dec_inputter_0 of (1120, 560)
+ 335: Loading W_0_dec_dec_reseter_0 of (1120, 560)
+ 346: Loading W_0_dec_dec_updater_0 of (1120, 560)
+ 357: Loading W_0_dec_input_embdr_0 of (477, 560)
+ 362: Loading b_0_dec_input_embdr_0 of (560,)
+ 391: Loading W_0_dec_approx_embdr of (30001, 477)
+ 595: Loading b_0_dec_approx_embdr of (477,)
+ 597: Loading W_0_dec_initializer_0 of (560, 560)
+ 602: Loading b_0_dec_initializer_0 of (560,)
+ 603: Loading W_enc_transition_0 of (560, 560)
+ 609: Loading G_enc_transition_0 of (560, 560)
+ 615: Loading R_enc_transition_0 of (560, 560)
+ 620: Loading W_0_enc_input_embdr_0 of (477, 560)
+ 625: Loading b_0_enc_input_embdr_0 of (560,)
+ 649: Loading W_0_enc_approx_embdr of (30001, 477)
+ 826: Loading b_0_enc_approx_embdr of (477,)
+ 828: Loading W_0_enc_update_embdr_0 of (477, 560)
+ 832: Loading W_0_enc_reset_embdr_0 of (477, 560)
+ 837: Loading W_back_enc_transition_0 of (560, 560)
+ 843: Loading G_back_enc_transition_0 of (560, 560)
+ 848: Loading R_back_enc_transition_0 of (560, 560)
+ 853: Loading W_0_back_enc_input_embdr_0 of (477, 560)
+ 858: Loading b_0_back_enc_input_embdr_0 of (560,)
+ 859: Loading W_0_back_enc_update_embdr_0 of (477, 560)
+ 864: Loading W_0_back_enc_reset_embdr_0 of (477, 560)
+ 868: Loading W_0_dec_update_embdr_0 of (477, 560)
+ 873: Loading W_0_dec_reset_embdr_0 of (477, 560)
+ 878: Loading W_0_dec_hid_readout_0 of (560, 560)
+ 883: Loading b_0_dec_hid_readout_0 of (560,)
+ 884: Loading W_0_dec_prev_readout_0 of (477, 560)
+ 20: Create input variables
+ 20: Create encoder
+ 20: _create_embedding_layers
+ 114: _create_transition_layers
+ 114: __create_enc_transition_layer_0
+ 116: _create_inter_level_layers
+ 116: _create_representation_layers
+ 120: Build encoding computation graph
+ 151: Create backward encoder
+ 151: _create_embedding_layers
+ 244: _create_transition_layers
+ 244: __create_back_enc_transition_layer_0
+ 246: _create_inter_level_layers
+ 246: _create_representation_layers
+ 251: Build backward encoding computation graph
+ 280: Create decoder
+ 280: _create_embedding_layers
+ 376: _create_transition_layers
+ 376: __create_dec_transition_layer_0
+ 376: RecurrentLayerWithSearch is used
+ 632: _create_inter_level_layers
+ 632: _create_initialization_layers
+ 635: _create_decoding_layers
+ 649: _create_readout_layers
+ 728: Build log-likelihood computation graph
+ 907: Get grads
+ 407: Got grads
+ 407: Build sampling computation graph
+ 129: Create auxiliary variables
+ 130: Compile sampler
+ 11: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 12: Loading W1_dec_deep_softmax of (280, 477)
+ 41: Loading W2_dec_deep_softmax of (477, 30001)
+ 241: Loading b_dec_deep_softmax of (30001,)
+ 244: Loading W_0_dec_repr_readout of (1120, 560)
+ 253: Loading W_dec_transition_0 of (560, 560)
+ 259: Loading G_dec_transition_0 of (560, 560)
+ 265: Loading R_dec_transition_0 of (560, 560)
+ 271: Loading A_dec_transition_0 of (1120, 560)
+ 281: Loading B_dec_transition_0 of (560, 560)
+ 286: Loading D_dec_transition_0 of (560, 1)
+ 288: Loading W_0_DatN_dec_transition_0 of (560, 560)
+ 294: Loading W_1_DatN_dec_transition_0 of (560, 560)
+ 299: Loading b_0_DatN_dec_transition_0 of (560,)
+ 300: Loading b_1_DatN_dec_transition_0 of (560,)
+ 302: Loading W_0_dec_dec_inputter_0 of (1120, 560)
+ 312: Loading W_0_dec_dec_reseter_0 of (1120, 560)
+ 323: Loading W_0_dec_dec_updater_0 of (1120, 560)
+ 332: Loading W_0_dec_input_embdr_0 of (477, 560)
+ 336: Loading b_0_dec_input_embdr_0 of (560,)
+ 360: Loading W_0_dec_approx_embdr of (30001, 477)
+ 537: Loading b_0_dec_approx_embdr of (477,)
+ 538: Loading W_0_dec_initializer_0 of (560, 560)
+ 543: Loading b_0_dec_initializer_0 of (560,)
+ 545: Loading W_enc_transition_0 of (560, 560)
+ 550: Loading G_enc_transition_0 of (560, 560)
+ 555: Loading R_enc_transition_0 of (560, 560)
+ 561: Loading W_0_enc_input_embdr_0 of (477, 560)
+ 565: Loading b_0_enc_input_embdr_0 of (560,)
+ 588: Loading W_0_enc_approx_embdr of (30001, 477)
+ 764: Loading b_0_enc_approx_embdr of (477,)
+ 766: Loading W_0_enc_update_embdr_0 of (477, 560)
+ 771: Loading W_0_enc_reset_embdr_0 of (477, 560)
+ 775: Loading W_back_enc_transition_0 of (560, 560)
+ 780: Loading G_back_enc_transition_0 of (560, 560)
+ 786: Loading R_back_enc_transition_0 of (560, 560)
+ 791: Loading W_0_back_enc_input_embdr_0 of (477, 560)
+ 795: Loading b_0_back_enc_input_embdr_0 of (560,)
+ 796: Loading W_0_back_enc_update_embdr_0 of (477, 560)
+ 801: Loading W_0_back_enc_reset_embdr_0 of (477, 560)
+ 806: Loading W_0_dec_update_embdr_0 of (477, 560)
+ 810: Loading W_0_dec_reset_embdr_0 of (477, 560)
+ 815: Loading W_0_dec_hid_readout_0 of (560, 560)
+ 820: Loading b_0_dec_hid_readout_0 of (560,)
+ 821: Loading W_0_dec_prev_readout_0 of (477, 560)
+ 995: Create input variables
+ 995: Create encoder
+ 995: _create_embedding_layers
+ 86: _create_transition_layers
+ 86: __create_enc_transition_layer_0
+ 87: _create_inter_level_layers
+ 87: _create_representation_layers
+ 92: Build encoding computation graph
+ 121: Create backward encoder
+ 121: _create_embedding_layers
+ 214: _create_transition_layers
+ 214: __create_back_enc_transition_layer_0
+ 216: _create_inter_level_layers
+ 216: _create_representation_layers
+ 220: Build backward encoding computation graph
+ 251: Create decoder
+ 251: _create_embedding_layers
+ 342: _create_transition_layers
+ 342: __create_dec_transition_layer_0
+ 342: RecurrentLayerWithSearch is used
+ 592: _create_inter_level_layers
+ 592: _create_initialization_layers
+ 595: _create_decoding_layers
+ 608: _create_readout_layers
+ 678: Build log-likelihood computation graph
+ 850: Get grads
+ 427: Got grads
+ 428: Build sampling computation graph
+ 135: Create auxiliary variables
+ 135: Compile sampler
+ 989: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 990: Loading W1_dec_deep_softmax of (280, 477)
+ 15: Loading W2_dec_deep_softmax of (477, 30001)
+ 189: Loading b_dec_deep_softmax of (30001,)
+ 192: Loading W_0_dec_repr_readout of (1120, 560)
+ 200: Loading W_dec_transition_0 of (560, 560)
+ 206: Loading G_dec_transition_0 of (560, 560)
+ 211: Loading R_dec_transition_0 of (560, 560)
+ 216: Loading A_dec_transition_0 of (1120, 560)
+ 225: Loading B_dec_transition_0 of (560, 560)
+ 230: Loading D_dec_transition_0 of (560, 1)
+ 232: Loading W_0_DatN_dec_transition_0 of (560, 560)
+ 237: Loading W_1_DatN_dec_transition_0 of (560, 560)
+ 241: Loading b_0_DatN_dec_transition_0 of (560,)
+ 243: Loading b_1_DatN_dec_transition_0 of (560,)
+ 244: Loading W_0_dec_dec_inputter_0 of (1120, 560)
+ 254: Loading W_0_dec_dec_reseter_0 of (1120, 560)
+ 264: Loading W_0_dec_dec_updater_0 of (1120, 560)
+ 273: Loading W_0_dec_input_embdr_0 of (477, 560)
+ 277: Loading b_0_dec_input_embdr_0 of (560,)
+ 300: Loading W_0_dec_approx_embdr of (30001, 477)
+ 474: Loading b_0_dec_approx_embdr of (477,)
+ 476: Loading W_0_dec_initializer_0 of (560, 560)
+ 480: Loading b_0_dec_initializer_0 of (560,)
+ 482: Loading W_enc_transition_0 of (560, 560)
+ 487: Loading G_enc_transition_0 of (560, 560)
+ 492: Loading R_enc_transition_0 of (560, 560)
+ 497: Loading W_0_enc_input_embdr_0 of (477, 560)
+ 501: Loading b_0_enc_input_embdr_0 of (560,)
+ 524: Loading W_0_enc_approx_embdr of (30001, 477)
+ 698: Loading b_0_enc_approx_embdr of (477,)
+ 700: Loading W_0_enc_update_embdr_0 of (477, 560)
+ 704: Loading W_0_enc_reset_embdr_0 of (477, 560)
+ 709: Loading W_back_enc_transition_0 of (560, 560)
+ 714: Loading G_back_enc_transition_0 of (560, 560)
+ 719: Loading R_back_enc_transition_0 of (560, 560)
+ 724: Loading W_0_back_enc_input_embdr_0 of (477, 560)
+ 728: Loading b_0_back_enc_input_embdr_0 of (560,)
+ 730: Loading W_0_back_enc_update_embdr_0 of (477, 560)
+ 734: Loading W_0_back_enc_reset_embdr_0 of (477, 560)
+ 739: Loading W_0_dec_update_embdr_0 of (477, 560)
+ 743: Loading W_0_dec_reset_embdr_0 of (477, 560)
+ 748: Loading W_0_dec_hid_readout_0 of (560, 560)
+ 753: Loading b_0_dec_hid_readout_0 of (560,)
+ 754: Loading W_0_dec_prev_readout_0 of (477, 560)
+ 115: Create input variables
+ 115: Create encoder
+ 115: _create_embedding_layers
+ 206: _create_transition_layers
+ 206: __create_enc_transition_layer_0
+ 208: _create_inter_level_layers
+ 208: _create_representation_layers
+ 212: Build encoding computation graph
+ 240: Create backward encoder
+ 240: _create_embedding_layers
+ 331: _create_transition_layers
+ 332: __create_back_enc_transition_layer_0
+ 333: _create_inter_level_layers
+ 333: _create_representation_layers
+ 338: Build backward encoding computation graph
+ 366: Create decoder
+ 366: _create_embedding_layers
+ 456: _create_transition_layers
+ 456: __create_dec_transition_layer_0
+ 457: RecurrentLayerWithSearch is used
+ 708: _create_inter_level_layers
+ 708: _create_initialization_layers
+ 710: _create_decoding_layers
+ 725: _create_readout_layers
+ 795: Build log-likelihood computation graph
+ 968: Get grads
+ 717: Got grads
+ 717: Build sampling computation graph
+ 425: Create auxiliary variables
+ 425: Compile sampler
+ 543: Model params:
+['A_dec_transition_0',
+ 'B_dec_transition_0',
+ 'D_dec_transition_0',
+ 'G_back_enc_transition_0',
+ 'G_dec_transition_0',
+ 'G_enc_transition_0',
+ 'R_back_enc_transition_0',
+ 'R_dec_transition_0',
+ 'R_enc_transition_0',
+ 'W1_dec_deep_softmax',
+ 'W2_dec_deep_softmax',
+ 'W_0_DatN_dec_transition_0',
+ 'W_0_back_enc_input_embdr_0',
+ 'W_0_back_enc_reset_embdr_0',
+ 'W_0_back_enc_update_embdr_0',
+ 'W_0_dec_approx_embdr',
+ 'W_0_dec_dec_inputter_0',
+ 'W_0_dec_dec_reseter_0',
+ 'W_0_dec_dec_updater_0',
+ 'W_0_dec_hid_readout_0',
+ 'W_0_dec_initializer_0',
+ 'W_0_dec_input_embdr_0',
+ 'W_0_dec_prev_readout_0',
+ 'W_0_dec_repr_readout',
+ 'W_0_dec_reset_embdr_0',
+ 'W_0_dec_update_embdr_0',
+ 'W_0_enc_approx_embdr',
+ 'W_0_enc_input_embdr_0',
+ 'W_0_enc_reset_embdr_0',
+ 'W_0_enc_update_embdr_0',
+ 'W_1_DatN_dec_transition_0',
+ 'W_back_enc_transition_0',
+ 'W_dec_transition_0',
+ 'W_enc_transition_0',
+ 'b_0_DatN_dec_transition_0',
+ 'b_0_back_enc_input_embdr_0',
+ 'b_0_dec_approx_embdr',
+ 'b_0_dec_hid_readout_0',
+ 'b_0_dec_initializer_0',
+ 'b_0_dec_input_embdr_0',
+ 'b_0_enc_approx_embdr',
+ 'b_0_enc_input_embdr_0',
+ 'b_1_DatN_dec_transition_0',
+ 'b_dec_deep_softmax']
+ 544: Loading W1_dec_deep_softmax of (280, 477)
+ 569: Loading W2_dec_deep_softmax of (477, 30001)
+ 744: Loading b_dec_deep_softmax of (30001,)
+ 746: Loading W_0_dec_repr_readout of (1120, 560)
+ 755: Loading W_dec_transition_0 of (560, 560)
+ 761: Loading G_dec_transition_0 of (560, 560)
+ 766: Loading R_dec_transition_0 of (560, 560)
+ 771: Loading A_dec_transition_0 of (1120, 560)
+ 780: Loading B_dec_transition_0 of (560, 560)
+ 785: Loading D_dec_transition_0 of (560, 1)
+ 787: Loading W_0_DatN_dec_transition_0 of (560, 560)
+ 792: Loading W_1_DatN_dec_transition_0 of (560, 560)
+ 797: Loading b_0_DatN_dec_transition_0 of (560,)
+ 798: Loading b_1_DatN_dec_transition_0 of (560,)
+ 799: Loading W_0_dec_dec_inputter_0 of (1120, 560)
+ 809: Loading W_0_dec_dec_reseter_0 of (1120, 560)
+ 819: Loading W_0_dec_dec_updater_0 of (1120, 560)
+ 828: Loading W_0_dec_input_embdr_0 of (477, 560)
+ 832: Loading b_0_dec_input_embdr_0 of (560,)
+ 855: Loading W_0_dec_approx_embdr of (30001, 477)
+ 30: Loading b_0_dec_approx_embdr of (477,)
+ 32: Loading W_0_dec_initializer_0 of (560, 560)
+ 37: Loading b_0_dec_initializer_0 of (560,)
+ 38: Loading W_enc_transition_0 of (560, 560)
+ 43: Loading G_enc_transition_0 of (560, 560)
+ 49: Loading R_enc_transition_0 of (560, 560)
+ 54: Loading W_0_enc_input_embdr_0 of (477, 560)
+ 58: Loading b_0_enc_input_embdr_0 of (560,)
+ 81: Loading W_0_enc_approx_embdr of (30001, 477)
+ 256: Loading b_0_enc_approx_embdr of (477,)
+ 258: Loading W_0_enc_update_embdr_0 of (477, 560)
+ 262: Loading W_0_enc_reset_embdr_0 of (477, 560)
+ 267: Loading W_back_enc_transition_0 of (560, 560)
+ 272: Loading G_back_enc_transition_0 of (560, 560)
+ 277: Loading R_back_enc_transition_0 of (560, 560)
+ 282: Loading W_0_back_enc_input_embdr_0 of (477, 560)
+ 287: Loading b_0_back_enc_input_embdr_0 of (560,)
+ 288: Loading W_0_back_enc_update_embdr_0 of (477, 560)
+ 293: Loading W_0_back_enc_reset_embdr_0 of (477, 560)
+ 297: Loading W_0_dec_update_embdr_0 of (477, 560)
+ 302: Loading W_0_dec_reset_embdr_0 of (477, 560)
+ 306: Loading W_0_dec_hid_readout_0 of (560, 560)
+ 311: Loading b_0_dec_hid_readout_0 of (560,)
+ 312: Loading W_0_dec_prev_readout_0 of (477, 560)
+ 686: Loaded mapping file from /home/lvapeab/smt/tasks/ted/enzh/NMT/DATA/topn.pkl
+ 686: Replacing unkown words according to heuristic 1
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1476: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+/home/lvapeab/software/anaconda/lib/python2.7/site-packages/groundhog-0.1.dev0-py2.7.egg/experiments/nmt/encdec.py:1485: UserWarning: theano.function was asked to create a function computing outputs given certain inputs, but the provided input variable at index 1 is not part of the computational graph needed to compute the outputs: step_num.
+To make this warning into an error, you can pass the parameter on_unused_input='raise' to theano.function. To disable it completely, use on_unused_input='ignore'.
+ 21: Storing corrected hypotheses into: /home/lvapeab/smt/tasks/ted/enzh/NMT/postEditing/test2.PE_isles.zh
+ 21: Storing original hypotheses into: /home/lvapeab/smt/tasks/ted/enzh/NMT/postEditing/test2.PE_prefix.Orihyp.zh
+ 21: Beam size: 12
+ 21: 
+ 
+ Processing sentence 1
+ 21: Source: this encompasses everything , the food we eat , clothing , tv , heating 
+ 21: Target: 这 包括 所有 东西 ： 我们 吃 的 食物 ， 穿 的 衣服 ， 电视 ， 暖 气 ， 都 是 些 非常 美好 的 事物 这 包括 所有 东西 ： 我们 吃 的 食物 ， 穿 的 衣服 ， 电视 ， 暖 气 ， 都 是 些 非常 美好 的 事物

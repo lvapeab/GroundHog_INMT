@@ -25,23 +25,22 @@ sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample_ensemble.py
 #  --verbose             Be verbose
 
 task=xerox
-split=dev
+split=test
 src_lan="es"
 dest_lan="en"
-stateN="xerox_low_250_300_state.pkl"
-model1="xerox_low_250_300_best_bleu_model.npz"
-
-#stateN="ue_332_289_False_state.pkl"
-#model1="ue_332_289_False_best_bleu_model.npz"
+#stateN="xerox_low_250_300_state.pkl"
+#model1="xerox_low_250_300_best_bleu_model.npz"
+stateN="xerox_289_354_state.pkl"
+model1="xerox_289_354_best_bleu_model.npz"
 #model2="ue_332_289_False_model_bleu13.npz"
 #model3="ue_332_289_False_model_bleu14.npz"
 #model4="ue_332_289_False_model_bleu15.npz"
 
-beamsize=12
+beamsize=5
 
 
 
-data_dir=/home/lvapeab/smt/tasks/${task}/DATA/lowercased
+data_dir=/home/lvapeab/smt/tasks/${task}/DATA
 source_file=${data_dir}/${split}.${src_lan}
 refs=${data_dir}/${split}.${dest_lan}
 prefix=/home/lvapeab/smt/tasks/${task}/${src_lan}${dest_lan}/NMT/models

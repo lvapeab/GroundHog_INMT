@@ -3,18 +3,25 @@
 scriptsdir=/home/lvapeab/smt/software/GroundHog/experiments/nmt/preprocess
 mosesdir=/home/lvapeab/smt/software/mosesdecoder
 
-sourceText=/home/lvapeab/smt/tasks/xerox/DATA/lowercased/training.es
-targetText=/home/lvapeab/smt/tasks/xerox/DATA/lowercased/training.en
 
 
-sourceNameDest=/home/lvapeab/smt/tasks/xerox/esen/NMT/DATA/lowercased/es
-targetNameDest=/home/lvapeab/smt/tasks/xerox/esen/NMT/DATA/lowercased/en
-
+task=emea
+src_lan=fr
+trg_lan=en
 
 #Short-list length (vocabulary size)
+v_size_src=30000
+v_size_trg=30000
 
-v_size_src=14483
-v_size_trg=11428
+
+sourceText=/media/HDD_2TB/DATASETS/${task}/DATA/training.${src_lan}
+targetText=/media/HDD_2TB/DATASETS/${task}/DATA/training.${trg_lan}
+
+sourceNameDest=/media/HDD_2TB/DATASETS/${task}/NMT_DATA/${src_lan}_${v_size_src}
+targetNameDest=/media/HDD_2TB/DATASETS/${task}/NMT_DATA/${trg_lan}_${v_size_trg}
+
+
+
 
 #Validation set size ( If >= 1 take this many samples for the validation set, if < 1, take this fraction of the samples)
 

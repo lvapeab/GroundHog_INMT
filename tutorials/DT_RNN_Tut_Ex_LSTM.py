@@ -128,7 +128,7 @@ def jobman(state, channel):
             rng,
             eval(state['nhids'])[0], # TODO: Fix me
             activation = eval(state['rec_activ']),
-            #activation = 'TT.nnet.sigmoid',
+            #activation = 'T.nnet.sigmoid',
             bias_scale = eval(state['rec_bias']),
             scale=eval(state['rec_scale']),
             sparsity=eval(state['rec_sparse']),
@@ -397,7 +397,7 @@ if __name__=='__main__':
     state['out_sparse'] = -1
 
     state['dout_nhid'] = '200'
-    state['dout_activ'] = '"TT.nnet.sigmoid"'
+    state['dout_activ'] = '"T.nnet.sigmoid"'
     state['dout_sparse']= 20
     state['dout_scale'] = 1.
     state['dout_bias'] = '[0]'
@@ -410,7 +410,7 @@ if __name__=='__main__':
     # value results in a standard RNN
     state['nhids'] = '[100]'
     # Activation of each layer
-    state['rec_activ'] = '"lambda x: TT.tanh(x)"'
+    state['rec_activ'] = '"lambda x: T.tanh(x)"'
     state['rec_bias'] = '.0'
     state['rec_sparse'] ='20'
     state['rec_scale'] = '1.'

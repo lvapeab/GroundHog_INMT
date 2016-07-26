@@ -33,7 +33,7 @@ class MultiLayer(Layer):
                  rng,
                  n_in,
                  n_hids=[500,500],
-                 activation='TT.tanh',
+                 activation='T.tanh',
                  scale=0.01,
                  sparsity=-1,
                  rank_n_approx=0,
@@ -423,8 +423,8 @@ class UnaryOp(Layer):
         self.out = self.activation(state_below)
         return self.out
 
-tanh = UnaryOp('lambda x: TT.tanh(x)')
-sigmoid = UnaryOp('lambda x: TT.nnet.sigmoid(x)')
+tanh = UnaryOp('lambda x: T.tanh(x)')
+sigmoid = UnaryOp('lambda x: T.nnet.sigmoid(x)')
 rectifier = UnaryOp('lambda x: x*(x>0)')
 hard_sigmoid = UnaryOp('lambda x: x*(x>0)*(x<1)')
 hard_tanh = UnaryOp('lambda x: x*(x>-1)*(x<1)')

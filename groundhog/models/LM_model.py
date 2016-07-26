@@ -18,7 +18,7 @@ import logging
 import cPickle as pkl
 
 import theano
-import theano.tensor as TT
+import theano.tensor as T
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 
 from groundhog.utils import id_generator
@@ -116,22 +116,28 @@ class LM_Model(Model):
         self.weight_noise_amount = weight_noise_amount
         self.character_level = character_level
 
+        # Possible optimization: Do only if we are going to train
+        # Alternative: do it in the training algorithm (probably better)
+        logger.debug("Get grads")
+        self.param_grads = T.grad(cost_layer.cost.mean(), self.params)
+        logger.debug("Got grads")
+
         self.valid_costs = ['cost','ppl']
         # Assume a single cost
         # We need to merge these lists
         state_below = self.cost_layer.state_below
         if hasattr(self.cost_layer, 'mask') and self.cost_layer.mask:
-            num_words = TT.sum(self.cost_layer.mask)
+            num_words = T.sum(self.cost_layer.mask)
         else:
-            num_words = TT.cast(state_below.shape[0], 'float32')
+            num_words = T.cast(state_below.shape[0], 'float32')
         scale = getattr(self.cost_layer, 'cost_scale', numpy.float32(1))
         if not scale:
             scale = numpy.float32(1)
         scale *= numpy.float32(numpy.log(2))
 
-        grad_norm = TT.sqrt(sum(TT.sum(x**2)
-            for x,p in zip(self.param_grads, self.params) if p not in
-                self.exclude_params_for_norm))
+        grad_norm = T.sqrt(sum(T.sum(x ** 2)
+                               for x,p in zip(self.param_grads, self.params) if p not in
+                               self.exclude_params_for_norm))
         new_properties = [
                 ('grad_norm', grad_norm),
                 ('log2_p_word', self.train_cost / num_words / scale),
@@ -157,8 +163,8 @@ class LM_Model(Model):
             self.del_noise = theano.function(inps,[],
                                              name='del_noise',
                                              updates=[(p,
-                                                       TT.zeros(shp_fn(self.inputs),
-                                                                p.dtype))
+                                                       T.zeros(shp_fn(self.inputs),
+                                                               p.dtype))
                                                       for p, shp_fn in
                                                       zip(self.noise_params,
                                                           self.noise_params_shape_fn)],

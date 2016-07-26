@@ -95,7 +95,7 @@ def get_state():
     state['out_sparse'] = -1
 
     state['dout_nhid'] = '400'
-    state['dout_activ'] = '"TT.nnet.sigmoid"'
+    state['dout_activ'] = '"T.nnet.sigmoid"'
     state['dout_sparse'] = 20
     state['dout_scale'] = 1.
     state['dout_bias'] = '[0]'
@@ -109,7 +109,7 @@ def get_state():
 
     state['nhids'] = '[80]'
     # Activation of each layer
-    state['rec_activ'] = '"TT.tanh"'
+    state['rec_activ'] = '"T.tanh"'
     state['rec_bias'] = '.0'
     state['rec_sparse'] = '20'
     state['rec_scale'] = '1.'
@@ -143,7 +143,7 @@ def get_state():
     state['shortcut_rank'] = 200
 
     state['inpout_nhids'] = '[200]'
-    state['inpout_activ'] = '"TT.nnet.sigmoid"'
+    state['inpout_activ'] = '"T.nnet.sigmoid"'
     state['inpout_scale'] = '1.0'
     state['inpout_sparse'] = '20'
     state['inpout_learn_bias'] = '[0]'

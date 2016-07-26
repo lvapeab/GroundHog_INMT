@@ -1,17 +1,18 @@
 """
-Stochastic Gradient Descent with momentum.
+Stochastic Gradient Descent.
 
 
 TODO: write more documentation
 """
 __docformat__ = 'restructedtext en'
-__authors__ = ("KyungHyun Cho "
-               "Razvan Pascanu "
+__authors__ = ("Razvan Pascanu "
+               "KyungHyun Cho "
                "Caglar Gulcehre ")
 __contact__ = "Razvan Pascanu <r.pascanu@gmail>"
 
 import numpy
 import time
+import logging
 
 import theano
 import theano.tensor as TT
@@ -20,27 +21,32 @@ from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 
 from groundhog.utils import print_time, print_mem, const
 
+logger = logging.getLogger(__name__)
 
 class SGD(object):
-    """
-    Stochastic gradient descent class
-    """
     def __init__(self,
                  model,
                  state,
                  data):
         """
-        :type model: groundhog model class
-        :param model: class depicting the model to be optimized
-
-        :type state: dictionary or jobman DD object
-        :param state: dictionary containing various hyper-parameters. The
-            class will write into this dictionary updates like the current
-            training error and so on
-
-        :type data: groundhog dataset object
-        :param data: data iterator over which training is done
+        Parameters:
+            :param model:
+                Class describing the model used. It should provide the
+                 computational graph to evaluate the model, and have a
+                 similar structure to classes on the models folder
+            :param state:
+                Dictionary containing the current state of your job. This
+                includes configuration of the job, specifically the seed,
+                the startign damping factor, batch size, etc. See main.py
+                for details
+            :param data:
+                Class describing the dataset used by the model
         """
+
+        if 'adarho' not in state:
+            state['adarho'] = 0.96
+        if 'adaeps' not in state:
+            state['adaeps'] = 1e-6
 
         #####################################
         # Step 0. Constructs shared variables
@@ -53,12 +59,21 @@ class SGD(object):
                                              dtype=theano.config.floatX),
                                 name=p.name)
                    for p in model.params]
+        self.gnorm2 = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
+                                             dtype=theano.config.floatX),
+                                name=p.name+'_g2')
+                   for p in model.params]
+        self.dnorm2 = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
+                                             dtype=theano.config.floatX),
+                                name=p.name+'_d2')
+                   for p in model.params]
+
         self.step = 0
         self.bs = bs
         self.state = state
         self.data = data
         self.step_timer = time.time()
-        self.gdata = [theano.shared(numpy.zeros( (2,)*x.ndim,
+        self.gdata = [theano.shared(numpy.zeros((2,)*x.ndim,
                                                 dtype=x.dtype),
                                     name=x.name) for x in model.inputs]
 
@@ -68,9 +83,8 @@ class SGD(object):
         ###################################
         # Step 1. Compile training function
         ###################################
-        print 'Constructing grad function'
+        logger.debug('Constructing grad function')
         loc_data = self.gdata
-        lr = TT.scalar('lr')
         self.prop_exprs = [x[1] for x in model.properties]
         self.prop_names = [x[0] for x in model.properties]
         self.update_rules = [x[1] for x in model.updates]
@@ -84,12 +98,8 @@ class SGD(object):
         rules = rval[nparams:nparams + nrules]
         outs = rval[nparams + nrules:]
 
-
-
-        norm_gs = sum(TT.sum(x**2)
-            for x,p in zip(gs,
-                           self.model.params)
-                      if p not in self.model.exclude_params_for_norm)
+        norm_gs = TT.sqrt(sum(TT.sum(x**2)
+                              for x,p in zip(gs, self.model.params) if p not in self.model.exclude_params_for_norm))
         if 'cutoff' in state and state['cutoff'] > 0:
             c = numpy.float32(state['cutoff'])
             if state['cutoff_rescale_length']:
@@ -101,44 +111,59 @@ class SGD(object):
                 if p not in self.model.exclude_params_for_norm:
                     tmpg = TT.switch(TT.ge(norm_gs, c), g*c/norm_gs, g)
                     _gs.append(
-                       TT.switch(notfinite, numpy.float32(.1)*p,
-                           tmpg))
+                       TT.switch(notfinite, numpy.float32(.1)*p, tmpg))
                 else:
                     _gs.append(g)
             gs = _gs
-
         store_gs = [(s,g) for s,g in zip(self.gs, gs)]
         updates = store_gs + [(s[0], r) for s,r in zip(model.updates, rules)]
-        print 'Compiling grad function'
+
+        rho = self.state['adarho']
+        eps = self.state['adaeps']
+
+        # grad2
+        gnorm2_up = [rho * gn2 + (1. - rho) * (g ** 2.) for gn2,g in zip(self.gnorm2, gs)]
+        updates = updates + zip(self.gnorm2, gnorm2_up)
+
+        logger.debug('Compiling grad function')
         st = time.time()
         self.train_fn = theano.function(
             [], outs, name='train_function',
             updates = updates,
-            givens = zip(model.inputs, loc_data),
-            profile=self.state['profile'])
-        print 'took', time.time() - st
+            givens = zip(model.inputs, loc_data))
+        logger.debug('took {}'.format(time.time() - st))
 
+        self.lr = numpy.float32(1.)
+        new_params = [p - (TT.sqrt(dn2 + eps) / TT.sqrt(gn2 + eps)) * g
+                for p, g, gn2, dn2 in
+                zip(model.params, self.gs, self.gnorm2, self.dnorm2)]
 
-        self.lr = numpy.float32(state['lr'])
-        print '\t > Using a learning rate of', self.lr
-        new_params = [p - s*lr*g for s, p, g in zip(model.params_grad_scale, model.params, self.gs)]
+        updates = zip(model.params, new_params)
+        # d2
+        d2_up = [(dn2, rho * dn2 + (1. - rho) *
+            (((TT.sqrt(dn2 + eps) / TT.sqrt(gn2 + eps)) * g) ** 2.))
+            for dn2, gn2, g in zip(self.dnorm2, self.gnorm2, self.gs)]
+        updates = updates + d2_up
+
         self.update_fn = theano.function(
-            [lr], [], name='update_function',
+            [], [], name='update_function',
             allow_input_downcast=True,
-            updates = zip(model.params, new_params),
-            profile=self.state['profile'])
+            updates = updates)
 
         self.old_cost = 1e20
         self.schedules = model.get_schedules()
         self.return_names = self.prop_names + \
                 ['cost',
+                 'error',
                  'time_step',
                  'whole_time',
-                  'lr']
+                 'lr']
+        self.prev_batch = None
 
-
-    def __call__(self):
+    def __call__(self, _):
         batch = self.data.next()
+        assert batch
+
         # Perturb the data (! and the model)
         if isinstance(batch, dict):
             batch = self.model.perturb(**batch)
@@ -158,7 +183,7 @@ class SGD(object):
         rvals = self.train_fn()
         for schedule in self.schedules:
             schedule(self, rvals[-1])
-        self.update_fn(self.lr)
+        self.update_fn()
         g_ed = time.time()
         self.state['lr'] = float(self.lr)
         cost = rvals[-1]
@@ -177,6 +202,7 @@ class SGD(object):
             print msg % tuple(vals)
         self.step += 1
         ret = dict([('cost', float(cost)),
+                    ('error', float(cost)),
                        ('lr', float(self.lr)),
                        ('time_step', float(g_ed - g_st)),
                        ('whole_time', float(whole_time))]+zip(self.prop_names, rvals))

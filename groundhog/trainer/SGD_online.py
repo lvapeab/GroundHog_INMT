@@ -137,7 +137,7 @@ class SGD(object):
                   'lr']
 
 
-    def __call__(self):
+    def __call__(self, _):
         batch = self.data.next()
         # Perturb the data (! and the model)
         if isinstance(batch, dict):

@@ -245,7 +245,7 @@ def main():
 
     # this loads the state specified in the prototype
     state = getattr(experiments.nmt, args.proto)()
-    # this is based on the suggestion in the README.md in this foloder
+    # this is based on the suggestion in the README.md.md in this foloder
     if args.state:
         if args.state.endswith(".py"):
             state.update(eval(open(args.state).read()))

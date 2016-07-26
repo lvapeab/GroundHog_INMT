@@ -75,7 +75,7 @@ def prototype_state():
     # Low-rank approximation activation function
     state['rank_n_activ'] = 'lambda x: x'
     # Hidden-to-hidden activation function
-    state['activ'] = 'lambda x: TT.tanh(x)'
+    state['activ'] = 'lambda x: T.tanh(x)'
     # Nonlinearity for the output
     state['unary_activ'] = 'Maxout(2)'
 
@@ -83,23 +83,23 @@ def prototype_state():
     state['enc_rec_layer'] = 'RecurrentLayer'
     state['enc_rec_gating'] = True
     state['enc_rec_reseting'] = True
-    state['enc_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
-    state['enc_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
+    state['enc_rec_gater'] = 'lambda x: T.nnet.sigmoid(x)'
+    state['enc_rec_reseter'] = 'lambda x: T.nnet.sigmoid(x)'
 
     # Default hidden layer configuration, which is effectively used for the backward RNN
     # TODO: separate back_enc_ configuration and convert the old states to have it
     state['rec_layer'] = 'RecurrentLayer'
     state['rec_gating'] = True
     state['rec_reseting'] = True
-    state['rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
-    state['rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
+    state['rec_gater'] = 'lambda x: T.nnet.sigmoid(x)'
+    state['rec_reseter'] = 'lambda x: T.nnet.sigmoid(x)'
 
     # Hidden layer configuration for the decoder
     state['dec_rec_layer'] = 'RecurrentLayerWithSearch'
     state['dec_rec_gating'] = True
     state['dec_rec_reseting'] = True
-    state['dec_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
-    state['dec_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
+    state['dec_rec_gater'] = 'lambda x: T.nnet.sigmoid(x)'
+    state['dec_rec_reseter'] = 'lambda x: T.nnet.sigmoid(x)'
     # ----- SIZES ----
 
     # Dimensionality of hidden layers
@@ -310,7 +310,7 @@ def prototype_search_state():
 
     state['deep_attention']= True
     state['deep_attention_n_hids']= [1500,1500]
-    state['deep_attention_acts']= [' lambda x: TT.tanh(x) ',' lambda x: TT.tanh(x) ']
+    state['deep_attention_acts']= [' lambda x: T.tanh(x) ',' lambda x: T.tanh(x) ']
 
     state['search'] = True
     state['last_forward'] = False

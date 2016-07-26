@@ -41,7 +41,7 @@ loopIters=1e11,
 
 deep_attention= True,
 deep_attention_n_hids = [1000, 1000],
-deep_attention_acts= [' lambda x: TT.tanh(x) ',' lambda x: TT.tanh(x) '],
+deep_attention_acts= [' lambda x: T.tanh(x) ',' lambda x: T.tanh(x) '],
 
 bleu_val_frequency=5000,
 validation_burn_in=50000,

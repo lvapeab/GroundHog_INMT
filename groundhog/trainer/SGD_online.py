@@ -15,7 +15,7 @@ import time
 
 import theano
 import theano.tensor as TT
-from theano.scan_module import scan
+
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 
 from groundhog.utils import print_time, print_mem, const
@@ -48,21 +48,20 @@ class SGD(object):
         bs = state['bs']
         self.model = model
         self.rng = numpy.random.RandomState(state['seed'])
-        srng = RandomStreams(self.rng.randint(213))
-        self.gs = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
-                                             dtype=theano.config.floatX),
-                                name=p.name)
-                   for p in model.params]
+
+        self.add_noise = state['weight_noise']
         self.step = 0
         self.bs = bs
         self.state = state
         self.data = data
+        self.gs = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
+                                     dtype=theano.config.floatX),
+                        name=p.name)
+           for p in model.params]
         self.step_timer = time.time()
         self.gdata = [theano.shared(numpy.zeros( (2,)*x.ndim,
-                                                dtype=x.dtype),
-                                    name=x.name) for x in model.inputs]
-
-	if 'profile' not in self.state:
+                                                 dtype=x.dtype), name=x.name) for x in model.inputs]
+        if 'profile' not in self.state:
             self.state['profile'] = 0
 
         ###################################
@@ -74,17 +73,17 @@ class SGD(object):
         self.prop_exprs = [x[1] for x in model.properties]
         self.prop_names = [x[0] for x in model.properties]
         self.update_rules = [x[1] for x in model.updates]
+        inputs_replacement_list = zip(model.inputs, loc_data)
+
         rval = theano.clone(model.param_grads + self.update_rules + \
                             self.prop_exprs + [model.train_cost],
-                            replace=zip(model.inputs, loc_data))
+                            replace=inputs_replacement_list)
         nparams = len(model.params)
         nouts = len(self.prop_exprs)
         nrules = len(self.update_rules)
         gs = rval[:nparams]
         rules = rval[nparams:nparams + nrules]
         outs = rval[nparams + nrules:]
-
-
 
         norm_gs = sum(TT.sum(x**2)
             for x,p in zip(gs,
@@ -121,7 +120,10 @@ class SGD(object):
 
         self.lr = numpy.float32(state['lr'])
         print '\t > Using a learning rate of', self.lr
-        new_params = [p - s*lr*g for s, p, g in zip(model.params_grad_scale, model.params, self.gs)]
+        new_params = [p - s*lr*g for s, p, g in
+                      zip(model.params_grad_scale, model.params, self.gs)]
+
+
         self.update_fn = theano.function(
             [lr], [], name='update_function',
             allow_input_downcast=True,
@@ -138,12 +140,17 @@ class SGD(object):
 
 
     def __call__(self, _):
+        """
+        Ignored parameter: hypothesis.
+        """
         batch = self.data.next()
         # Perturb the data (! and the model)
-        if isinstance(batch, dict):
-            batch = self.model.perturb(**batch)
-        else:
-            batch = self.model.perturb(*batch)
+        if self.add_noise:
+            if isinstance(batch, dict):
+                batch = self.model.perturb(**batch)
+            else:
+                batch = self.model.perturb(*batch)
+
         # Load the dataset into GPU
         # Note: not the most efficient approach in general, as it involves
         # each batch is copied individually on gpu

@@ -16,7 +16,8 @@ from experiments.nmt import \
     parse_input
 from experiments.nmt.numpy_compat import argpartition
 from isles_utils import compute_mouse_movements, find_isles, is_sublist, subfinder
-from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, loadTargetLanguageFromState
+from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, \
+    loadTargetLanguageFromState
 from groundhog.datasets.UnbufferedDataIterator import UnbufferedDataIterator
 from groundhog.trainer.SGD_online import SGD
 from groundhog.trainer.SGD_adagrad import AdaGrad
@@ -426,7 +427,7 @@ def compute_alignment(src_seq, trg_seq, alignment_fns):
     for j in xrange(num_models):
         # target_len x source_len x num_examples
         alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
-    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
+    alignments[:, len(src_seq) - 1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
     hard_alignments = numpy.argmax(alignments, axis=1)  # trg_len x num_examples
 
     return hard_alignments
@@ -475,6 +476,8 @@ def parse_args():
     parser.add_argument("--algo", default=None, help="Online training algorithm. \n\t Supported algorithms: \n"
                                                      "\t \t AdaGrad\n"
                                                      "\t \t SGD\n")
+    parser.add_argument("--lr", type=float, default=0.1, help='Learning rate for the online algorithm (if necessary)')
+    parser.add_argument("--wn", action="store_true", default=False, help='Apply weight noise in the online algorithm')
     parser.add_argument("--beam-search", action="store_true", help="Beam size, turns on beam-search")
     parser.add_argument("--beam-size", type=int, help="Beam size")
     parser.add_argument("--source", help="File of source sentences")
@@ -487,6 +490,7 @@ def parse_args():
     parser.add_argument("--interactive", default=False, action="store_true", help="Interactive post-editing?")
     parser.add_argument("--replaceUnk", default=False, action="store_true", help="Interactive post-editing?")
     parser.add_argument("--mapping", help="Top1 unigram mapping (Source to target)")
+
     parser.add_argument("--heuristic", type=int, default=0,
                         help="0: copy, 1: Use dict, 2: Use dict only if lowercase. "
                              "Used only if a mapping is given. Default is 0.")
@@ -521,7 +525,7 @@ def main():
     source_lines = [line for line in fsrc]
     ftrans = open(args.trans, 'w')
     logger.info("Storing corrected hypotheses into: %s" % str(args.trans))
-
+    # Some checks before loading the model and compiling the modules
     if args.save_original:
         logger.info("Storing original hypotheses into: %s" % str(args.save_original_to))
         ftrans_ori = open(args.save_original_to, 'w')
@@ -532,7 +536,10 @@ def main():
         target_lines = ftrg.read().split('\n')
         if target_lines[-1] == '':
             target_lines = target_lines[:-1]
-
+    if args.algo is not None:
+        assert args.algo in supported_algorithms
+        algos = []
+        batch_iters = []
     logger.debug("State: \n %s" % str(state))
     num_models = len(args.models)
     logger.info("Using an ensemble of %d models" % num_models)
@@ -540,15 +547,9 @@ def main():
     enc_decs = []
     lm_models = []
     alignment_fns = []
-    if args.algo is not None:
-        assert args.algo in supported_algorithms
-        algos = []
-        sourceLanguage = loadSourceLanguageFromState(state)
-        targetLanguage = loadTargetLanguageFromState(state)
-        batch_iter = UnbufferedDataIterator(args.source, args.trans, state, sourceLanguage.word_indx,
-                                            targetLanguage.word_indx, sourceLanguage.indx_word,
-                                            targetLanguage.indx_word, num_sentences, state['seqlen'], None)
-
+    sourceLanguage = loadSourceLanguageFromState(state)
+    targetLanguage = loadTargetLanguageFromState(state)
+    # Model loading
     for i in xrange(num_models):
         enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True,
                                           compute_alignment=args.replaceUnk))
@@ -574,11 +575,11 @@ def main():
     else:
         logger.info("Not replacing unkown words")
 
-    indx_word = sourceLanguage.word_indx # cPickle.load(open(state['word_indx'], 'rb'))
-    idict_src = sourceLanguage.indx_word  # cPickle.load(open(state['indx_word'], 'r'))
+    indx_word = sourceLanguage.word_indx
+    idict_src = sourceLanguage.indx_word
     unk_id = state['unk_sym_target']
-    word2index = targetLanguage.word_indx  # cPickle.load(open(state['word_indx_trgt'], 'r'))
-    indx2word_trg = targetLanguage.indx_word  # cPickle.load(open(state['indx_word_target'], 'rb'))
+    word2index = targetLanguage.word_indx
+    indx2word_trg = targetLanguage.indx_word
     eos_id = state['null_sym_target']
 
     sampler = None
@@ -588,12 +589,14 @@ def main():
         beam_search.compile()
     else:
         raise NotImplementedError
-    state['lr'] = 0.001 #TODO: Revisar Esto
-    for i in xrange(num_models):
-        if args.algo is not None:
-            print "lm_models[", i, "]=", lm_models[i]
-            algos.append(eval(args.algo)(lm_models[i], state, batch_iter))
-            print "algos[", i, "]=", algos[i]
+    if args.algo is not None:
+        state['lr'] = args.lr
+        state['weight_noise'] = args.wn
+        for i in xrange(num_models):
+            batch_iters.append(UnbufferedDataIterator(args.source, args.trans, state, sourceLanguage.word_indx,
+                                            targetLanguage.word_indx, sourceLanguage.indx_word,
+                                            targetLanguage.indx_word, num_sentences, state['seqlen'], None))
+            algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 
     # Interactive NMT loop
     if args.source and args.trans:
@@ -829,6 +832,8 @@ def main():
                             best = numpy.argmin(costs)
                             hypothesis = sentences[best].split()
                             trg_seq = trans[best]
+
+                            # UNK words management
                             if len(unk_indices) > 0:  # If we added some UNK word
                                 if len(hypothesis) < len(unk_indices):  # The full hypothesis will be made up UNK words:
                                     for i, index in enumerate(range(0, len(hypothesis))):
@@ -841,22 +846,23 @@ def main():
                                             hypothesis[index] = unk_words[i]
                                         else:
                                             hypothesis.append(unk_words[i])
+                            # Replace UNKs heuristic
                             if args.replaceUnk:
                                 hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
-                                hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
-                                                  unk_indices, heuristic=heuristic, mapping = mapping).split()
+                                hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments,
+                                                                   unk_id, unk_indices, heuristic=heuristic,
+                                                                   mapping=mapping).split()
                             logger.debug("Target: %s" % target_lines[n_line])
                             logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
                             if hypothesis == reference:
                                 break
-                        # Final check: The reference is a subset of the hypothesis: Cut the hypothesis
+                        # Final check: If the reference is a subset of the hypothesis: Cut the hypothesis
                         if len(reference) < len(hypothesis):
                             hypothesis = hypothesis[:len(reference)]
                             errors_sentence += 1
                             logger.debug("Cutting hypothesis")
 
-
-                    """    
+                    """
                     assert hypothesis == reference, "Error: The final hypothesis does not match with the reference! " \
                                                     "Sentence: %d \n" \
                                                     "Hypothesis: %s\n" \
@@ -900,8 +906,8 @@ def main():
                         if args.save_original:
                             ftrans_ori.flush()
                         logger.info("%d sentences processed" % (n_line + 1))
-                        logger.info(
-                                "Current speed is {} per sentence".format((time.time() - start_time) / (n_line + 1)))
+                        logger.info("Current speed is {} per sentence".format(
+                                (time.time() - start_time) / (n_line + 1)))
                         logger.info("Current WSR is: %f" % (float(total_errors) / total_words))
                         logger.info("Current MAR is: %f" % (float(total_mouse_actions) / total_words))
                         logger.info("Current MAR_c is: %f" % (float(total_mouse_actions) / total_chars))

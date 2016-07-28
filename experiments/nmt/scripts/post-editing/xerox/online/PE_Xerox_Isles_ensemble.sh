@@ -16,7 +16,7 @@ m3="/home/lvapeab/smt/tasks/xerox/esen/NMT/models/xerox_289_354_model_bleu51.npz
 m4="/home/lvapeab/smt/tasks/xerox/esen/NMT/models/xerox_289_354_model_bleu55.npz"
 m5="/home/lvapeab/smt/tasks/xerox/esen/NMT/models/xerox_289_354_model_bleu59.npz"
 
-split="test"
+split="dev"
 source="/home/lvapeab/smt/tasks/xerox/DATA/${split}.es"
 refs="/home/lvapeab/smt/tasks/xerox/DATA/${split}.en"
 
@@ -38,7 +38,10 @@ ori_dest="/home/lvapeab/smt/tasks/xerox/esen/NMT/postEditing/xerox.${split}.Orih
 v=1
 save_ori="--save-original --save-original-to ${ori_dest}"
 # i="--color"
-for max_n in 4; do
-echo "max_N=${max_n}"
-python ${pe_script} --verbose ${v} --beam-search --beam-size ${beam_size} --algo "SGD" --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori} --max-n ${max_n} ${i} --models ${m1} # ${m2} ${m3} ${m4} ${m5};
+
+for lr in 1 0.5 0.1 0.05 0.01 0.005 0.0005; do
+    for max_n in 4; do
+        echo "max_N=${max_n}"
+        python ${pe_script} --verbose ${v} --algo "SGD" --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --max-n ${max_n} ${i} --models ${m1}  ${m2} ${m3} ${m4} ${m5};
+    done
 done

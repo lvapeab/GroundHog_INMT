@@ -549,6 +549,8 @@ def main():
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
+        logger.info('Loading model %d from %s'%(i, args.models[i]))
+
         if args.replaceUnk:
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
                                                  outputs=[enc_decs[i].alignment], name="alignment_fn"))

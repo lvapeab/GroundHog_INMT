@@ -129,6 +129,7 @@ class SGD(object):
             allow_input_downcast=True,
             updates = zip(model.params, new_params),
             profile=self.state['profile'])
+        print 'took', time.time() - st
 
         self.old_cost = 1e20
         self.schedules = model.get_schedules()
@@ -160,7 +161,7 @@ class SGD(object):
         else:
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
-        # Run the trianing function
+        # Run the training function
         g_st = time.time()
         rvals = self.train_fn()
         for schedule in self.schedules:

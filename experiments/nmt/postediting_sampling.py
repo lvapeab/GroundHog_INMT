@@ -54,10 +54,6 @@ class BeamSearch(object):
 
         fin_trans = []
         fin_costs = []
-        # if prefix is None:
-        #     trans = [[]]
-        # else:
-        #     trans = [prefix]
         trans = [[]]
         costs = [0.0]
 

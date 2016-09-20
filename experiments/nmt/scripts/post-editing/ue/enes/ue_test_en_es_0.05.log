@@ -1,0 +1,42 @@
+Loading ONLINE ALGORITHMS
+Constructing grad function
+Compiling grad function
+took 40.6908009052
+	 > Using a learning rate of 0.05
+took 41.2776179314
+Constructing grad function
+Compiling grad function
+took 40.2080609798
+	 > Using a learning rate of 0.05
+took 40.7960271835
+Constructing grad function
+Compiling grad function
+took 42.9264111519
+	 > Using a learning rate of 0.05
+took 43.5104510784
+Constructing grad function
+Compiling grad function
+took 41.8466801643
+	 > Using a learning rate of 0.05
+took 42.4416489601
+Constructing grad function
+Compiling grad function
+took 39.7795190811
+	 > Using a learning rate of 0.05
+took 40.364634037
+.. iter    0 cost 9.036 grad_norm 8.93e+01 log2_p_word 1.30e+01 log2_p_expl 1.30e+01 step time  0.141 sec whole time  3.950 min lr 5.00e-02
+.. iter    0 cost 11.883 grad_norm 1.10e+02 log2_p_word 1.71e+01 log2_p_expl 1.71e+01 step time  0.142 sec whole time  3.260 min lr 5.00e-02
+.. iter    0 cost 6.760 grad_norm 1.04e+02 log2_p_word 9.75e+00 log2_p_expl 9.75e+00 step time  0.142 sec whole time  2.578 min lr 5.00e-02
+.. iter    0 cost 11.757 grad_norm 1.52e+02 log2_p_word 1.70e+01 log2_p_expl 1.70e+01 step time  0.143 sec whole time 111.091 sec lr 5.00e-02
+.. iter    0 cost 10.685 grad_norm 1.06e+02 log2_p_word 1.54e+01 log2_p_expl 1.54e+01 step time  0.144 sec whole time 68.554 sec lr 5.00e-02
+.. iter  500 cost 275.961 grad_norm 2.34e+03 log2_p_word 1.28e+01 log2_p_expl 3.98e+02 step time  0.245 sec whole time  4.253 h   lr 5.00e-02
+.. iter  500 cost 233.405 grad_norm 8.31e+02 log2_p_word 1.09e+01 log2_p_expl 3.37e+02 step time  0.245 sec whole time  4.242 h   lr 5.00e-02
+.. iter  500 cost 251.430 grad_norm 1.72e+03 log2_p_word 1.17e+01 log2_p_expl 3.63e+02 step time  0.245 sec whole time  4.230 h   lr 5.00e-02
+.. iter  500 cost 269.942 grad_norm 1.40e+03 log2_p_word 1.26e+01 log2_p_expl 3.89e+02 step time  0.244 sec whole time  4.218 h   lr 5.00e-02
+.. iter  500 cost 246.494 grad_norm 8.97e+02 log2_p_word 1.15e+01 log2_p_expl 3.56e+02 step time  0.244 sec whole time  4.206 h   lr 5.00e-02
+Total number of errors: 7299
+Total number selections 15010
+WSR: 0.320652
+MAR: 0.659403
+MAR_c: 0.132004
+Total cost of the translations: 1405.26540824

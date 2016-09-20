@@ -1,0 +1,17 @@
+nohup: no se tendrá en cuenta la entrada
+max_N=4
+lr=0.1
+Storing results in  /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.1.err 
+max_N=4
+max_N=4
+lr=0.1
+Storing results in  /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.1.err 
+max_N=4
+max_N=4
+lr=0
+Storing results in  /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.err 
+max_N=4
+max_N=4
+lr=0
+Storing results in  /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.err 
+max_N=4

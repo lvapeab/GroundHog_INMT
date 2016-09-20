@@ -1,0 +1,47 @@
+Loading ONLINE ALGORITHMS
+Constructing grad function
+Compiling grad function
+took 42.5348508358
+	 > Using a learning rate of 0.05
+took 43.132119894
+Constructing grad function
+Compiling grad function
+took 42.020652771
+	 > Using a learning rate of 0.05
+took 42.6185698509
+Constructing grad function
+Compiling grad function
+took 41.4919939041
+	 > Using a learning rate of 0.05
+took 42.0962948799
+Constructing grad function
+Compiling grad function
+took 43.4231910706
+	 > Using a learning rate of 0.05
+took 44.0225319862
+Constructing grad function
+Compiling grad function
+took 41.3744971752
+	 > Using a learning rate of 0.05
+took 41.9752919674
+.. iter    0 cost 26.240 grad_norm 1.73e+02 log2_p_word 3.79e+01 log2_p_expl 3.79e+01 step time  0.135 sec whole time  3.837 min lr 5.00e-02
+.. iter    0 cost 32.960 grad_norm 2.05e+02 log2_p_word 4.76e+01 log2_p_expl 4.76e+01 step time  0.137 sec whole time  3.116 min lr 5.00e-02
+.. iter    0 cost 26.638 grad_norm 2.00e+02 log2_p_word 3.84e+01 log2_p_expl 3.84e+01 step time  0.134 sec whole time  2.404 min lr 5.00e-02
+.. iter    0 cost 30.724 grad_norm 1.99e+02 log2_p_word 4.43e+01 log2_p_expl 4.43e+01 step time  0.135 sec whole time 102.071 sec lr 5.00e-02
+.. iter    0 cost 25.618 grad_norm 2.05e+02 log2_p_word 3.70e+01 log2_p_expl 3.70e+01 step time  0.137 sec whole time 57.958 sec lr 5.00e-02
+.. iter  500 cost 256.396 grad_norm 1.24e+03 log2_p_word 2.06e+01 log2_p_expl 3.70e+02 step time  0.217 sec whole time 50.326 min lr 5.00e-02
+.. iter  500 cost 289.970 grad_norm 1.30e+03 log2_p_word 2.32e+01 log2_p_expl 4.18e+02 step time  0.217 sec whole time 49.607 min lr 5.00e-02
+.. iter  500 cost 272.714 grad_norm 1.31e+03 log2_p_word 2.19e+01 log2_p_expl 3.93e+02 step time  0.219 sec whole time 48.897 min lr 5.00e-02
+.. iter  500 cost 248.391 grad_norm 1.02e+03 log2_p_word 1.99e+01 log2_p_expl 3.58e+02 step time  0.219 sec whole time 48.195 min lr 5.00e-02
+.. iter  500 cost 269.312 grad_norm 1.20e+03 log2_p_word 2.16e+01 log2_p_expl 3.89e+02 step time  0.220 sec whole time 47.461 min lr 5.00e-02
+.. iter 1000 cost 342.173 grad_norm 9.07e+02 log2_p_word 3.29e+01 log2_p_expl 4.94e+02 step time  0.160 sec whole time  1.782 h   lr 5.00e-02
+.. iter 1000 cost 343.483 grad_norm 9.95e+02 log2_p_word 3.30e+01 log2_p_expl 4.96e+02 step time  0.160 sec whole time  1.770 h   lr 5.00e-02
+.. iter 1000 cost 323.784 grad_norm 8.14e+02 log2_p_word 3.11e+01 log2_p_expl 4.67e+02 step time  0.163 sec whole time  1.758 h   lr 5.00e-02
+.. iter 1000 cost 315.731 grad_norm 9.43e+02 log2_p_word 3.04e+01 log2_p_expl 4.56e+02 step time  0.164 sec whole time  1.746 h   lr 5.00e-02
+.. iter 1000 cost 329.008 grad_norm 8.85e+02 log2_p_word 3.16e+01 log2_p_expl 4.75e+02 step time  0.160 sec whole time  1.734 h   lr 5.00e-02
+Total number of errors: 2581
+Total number selections 3587
+WSR: 0.160570
+MAR: 0.223155
+MAR_c: 0.047441
+Total cost of the translations: 1364.80290374

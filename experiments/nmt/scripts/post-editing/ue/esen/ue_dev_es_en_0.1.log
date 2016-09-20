@@ -1,0 +1,32 @@
+Loading ONLINE ALGORITHMS
+Constructing grad function
+Compiling grad function
+took 40.2568328381
+	 > Using a learning rate of 0.1
+Constructing grad function
+Compiling grad function
+took 39.7009940147
+	 > Using a learning rate of 0.1
+Constructing grad function
+Compiling grad function
+took 39.7578291893
+	 > Using a learning rate of 0.1
+Constructing grad function
+Compiling grad function
+took 41.681841135
+	 > Using a learning rate of 0.1
+Constructing grad function
+Compiling grad function
+took 39.4903860092
+	 > Using a learning rate of 0.1
+.. iter    0 cost 7.526 grad_norm 6.67e+01 log2_p_word 1.09e+01 log2_p_expl 1.09e+01 step time  0.124 sec whole time  3.557 min lr 1.00e-01
+.. iter    0 cost 14.235 grad_norm 8.66e+01 log2_p_word 2.05e+01 log2_p_expl 2.05e+01 step time  0.125 sec whole time  2.874 min lr 1.00e-01
+.. iter    0 cost 9.748 grad_norm 9.21e+01 log2_p_word 1.41e+01 log2_p_expl 1.41e+01 step time  0.127 sec whole time  2.160 min lr 1.00e-01
+.. iter    0 cost 8.326 grad_norm 7.35e+01 log2_p_word 1.20e+01 log2_p_expl 1.20e+01 step time  0.129 sec whole time 89.173 sec lr 1.00e-01
+.. iter    0 cost 13.056 grad_norm 9.99e+01 log2_p_word 1.88e+01 log2_p_expl 1.88e+01 step time  0.129 sec whole time 46.796 sec lr 1.00e-01
+Total number of errors: 3676
+Total number selections 4071
+WSR: 0.363888
+MAR: 0.402990
+MAR_c: 0.081795
+Total cost of the translations: 674.623519788

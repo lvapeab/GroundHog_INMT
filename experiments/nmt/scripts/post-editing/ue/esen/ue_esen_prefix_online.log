@@ -1,0 +1,21 @@
+max_N=1
+lr=1
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_1.err
+max_N=1
+lr=0.5
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.5.err
+max_N=1
+lr=0.1
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.1.err
+max_N=1
+lr=0.05
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.05.err
+max_N=1
+lr=0.01
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.01.err
+max_N=1
+lr=0.005
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.005.err
+max_N=1
+lr=0.0005
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/ue_dev_es_en_0.0005.err

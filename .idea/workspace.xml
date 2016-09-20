@@ -2,25 +2,113 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE_Isles.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/PE_UE_ensemble.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_isles_ensemble3.scores" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_prefix_ensemble3.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_enes_prefix_ensemble3.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble2.err" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/ue_isles_ensemble2.l" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_barrido.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_barrido.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_barrido.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/PE_UE_ensemble_online.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.001.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.05.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.5.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.001.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.5.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_dev.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_test.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_test_isles.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_en_es_0.05.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes_--prefix_0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes_--prefix_0.05.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes__0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes__0.05.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_Isles.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_ensemble_online.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_barrido.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.0005.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.0005.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.005.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.005.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.01.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.01.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.05.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.5.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.5.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_isles_online_test.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_isles_online_test.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online_test.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online_test.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble2.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble2.l" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_esen_--prefix_0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_esen_--prefix_0.05.scores" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/PE_Xerox_Isles_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.001.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.005.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.01.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.5.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.001.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.005.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.01.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.05.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.5.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.001.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.005.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.01.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.05.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.5.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_enes_dev.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_enes_test.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_0.1.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_0.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.1.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/not_retrain.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/not_retrain.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/out" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/sgd.err" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/sgd.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/postediting_sampling.py" afterPath="$PROJECT_DIR$/experiments/nmt/postediting_sampling.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/PE_Xerox_Isles_ensemble.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/PE_Xerox_Isles_ensemble.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groundhog/trainer/SGD_adagrad.py" afterPath="$PROJECT_DIR$/groundhog/trainer/SGD_adagrad.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groundhog/trainer/SGD_online.py" afterPath="$PROJECT_DIR$/groundhog/trainer/SGD_online.py" />
     </list>
     <ignored path="GroundHog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -190,7 +278,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -203,7 +291,116 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groundhog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groundhog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trainer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../GroundHog-Online/GroundHog/groundhog/trainer/SGD.py" />
@@ -457,15 +654,22 @@
       <option name="project" value="LOCAL" />
       <updated>1469688458714</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Sync">
+      <created>1474361105850</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1474361105850</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1922" height="1153" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13600422" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13600422" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879376" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32782102" sideWeight="0.5044937" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976654" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -476,7 +680,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18133895" sideWeight="0.4808219" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="206" y="138" width="760" height="952" />
@@ -528,7 +731,8 @@
     <MESSAGE value="Included online algorithms" />
     <MESSAGE value="State refactoring" />
     <MESSAGE value="Online isles INMT ensemble" />
-    <option name="LAST_COMMIT_MESSAGE" value="Online isles INMT ensemble" />
+    <MESSAGE value="Sync" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sync" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

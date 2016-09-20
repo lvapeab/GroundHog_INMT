@@ -1,0 +1,4 @@
+nohup: no se tendrá en cuenta la entrada
+max_N=6
+lr=0.05
+Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/enes/ue_test_en_es_0.05.err

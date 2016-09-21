@@ -68,6 +68,7 @@ class SGD(object):
                                 name=p.name+'_d2')
                    for p in model.params]
 
+        self.add_noise = state['weight_noise']
         self.step = 0
         self.bs = bs
         self.state = state
@@ -160,15 +161,19 @@ class SGD(object):
                  'lr']
         self.prev_batch = None
 
-    def __call__(self, _):
-        batch = self.data.next()
-        assert batch
 
+    def __call__(self, _):
+        """
+        Ignored parameter: hypothesis.
+        """
+        batch = self.data.next()
         # Perturb the data (! and the model)
-        if isinstance(batch, dict):
-            batch = self.model.perturb(**batch)
-        else:
-            batch = self.model.perturb(*batch)
+        if self.add_noise:
+            if isinstance(batch, dict):
+                batch = self.model.perturb(**batch)
+            else:
+                batch = self.model.perturb(*batch)
+
         # Load the dataset into GPU
         # Note: not the most efficient approach in general, as it involves
         # each batch is copied individually on gpu
@@ -178,7 +183,7 @@ class SGD(object):
         else:
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
-        # Run the trianing function
+        # Run the training function
         g_st = time.time()
         rvals = self.train_fn()
         for schedule in self.schedules:
@@ -202,7 +207,6 @@ class SGD(object):
             print msg % tuple(vals)
         self.step += 1
         ret = dict([('cost', float(cost)),
-                    ('error', float(cost)),
                        ('lr', float(self.lr)),
                        ('time_step', float(g_ed - g_st)),
                        ('whole_time', float(whole_time))]+zip(self.prop_names, rvals))

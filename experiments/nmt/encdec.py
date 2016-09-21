@@ -27,6 +27,9 @@ from groundhog.datasets.TM_dataset import PytablesBitextIterator
 from groundhog.utils import sample_zeros, sample_weights_orth, init_bias, sample_weights_classic
 import groundhog.utils as utils
 
+from experiments.nmt.language import loadSourceLanguageFromState, \
+    loadTargetLanguageFromState
+
 logger = logging.getLogger(__name__)
 
 def create_padded_batch(state, x, y, return_dict=False):
@@ -1317,6 +1320,9 @@ class RNNEncoderDecoder(object):
         self.skip_init = skip_init
         self.compute_alignment = compute_alignment
 
+        self.source_language = loadSourceLanguageFromState(state, "Source")
+        self.target_language = loadTargetLanguageFromState(state, "Target")
+
     def build(self):
         logger.debug("Create input variables")
         self.x = TT.lmatrix('x')
@@ -1410,10 +1416,10 @@ class RNNEncoderDecoder(object):
             cost_layer=self.predictions,
             sample_fn=self.create_sampler(),
             weight_noise_amount=self.state['weight_noise_amount'],
-            indx_word=self.state['indx_word_target'],
-            indx_word_src=self.state['indx_word'],
+            source_language=self.source_language,
+            target_language=self.target_language,
             rng=self.rng)
-        self.lm_model.load_dict(self.state)
+        # self.lm_model.load_dict(self.state)
         logger.debug("Model params:\n{}".format(
             pprint.pformat(sorted([p.name for p in self.lm_model.params]))))
         return self.lm_model

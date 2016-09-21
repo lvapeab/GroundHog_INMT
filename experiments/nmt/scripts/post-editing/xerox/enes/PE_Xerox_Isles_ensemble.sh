@@ -7,6 +7,8 @@ cd $this_dir
 
 # Parameters somehow "statics"
 pe_script="/home/lvapeab/smt/software/GroundHog/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py"
+data_prefix="/home/lvapeab/smt/tasks/"
+
 beam_size=12
 src_lan="en"
 trg_lan="es"
@@ -15,12 +17,12 @@ v=1
 
 model_infix="_600_420_2211_"
 
-state="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}state.pkl"
-m1="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu98.npz"
-m2="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu90.npz"
-m3="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu95.npz"
-m4="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu96.npz"
-m5="/home/lvapeab/smt/tasks/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu94.npz"
+state="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}state.pkl"
+m1="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu98.npz"
+m2="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu90.npz"
+m3="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu95.npz"
+m4="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu96.npz"
+m5="${data_prefix}/${task}/${src_lan}${trg_lan}/NMT/models/${task}${model_infix}model_bleu94.npz"
 
 
 #################################################

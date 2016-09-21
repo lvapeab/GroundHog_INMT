@@ -496,8 +496,8 @@ class Model(Container):
     """
     def __init__(self, output_layer,
                  sample_fn,
-                 indx_word="/data/lisa/data/PennTreebankCorpus/dictionaries.npz",
-                 indx_word_src=None,
+                 source_language=None,
+                 target_language=None,
                  rng =None):
         super(Model, self).__init__()
         if rng == None:
@@ -507,14 +507,22 @@ class Model(Container):
         self.rng = rng
         self.trng = RandomStreams(rng.randint(1000)+1)
         self.sample_fn = sample_fn
-        self.indx_word = indx_word
-        self.indx_word_src = indx_word_src
-        self.param_grads = output_layer.grads
+        self.source_language = source_language
+        self.target_language = target_language
+        output_dependencies = [x for x in
+                               theano.gof.graph.inputs([output_layer.out])
+                               if not isinstance(x, TT.Constant)]
+        parameters = filter(lambda x:
+                            isinstance(x, theano.compile.SharedVariable),
+                            output_dependencies)
+        inputs = filter(lambda x:
+                        not isinstance(x, theano.compile.SharedVariable),
+                        output_dependencies)
         self.params = output_layer.params
         self.updates = output_layer.updates
         self.noise_params = output_layer.noise_params
         self.noise_params_shape_fn = output_layer.noise_params_shape_fn
-        self.inputs = output_layer.inputs
+        self.inputs = inputs
         self.params_grad_scale = output_layer.params_grad_scale
         self.train_cost = output_layer.cost
         self.out = output_layer.out

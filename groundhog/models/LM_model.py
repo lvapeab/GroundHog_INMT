@@ -35,9 +35,9 @@ class LM_Model(Model):
                   clean_before_noise_fn = False,
                   clean_noise_validation=True,
                   weight_noise_amount = 0,
-                  indx_word="/data/lisa/data/PennTreebankCorpus/dictionaries.npz",
                   need_inputs_for_generating_noise=False,
-                  indx_word_src=None,
+                  source_language=None,
+                  target_language=None,
                   character_level = False,
                   exclude_params_for_norm=None,
                   rng = None):
@@ -71,18 +71,18 @@ class LM_Model(Model):
         :param weight_noise_amount: weight noise scale (standard deviation
             of the Gaussian from which it is sampled)
 
-        :type indx_word: string or None
-        :param indx_word: path to the file describing how to match indices
-            to words (or characters)
+        :type source_language: Language
+        :param source_language: Language object corresponding to the source
+            language
+
+        :type target_language: Language
+        :param target_language: Language object corresponding to the target
+            language
 
         :type need_inputs_for_generating_noise: bool
         :param need_inputs_for_generating_noise: flag saying if the shape of
             the inputs affect the shape of the weight noise that is generated at
             each step
-
-        :type indx_word_src: string or None
-        :param indx_word_src: similar to indx_word (but for the source
-            language
 
         :type character_level: bool
         :param character_level: flag used when sampling, saying if we are
@@ -100,8 +100,8 @@ class LM_Model(Model):
         """
         super(LM_Model, self).__init__(output_layer=cost_layer,
                                        sample_fn=sample_fn,
-                                       indx_word=indx_word,
-                                       indx_word_src=indx_word_src,
+                                       target_language=target_language,
+                                       source_language=source_language,
                                        rng=rng)
         if exclude_params_for_norm is None:
             self.exclude_params_for_norm = []
@@ -218,33 +218,12 @@ class LM_Model(Model):
         ppl = 10**(numpy.log(2)*cost/numpy.log(10))
         return [('cost',entropy), ('ppl',ppl)]
 
-
-    def load_dict(self, opts):
-        """
-        Loading the dictionary that goes from indices to actual words
-        """
-
-        if self.indx_word and '.pkl' in self.indx_word[-4:]:
-            data_dict = pkl.load(open(self.indx_word, "r"))
-            self.word_indxs = data_dict
-            self.word_indxs[opts['null_sym_target']] = '<eol>'
-            self.word_indxs[opts['unk_sym_target']] = opts['oov']
-        elif self.indx_word and '.np' in self.indx_word[-4:]:
-            self.word_indxs = numpy.load(self.indx_word)['unique_words']
-
-        if self.indx_word_src and '.pkl' in self.indx_word_src[-4:]:
-            data_dict = pkl.load(open(self.indx_word_src, "r"))
-            self.word_indxs_src = data_dict
-            self.word_indxs_src[opts['null_sym_source']] = '<eol>'
-            self.word_indxs_src[opts['unk_sym_source']] = opts['oov']
-        elif self.indx_word_src and '.np' in self.indx_word_src[-4:]:
-            self.word_indxs_src = numpy.load(self.indx_word_src)['unique_words']
-
-
-
     def get_samples(self, length = 30, temp=1, *inps):
-        if not hasattr(self, 'word_indxs'):
-           self.load_dict()
+        # Since we have replaced paths for language representations we
+        # should no longer need this kind of lazy initialization.
+
+        # if not hasattr(self, 'word_indxs'):
+        #     self.load_dict()
         self._get_samples(self, length, temp, *inps)
 
     def perturb(self, *args, **kwargs):

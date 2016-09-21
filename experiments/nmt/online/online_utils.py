@@ -10,13 +10,8 @@ def create_batch_from_seqs(src, trg):
             'y': np.asarray([[trg_word] for trg_word in trg]),
             'y_mask': np.asarray([[1.] for _ in trg])}
 
-
-
 def loadFile(path):
     return cPickle.load(open(path, 'r'))
-
-
-
 
 class Language:
     def __init__(self, eos_index, unk_index, oov_sym,

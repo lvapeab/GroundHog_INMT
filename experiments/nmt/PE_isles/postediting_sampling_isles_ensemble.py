@@ -467,9 +467,6 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
     return to_write
 
 
-
-
-
 def parse_args():
     parser = argparse.ArgumentParser(
             "Sample (of find with beam-serch) translations from a translation model")
@@ -867,9 +864,9 @@ def main():
                                  "Sentence mouse strokes: %d "
                                  "Sentence MAR: %4f. "
                                  "Sentence MAR_c: %4f. "
-                                 "Accumulated WSR: %4f. "
-                                 "Accumulated MAR: %4f. "
-                                 "Accumulated MAR_c: %4f.\n\n\n\n\n\n" %
+                                 "Accumulated (should only be considered for debugging purposes!) WSR: %4f. "
+                                 "MAR: %4f. "
+                                 "MAR_c: %4f.\n\n\n\n" %
                                  (errors_sentence,
                                   float(errors_sentence) / len(hypothesis),
                                   mouse_actions_sentence + 1,

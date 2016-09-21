@@ -21,7 +21,7 @@ from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSour
 from groundhog.datasets.UnbufferedDataIterator import UnbufferedDataIterator
 from groundhog.trainer.SGD_online import SGD
 from groundhog.trainer.SGD_adagrad import AdaGrad
-from groundhog.trainer.SGD_adadelta import SGD as Adadelta
+from groundhog.trainer.SGD_adadelta_online import SGD as Adadelta
 
 logger = logging.getLogger(__name__)
 
@@ -380,7 +380,7 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
             counts = [len(s) for s in trans]
             costs = [co / cn for co, cn in zip(costs, counts)]
         for i in range(len(trans)):
-            sen = indices_to_words(lm_model.word_indxs, trans[i])
+            sen = indices_to_words(lm_model.target_language.indx_word, trans[i])
             sentences.append(" ".join(sen))
         for i in range(len(costs)):
             if verbose:
@@ -561,7 +561,6 @@ def main():
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
                                                  outputs=[enc_decs[i].alignment],
                                                  name="alignment_fn"))
-
     if args.replaceUnk:
         if args.mapping:
             with open(args.mapping, 'rb') as f:

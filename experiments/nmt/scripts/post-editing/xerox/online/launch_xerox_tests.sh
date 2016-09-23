@@ -38,10 +38,11 @@ for lr in 0.1; do
             echo "lr=${lr}"
             echo "Storing results in  ${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${prefix}_${lr}.err "
             echo "max_N=${max_n}"
-	    ori_dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.Orihyp.${trg_lan}"
-	    dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.${trg_lan}"
-	    save_ori="--save-original --save-original-to ${ori_dest}"
-            python ${pe_script} ${prefix} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --max-n ${max_n} ${i} --models ${m1} ;
-    	done
+	        echo "algo: ${algo}"
+            ori_dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.Orihyp.${trg_lan}"
+            dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.${trg_lan}"
+            save_ori="--save-original --save-original-to ${ori_dest}"
+                python ${pe_script} ${prefix} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --max-n ${max_n} ${i} --models ${m1}
+            done
     done
 done

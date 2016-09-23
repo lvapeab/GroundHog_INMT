@@ -9,15 +9,15 @@ cd $this_dir
 pe_script="${SOFTWARE_PREFIX}/GroundHog/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py"
 
 beam_size=12
-src_lan="en"
-trg_lan="es"
+src_lan="es"
+trg_lan="en"
 task="xerox"
 v=1
 
-model_infix="_600_420_2211_"
+model_infix="_289_354_"
 
 state="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}state.pkl"
-m1="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}model_bleu98.npz"
+m1="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}model_bleu50.npz"
 
 
 #################################################
@@ -26,7 +26,7 @@ m1="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}mo
 # Variable parameters (for experimentation)
 split="test"
 task="xerox"
-algo="Adadelta"
+algo="AdaGrad"
 
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"

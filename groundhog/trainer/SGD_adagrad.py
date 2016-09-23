@@ -1,65 +1,69 @@
-"""
-Online AdaGrad Algorithm
+# -*- coding: utf-8 -*-
 
 
-TODO: write more documentation
+""" Adagrad learning algorithm. For a nice explanation of the algorithm, see: http://sebastianruder.com/optimizing-gradient-descent/index.html#adagrad
+Adagrad [1] is an algorithm for gradient-based optimization
+that adapts the learning rate to the parameters, performing
+larger updates for infrequent and smaller updates for frequent parameters.
+
+We set g_{t,i} to be the gradient of the objective function w.r.t. to the parameter θi at time step t
+gt,i=∇θJ(θi)
+Adagrad modifies the general learning rate η at each time step t for every parameter θi based
+on the past gradients that have been computed for θi:
+θ{t+1,i}=θ{t,i}−\div{η}{\sqrt{G_{t,ii}+ϵ}}*g_{t,i}
+
+Gt∈ℝ^{d×d}: Diagonal matrix where each diagonal element i,i is
+the sum of the squares of the gradients w.r.t. θi up to time step t
+
+[1]: Duchi, J., Hazan, E., & Singer, Y. (2011). Adaptive Subgradient Methods for Online Learning and Stochastic Optimization.
+ Journal of Machine Learning Research, 12, 2121–2159. (http://jmlr.org/papers/v12/duchi11a.html)
 """
+
 __docformat__ = 'restructedtext en'
 __authors__ = ("Alvaro Peris "
                "Kevin Montalva")
 __contact__ = "Alvaro Peris <lvapeab@gmail>"
 
-
-import numpy as np
+import numpy
+import logging
 import time
 
 import theano
 import theano.tensor as TT
 
-from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
-from groundhog.utils import print_time, print_mem, const
 
-
+logger = logging.getLogger(__name__)
 class AdaGrad(object):
-    """
-    AdaGrad class
-    """
+
+
     def __init__(self,
                  model,
                  state,
                  data):
-        """
-        :type model: groundhog model class
-        :param model: class depicting the model to be optimized
-
-        :type state: dictionary or jobman DD object
-        :param state: dictionary containing various hyper-parameters. The
-            class will write into this dictionary updates like the current
-            training error and so on
-
-        :type data: groundhog dataset object
-        :param data: data iterator over which training is done
-        """
 
         #####################################
         # Step 0. Constructs shared variables
         #####################################
+
         bs = state['bs']
         self.model = model
-        self.rng = np.random.RandomState(state['seed'])
+        self.rng = numpy.random.RandomState(state['seed'])
 
         self.add_noise = state['weight_noise']
         self.step = 0
         self.bs = bs
         self.state = state
         self.data = data
-        self.gs = [theano.shared(np.zeros(p.get_value(borrow=True).shape,
-                                     dtype=theano.config.floatX),
-                        name=p.name)
-           for p in model.params]
         self.step_timer = time.time()
-        self.gdata = [theano.shared(np.zeros( (2,)*x.ndim,
-                                                 dtype=x.dtype), name=x.name) for x in model.inputs]
+        self.gdata = [theano.shared(numpy.zeros( (2,)*x.ndim,
+                                                dtype=x.dtype),
+                                    name=x.name) for x in model.inputs]
+        self.gs = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
+                                             dtype=theano.config.floatX),
+                                name=p.name)
+                   for p in model.params]
+
+        self.eps = 1e-4
         if 'profile' not in self.state:
             self.state['profile'] = 0
 
@@ -68,49 +72,52 @@ class AdaGrad(object):
         ###################################
         print 'Constructing grad function'
         loc_data = self.gdata
-        self.prop_exprs = [x[1] for x in model.properties]
+        lr = TT.scalar('lr')
         self.prop_names = [x[0] for x in model.properties]
+        self.prop_exprs = [x[1] for x in model.properties]
         self.update_rules = [x[1] for x in model.updates]
-
         inputs_replacement_list = zip(model.inputs, loc_data)
 
-        parameter_gradients = theano.clone(model.param_grads,
-                                           replace = inputs_replacement_list)
 
-        accumulated_squared_gradients = [theano.shared(np.zeros(param.shape.eval(), dtype=param.dtype),
-                                                       name=param.name + '_acc_grad')
+        accumulated_squared_gradients = [theano.shared(numpy.zeros(param.shape.eval(),
+                                                                   dtype=param.dtype),
+                                                       name = param.name + '_acc_grad')
                                          for param in model.params]
 
-        learning_rate = np.float32(state['lr'])
         output_values = []
-
-        print 'Compiling training function'
         st = time.time()
 
         def shift_zeroes(x):
             # The formula would create NaN upon the presence of zeroes
-            return x + (abs(x) < 1e-7) * 1e-7
+            return x + (abs(x) < 1e-8) * 1e-8
+
 
         def nan_and_inf_to_zero(x):
             x = TT.switch(TT.isnan(x), 0.0, x)
-            return TT.switch(TT.isinf(x), 0.0, x)
+            return TT.switch(TT.isinf(x), 1e8, x)
 
-        no_nan_or_inf_gradients = [nan_and_inf_to_zero(gradient) for gradient in parameter_gradients]
 
-        weight_update_list = [(weight, weight - learning_rate *
-                               gradient / shift_zeroes(TT.sqrt(accumulated_squared_gradient + TT.pow(gradient, 2))))
-                              for weight, gradient,accumulated_squared_gradient in
-                              zip(model.params, no_nan_or_inf_gradients, accumulated_squared_gradients)]
+        no_nan_or_inf_gradients = [nan_and_inf_to_zero(gradient) for gradient in self.gs]
 
-        accumulated_squared_gradients_update = [(acc_gradient, acc_gradient + TT.pow(gradient, 2)) for
-                                                acc_gradient, gradient in
-                                                zip(accumulated_squared_gradients, no_nan_or_inf_gradients)]
+        # Compute G_{i,i}
+        accumulated_squared_gradients_update_list = [(acc_gradient, acc_gradient + gradient**2)
+                                        for acc_gradient, gradient in
+                                        zip(accumulated_squared_gradients, no_nan_or_inf_gradients)]
 
+        # θ{t+1,i}=θ{t,i}−\div{η}{\sqrt{G_{t,ii}+ϵ}}*g_{t,i}
+        weight_update_list = [(weight, weight - lr / TT.sqrt(TT.inc_subtensor(G_t[1][:],  1e-8)+TT.pow(gradient, 2))
+                               * gradient) for weight, gradient, G_t
+                              in zip(model.params, no_nan_or_inf_gradients, accumulated_squared_gradients_update_list)]
+
+        updates = weight_update_list + accumulated_squared_gradients_update_list
+        print 'Compiling update function'
+        self.lr = numpy.float32(state['lr'])
+        print '\t > Using a learning rate of', self.lr
         self.update_fn = theano.function(
-            [], output_values, name='update_function',
-            allow_input_downcast=True,
+            [lr], output_values, name='update_function',
+            allow_input_downcast=True,updates = updates,
             profile=self.state['profile'],
-            updates = weight_update_list + accumulated_squared_gradients_update)
+            )
 
         print 'took', time.time() - st
 
@@ -119,19 +126,16 @@ class AdaGrad(object):
         self.return_names = self.prop_names + \
                 ['cost',
                  'time_step',
-                 'whole_time',
-                  'lr']
-
+                 'whole_time']
 
     def __call__(self, _):
         """
         Ignored parameter: hypothesis.
         """
         batch = self.data.next()
-        print "Batch:", batch
-        print "Batch", batch.keys()
-        # Perturb the data (! and the model)
+
         """
+        # Perturb the data (! and the model)
         if self.add_noise:
             if isinstance(batch, dict):
                 batch = self.model.perturb(**batch)
@@ -149,8 +153,6 @@ class AdaGrad(object):
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
 
-        # Run the training function
         rvals = self.update_fn()
         if len(rvals) > 0:
             print rvals
-

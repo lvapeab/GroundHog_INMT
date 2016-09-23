@@ -9,8 +9,8 @@ cd $this_dir
 pe_script="${SOFTWARE_PREFIX}/GroundHog/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py"
 
 beam_size=12
-src_lan="en"
-trg_lan="es"
+src_lan="es"
+trg_lan="en"
 task="xerox"
 v=1
 
@@ -30,22 +30,26 @@ m5="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}mo
 # Variable parameters (for experimentation)
 split="test"
 task="xerox"
-algo="Adadelta"
+
 
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"
 
-for lr in 0.1; do
+for lr in 0.05; do
     for max_n in 4; do
-	    for prefix in "--prefix"; do
+	    for prefix in " " "--prefix"; do
+		for algo in "SGD" "AdaDelta"; do
             echo "max_N=${max_n}"
             echo "lr=${lr}"
             echo "Storing results in  ${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${prefix}_${lr}.err "
             echo "max_N=${max_n}"
+	    echo "algo: ${algo}"
 	    ori_dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.Orihyp.${trg_lan}"
 	    dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/postEditing/${split}.PE_${prefix}.${algo}.${lr}.${trg_lan}"
 	    save_ori="--save-original --save-original-to ${ori_dest}"
-            python ${pe_script} ${prefix} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --max-n ${max_n} ${i} --models ${m1} ${m2} ${m3} ${m4} ${m5};
-    	done
+	    log_file=${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${algo}_${prefix}_${lr}
+            python ${pe_script} ${prefix} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --max-n ${max_n} ${i} --models ${m1} ${m2} ${m3} ${m4} ${m5} > ${log_file}.log 2>  ${log_file}.err ;
+	    done
+	done
     done
 done

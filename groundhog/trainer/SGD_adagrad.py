@@ -153,6 +153,6 @@ class AdaGrad(object):
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
 
-        rvals = self.update_fn()
+        rvals = self.update_fn(self.lr)
         if len(rvals) > 0:
             print rvals

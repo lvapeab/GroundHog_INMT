@@ -73,31 +73,30 @@ def create_padded_batch(state, x, y, return_dict=False):
     Ymask = numpy.zeros((my, n), dtype='float32')
 
     # Fill X and Xmask
-    for idx in xrange(len(x[0])):
-        # Insert sequence idx in a column of matrix X
-        if mx < len(x[0][idx]):
-            X[:mx, idx] = x[0][idx][:mx]
-        else:
-            X[:len(x[0][idx]), idx] = x[0][idx][:mx]
+    for sentenceIndex in xrange(len(x[0])):
+        # Insert sequence sentenceIndex in a column of matrix X
+        sentenceLength = len(x[0][sentenceIndex])
+        X[:min(mx, sentenceLength), sentenceIndex] = x[0][sentenceIndex][:mx]
 
         # Mark the end of phrase
-        if len(x[0][idx]) < mx:
-            X[len(x[0][idx]):, idx] = state['null_sym_source']
+        if sentenceLength < mx:
+            X[sentenceLength:, sentenceIndex] = state['null_sym_source']
 
         # Initialize Xmask column with ones in all positions that
         # were just set in X
-        Xmask[:len(x[0][idx]), idx] = 1.
-        if len(x[0][idx]) < mx:
-            Xmask[len(x[0][idx]), idx] = 1.
+        Xmask[:sentenceLength, sentenceIndex] = 1.
+        if sentenceLength < mx:
+            Xmask[sentenceLength, sentenceIndex] = 1.
 
     # Fill Y and Ymask in the same way as X and Xmask in the previous loop
-    for idx in xrange(len(y[0])):
-        Y[:len(y[0][idx]), idx] = y[0][idx][:my]
-        if len(y[0][idx]) < my:
-            Y[len(y[0][idx]):, idx] = state['null_sym_target']
-        Ymask[:len(y[0][idx]), idx] = 1.
-        if len(y[0][idx]) < my:
-            Ymask[len(y[0][idx]), idx] = 1.
+    for sentenceIndex in xrange(len(y[0])):
+        sentenceLength = len(y[0][sentenceIndex])
+        Y[:sentenceLength, sentenceIndex] = y[0][sentenceIndex][:my]
+        if sentenceLength < my:
+            Y[sentenceLength:, sentenceIndex] = state['null_sym_target']
+        Ymask[:sentenceLength, sentenceIndex] = 1.
+        if sentenceLength < my:
+            Ymask[sentenceLength, sentenceIndex] = 1.
 
     null_inputs = numpy.zeros(X.shape[1])
 
@@ -105,13 +104,13 @@ def create_padded_batch(state, x, y, return_dict=False):
     # - either source sequence or target sequence is non-empty
     # - source sequence and target sequence have null_sym ending
     # Why did not we filter them earlier?
-    for idx in xrange(X.shape[1]):
-        if numpy.sum(Xmask[:,idx]) == 0 and numpy.sum(Ymask[:,idx]) == 0:
-            null_inputs[idx] = 1
-        if Xmask[-1,idx] and X[-1,idx] != state['null_sym_source']:
-            null_inputs[idx] = 1
-        if Ymask[-1,idx] and Y[-1,idx] != state['null_sym_target']:
-            null_inputs[idx] = 1
+    for sentenceIndex in xrange(X.shape[1]):
+        if numpy.sum(Xmask[:,sentenceIndex]) == 0 and numpy.sum(Ymask[:,sentenceIndex]) == 0:
+            null_inputs[sentenceIndex] = 1
+        if Xmask[-1,sentenceIndex] and X[-1,sentenceIndex] != state['null_sym_source']:
+            null_inputs[sentenceIndex] = 1
+        if Ymask[-1,sentenceIndex] and Y[-1,sentenceIndex] != state['null_sym_target']:
+            null_inputs[sentenceIndex] = 1
 
     valid_inputs = 1. - null_inputs
 
@@ -127,12 +126,10 @@ def create_padded_batch(state, x, y, return_dict=False):
     X[X >= state['n_sym_source']] = state['unk_sym_source']
     Y[Y >= state['n_sym_target']] = state['unk_sym_target']
 
-
     if return_dict:
         return {'x' : X, 'x_mask' : Xmask, 'y': Y, 'y_mask' : Ymask}
     else:
         return X, Xmask, Y, Ymask
-
 
 def get_batch_iterator(state):
 
@@ -1331,14 +1328,12 @@ class RNNEncoderDecoder(object):
         self.y_mask = TT.matrix('y_mask')
         self.inputs = [self.x, self.y, self.x_mask, self.y_mask]
 
-        # Annotation for the log-likelihood computation
-        training_c_components = []
-
         logger.debug("Create encoder")
         self.encoder = Encoder(self.state, self.rng,
                 prefix="enc",
                 skip_init=self.skip_init)
         self.encoder.create_layers()
+
         logger.debug("Build encoding computation graph")
         forward_training_c = self.encoder.build_encoder(self.x, self.x_mask, use_noise=True, return_hidden_layers=True)
 
@@ -1346,20 +1341,28 @@ class RNNEncoderDecoder(object):
         self.backward_encoder = Encoder(self.state, self.rng, prefix="back_enc", skip_init=self.skip_init)
         self.backward_encoder.create_layers()
         logger.debug("Build backward encoding computation graph")
-        backward_training_c = self.backward_encoder.build_encoder(self.x[::-1], self.x_mask[::-1], use_noise=True,
-                            approx_embeddings=self.encoder.approx_embedder(self.x[::-1]), return_hidden_layers=True)
+        backward_training_c = self.backward_encoder.build_encoder(
+                self.x[::-1],
+                self.x_mask[::-1],
+                use_noise=True,
+                approx_embeddings=self.encoder.approx_embedder(self.x[::-1]),
+                return_hidden_layers=True)
         # Reverse time for backward representations.
         backward_training_c.out = backward_training_c.out[::-1]
 
+        # Annotation for the log-likelihood computation
+        training_c_components = []
+
         if self.state['forward']:
             training_c_components.append(forward_training_c)
+        if self.state['last_forward']:
+            training_c_components.append(
+                    ReplicateLayer(self.x.shape[0])(forward_training_c[-1]))
         if self.state['backward']:
             training_c_components.append(backward_training_c)
-
-        if self.state['last_forward']:
-            training_c_components.append(ReplicateLayer(self.x.shape[0])(forward_training_c[-1]))
         if self.state['last_backward']:
-            training_c_components.append(ReplicateLayer(self.x.shape[0])(backward_training_c[0]))
+            training_c_components.append(ReplicateLayer(self.x.shape[0])
+                    (backward_training_c[0]))
         self.state['c_dim'] = len(training_c_components) * self.state['dim']
 
         logger.debug("Create decoder")
@@ -1398,9 +1401,9 @@ class RNNEncoderDecoder(object):
                     (self.backward_sampling_c[0]))
 
         self.sampling_c = Concatenate(axis=1)(*sampling_c_components).out
-        (self.sample, self.sample_log_prob), self.sampling_updates = self.decoder.build_sampler(self.n_samples,
-                                                                                                self.n_steps, self.T,
-                                                                                                c=self.sampling_c)
+        (self.sample, self.sample_log_prob), self.sampling_updates =\
+            self.decoder.build_sampler(self.n_samples, self.n_steps, self.T,
+                    c=self.sampling_c)
 
         logger.debug("Create auxiliary variables")
         self.c = TT.matrix("c")
@@ -1429,8 +1432,7 @@ class RNNEncoderDecoder(object):
             self.repr_fn = theano.function(
                     inputs=[self.sampling_x],
                     outputs=[self.sampling_c],
-                    name="repr_fn",
-                    allow_input_downcast = True)
+                    name="repr_fn")
         return self.repr_fn
 
     def create_initializers(self):

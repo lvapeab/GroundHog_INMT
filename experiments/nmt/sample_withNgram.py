@@ -57,7 +57,7 @@ class BeamSearch(object):
 
         trans = [[]]
         costs = [0.0]
-        voc_size = len(lm_model.word_indxs)
+        voc_size = len(lm_model.target_language.indx_word)
         for k in range(3 * len(seq)):
             if n_samples == 0:
                 break
@@ -70,7 +70,7 @@ class BeamSearch(object):
                     else numpy.zeros(beam_size, dtype="int64"))
             log_probs_cont = numpy.log(self.comp_next_probs(c, k, last_words, *states)[0])
 
-            last_words_disc = map(lambda y : " ".join(y), map(lambda x : indices_to_words(lm_model.word_indxs, x), trans)) \
+            last_words_disc = map(lambda y : " ".join(y), map(lambda x : indices_to_words(lm_model.target_language.indx_word, x), trans)) \
                 if k > 0 \
                 else [""]*beam_size
             log_probs_disc = numpy.zeros((len(last_words_disc),voc_size), dtype="float32")
@@ -78,14 +78,14 @@ class BeamSearch(object):
             for sentence in last_words_disc:
                 j = 0
                 for word in range(0, voc_size):
-                    new_sent = sentence + ' ' +lm_model.word_indxs[word]
+                    new_sent = sentence + ' ' +lm_model.target_language.indx_word[word]
                     log_probs_disc[i][j] = ngram_model.score(new_sent)
                     j+=1
                 i+=1
 
             log_probs = lambda_weight * log_probs_cont + (1 - lambda_weight)* log_probs_disc
 
-            # print "trans:", map(lambda x : indices_to_words(lm_model.word_indxs, x),trans)
+            # print "trans:", map(lambda x : indices_to_words(lm_model.target_language.indx_word, x),trans)
             # i2w[seq[k]]
 
 
@@ -175,7 +175,7 @@ def sample(lm_model, seq, n_samples, ngram_model,
             counts = [len(s) for s in trans]
             costs = [co / cn for co, cn in zip(costs, counts)]
         for i in range(len(trans)):
-            sen = indices_to_words(lm_model.word_indxs, trans[i])
+            sen = indices_to_words(lm_model.target_language.indx_word, trans[i])
             sentences.append(" ".join(sen))
         for i in range(len(costs)):
             if verbose:
@@ -201,9 +201,9 @@ def sample(lm_model, seq, n_samples, ngram_model,
         for sidx in xrange(n_samples):
             sen = []
             for k in xrange(values.shape[0]):
-                if lm_model.word_indxs[values[k, sidx]] == '<eol>':
+                if lm_model.target_language.indx_word[values[k, sidx]] == '<eol>':
                     break
-                sen.append(lm_model.word_indxs[values[k, sidx]])
+                sen.append(lm_model.target_language.indx_word[values[k, sidx]])
             sentences.append(" ".join(sen))
             probs = cond_probs[:, sidx]
             probs = numpy.array(cond_probs[:len(sen) + 1, sidx])

@@ -304,6 +304,7 @@ class MainLoop(object):
             st = time.time()
 
             try:
+
                 rvals = self.algo()
                 self.state['traincost'] = float(rvals['cost'])
                 self.state['step'] = self.step
@@ -312,8 +313,7 @@ class MainLoop(object):
                     self.timings[name][self.step] = float(numpy.array(rvals[name]))
                 if self.l2_params:
                     for param in self.model.params:
-                        self.timings["l2_" + param.name][self.step] =\
-                            numpy.mean(param.get_value() ** 2) ** 0.5
+                        self.timings["l2_" + param.name][self.step] = numpy.mean(param.get_value() ** 2) ** 0.5
 
                 if (numpy.isinf(rvals['cost']) or
                    numpy.isnan(rvals['cost'])) and\
@@ -383,7 +383,6 @@ class MainLoop(object):
                 self.step += 1
                 self.timings['step'] = self.step
                 self.timings['next_offset'] = self.train_data.next_offset
-
             except KeyboardInterrupt:
                 break
 

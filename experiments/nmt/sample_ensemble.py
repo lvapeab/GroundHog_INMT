@@ -172,7 +172,7 @@ def sample(lm_model, seq, n_samples, eos_id, unk_id,
         else:
             costs = [co + wp * cn for co, cn in zip(costs, counts)]
         for i in range(len(trans)):
-            sen = indices_to_words(lm_model.word_indxs, trans[i]) # Make sure that indices_to_words has been changed
+            sen = indices_to_words(lm_model.target_language.indx_word, trans[i]) # Make sure that indices_to_words has been changed
             sentences.append(" ".join(sen))
         for i in range(len(costs)):
             if verbose:

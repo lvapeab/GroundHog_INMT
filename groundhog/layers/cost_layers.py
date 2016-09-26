@@ -665,7 +665,10 @@ class SigmoidLayer(CostLayer):
         """
 
         if not hasattr(model, 'word_indxs_src'):
-            model.word_indxs_src = model.word_indxs
+            model.word_indxs_src = model.source_language.indx_word
+
+        if not hasattr(model, 'word_indxs'):
+            model.word_indxs = model.target_language.indx_word
 
         character_level = False
         if hasattr(model, 'character_level'):
@@ -887,7 +890,10 @@ class SoftmaxLayer(CostLayer):
         See parent class
         """
         if not hasattr(model, 'word_indxs_src'):
-            model.word_indxs_src = model.word_indxs
+            model.word_indxs_src = model.source_language.indx_word
+
+        if not hasattr(model, 'word_indxs'):
+            model.word_indxs = model.target_language.indx_word
 
         character_level = False
         if hasattr(model, 'character_level'):
@@ -1185,7 +1191,7 @@ class HierarchicalSoftmaxLayer(SoftmaxLayer):
 
         assert theano.config.device[:3] == 'gpu', 'Hierarchical softmax is not supported without GPU'
 
-        from theano.sandbox.cuda.blocksparse import sparse_block_dot_SS
+        from theano.sandbox.blocksparse import sparse_block_dot as sparse_block_dot_SS
         self.sparse_block_dot_SS = sparse_block_dot_SS
 
         self.grad_scale = grad_scale

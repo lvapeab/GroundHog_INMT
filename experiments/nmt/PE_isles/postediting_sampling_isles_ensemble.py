@@ -377,7 +377,7 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
             counts = [len(s) for s in trans]
             costs = [co / cn for co, cn in zip(costs, counts)]
         for i in range(len(trans)):
-            sen = indices_to_words(lm_model.word_indxs, trans[i])
+            sen = indices_to_words(lm_model.target_language.indx_word, trans[i])
             sentences.append(" ".join(sen))
         for i in range(len(costs)):
             if verbose:
@@ -393,9 +393,9 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
         for sidx in xrange(n_samples):
             sen = []
             for k in xrange(values.shape[0]):
-                if lm_model.word_indxs[values[k, sidx]] == '<eol>':
+                if lm_model.target_language.indx_word[values[k, sidx]] == '<eol>':
                     break
-                sen.append(lm_model.word_indxs[values[k, sidx]])
+                sen.append(lm_model.target_language.indx_word[values[k, sidx]])
             sentences.append(" ".join(sen))
             probs = numpy.array(cond_probs[:len(sen) + 1, sidx])
             all_probs.append(numpy.exp(-probs))

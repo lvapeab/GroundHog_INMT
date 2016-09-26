@@ -396,9 +396,9 @@ def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
         for sidx in xrange(n_samples):
             sen = []
             for k in xrange(values.shape[0]):
-                if lm_model.word_indxs[values[k, sidx]] == '<eol>':
+                if lm_model.target_language.indx_word[values[k, sidx]] == '<eol>':
                     break
-                sen.append(lm_model.word_indxs[values[k, sidx]])
+                sen.append(lm_model.target_language.indx_word[values[k, sidx]])
             sentences.append(" ".join(sen))
             probs = numpy.array(cond_probs[:len(sen) + 1, sidx])
             all_probs.append(numpy.exp(-probs))
@@ -475,6 +475,7 @@ def parse_args():
     parser.add_argument("--state", required=True, help="State to use")
     parser.add_argument("--algo", default=None, help="Online training algorithm. \n\t Supported algorithms: \n"
                                                      "\t \t AdaGrad\n"
+                                                     "\t \t AdaDelta\n"
                                                      "\t \t SGD\n")
     parser.add_argument("--lr", type=float, default=0.1, help='Learning rate for the online algorithm (if necessary)')
     parser.add_argument("--wn", action="store_true", default=False, help='Apply weight noise in the online algorithm')

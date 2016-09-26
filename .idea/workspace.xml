@@ -2,113 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eff7a5a6-2754-4784-8dbe-f44229d53cf9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_barrido.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_barrido.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/emea_barrido.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/PE_UE_ensemble_online.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.001.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.05.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_en_es_0.5.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.001.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_dev_enes__0.5.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_dev.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_test.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_esen_online_test_isles.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_en_es_0.05.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes_--prefix_0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes_--prefix_0.05.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes__0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/enes/ue_test_enes__0.05.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_Isles.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_ensemble.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/PE_UE_ensemble_online.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_barrido.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.0005.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.0005.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.005.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.005.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.01.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.01.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.05.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.5.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_0.5.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_dev_es_en_1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_isles_ensemble3.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_enes_prefix_ensemble3.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_isles_online_test.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_isles_online_test.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_ensemble4.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online_test.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_esen_prefix_online_test.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble2.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_isles_ensemble2.l" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_es_en_0.05.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_esen_--prefix_0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/ue/esen/ue_test_esen_--prefix_0.05.scores" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/PE_Xerox_Isles_ensemble.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.001.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.005.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.01.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.5.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_0.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_--prefix_1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.001.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.005.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.01.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.05.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.5.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_0.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes_1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.001.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.005.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.01.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.05.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.5.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__0.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_dev_enes__1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_enes_dev.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_enes_test.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_--prefix_0.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_0.1.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes_0.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.1.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/enes/xerox_test_enes__0.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/not_retrain.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/not_retrain.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/out" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/sgd.err" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/sgd.log" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/#state.py#" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateUE-620_1000.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/state.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEsEn.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py" afterPath="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaEnFr.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaEnFr.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEnEs.py" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEnEs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue.sh" afterPath="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/experiments/nmt/state.py" afterPath="$PROJECT_DIR$/experiments/nmt/state.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py" afterPath="$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py" />
     </list>
     <ignored path="GroundHog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,102 +49,88 @@
     <favorites_list name="GroundHog" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55802155">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="SGD_adagrad.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_adagrad.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="postediting_sampling.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/experiments/nmt/postediting_sampling.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="178" column="12" selection-start-line="178" selection-start-column="12" selection-end-line="178" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="postediting_sampling_isles_ensemble_online.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="555" column="23" selection-start-line="555" selection-start-column="23" selection-end-line="555" selection-end-column="23" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="encdec.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/encdec.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.9269269">
-                  <caret line="1324" column="41" selection-start-line="1324" selection-start-column="41" selection-end-line="1324" selection-end-column="41" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SGD_online.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_online.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="72" column="28" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="28" />
-                  <folding>
-                    <element signature="e#270#282#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SGD.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="54" selection-end-column="41" />
-                  <folding>
-                    <element signature="e#270#282#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="SGD_online.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_online.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.017017016">
-                  <caret line="59" column="33" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="38" />
-                  <folding>
-                    <element signature="e#270#282#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AdaGrad.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../GroundHog-Online/GroundHog/groundhog/trainer/AdaGrad.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="sample_withNgram.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/sample_withNgram.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-36.136364">
+              <caret line="205" column="61" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postediting_sampling_isles_ensemble_online.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="400" column="61" selection-start-line="400" selection-start-column="61" selection-end-line="400" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cost_layers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/groundhog/layers/cost_layers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="6.142857">
+              <caret line="1193" column="86" selection-start-line="1193" selection-start-column="86" selection-end-line="1193" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BLM_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/groundhog/models/BLM_model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="284" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="state.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/state.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.29907975">
+              <caret line="88" column="45" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="89" selection-start-line="51" selection-start-column="89" selection-end-line="51" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postediting_sampling_isles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="316" column="61" selection-start-line="316" selection-start-column="61" selection-end-line="316" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postediting_sampling_isles_ensemble.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="397" column="61" selection-start-line="397" selection-start-column="61" selection-end-line="397" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -248,11 +140,31 @@
       <list>
         <option value="$PROJECT_DIR$/pruebas.py" />
         <option value="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/PE_Xerox_Isles_ensemble.sh" />
-        <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py" />
         <option value="$PROJECT_DIR$/groundhog/trainer/SGD_online.py" />
-        <option value="$PROJECT_DIR$/experiments/nmt/postediting_sampling.py" />
         <option value="$PROJECT_DIR$/groundhog/trainer/SGD_adagrad.py" />
         <option value="$PROJECT_DIR$/build/lib/experiments/nmt/encdec.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh" />
+        <option value="$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue.sh" />
+        <option value="$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaEnFr.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEnEs.py" />
+        <option value="$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py" />
+        <option value="$PROJECT_DIR$/groundhog/mainLoop.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/train_unkRep.py" />
+        <option value="$PROJECT_DIR$/build/lib/experiments/nmt/postediting_sampling.py" />
+        <option value="$PROJECT_DIR$/build/lib/experiments/nmt/sample.py" />
+        <option value="$PROJECT_DIR$/build/lib/experiments/nmt/sample_ensemble.py" />
+        <option value="$PROJECT_DIR$/build/lib/experiments/nmt/sample_withNgram.py" />
+        <option value="$PROJECT_DIR$/build/lib/experiments/nmt/train.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/postediting_sampling.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/sample.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/sample_ensemble.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/sample_withNgram.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/train.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py" />
+        <option value="$PROJECT_DIR$/groundhog/layers/cost_layers.py" />
+        <option value="$PROJECT_DIR$/experiments/nmt/state.py" />
       </list>
     </option>
   </component>
@@ -278,7 +190,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -292,7 +204,306 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="groundhog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="groundhog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="trainer">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="groundhog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="models">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="groundhog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="layers">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="training">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="training">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="ue">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="states">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="states">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="ue">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="states">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="emea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="GroundHog">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="experiments">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="nmt">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PE_isles">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -395,6 +606,140 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="training" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="training" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="states" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="states" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroundHog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nmt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PE_isles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -660,23 +1005,42 @@
       <option name="project" value="LOCAL" />
       <updated>1474361105850</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Sync logs">
+      <created>1474369044757</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1474369044757</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Better script">
+      <created>1474638014627</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1474638014627</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Language class integration">
+      <created>1474893429784</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1474893429784</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1922" height="1153" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13600422" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879376" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32782102" sideWeight="0.5044937" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976654" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24124514" sideWeight="0.4955063" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21206225" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17026885" sideWeight="0.4308094" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13600422" sideWeight="0.5191781" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33754864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17026885" sideWeight="0.4308094" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18133895" sideWeight="0.4808219" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980546" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -686,7 +1050,6 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33754864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -732,7 +1095,10 @@
     <MESSAGE value="State refactoring" />
     <MESSAGE value="Online isles INMT ensemble" />
     <MESSAGE value="Sync" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sync" />
+    <MESSAGE value="Sync logs" />
+    <MESSAGE value="Better script" />
+    <MESSAGE value="Language class integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Language class integration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -748,234 +1114,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/sample_ensemble.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7897898">
-          <caret line="298" column="82" selection-start-line="298" selection-start-column="82" selection-end-line="298" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/utils/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/utils/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/decoding/sampleGeneral.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3537074">
-          <caret line="275" column="45" selection-start-line="275" selection-start-column="45" selection-end-line="275" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8116233">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_random_search.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4509018">
-          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11329305">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02265861">
-          <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/post-editing/emea/PE_Emea_ensemble.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8383686">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/create_isles_training_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/models/BLM_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6510575">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/datasets/TM_dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../GroundHog-Online/GroundHog/experiments/nmt/encdec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/segment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="237" column="31" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/segment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="237" column="31" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/online/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/setuptools-21.2.1-py2.7.egg!/setuptools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12912913">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/theano/compile/function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15215215">
-          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/trainer/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33298755">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/language.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="83" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/online/online_trainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3070539">
-          <caret line="99" column="29" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/models/LM_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="221" column="8" selection-start-line="221" selection-start-column="8" selection-end-line="221" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/logging/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/online/online_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.045045044">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/groundhog/datasets/UnbufferedDataIterator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -987,13 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06006006">
           <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/encdec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26794258">
-          <caret line="1475" column="59" selection-start-line="1475" selection-start-column="59" selection-end-line="1475" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -1025,20 +1156,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/sample.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27231467">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.4214501">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_adadelta_online.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7054381">
@@ -1053,36 +1170,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/online/PE_Xerox_Isles_ensemble.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="54" selection-end-column="41" />
-          <folding>
-            <element signature="e#270#282#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/postediting_sampling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="178" column="12" selection-start-line="178" selection-start-column="12" selection-end-line="178" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="555" column="23" selection-start-line="555" selection-start-column="23" selection-end-line="555" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1094,29 +1185,342 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GroundHog-Online/GroundHog/groundhog/trainer/AdaGrad.py">
+    <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_online.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-          <folding />
+          <caret line="72" column="28" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/encdec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9269269">
-          <caret line="1324" column="41" selection-start-line="1324" selection-start-column="41" selection-end-line="1324" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.5515516">
+          <caret line="1299" column="28" selection-start-line="1299" selection-start-column="28" selection-end-line="1299" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GroundHog-Online/GroundHog/groundhog/trainer/AdaGrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.01997337">
+          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/esen/PE_Xerox_Isles_ensemble.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_online.py">
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/post-editing/xerox/xerox_isles_ensemble2.err">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.017017016">
-          <caret line="59" column="33" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_620-1000.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_random_search.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEsEn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue_520-600.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/training/ue/ue.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="86" selection-start-line="4" selection-start-column="86" selection-end-line="4" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/layers/basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="100" column="45" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="45" />
+          <folding>
+            <element signature="e#248#260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaEnFr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91877496">
+          <caret line="46" column="44" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/emea/stateEmeaFrEn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6804261">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/datasets/TM_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/trainer/SGD_adadelta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6604527">
+          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding>
+            <element signature="e#256#268#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/layers/rec_layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="52.771427">
+          <caret line="257" column="61" selection-start-line="257" selection-start-column="61" selection-end-line="257" selection-end-column="61" />
+          <folding>
+            <element signature="e#245#257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/scripts/states/ue/stateEnEs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/mainLoop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="360" column="43" selection-start-line="360" selection-start-column="43" selection-end-line="360" selection-end-column="43" />
+          <folding>
+            <element signature="e#500#510#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/encdec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.428571">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/models/LM_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.142858">
+          <caret line="32" column="34" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="33" />
           <folding>
             <element signature="e#270#282#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/train_unkRep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.428572">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="e#23#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/language.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.857143">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/postediting_sampling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="61" selection-start-line="176" selection-start-column="61" selection-end-line="176" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/sample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="173" column="61" selection-start-line="173" selection-start-column="61" selection-end-line="173" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/sample_ensemble.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="174" column="69" selection-start-line="174" selection-start-column="69" selection-end-line="174" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/sample_withNgram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-36.136364">
+          <caret line="205" column="61" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/lib/experiments/nmt/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="70" selection-start-line="50" selection-start-column="70" selection-end-line="50" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/postediting_sampling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="61" selection-start-line="176" selection-start-column="61" selection-end-line="176" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/sample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="173" column="61" selection-start-line="173" selection-start-column="61" selection-end-line="173" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/sample_ensemble.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="174" column="69" selection-start-line="174" selection-start-column="69" selection-end-line="174" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/sample_withNgram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-36.136364">
+          <caret line="205" column="61" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="89" selection-start-line="51" selection-start-column="89" selection-end-line="51" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="316" column="61" selection-start-line="316" selection-start-column="61" selection-end-line="316" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="397" column="61" selection-start-line="397" selection-start-column="61" selection-end-line="397" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/PE_isles/postediting_sampling_isles_ensemble_online.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="400" column="61" selection-start-line="400" selection-start-column="61" selection-end-line="400" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/models/BLM_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="284" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/theano/sandbox/cuda/blocksparse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33225283">
+          <caret line="23" column="75" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/theano/tensor/nnet/blocksparse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.946319">
+          <caret line="221" column="4" selection-start-line="221" selection-start-column="4" selection-end-line="221" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/software/anaconda/lib/python2.7/site-packages/theano/sandbox/blocksparse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0690184">
+          <caret line="3" column="51" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groundhog/layers/cost_layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.142857">
+          <caret line="1193" column="86" selection-start-line="1193" selection-start-column="86" selection-end-line="1193" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/nmt/state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29907975">
+          <caret line="88" column="45" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>

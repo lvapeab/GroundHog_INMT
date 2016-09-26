@@ -13,14 +13,14 @@ null_sym_target = 30000,
 n_sym_source =  30000 + 1,
 n_sym_target =  30000 + 1,
 
-dim = 600,
-rank_n_approx = 400,
-encoder_stack = 2,
+dim = 712,
+rank_n_approx = 382,
+encoder_stack = 1,
 decoder_stack = 1,
-deep_attention= True,
+deep_attention= False,
 deep_attention_n_hids = [600, 600],
 
-prefix = '/home/lvapeab/smt/tasks/ue/enes/NMT/models/ue_600_420_2211_',
+prefix = '/home/lvapeab/smt/tasks/ue/enes/NMT/models/ue_712_382_',
 reload = False,
 overwrite = 0,
 dropout = .5,
@@ -30,7 +30,6 @@ seqlen = 50,
 sort_k_batches = 20,
 bs = 80,
 
-
 bleu_val_frequency=2000,
 validation_burn_in=20000,
 hookFreq = 1000,
@@ -38,11 +37,15 @@ validFreq = 2000,
 trainFreq = 500,
 saveFreq = 60,
 
-
 validation_set='/home/lvapeab/smt/tasks/ue/DATA/test.en',
 output_validation_set = True,
-validation_set_out = '/home/lvapeab/smt/tasks/ue/enes/NMT/tmp/ue_2221_420.hyp.es',
+validation_set_out = '/home/lvapeab/smt/tasks/ue/enes/NMT/tmp/ue_712_382.hyp.es',
 validation_set_grndtruth='/home/lvapeab/smt/tasks/ue/DATA/test.es',
+
+#Unk Replace
+unkReplace=True,
+mapping = '/home/lvapeab/smt/tasks/ue/enes/NMT/DATA/topn.pkl',
+heuristic=1,
 
 # Early stop
 patience = 15,

@@ -42,6 +42,11 @@ validation_set='/home/lvapeab/smt/tasks/emea/DATA/test.en',
 validation_set_out='/home/lvapeab/smt/tasks/emea/enfr/NMT/tmp/emea_400_520.hyp.en',
 validation_set_grndtruth='/home/lvapeab/smt/tasks/emea/DATA/test.fr',
 
+#Unk Replace
+unkReplace=True,
+mapping = '/home/lvapeab/smt/tasks/emea/enfr/NMT/DATA/topn.pkl',
+heuristic=1,
+
 # Early stop
 patience = 15,
 early_stop_time = 24 # In hours

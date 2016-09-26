@@ -38,7 +38,7 @@ refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"
 for lr in 0.05; do
     for max_n in 4; do
 	    for prefix in " " "--prefix"; do
-		for algo in "SGD" "AdaDelta"; do
+		for algo in "SGD" "Adadelta"; do
             echo "max_N=${max_n}"
             echo "lr=${lr}"
             echo "Storing results in  ${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${prefix}_${lr}.err "

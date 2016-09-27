@@ -705,7 +705,7 @@ def main():
 
                     seqin = line.strip()
                     src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
-                    src_words = src_words.split()
+                    src_words = seqin.split()
 
                     logger.debug("\n \n Processing sentence %d" % (n_line + 1))
                     logger.debug("Source: %s" % line[:-1])

@@ -156,7 +156,7 @@ class BleuValidator(object):
             else:
                 seqin = line.strip()
             seq, parsed_in = parse_input(self.state, self.indx_word, seqin, idx2word=self.idict_src)
-            src_words = parsed_in.split()
+            src_words = seqin.split()
 
             # draw sample, checking to ensure we don't get an empty string back
             sentences, costs, trans = sample.sample(self.lm_model, seq, self.n_samples,

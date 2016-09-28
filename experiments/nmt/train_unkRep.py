@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 import argparse
 import cPickle
@@ -171,7 +174,7 @@ class BleuValidator(object):
                 print "Could not fine a translation for line: {}".format(i+1)
                 trans_out = u'UNK' if self.state['target_encoding'] == 'utf8' else 'UNK'
             if self.state['unkReplace'] and self.state['oov'] in hypothesis:
-                logger.debug("Unknown word in line %i"%i)
+                logger.log(2, "Unknown word in line %i"%i)
                 hard_alignments = self.compute_alignment(seq, trg_seq, self.alignment_fns)
                 hypothesis = self.replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, self.unk_id,
                                 heuristic=self.heuristic, mapping = self.mapping)
@@ -248,16 +251,16 @@ class BleuValidator(object):
                 UNK_src = src_word_seq[hard_alignment[j]]
                 if heuristic == 0:  # Copy (ok when training with large vocabularies on en->fr, en->de)
                     new_trans_words.append(UNK_src)
-                    logger.debug('Copying word %s' %UNK_src)
+                    logger.log(2, 'Copying word %s' %UNK_src)
                 elif heuristic == 1:
                     # Use the most likely translation (with t-table). If not found, copy the source word.
                     # Ok for small vocabulary (~30k) models
                     if UNK_src in mapping:
                         new_trans_words.append(mapping[UNK_src])
-                        logger.debug('%s found in mapping: %s.'%(UNK_src, mapping[UNK_src]))
+                        logger.log(2, '%s found in mapping: %s.'%(UNK_src, mapping[UNK_src]))
                     else:
                         new_trans_words.append(UNK_src)
-                        logger.debug('%s not found in mapping. Copying word.'%UNK_src)
+                        logger.log(2, '%s not found in mapping. Copying word.'%UNK_src)
 
                 elif heuristic == 2:
                     # Use t-table if the source word starts with a lowercase letter. Otherwise copy

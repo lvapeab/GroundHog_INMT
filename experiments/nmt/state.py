@@ -100,7 +100,6 @@ def prototype_state():
     state['dec_rec_reseting'] = True
     state['dec_rec_gater'] = 'lambda x: TT.nnet.sigmoid(x)'
     state['dec_rec_reseter'] = 'lambda x: TT.nnet.sigmoid(x)'
-
     state['softmax_layer'] = 'HierarchicalSoftmaxLayer'
 
     # ----- SIZES ----

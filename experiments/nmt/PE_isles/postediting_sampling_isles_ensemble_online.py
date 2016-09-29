@@ -435,7 +435,7 @@ def compute_alignment(src_seq, trg_seq, alignment_fns):
 
 def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
                           hard_alignment, unk_id, excluded_indices,
-                          heuristic=0, mapping=[]):
+                          heuristic=0, mapping=dict()):
 
     trans_words = trg_word_seq
     trans_seq = trg_seq
@@ -449,14 +449,14 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
             elif heuristic == 1:
                 # Use the most likely translation (with t-table). If not found, copy the source word.
                 # Ok for small vocabulary (~30k) models
-                if UNK_src in mapping:
+                if mapping.get(UNK_src) is not None:
                     new_trans_words.append(mapping[UNK_src])
                 else:
                     new_trans_words.append(UNK_src)
             elif heuristic == 2:
                 # Use t-table if the source word starts with a lowercase letter. Otherwise copy
                 # Sometimes works better than other heuristics
-                if UNK_src in mapping and UNK_src.decode('utf-8')[0].islower():
+                if mapping.get(UNK_src) is not None and UNK_src.decode('utf-8')[0].islower():
                     new_trans_words.append(mapping[UNK_src])
                 else:
                     new_trans_words.append(UNK_src)
@@ -562,6 +562,7 @@ def main():
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
                                                  outputs=[enc_decs[i].alignment],
                                                  name="alignment_fn"))
+    heuristic = -1
     if args.replaceUnk:
         if args.mapping:
             with open(args.mapping, 'rb') as f:
@@ -574,6 +575,9 @@ def main():
         logger.info("Replacing unkown words according to heuristic %d" % heuristic)
     else:
         logger.info("Not replacing unkown words")
+        mapping = None
+    if heuristic > 0:
+        assert mapping is not None, 'When using heuristic 1 or 2, a mapping should be provided'
 
     indx_word = sourceLanguage.word_indx
     idict_src = sourceLanguage.indx_word
@@ -734,7 +738,7 @@ def main():
                     if args.replaceUnk and unk_id in trg_seq:
                         hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
                         hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
-                                              unk_indices, heuristic=heuristic, mapping = mapping).split()
+                                              unk_indices, heuristic=heuristic, mapping=mapping).split()
 
                     if args.save_original:
                         print >> ftrans_ori, " ".join(hypothesis)

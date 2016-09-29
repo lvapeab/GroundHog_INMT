@@ -78,7 +78,7 @@ class BleuValidator(object):
     keeps track of the bleu scores over time
     """
     def __init__(self, state, lm_model,
-                beam_search, alignment_fns, heuristic, mapping, ignore_unk=False,
+                beam_search, alignment_fns, ignore_unk=False,
                 normalize=False, verbose=False):
         """
         Handles normal book-keeping of state variables,
@@ -104,17 +104,33 @@ class BleuValidator(object):
         args = dict(locals())
         args.pop('self')
         self.__dict__.update(**args)
-
+        self.state = state
         self.indx_word = cPickle.load(open(state['word_indx'],'rb'))
         self.idict_src = cPickle.load(open(state['indx_word'],'r'))
         self.n_samples = state['beam_size']
         self.best_bleu = 0
         self.alignment_fns = alignment_fns
-        self.heuristic = heuristic
-        self.mapping = mapping,
         self.unk_id = state['unk_sym_target']
-
+        self.verbose = verbose=state['output_validation_set']
+        self.beam_search = beam_search
+        self.lm_model = lm_model
+        self.ignore_unk = ignore_unk
+        self.normalize = normalize
         self.val_bleu_curve = []
+
+        if state['unkReplace']:
+            self.heuristic = state['heuristic']
+            if state['mapping'] is not None:
+                with open(state['mapping'], 'rb') as f:
+                    self.mapping = cPickle.load(f)
+                    logger.debug("Loaded mapping file from %s" % str(state['mapping']))
+            else:
+                self.mapping = None
+        logger.info("Replacing unkown words according to heuristic %d" % self.heuristic)
+
+        if self.heuristic > 0:
+            assert self.mapping is not None, 'When using heuristic 1 or 2, a mapping should be provided'
+
         if state['reload']:
             try:
                 bleu_score = numpy.load(state['prefix'] + 'val_bleu_scores.npz')
@@ -176,8 +192,7 @@ class BleuValidator(object):
             if self.state['unkReplace'] and self.state['oov'] in hypothesis:
                 logger.log(2, "Unknown word in line %i"%i)
                 hard_alignments = self.compute_alignment(seq, trg_seq, self.alignment_fns)
-                hypothesis = self.replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, self.unk_id,
-                                heuristic=self.heuristic, mapping = self.mapping)
+                hypothesis = self.replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, self.unk_id)
 
             # Write to subprocess and file if it exists
             if self.state['target_encoding'] == 'utf8' and \
@@ -241,7 +256,7 @@ class BleuValidator(object):
         return hard_alignments
 
 
-    def replace_unknown_words(self, src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id, heuristic=0, mapping=[]):
+    def replace_unknown_words(self, src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id):
         trans_words = trg_word_seq
         trans_seq = trg_seq
         hard_alignment = hard_alignment
@@ -249,24 +264,24 @@ class BleuValidator(object):
         for j in xrange(len(trans_words)): # -1 : Don't write <eos>
             if trans_seq[j] == unk_id:
                 UNK_src = src_word_seq[hard_alignment[j]]
-                if heuristic == 0:  # Copy (ok when training with large vocabularies on en->fr, en->de)
+                if self.heuristic == 0:  # Copy (ok when training with large vocabularies on en->fr, en->de)
                     new_trans_words.append(UNK_src)
                     logger.log(2, 'Copying word %s' %UNK_src)
-                elif heuristic == 1:
+                elif self.heuristic == 1:
                     # Use the most likely translation (with t-table). If not found, copy the source word.
                     # Ok for small vocabulary (~30k) models
-                    if UNK_src in mapping:
-                        new_trans_words.append(mapping[UNK_src])
-                        logger.log(2, '%s found in mapping: %s.'%(UNK_src, mapping[UNK_src]))
+                    if self.mapping.get(UNK_src) is not None:
+                        new_trans_words.append(self.mapping[UNK_src])
+                        logger.log(2, '%s found in mapping: %s.'%(UNK_src, self.mapping[UNK_src]))
                     else:
                         new_trans_words.append(UNK_src)
                         logger.log(2, '%s not found in mapping. Copying word.'%UNK_src)
 
-                elif heuristic == 2:
+                elif self.heuristic == 2:
                     # Use t-table if the source word starts with a lowercase letter. Otherwise copy
                     # Sometimes works better than other heuristics
-                    if UNK_src in mapping and UNK_src.decode('utf-8')[0].islower():
-                        new_trans_words.append(mapping[UNK_src])
+                    if self.mapping.get(UNK_src) is not None and UNK_src.decode('utf-8')[0].islower():
+                        new_trans_words.append(self.mapping[UNK_src])
                     else:
                         new_trans_words.append(UNK_src)
             else:
@@ -337,15 +352,6 @@ def main():
     if state['unkReplace']:
         alignment_fns = [theano.function(inputs=enc_dec.inputs,
                                                  outputs=[enc_dec.alignment], name="alignment_fn")]
-        if state['mapping'] is not None:
-            with open(state['mapping'], 'rb') as f:
-                mapping = cPickle.load(f)
-                logger.debug("Loaded mapping file from %s" % str(state['mapping']))
-            heuristic = state['heuristic']
-        else:
-            heuristic = 0
-            mapping = None
-    logger.info("Replacing unkown words according to heuristic %d" % heuristic)
 
 
     # If we are going to use validation with the bleu script, we
@@ -356,7 +362,7 @@ def main():
         # make beam search
         beam_search = BeamSearch(enc_dec)
         beam_search.compile()
-        bleu_validator = BleuValidator(state, lm_model, beam_search, alignment_fns, heuristic, mapping, verbose=state['output_validation_set'])
+        bleu_validator = BleuValidator(state, lm_model, beam_search, alignment_fns)
     else :
         logger.warning("BLEU validation will not be used")
     logger.debug("Load data")

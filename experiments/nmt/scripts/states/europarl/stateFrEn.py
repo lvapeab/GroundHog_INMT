@@ -21,7 +21,7 @@ deep_attention= False,
 deep_attention_n_hids = [600, 600],
 
 prefix = '/home/lvapeab/smt/tasks/europarl/fren/NMT/models/europarl_1000_620_',
-reload = False,
+reload = True,
 overwrite = 0,
 dropout = .5,
 loopIters=1e11,

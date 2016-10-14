@@ -192,7 +192,7 @@ class BleuValidator(object):
             if self.state['unkReplace'] and self.state['oov'] in hypothesis:
                 logger.log(2, "Unknown word in line %i"%i)
                 hard_alignments = self.compute_alignment(seq, trg_seq, self.alignment_fns)
-                hypothesis = self.replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, self.unk_id)
+                trans_out = self.replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, self.unk_id)
 
             # Write to subprocess and file if it exists
             if self.state['target_encoding'] == 'utf8' and \
@@ -257,6 +257,8 @@ class BleuValidator(object):
 
 
     def replace_unknown_words(self, src_word_seq, trg_seq, trg_word_seq, hard_alignment, unk_id):
+        logger.log(2,'Initial sentence: %s'%str(' '.join(trg_word_seq)))
+
         trans_words = trg_word_seq
         trans_seq = trg_seq
         hard_alignment = hard_alignment
@@ -272,10 +274,10 @@ class BleuValidator(object):
                     # Ok for small vocabulary (~30k) models
                     if self.mapping.get(UNK_src) is not None:
                         new_trans_words.append(self.mapping[UNK_src])
-                        logger.log(2, '%s found in mapping: %s.'%(UNK_src, self.mapping[UNK_src]))
+                        logger.log(2,'%s found in mapping: %s.'%(UNK_src, self.mapping[UNK_src]))
                     else:
                         new_trans_words.append(UNK_src)
-                        logger.log(2, '%s not found in mapping. Copying word.'%UNK_src)
+                        logger.log(2,'%s not found in mapping. Copying word.'%UNK_src)
 
                 elif self.heuristic == 2:
                     # Use t-table if the source word starts with a lowercase letter. Otherwise copy
@@ -291,6 +293,8 @@ class BleuValidator(object):
             to_write = to_write + word
             if j < len(new_trans_words):
                 to_write += ' '
+
+        logger.log(2,'Final sentence: %s'%str(to_write))
         return to_write
 
 

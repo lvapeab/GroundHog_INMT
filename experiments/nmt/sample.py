@@ -79,9 +79,7 @@ class BeamSearch(object):
             # Find the best options by calling argpartition of flatten array
             next_costs = numpy.array(costs)[:, None] - log_probs
             flat_next_costs = next_costs.flatten()
-            best_costs_indices = argpartition(
-                    flat_next_costs.flatten(),
-                    n_samples)[:n_samples]
+            best_costs_indices = argpartition(flat_next_costs.flatten(), n_samples)[:n_samples]
 
             # Decypher flatten indices
             voc_size = log_probs.shape[1]
@@ -95,8 +93,7 @@ class BeamSearch(object):
             new_states = [numpy.zeros((n_samples, dim), dtype="float32") for level
                     in range(num_levels)]
             inputs = numpy.zeros(n_samples, dtype="int64")
-            for i, (orig_idx, next_word, next_cost) in enumerate(
-                    zip(trans_indices, word_indices, costs)):
+            for i, (orig_idx, next_word, next_cost) in enumerate(zip(trans_indices, word_indices, costs)):
                 new_trans[i] = trans[orig_idx] + [next_word]
                 new_costs[i] = next_cost
                 for level in range(num_levels):

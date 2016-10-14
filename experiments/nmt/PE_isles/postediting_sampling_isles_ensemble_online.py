@@ -1,27 +1,26 @@
 #!/usr/bin/env python
 
-import theano
-import numpy
 import argparse
 import cPickle
-import traceback
-import logging
 import copy
-import time
+import logging
 import sys
+import time
+import traceback
 from collections import OrderedDict
+
+import numpy
+import theano
+
 from experiments.nmt import \
     RNNEncoderDecoder, \
     prototype_phrase_state, \
     parse_input
 from experiments.nmt.numpy_compat import argpartition
-from isles_utils import compute_mouse_movements, find_isles, is_sublist, subfinder
-from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, \
-    loadTargetLanguageFromState
 from groundhog.datasets.UnbufferedDataIterator import UnbufferedDataIterator
-from groundhog.trainer.SGD_online import SGD
-from groundhog.trainer.SGD_adagrad import AdaGrad
-from groundhog.trainer.SGD_adadelta_online import SGD as Adadelta
+from isles_utils import compute_mouse_movements, find_isles, is_sublist, subfinder
+from nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, \
+    loadTargetLanguageFromState
 
 logger = logging.getLogger(__name__)
 
@@ -344,8 +343,6 @@ def indices_to_words(i2w, seq):
         sen.append(i2w[seq[k]])
     return sen
 
-
-
 def kl(p, q):
     """
     D_{KL} (P||Q) = \sum_i P(i)log (P(i)/Q(i))
@@ -354,7 +351,6 @@ def kl(p, q):
     :return:
     """
     return numpy.sum(numpy.where(p != 0, p * numpy.log(p / q), 0))
-
 
 def smoothed_kl(p, q):
     # Additive smoothing

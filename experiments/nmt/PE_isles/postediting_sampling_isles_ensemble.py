@@ -1,26 +1,23 @@
 #!/usr/bin/env python
 
-import theano
 import argparse
 import cPickle
-import traceback
-import logging
-import time
+import copy
 import sys
+import time
+import traceback
 from collections import OrderedDict
 
-import itertools
 import numpy
-import experiments.nmt
-from termcolor import colored
+import theano
+
 from experiments.nmt import \
     RNNEncoderDecoder, \
     prototype_phrase_state, \
     parse_input
 from experiments.nmt.numpy_compat import argpartition
-from experiments.nmt.online.online_utils import loadSourceLanguageFromState, loadTargetLanguageFromState
 from isles_utils import *
-import copy
+from experiments.nmt.online.online_utils import loadSourceLanguageFromState, loadTargetLanguageFromState
 
 logger = logging.getLogger(__name__)
 

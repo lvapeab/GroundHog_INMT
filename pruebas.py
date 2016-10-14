@@ -1,28 +1,17 @@
 #!/usr/bin/env python
 
-import theano
-import numpy
-import argparse
 import cPickle
-import traceback
 import logging
-import copy
-import time
-import sys
-from collections import OrderedDict
+
+import numpy
+
 from experiments.nmt import \
     RNNEncoderDecoder, \
-    prototype_phrase_state, \
-    parse_input
-from experiments.nmt.numpy_compat import argpartition
+    prototype_phrase_state
 # from experiments.nmt.PE_isles.isles_utils import compute_mouse_movements, find_isles, is_sublist, subfinder
-from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, loadTargetLanguageFromState
+from nmt.online.online_utils import loadSourceLanguageFromState, loadTargetLanguageFromState
 from groundhog.datasets.UnbufferedDataIterator import UnbufferedDataIterator
-from groundhog.trainer.SGD_online import SGD as SGD_online
-from groundhog.trainer.SGD_adagrad import AdaGrad
 from groundhog.trainer.SGD import SGD
-from groundhog.trainer.SGD_momentum import SGD as SGD_momentum
-from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
 
 logger = logging.getLogger(__name__)
 

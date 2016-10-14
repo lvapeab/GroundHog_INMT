@@ -1,8 +1,0 @@
-nohup: no se tendrá en cuenta la entrada
-max_N=6
-lr=0.05
-Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/enes/ue_test_en_es_0.05.err
-./PE_UE_ensemble_online.sh: línea 45: ${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${prefix}_${lr}.err: redireccionamiento ambiguo
-max_N=6
-lr=0.05
-Storing results in /home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/post-editing/ue/enes/ue_test_en_es_0.05.err

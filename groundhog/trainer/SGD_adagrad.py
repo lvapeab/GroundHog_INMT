@@ -31,6 +31,7 @@ import time
 import theano
 import theano.tensor as TT
 
+from groundhog.utils import print_time
 
 logger = logging.getLogger(__name__)
 class AdaGrad(object):
@@ -153,6 +154,22 @@ class AdaGrad(object):
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
 
+        g_st = time.time()
         rvals = self.update_fn(self.lr)
-        if len(rvals) > 0:
-            print rvals
+        g_ed = time.time()
+        whole_time = time.time() - self.step_timer
+        if self.step % self.state['trainFreq'] == 0:
+            msg = '.. iter %s'
+            vals = [self.step]
+            for dx, prop in enumerate(self.prop_names):
+                msg += ' '+prop+' %.2e'
+            msg += ' step time %s whole time %s lr %.2e'
+            vals += [print_time(g_ed - g_st),
+                     print_time(time.time() - self.step_timer),
+                     float(self.lr)]
+            print msg % tuple(vals)
+        self.step += 1
+        ret = dict([('lr', float(self.lr)),
+                       ('time_step', float(g_ed - g_st)),
+                       ('whole_time', float(whole_time))]+zip(self.prop_names, rvals))
+        return ret

@@ -325,6 +325,10 @@ class BeamSearch(object):
                             new_costs[i] += 0.0
                     fin_trans.append(new_trans[i])
                     fin_costs.append(new_costs[i])
+                if len(fin_trans) == 0:
+                    logger.warning("No partial translations. Returning empty string.")
+                    fin_trans.append([0])
+                    fin_costs.append([numpy.inf])
 
         fin_trans = numpy.array(fin_trans)[numpy.argsort(fin_costs)]
         fin_costs = numpy.array(sorted(fin_costs))

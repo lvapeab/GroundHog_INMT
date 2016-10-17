@@ -30,17 +30,17 @@ seqlen = 50,
 sort_k_batches = 20,
 bs = 80,
 
-bleu_val_frequency=2000,
-validation_burn_in=20000,
+bleu_val_frequency=20000,
+validation_burn_in=180000,
 hookFreq = 1000,
 validFreq = 2000,
 trainFreq = 500,
 saveFreq = 60,
 
-validation_set='/home/lvapeab/smt/tasks/europarl/DATA/test.fr',
+validation_set='/home/lvapeab/smt/tasks/europarl/DATA/dev.fr',
 output_validation_set = True,
 validation_set_out = '/home/lvapeab/smt/tasks/europarl/fren/NMT/tmp/europarl_1000_620.hyp.en',
-validation_set_grndtruth='/home/lvapeab/smt/tasks/europarl/DATA/test.fr',
+validation_set_grndtruth='/home/lvapeab/smt/tasks/europarl/DATA/dev.en',
 
 #Unk Replace
 unkReplace=True,

@@ -40,7 +40,7 @@ saveFreq = 60,
 validation_set='/home/lvapeab/smt/tasks/europarl/DATA/test.en',
 output_validation_set = True,
 validation_set_out = '/home/lvapeab/smt/tasks/europarl/enfr/NMT/tmp/europarl_1000_620.hyp.fr',
-validation_set_grndtruth='/home/lvapeab/smt/tasks/europarl/DATA/test.en',
+validation_set_grndtruth='/home/lvapeab/smt/tasks/europarl/DATA/test.fr',
 
 #Unk Replace
 unkReplace=True,

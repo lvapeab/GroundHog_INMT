@@ -26,18 +26,17 @@ sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample_ensemble.py
 #  --normalize           Normalize log-prob with the word count
 #  --verbose             Be verbose
 
-task=xerox
-data_dir=/home/lvapeab/smt/tasks/${task}/DATA
-split=dev
-src_lan="es"
-dest_lan="en"
+task=europarl
+split=test
+src_lan="en"
+dest_lan="fr"
 
-source_file=${data_dir}/${split}.${src_lan}
-refs=${data_dir}/${split}.${dest_lan}
+source_file=${DATA_PREFIX}/$task/DATA/${split}.${src_lan}
+refs=${DATA_PREFIX}/$task/DATA//${split}.${dest_lan}
 
-model_name="xerox_289_354_"
-prefix=/home/lvapeab/smt/tasks/${task}/${src_lan}${dest_lan}/NMT/models/${model_name}
-beamsize=6
+model_name="europarl_1000_620_"
+prefix=${MODELS_PREFIX}/${task}/${src_lan}${dest_lan}/NMT/models/${model_name}
+beamsize=12
 
 state=${prefix}state.pkl
 m1=${prefix}model_bleu32.npz

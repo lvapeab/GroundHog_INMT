@@ -10,8 +10,8 @@ beam_size=12
 
 split="test"
 task="europarl"
-src_lan="en"
-trg_lan="fr"
+src_lan="fr"
+trg_lan="en"
 
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"

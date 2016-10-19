@@ -1,6 +1,4 @@
 #!/bin/bash
-#$ -l gpu=1,h_vmem=64g,h_rt=4:00:00
-
 sampler=/home/lvapeab/smt/software/GroundHog/experiments/nmt/sample_ensemble.py
 
 
@@ -39,17 +37,16 @@ prefix=${MODELS_PREFIX}/${task}/${src_lan}${dest_lan}/NMT/models/${model_name}
 beamsize=12
 
 state=${prefix}state.pkl
-m1=${prefix}model_bleu32.npz
-#m2=${prefix}model_bleu58.npz
-#m3=${prefix}model_bleu17.npz
-#m4=${prefix}model_bleu55.npz
-#m5=${prefix}model_bleu58.npz
-
+m1=${prefix}model_bleu98.npz
+m2=${prefix}model_bleu103.npz
+m3=${prefix}model_bleu105.npz
 
 v=""
+for beamsize in 12 20; 
+do
+    echo "Beam_size: $beamsize"
+    dest_file=${MODELS_PREFIX}/${task}/${src_lan}${dest_lan}/NMT/translations/${task}.${split}.beam_${beamsize}.hyp.${dest_lan}
+    time python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state}  --source ${source_file} --trans ${dest_file} ${v} --models ${m1} ${m2} ${m3} # ${m4} ${m5}
 
-dest_file=/home/lvapeab/smt/tasks/xerox/enes/NMT/translations/xerox.${split}.beam_${beam_size}.hyp.${dest_lan}
-python ${sampler} --beam-search --beam-size ${beamsize}  --state ${state}  --source ${source_file} --trans ${dest_file} ${v} --models ${m1} #${m2} ${m3} ${m4} ${m5}
-
-echo "Beam: $beamsize. `thot_calc_bleu -r  ${refs} -t ${dest_file}`"
-
+    echo "Beam: $beamsize. `thot_calc_bleu -r  ${refs} -t ${dest_file}`"
+done

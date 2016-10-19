@@ -169,7 +169,7 @@ def compute_alignment(src_seq, trg_seq, alignment_fns):
     for j in xrange(num_models):
         # target_len x source_len x num_examples
         alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
-    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
+    alignments[:, len(src_seq)-1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
     hard_alignments = numpy.argmax(alignments, axis=1)  # trg_len x num_examples
 
     return hard_alignments
@@ -272,10 +272,10 @@ def parse_args():
                   <0: longer ones")
     parser.add_argument("--replaceUnk",
                         default=True, action="store_true",
-                        help="Interactive post-editing?")
+                        help="Replace unknown words?")
     parser.add_argument("--mapping",
                         help="Top1 unigram mapping (Source to target)")
-    parser.add_argument("--heuristic", type=int, default=0,
+    parser.add_argument("--heuristic", type=int, default=1,
             help="0: copy, 1: Use dict, 2: Use dict only if lowercase. Used only if a mapping is given. Default is 0.")
     parser.add_argument("--models", nargs = '+', required=True,
             help="path to the models")
@@ -304,7 +304,7 @@ def main():
     alignment_fns = []
 
     for i in xrange(num_models):
-        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True))
+        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True, compute_alignment=args.replaceUnk))
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
@@ -315,11 +315,17 @@ def main():
     indx_word = cPickle.load(open(state['word_indx'],'rb')) #Source w2i
     heuristic = -1
     if args.replaceUnk:
-        if args.mapping:
-            with open(args.mapping, 'rb') as f:
-                mapping = cPickle.load(f)
-            logger.debug("Loaded mapping file from %s" % str(args.mapping))
-            heuristic = args.heuristic
+        if args.heuristic > 0:
+            if args.mapping:
+                with open(args.mapping, 'rb') as f:
+                    mapping = cPickle.load(f)
+                logger.debug("Loaded mapping file from %s" % str(args.mapping))
+                heuristic = args.heuristic
+            else:
+                with open(state['mapping'], 'rb') as f:
+                    mapping = cPickle.load(f)
+                logger.debug("Loaded mapping file from %s" % str(state['mapping']))
+                heuristic = args.heuristic
         else:
             heuristic = 0
             mapping = None

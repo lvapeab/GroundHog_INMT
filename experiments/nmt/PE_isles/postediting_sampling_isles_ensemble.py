@@ -558,11 +558,17 @@ def main():
                                                  name="alignment_fn"))
     heuristic = -1
     if args.replaceUnk:
-        if args.mapping:
-            with open(args.mapping, 'rb') as f:
-                mapping = cPickle.load(f)
-            logger.debug("Loaded mapping file from %s" % str(args.mapping))
-            heuristic = args.heuristic
+        if args.heuristic > 0:
+            if args.mapping:
+                with open(args.mapping, 'rb') as f:
+                    mapping = cPickle.load(f)
+                logger.debug("Loaded mapping file from %s" % str(args.mapping))
+                heuristic = args.heuristic
+            else:
+                with open(state['mapping'], 'rb') as f:
+                    mapping = cPickle.load(f)
+                logger.debug("Loaded mapping file from %s" % str(state['mapping']))
+                heuristic = args.heuristic
         else:
             heuristic = 0
             mapping = None

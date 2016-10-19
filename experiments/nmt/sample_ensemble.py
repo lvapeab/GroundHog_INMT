@@ -6,7 +6,7 @@ import traceback
 import logging
 import time
 import sys
-
+import theano
 import numpy
 
 import experiments.nmt
@@ -157,6 +157,61 @@ def indices_to_words(i2w, seq):
         sen.append(i2w[seq[k]])
     return sen
 
+
+def compute_alignment(src_seq, trg_seq, alignment_fns):
+    num_models = len(alignment_fns)
+
+    alignments = 0.
+    x = numpy.asarray([src_seq], dtype="int64").T
+    x_mask = numpy.ones((1, len(src_seq)), dtype="float32").T
+    y = numpy.asarray([trg_seq], dtype="int64").T
+    y_mask = numpy.ones((1, len(trg_seq)), dtype="float32").T
+    for j in xrange(num_models):
+        # target_len x source_len x num_examples
+        alignments += numpy.asarray(alignment_fns[j](x, y, x_mask, y_mask)[0])
+    alignments[:,len(src_seq)-1,range(x.shape[1])] = 0.  # Put source <eos> score to 0.
+    hard_alignments = numpy.argmax(alignments, axis=1)  # trg_len x num_examples
+
+    return hard_alignments
+
+
+def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
+                          hard_alignment, unk_id, excluded_indices,
+                          heuristic=0, mapping=dict()):
+
+    trans_words = trg_word_seq
+    trans_seq = trg_seq
+    hard_alignment = hard_alignment
+    new_trans_words = []
+    for j in xrange(len(trans_words)): # -1 : Don't write <eos>
+        if trans_seq[j] == unk_id and j not in excluded_indices:
+            UNK_src = src_word_seq[hard_alignment[j]]
+            if heuristic == 0:  # Copy (ok when training with large vocabularies on en->fr, en->de)
+                new_trans_words.append(UNK_src)
+            elif heuristic == 1:
+                # Use the most likely translation (with t-table). If not found, copy the source word.
+                # Ok for small vocabulary (~30k) models
+                if mapping.get(UNK_src) is not None:
+                    new_trans_words.append(mapping[UNK_src])
+                else:
+                    new_trans_words.append(UNK_src)
+            elif heuristic == 2:
+                # Use t-table if the source word starts with a lowercase letter. Otherwise copy
+                # Sometimes works better than other heuristics
+                if mapping.get(UNK_src) is not None and UNK_src.decode('utf-8')[0].islower():
+                    new_trans_words.append(mapping[UNK_src])
+                else:
+                    new_trans_words.append(UNK_src)
+        else:
+            new_trans_words.append(trans_words[j])
+    to_write = ''
+    for j, word in enumerate(new_trans_words):
+        to_write = to_write + word
+        if j < len(new_trans_words):
+            to_write += ' '
+    return to_write
+
+
 def sample(lm_model, seq, n_samples, eos_id, unk_id,
         sampler=None, beam_search=None,
         ignore_unk=False, normalize=False,
@@ -215,6 +270,13 @@ def parse_args():
     parser.add_argument("--wp", type=float, default=0.,
             help="Word penalty. >0: shorter translations \
                   <0: longer ones")
+    parser.add_argument("--replaceUnk",
+                        default=True, action="store_true",
+                        help="Interactive post-editing?")
+    parser.add_argument("--mapping",
+                        help="Top1 unigram mapping (Source to target)")
+    parser.add_argument("--heuristic", type=int, default=0,
+            help="0: copy, 1: Use dict, 2: Use dict only if lowercase. Used only if a mapping is given. Default is 0.")
     parser.add_argument("--models", nargs = '+', required=True,
             help="path to the models")
     parser.add_argument("--changes",
@@ -239,13 +301,34 @@ def main():
     rng = numpy.random.RandomState(state['seed'])
     enc_decs = []
     lm_models = []
+    alignment_fns = []
+
     for i in xrange(num_models):
         enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True))
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
-
+        if args.replaceUnk:
+            alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
+                                                 outputs=[enc_decs[i].alignment],
+                                                 name="alignment_fn"))
     indx_word = cPickle.load(open(state['word_indx'],'rb')) #Source w2i
+    heuristic = -1
+    if args.replaceUnk:
+        if args.mapping:
+            with open(args.mapping, 'rb') as f:
+                mapping = cPickle.load(f)
+            logger.debug("Loaded mapping file from %s" % str(args.mapping))
+            heuristic = args.heuristic
+        else:
+            heuristic = 0
+            mapping = None
+        logger.info("Replacing unkown words according to heuristic %d" % heuristic)
+    else:
+        logger.info("Not replacing unkown words")
+        mapping = None
+    if heuristic > 0:
+        assert mapping is not None, 'When using heuristic 1 or 2, a mapping should be provided'
 
     sampler = None
     beam_search = None
@@ -273,23 +356,33 @@ def main():
         for i, line in enumerate(fsrc):
             seqin = line.strip()
             seq, parsed_in = parse_input(state, indx_word, seqin, idx2word=idict_src) # seq is the ndarray of indices
+            src_words = seqin.split()
             # For now, keep all input words in the model.
             # In the future, we may want to filter them to save on memory, but this isn't really much of an issue now
             if args.verbose:
                 print "Parsed Input:", parsed_in
-            trans, costs, _ = sample(lm_models[0], seq, n_samples, sampler=sampler,
+            sentences, costs, trans = sample(lm_models[0], seq, n_samples, sampler=sampler,
                     beam_search=beam_search, ignore_unk=args.ignore_unk, normalize=args.normalize,
                     normalize_p=args.normalize_p, eos_id=eos_id, unk_id=unk_id)
+
             if not args.n_best:
                 best = numpy.argmin(costs)
-                print >>ftrans, trans[best]
+                hypothesis = sentences[best].split()
+                trg_seq = trans[best]
+                if args.replaceUnk and unk_id in trg_seq:
+                        hard_alignments = compute_alignment(seq, trg_seq, alignment_fns)
+                        hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
+                                              [], heuristic=heuristic, mapping=mapping).split()
+                print >> ftrans, " ".join(hypothesis)
             else:
+                if args.replaceUnk and unk_id in trg_seq:
+                    raise Exception, 'UNK replace not supported in N-best mode'
                 order = numpy.argsort(costs)
                 best = order[0]
                 for elt in order:
-                    print >>ftrans, str(i+args.start) + ' ||| ' + trans[elt] + ' ||| ' + str(costs[elt])
+                    print >>ftrans, str(i+args.start) + ' ||| ' + sentences[elt] + ' ||| ' + str(costs[elt])
             if args.verbose:
-                print "Translation:", trans[best]
+                print "Translation:", sentences[best]
             total_cost += costs[best]
             if (i + 1)  % 100 == 0:
                 ftrans.flush()

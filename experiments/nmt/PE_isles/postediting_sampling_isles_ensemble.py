@@ -468,7 +468,6 @@ def replace_unknown_words(src_word_seq, trg_seq, trg_word_seq,
             to_write += ' '
     return to_write
 
-
 def parse_args():
     parser = argparse.ArgumentParser(
             "Sample (of find with beam-serch) translations from a translation model")

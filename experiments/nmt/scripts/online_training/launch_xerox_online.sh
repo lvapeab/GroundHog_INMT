@@ -17,28 +17,24 @@ v=1
 model_infix="_289_354_"
 
 state="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}state.pkl"
-m1="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}model_bleu50.npz"
+m1="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}best_bleu_model.npz"
 
 
 #################################################
 
 
 # Variable parameters (for experimentation)
-split="test"
+split="dev"
 task="xerox"
-algo="SGD"
 
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"
 
-for lr in 0.1; do
-            echo "max_N=${max_n}"
-            echo "Storing results in  ${this_dir}/${task}_${split}_${src_lan}${trg_lan}_${lr}.err "
-	        echo "algo: ${algo}"
-            ori_dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.Orihyp.${trg_lan}"
-            dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.${trg_lan}"
-            mkdir -p `dirname ${ori_dest}`
-            mkdir -p `dirname ${dest}`
-            save_ori="--save-original --save-original-to ${ori_dest}"
-                python ${pe_script} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --references ${refs} ${save_ori}"_"${lr} --models ${m1}
+for algo in "AdaGrad" ; do
+    for lr in  0.0005   0.0001 0.00005  0.000 ; do
+        echo "algo: ${algo}"
+        dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.${trg_lan}"
+        mkdir -p `dirname ${dest}`
+        python ${pe_script} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --models ${m1}
+    done
 done

@@ -19,6 +19,10 @@ from experiments.nmt.numpy_compat import argpartition
 from groundhog.datasets.UnbufferedDataIterator import UnbufferedDataIterator
 from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSourceLanguageFromState, \
     loadTargetLanguageFromState
+from groundhog.trainer.SGD_online import SGD as SGD
+from groundhog.trainer.SGD_adadelta_online import SGD as Adadelta
+from groundhog.trainer.SGD_adagrad import AdaGrad as AdaGrad
+
 
 logger = logging.getLogger(__name__)
 
@@ -175,19 +179,14 @@ def smoothed_kl(p, q):
     return numpy.sum(p * numpy.log(p / q), 0)
 
 
-def sample(lm_model, seq, n_samples, eos_id, fixed_words={}, max_N=-1, isles=[],
-           sampler=None, beam_search=None, normalize=False,
+def sample(lm_model, seq, n_samples, eos_id, sampler=None, beam_search=None, normalize=False,
            alpha=1, verbose=False, idx2word=None):
     if beam_search:
         sentences = []
-        if fixed_words is None or fixed_words == {}:
-            minlen = len(seq) / 2
-        else:
-            minlen = max(len(seq) / 2, max(fixed_words.keys()))
+        minlen = len(seq) / 2
 
-        trans, costs = beam_search.search(seq, n_samples, eos_id=eos_id, fixed_words=fixed_words, isles=isles,
-                                          max_N=max_N, minlen=minlen, verbose=verbose,
-                                          idx2word=idx2word)
+        trans, costs = beam_search.search(seq, n_samples, eos_id=eos_id, unk_id=lm_model.target_language.unk_index,
+                                           ignore_unk=False, minlen=minlen)
         if normalize:
             counts = [len(s) for s in trans]
             costs = [co / cn for co, cn in zip(costs, counts)]
@@ -297,15 +296,13 @@ def parse_args():
     parser.add_argument("--trans", help="File to save translations in")
     parser.add_argument("--verbose", type=int, default=5,
                         help="Verbosity level: 0: No verbose. 1: Show hypotheses. 2: Show partial hypotheses.")
+    parser.add_argument("--normalize", action="store_true", default=False, help="Normalize log-prob with the word count")
     parser.add_argument("--replaceUnk", default=False, action="store_true", help="Interactive post-editing?")
     parser.add_argument("--mapping", help="Top1 unigram mapping (Source to target)")
     parser.add_argument("--heuristic", type=int, default=0,
                         help="0: copy, 1: Use dict, 2: Use dict only if lowercase. "
                              "Used only if a mapping is given. Default is 0.")
-    parser.add_argument("--references", help="Reference sentence (for computing WSR)")
-    parser.add_argument("--save-original", default=False, action="store_true",
-                        help="Save translations before post edition?")
-    parser.add_argument("--save-original-to", help="Save original hypotheses to")
+    parser.add_argument("--refs", help="Reference sentences")
     parser.add_argument("--models", nargs='+', required=True, help="path to the models")
     parser.add_argument("changes", nargs="?", default="", help="Changes to state")
     return parser.parse_args()
@@ -318,7 +315,6 @@ def main():
         state.update(cPickle.load(src))
     state.update(eval("dict({})".format(args.changes)))
     logging.basicConfig(format='%(levelname)s: %(message)s', level=state['level'])
-    #  logging.basicConfig(level=getattr(logging, state['level']), format=" %(msecs)d: %(message)s")
     if args.verbose == 0:
         logger.setLevel(level=logging.INFO)
     elif args.verbose == 1:
@@ -331,14 +327,11 @@ def main():
     fsrc = open(args.source, 'r')
     source_lines = [line for line in fsrc]
     ftrans = open(args.trans, 'w')
-    logger.info("Storing corrected hypotheses into: %s" % str(args.trans))
+    logger.info("Storing hypotheses into: %s" % str(args.trans))
     # Some checks before loading the model and compiling the modules
-    logger.info("Storing original hypotheses into: %s" % str(args.save_original_to))
-    ftrans_ori = open(args.save_original_to, 'w')
 
-
-    assert args.references is not None, "Automatic mode requires a reference file!"
-    ftrg = open(args.references, 'r')
+    assert args.refs is not None, "Online learning mode requires a reference file!"
+    ftrg = open(args.refs, 'r')
     target_lines = ftrg.read().split('\n')
     if target_lines[-1] == '':
         target_lines = target_lines[:-1]
@@ -403,12 +396,11 @@ def main():
         state['lr'] = args.lr
         state['weight_noise'] = args.wn
         for i in xrange(num_models):
-            batch_iters.append(UnbufferedDataIterator(args.source, args.trans, state, sourceLanguage.word_indx,
+            batch_iters.append(UnbufferedDataIterator(args.source, args.refs, state, sourceLanguage.word_indx,
                                             targetLanguage.word_indx, sourceLanguage.indx_word,
                                             targetLanguage.indx_word, num_sentences, state['seqlen'], None))
             algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 
-    # Interactive NMT loop
     if args.source and args.trans:
         # Actually only beam search is currently supported here
         assert beam_search
@@ -431,10 +423,8 @@ def main():
                 logger.debug("Target: %s" % target_lines[n_line])
                 reference = target_lines[n_line].split()
                 # 0. Get a first hypothesis
-                sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler,
-                                                 beam_search=beam_search,
-                                                 normalize=args.normalize, verbose=args.verbose,
-                                                 idx2word=indx2word_trg)
+                sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler, verbose=args.verbose,
+                                                 beam_search=beam_search, normalize=args.normalize, idx2word=indx2word_trg)
                 hypothesis_number += 1
                 best = numpy.argmin(costs)
                 hypothesis = sentences[best].split()
@@ -444,8 +434,7 @@ def main():
                     hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
                                           unk_indices, heuristic=heuristic, mapping=mapping).split()
 
-                if args.save_original:
-                    print >> ftrans_ori, " ".join(hypothesis)
+                print >> ftrans, " ".join(hypothesis)
                 logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
 
                 # Online learning
@@ -460,24 +449,8 @@ def main():
             pass
         print "Total cost of the translations: {}".format(total_cost)
         fsrc.close()
+        ftrg.close()
         ftrans.close()
-        if args.save_original:
-            ftrans_ori.close()
-    else:
-        while True:
-            try:
-                seqin = raw_input('Input Sequence: ')
-                n_samples = int(raw_input('How many samples? '))
-                alpha = None
-                if not args.beam_search:
-                    alpha = float(raw_input('Inverse Temperature? '))
-                src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
-                print "Parsed Input:", src_words
-            except Exception:
-                print "Exception while parsing your input:"
-                traceback.print_exc()
-                continue
-
 
 if __name__ == "__main__":
     main()

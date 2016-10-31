@@ -56,14 +56,17 @@ class AdaGrad(object):
         self.state = state
         self.data = data
         self.step_timer = time.time()
-        self.gdata = [theano.shared(numpy.zeros( (2,)*x.ndim,
-                                                dtype=x.dtype),
-                                    name=x.name) for x in model.inputs]
+        self.gdata = [theano.shared(numpy.zeros((2,)*x.ndim,
+                                                dtype=x.dtype), name=x.name) for x in model.inputs]
         self.gs = [theano.shared(numpy.zeros(p.get_value(borrow=True).shape,
                                              dtype=theano.config.floatX),
                                 name=p.name)
                    for p in model.params]
 
+        # G_{i,i}
+        self.accumulated_squared_gradients = [theano.shared(numpy.zeros(param.shape.eval(), dtype=param.dtype),
+                                                       name = param.name + '_acc_grad')
+                                         for param in model.params]
         self.eps = 1e-4
         if 'profile' not in self.state:
             self.state['profile'] = 0
@@ -77,50 +80,68 @@ class AdaGrad(object):
         self.prop_names = [x[0] for x in model.properties]
         self.prop_exprs = [x[1] for x in model.properties]
         self.update_rules = [x[1] for x in model.updates]
-        inputs_replacement_list = zip(model.inputs, loc_data)
+        #inputs_replacement_list = zip(model.inputs, loc_data)
+        rval = theano.clone(model.param_grads + self.update_rules + \
+                            self.prop_exprs + [model.train_cost],
+                            replace=zip(model.inputs, loc_data))
+        nparams = len(model.params)
+        nouts = len(self.prop_exprs)
+        nrules = len(self.update_rules)
+        gs = rval[:nparams]
+        rules = rval[nparams:nparams + nrules]
+        outs = rval[nparams + nrules:]
 
+        norm_gs = sum(TT.sum(x**2)
+            for x,p in zip(gs,
+                           self.model.params)
+                      if p not in self.model.exclude_params_for_norm)
+        if 'cutoff' in state and state['cutoff'] > 0:
+            c = numpy.float32(state['cutoff'])
+            if state['cutoff_rescale_length']:
+                c = c * TT.cast(loc_data[0].shape[0], 'float32')
 
-        accumulated_squared_gradients = [theano.shared(numpy.zeros(param.shape.eval(),
-                                                                   dtype=param.dtype),
-                                                       name = param.name + '_acc_grad')
-                                         for param in model.params]
+            notfinite = TT.or_(TT.isnan(norm_gs), TT.isinf(norm_gs))
+            _gs = []
+            for g,p in zip(gs,self.model.params):
+                if p not in self.model.exclude_params_for_norm:
+                    tmpg = TT.switch(TT.ge(norm_gs, c), g*c/norm_gs, g)
+                    _gs.append(
+                       TT.switch(notfinite, numpy.float32(.1)*p,
+                           tmpg))
+                else:
+                    _gs.append(g)
+            gs = _gs
 
-        output_values = []
-        st = time.time()
+        store_gs = [(s,g) for s,g in zip(self.gs, gs)]
+        training_updates = store_gs + [(s[0], r) for s,r in zip(model.updates, rules)]
+        print 'Compiling grad function'
+        self.train_fn = theano.function(
+            [], outs, name='train_function',
+            updates = training_updates,
+            givens = zip(model.inputs, loc_data),
+            profile=self.state['profile'])
 
-        def shift_zeroes(x):
-            # The formula would create NaN upon the presence of zeroes
-            return x + (abs(x) < 1e-8) * 1e-8
-
-
-        def nan_and_inf_to_zero(x):
-            x = TT.switch(TT.isnan(x), 0.0, x)
-            return TT.switch(TT.isinf(x), 1e8, x)
-
-
-        no_nan_or_inf_gradients = [nan_and_inf_to_zero(gradient) for gradient in self.gs]
 
         # Compute G_{i,i}
         accumulated_squared_gradients_update_list = [(acc_gradient, acc_gradient + gradient**2)
                                         for acc_gradient, gradient in
-                                        zip(accumulated_squared_gradients, no_nan_or_inf_gradients)]
-
+                                        zip(self.accumulated_squared_gradients, self.gs)]
+        accumulated_squared_gradients_update_list = [(name, theano.printing.Print("accumulated_squared_gradients_update_list:"+str(name))(update)) for name, update in accumulated_squared_gradients_update_list]
         # θ{t+1,i}=θ{t,i}−\div{η}{\sqrt{G_{t,ii}+ϵ}}*g_{t,i}
-        weight_update_list = [(weight, weight - lr / TT.sqrt(TT.inc_subtensor(G_t[1][:],  1e-8)+TT.pow(gradient, 2))
-                               * gradient) for weight, gradient, G_t
-                              in zip(model.params, no_nan_or_inf_gradients, accumulated_squared_gradients_update_list)]
+        updates = [(weight, weight - lr * gradient / TT.sqrt(G_t[1]+TT.pow(gradient, 2)+1e-8))
+                              for weight, G_t, gradient in zip(model.params, accumulated_squared_gradients_update_list, self.gs)]
 
-        updates = weight_update_list + accumulated_squared_gradients_update_list
+        #updates = [(name, theano.printing.Print("weight_update_list:"+str(name))(update)) for name, update in updates]
+
+
         print 'Compiling update function'
         self.lr = numpy.float32(state['lr'])
         print '\t > Using a learning rate of', self.lr
         self.update_fn = theano.function(
-            [lr], output_values, name='update_function',
-            allow_input_downcast=True,updates = updates,
+            [lr], [], name='update_function',
+            allow_input_downcast=True,updates=updates,
             profile=self.state['profile'],
             )
-
-        print 'took', time.time() - st
 
         self.old_cost = 1e20
         self.schedules = model.get_schedules()
@@ -153,11 +174,13 @@ class AdaGrad(object):
         else:
             for gdata, data in zip(self.gdata, batch):
                 gdata.set_value(data, borrow=True)
-
+        rvals = self.train_fn()
         g_st = time.time()
-        rvals = self.update_fn(self.lr)
+        self.update_fn(self.lr)
         g_ed = time.time()
         whole_time = time.time() - self.step_timer
+        self.state['lr'] = float(self.lr)
+
         if self.step % self.state['trainFreq'] == 0:
             msg = '.. iter %s'
             vals = [self.step]
@@ -167,7 +190,6 @@ class AdaGrad(object):
             vals += [print_time(g_ed - g_st),
                      print_time(time.time() - self.step_timer),
                      float(self.lr)]
-            print msg % tuple(vals)
         self.step += 1
         ret = dict([('lr', float(self.lr)),
                        ('time_step', float(g_ed - g_st)),

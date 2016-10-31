@@ -297,6 +297,7 @@ def parse_args():
     parser.add_argument("--verbose", type=int, default=5,
                         help="Verbosity level: 0: No verbose. 1: Show hypotheses. 2: Show partial hypotheses.")
     parser.add_argument("--normalize", action="store_true", default=False, help="Normalize log-prob with the word count")
+    parser.add_argument("--n-iters", type=int, default=1, help="Number of iterations for training the model. Default is 1.")
     parser.add_argument("--replaceUnk", default=False, action="store_true", help="Interactive post-editing?")
     parser.add_argument("--mapping", help="Top1 unigram mapping (Source to target)")
     parser.add_argument("--heuristic", type=int, default=0,
@@ -326,7 +327,6 @@ def main():
     # File reading
     fsrc = open(args.source, 'r')
     source_lines = [line for line in fsrc]
-    ftrans = open(args.trans, 'w')
     logger.info("Storing hypotheses into: %s" % str(args.trans))
     # Some checks before loading the model and compiling the modules
 
@@ -405,52 +405,58 @@ def main():
         # Actually only beam search is currently supported here
         assert beam_search
         assert args.beam_size
-        try:
-            start_time = time.time()
-            n_samples = args.beam_size
-            total_cost = 0.0
-            logging.info("Beam size: {}".format(n_samples))
-            for n_line, line in enumerate(source_lines):
-                hypothesis_number = 0
-                unk_indices = []
+        n_samples = args.beam_size
+        logging.info("Beam size: {}".format(n_samples))
+        for n_iter in range(1, args.n_iters + 1):
+            logging.info('Starting iteration %d' %n_iter)
+            ftrans = open(args.trans + '.iter_' + str(n_iter), 'w')
+            try:
+                start_time = time.time()
+                total_cost = 0.0
+                for n_line, line in enumerate(source_lines):
+                    hypothesis_number = 0
+                    unk_indices = []
 
-                seqin = line.strip()
-                src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
-                src_words = seqin.split()
+                    seqin = line.strip()
+                    src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                    src_words = seqin.split()
 
-                logger.debug("\n \n Processing sentence %d" % (n_line + 1))
-                logger.debug("Source: %s" % line[:-1])
-                logger.debug("Target: %s" % target_lines[n_line])
-                reference = target_lines[n_line].split()
-                # 0. Get a first hypothesis
-                sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler, verbose=args.verbose,
-                                                 beam_search=beam_search, normalize=args.normalize, idx2word=indx2word_trg)
-                hypothesis_number += 1
-                best = numpy.argmin(costs)
-                hypothesis = sentences[best].split()
-                trg_seq = trans[best]
-                if args.replaceUnk and unk_id in trg_seq:
-                    hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
-                    hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
-                                          unk_indices, heuristic=heuristic, mapping=mapping).split()
+                    logger.debug("\n \n Processing sentence %d" % (n_line + 1))
+                    logger.debug("Source: %s" % line[:-1])
+                    logger.debug("Target: %s" % target_lines[n_line])
+                    reference = target_lines[n_line].split()
+                    # 0. Get a first hypothesis
+                    sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler, verbose=args.verbose,
+                                                     beam_search=beam_search, normalize=args.normalize, idx2word=indx2word_trg)
+                    hypothesis_number += 1
+                    best = numpy.argmin(costs)
+                    hypothesis = sentences[best].split()
+                    trg_seq = trans[best]
+                    if args.replaceUnk and unk_id in trg_seq:
+                        hard_alignments = compute_alignment(src_seq, trg_seq, alignment_fns)
+                        hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
+                                              unk_indices, heuristic=heuristic, mapping=mapping).split()
 
-                print >> ftrans, " ".join(hypothesis)
-                logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
+                    print >> ftrans, " ".join(hypothesis)
+                    logger.debug("Hypo_%d: %s" % (hypothesis_number, " ".join(hypothesis)))
 
-                # Online learning
-                if args.algo is not None:
-                    hypothesis_batch = create_batch_from_seqs(src_seq, hypothesis)
-                    # Create batch
-                    for i in xrange(num_models):
-                        algos[i](hypothesis_batch)
-        except KeyboardInterrupt:
-            sys.exit(0)
-        except ValueError:
-            pass
-        print "Total cost of the translations: {}".format(total_cost)
+                    # Online learning
+                    if args.algo is not None:
+                        hypothesis_batch = create_batch_from_seqs(src_seq, hypothesis)
+                        # Create batch
+                        for i in xrange(num_models):
+                            algos[i](hypothesis_batch)
+
+            except KeyboardInterrupt:
+                sys.exit(0)
+            except ValueError:
+                pass
+            print "Total cost of the translations: {}".format(total_cost)
+            ftrans.close()
+            for i in xrange(num_models):
+                batch_iters[i].reset()
         fsrc.close()
         ftrg.close()
-        ftrans.close()
 
 if __name__ == "__main__":
     main()

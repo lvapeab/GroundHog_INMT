@@ -270,8 +270,8 @@ def parse_args():
     parser.add_argument("--wp", type=float, default=0.,
             help="Word penalty. >0: shorter translations \
                   <0: longer ones")
-    parser.add_argument("--replaceUnk",
-                        default=True, action="store_true",
+    parser.add_argument("--notReplaceUnk",
+                        default=False, action="store_true",
                         help="Replace unknown words?")
     parser.add_argument("--mapping",
                         help="Top1 unigram mapping (Source to target)")
@@ -302,19 +302,19 @@ def main():
     enc_decs = []
     lm_models = []
     alignment_fns = []
-
+    replaceUnk = not args.notReplaceUnk
     for i in xrange(num_models):
-        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True, compute_alignment=args.replaceUnk))
+        enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True, compute_alignment=replaceUnk))
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
-        if args.replaceUnk:
+        if replaceUnk:
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
                                                  outputs=[enc_decs[i].alignment],
                                                  name="alignment_fn"))
     indx_word = cPickle.load(open(state['word_indx'],'rb')) #Source w2i
     heuristic = -1
-    if args.replaceUnk:
+    if replaceUnk:
         if args.heuristic > 0:
             if args.mapping:
                 with open(args.mapping, 'rb') as f:
@@ -331,7 +331,8 @@ def main():
             mapping = None
         logger.info("Replacing unkown words according to heuristic %d" % heuristic)
     else:
-        logger.info("Not replacing unkown words")
+        logger.warning("Not replacing unknown words")
+
         mapping = None
     if heuristic > 0:
         assert mapping is not None, 'When using heuristic 1 or 2, a mapping should be provided'
@@ -375,13 +376,13 @@ def main():
                 best = numpy.argmin(costs)
                 hypothesis = sentences[best].split()
                 trg_seq = trans[best]
-                if args.replaceUnk and unk_id in trg_seq:
+                if replaceUnk and unk_id in trg_seq:
                         hard_alignments = compute_alignment(seq, trg_seq, alignment_fns)
                         hypothesis = replace_unknown_words(src_words, trg_seq, hypothesis, hard_alignments, unk_id,
                                               [], heuristic=heuristic, mapping=mapping).split()
                 print >> ftrans, " ".join(hypothesis)
             else:
-                if args.replaceUnk and unk_id in trg_seq:
+                if replaceUnk and unk_id in trg_seq:
                     raise Exception, 'UNK replace not supported in N-best mode'
                 order = numpy.argsort(costs)
                 best = order[0]

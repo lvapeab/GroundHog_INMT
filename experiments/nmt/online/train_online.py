@@ -22,7 +22,7 @@ from experiments.nmt.online.online_utils import create_batch_from_seqs, loadSour
 from groundhog.trainer.SGD_online import SGD as SGD
 from groundhog.trainer.SGD_adadelta_online import SGD as Adadelta
 from groundhog.trainer.SGD_adagrad import AdaGrad as AdaGrad
-
+from groundhog.trainer.PassiveAggressive import PassiveAggressive
 
 logger = logging.getLogger(__name__)
 
@@ -163,22 +163,6 @@ def indices_to_words(i2w, seq):
         sen.append(i2w[seq[k]])
     return sen
 
-def kl(p, q):
-    """
-    D_{KL} (P||Q) = \sum_i P(i)log (P(i)/Q(i))
-    :param p:
-    :param q:
-    :return:
-    """
-    return numpy.sum(numpy.where(p != 0, p * numpy.log(p / q), 0))
-
-def smoothed_kl(p, q):
-    # Additive smoothing
-    p = (p - 1) / p.shape[0]
-    q = (q - 1) / q.shape[0]
-    return numpy.sum(p * numpy.log(p / q), 0)
-
-
 def sample(lm_model, seq, n_samples, eos_id, sampler=None, beam_search=None, normalize=False,
            alpha=1, verbose=False, idx2word=None):
     if beam_search:
@@ -298,7 +282,7 @@ def parse_args():
                         help="Verbosity level: 0: No verbose. 1: Show hypotheses. 2: Show partial hypotheses.")
     parser.add_argument("--normalize", action="store_true", default=False, help="Normalize log-prob with the word count")
     parser.add_argument("--n-iters", type=int, default=1, help="Number of iterations for training the model. Default is 1.")
-    parser.add_argument("--replaceUnk", default=False, action="store_true", help="Interactive post-editing?")
+    parser.add_argument("--replaceUnk", default=False, action="store_true", help="Replace Unk")
     parser.add_argument("--mapping", help="Top1 unigram mapping (Source to target)")
     parser.add_argument("--heuristic", type=int, default=0,
                         help="0: copy, 1: Use dict, 2: Use dict only if lowercase. "
@@ -378,10 +362,10 @@ def main():
     if heuristic > 0:
         assert mapping is not None, 'When using heuristic 1 or 2, a mapping should be provided'
 
-    indx_word = sourceLanguage.word_indx
-    idict_src = sourceLanguage.indx_word
+    word2indx_src = sourceLanguage.word_indx
+    indx2word_src = sourceLanguage.indx_word
     unk_id = state['unk_sym_target']
-    word2index = targetLanguage.word_indx
+    word2indx_trg = targetLanguage.word_indx
     indx2word_trg = targetLanguage.indx_word
     eos_id = state['null_sym_target']
 
@@ -399,7 +383,11 @@ def main():
             batch_iters.append(UnbufferedDataIterator(args.source, args.refs, state, sourceLanguage.word_indx,
                                             targetLanguage.word_indx, sourceLanguage.indx_word,
                                             targetLanguage.indx_word, num_sentences, state['seqlen'], None))
-            algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
+
+            if 'PassiveAggressive' in args.algo:
+                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], enc_decs[i].predictions.word_probs))
+            else:
+                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 
     if args.source and args.trans:
         # Actually only beam search is currently supported here
@@ -418,13 +406,13 @@ def main():
                     unk_indices = []
 
                     seqin = line.strip()
-                    src_seq, src_words = parse_input(state, indx_word, seqin, idx2word=idict_src)
+                    src_seq, src_words = parse_input(state, word2indx_src, seqin, idx2word=indx2word_src)
                     src_words = seqin.split()
 
                     logger.debug("\n \n Processing sentence %d" % (n_line + 1))
                     logger.debug("Source: %s" % line[:-1])
                     logger.debug("Target: %s" % target_lines[n_line])
-                    reference = target_lines[n_line].split()
+                    #reference = target_lines[n_line].split()
                     # 0. Get a first hypothesis
                     sentences, costs, trans = sample(lm_models[0], src_seq, n_samples, eos_id, sampler=sampler, verbose=args.verbose,
                                                      beam_search=beam_search, normalize=args.normalize, idx2word=indx2word_trg)

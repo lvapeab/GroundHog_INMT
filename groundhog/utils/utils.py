@@ -189,3 +189,24 @@ def dbg_hook(hook, x):
         return x
     else:
         return theano.printing.Print(global_fn=hook)(x)
+
+
+def shift_zeroes(x):
+    """
+     Increases zeroes with an epsilon
+    :param x: Tensor
+    :return: x[i] + eps if x[i] < 1e-8
+    """
+    return x + (abs(x) < 1e-8) * 1e-8
+
+
+def nan_and_inf_to_zero(x):
+    """
+    NaN -> 0
+    Inf -> 1e8
+    :param x: Tensor
+    :return: Same tensor, withous extreme values
+    """
+
+    x = TT.switch(TT.isnan(x), 0.0, x)
+    return TT.switch(TT.isinf(x), 1e8, x)

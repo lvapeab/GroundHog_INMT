@@ -40,4 +40,9 @@ nosetests.xml
 *.npy
 *.pkl
 
+# Logs
+*.log
+*.err
 
+# PyCharm stuff
+.idea

@@ -25,6 +25,7 @@ m5="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/models/${task}${model_infix}mo
 
 echo "Beam_size: $beamsize"
 dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.OFFLINE.ensemble.${trg_lan}"
+mkdir -p `dirname $dest`
 
 time python ${sampler} --beam-search --beam-size ${beamsize} --notReplaceUnk --state ${state}  --source ${source_file} --trans ${dest} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
 

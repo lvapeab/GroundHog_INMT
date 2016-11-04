@@ -43,6 +43,7 @@ nosetests.xml
 # Logs
 *.log
 *.err
+out
 
 # PyCharm stuff
 .idea

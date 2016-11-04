@@ -30,14 +30,14 @@ split="dev"
 
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"
-
+topn="${DATA_PREFIX}/${task}/NMT_DATA/topn_${trg_lan}.pkl"
 for algo in "AdaGrad" ; do
     for lr in  0.001 0.0005 0.0001 0.00005 0.00001 ; do
         for n_iter in 4; do
             echo "algo: ${algo}"
             dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.${trg_lan}"
             mkdir -p `dirname ${dest}`
-            python ${pe_script} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
+            python ${pe_script} --verbose ${v} --replaceUnk --mapping ${topn} --heuristic 1 --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
         done
     done
 done
@@ -49,7 +49,7 @@ for algo in "SGD" ; do
             echo "algo: ${algo}"
             dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.${trg_lan}"
             mkdir -p `dirname ${dest}`
-            python ${pe_script} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
+            python ${pe_script} --verbose ${v} --replaceUnk --mapping ${topn} --heuristic 1 --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
         done
     done
 done

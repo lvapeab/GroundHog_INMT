@@ -32,8 +32,7 @@ class Language:
         return text
 
     def wordsToIndices(self, seq):
-        # For compatibility with legacy function parse_input
-        # this function adds an end-of-line word.
+        # For compatibility with legacy function parse_input this function adds an end-of-line word.
         words = seq.split()
         result = numpy.zeros(len(words) + 1, dtype='int64')
 
@@ -55,7 +54,8 @@ def loadTargetLanguageFromState(state, lang):
                     state['oov'], state['n_sym_target'], lang,
                     state['word_indx_trgt'], state['indx_word_target'])
 
-def create_padded_batch(x, y, seqlen, trim_batches, state, return_dict=False):
+def create_padded_batch(x, y, seqlen, trim_batches, source_language,
+                        target_language, return_dict=False):
     """A callback given to the iterator to transform data in suitable format
 
     :type x: list
@@ -108,13 +108,14 @@ def create_padded_batch(x, y, seqlen, trim_batches, state, return_dict=False):
             # Insert sequence sentenceIndex in a column of matrix X
             sentenceLength = len(x[sentenceIndex])
             # This is mainly done for the mask not to include two EOS
-            if x[sentenceIndex][sentenceLength - 1] == state['null_sym_source']:
+            if x[sentenceIndex][sentenceLength - 1] == source_language.eos_index:
                 sentenceLength -= 1
             realLength = min(mx, sentenceLength)
             X[:realLength, sentenceIndex] = x[sentenceIndex][:realLength]
             # Mark the end of phrase
             if sentenceLength < mx:
-                X[sentenceLength:, sentenceIndex] = state['null_sym_source']
+                X[sentenceLength:, sentenceIndex] = source_language.eos_index
+
             # Initialize Xmask column with ones in all positions that
             # were just set in X
             Xmask[:sentenceLength, sentenceIndex] = 1.
@@ -124,12 +125,12 @@ def create_padded_batch(x, y, seqlen, trim_batches, state, return_dict=False):
         for sentenceIndex in xrange(len(y)):
             sentenceLength = len(y[sentenceIndex])
             # This is mainly done for the mask not to include two EOS
-            if y[sentenceIndex][sentenceLength - 1] ==  state['null_sym_target']:
+            if y[sentenceIndex][sentenceLength - 1] == target_language.eos_index:
                 sentenceLength -= 1
             realLength = min(my, sentenceLength)
             Y[:realLength, sentenceIndex] = y[sentenceIndex][:realLength]
             if sentenceLength < my:
-                Y[sentenceLength:, sentenceIndex] =  state['null_sym_target']
+                Y[sentenceLength:, sentenceIndex] = target_language.eos_index
             Ymask[:sentenceLength, sentenceIndex] = 1.
             if sentenceLength < my:
                 Ymask[sentenceLength, sentenceIndex] = 1.
@@ -141,9 +142,9 @@ def create_padded_batch(x, y, seqlen, trim_batches, state, return_dict=False):
         for sentenceIndex in xrange(X.shape[1]):
             if numpy.sum(Xmask[:,sentenceIndex]) == 0 and numpy.sum(Ymask[:,sentenceIndex]) == 0:
                 null_inputs[sentenceIndex] = 1
-            if Xmask[-1,sentenceIndex] and X[-1,sentenceIndex] != state['null_sym_source']:
+            if Xmask[-1,sentenceIndex] and X[-1,sentenceIndex] != source_language.eos_index:
                 null_inputs[sentenceIndex] = 1
-            if Ymask[-1,sentenceIndex] and Y[-1,sentenceIndex] !=  state['null_sym_target']:
+            if Ymask[-1,sentenceIndex] and Y[-1,sentenceIndex] != target_language.eos_index:
                 null_inputs[sentenceIndex] = 1
         valid_inputs = 1. - null_inputs
         # Leave only valid inputs
@@ -154,8 +155,9 @@ def create_padded_batch(x, y, seqlen, trim_batches, state, return_dict=False):
         if len(valid_inputs.nonzero()[0]) <= 0:
             return None
         # Unknown words
-        X[X >= state['n_sym_source']] = state['unk_sym_source']
-        Y[Y >= state['n_sym_target']] = state['unk_sym_target']
+        X[X >= source_language.n_sym] = source_language.unk_index
+        Y[Y >= target_language.n_sym] = target_language.unk_index
+
     # -- end else
     if return_dict:
         return {'x' : X, 'x_mask' : Xmask, 'y': Y, 'y_mask' : Ymask}

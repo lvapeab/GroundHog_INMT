@@ -331,6 +331,7 @@ def main():
     enc_decs = []
     lm_models = []
     alignment_fns = []
+    probs_computers = []
     sourceLanguage = loadSourceLanguageFromState(state)
     targetLanguage = loadTargetLanguageFromState(state)
     # Model loading
@@ -340,6 +341,8 @@ def main():
         enc_decs[i].build()
         lm_models.append(enc_decs[i].create_lm_model())
         lm_models[i].load(args.models[i])
+        if 'PassiveAggressive' in args.algo:
+            probs_computers.append(enc_decs[i].create_probs_computer(return_alignment=False))
         logger.info('Loading model %d from %s'%(i, args.models[i]))
         if args.replaceUnk:
             alignment_fns.append(theano.function(inputs=enc_decs[i].inputs,
@@ -380,12 +383,11 @@ def main():
         state['lr'] = args.lr
         state['weight_noise'] = args.wn
         for i in xrange(num_models):
-            batch_iters.append(UnbufferedDataIterator(args.source, args.refs, state, sourceLanguage.word_indx,
-                                            targetLanguage.word_indx, sourceLanguage.indx_word,
-                                            targetLanguage.indx_word, num_sentences, state['seqlen'], None))
+            batch_iters.append(UnbufferedDataIterator(args.source, args.refs, sourceLanguage, targetLanguage,
+                                                      num_sentences, state['seqlen'], None))
 
             if 'PassiveAggressive' in args.algo:
-                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], enc_decs[i].predictions.word_probs))
+                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], probs_computers[i]))
             else:
                 algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 
@@ -430,10 +432,10 @@ def main():
 
                     # Online learning
                     if args.algo is not None:
-                        hypothesis_batch = create_batch_from_seqs(src_seq, hypothesis)
+                        #hypothesis_batch = create_batch_from_seqs(src_seq, hypothesis)
                         # Create batch
                         for i in xrange(num_models):
-                            algos[i](hypothesis_batch)
+                            algos[i](" ".join(hypothesis))
 
             except KeyboardInterrupt:
                 sys.exit(0)

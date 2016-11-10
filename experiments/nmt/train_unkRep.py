@@ -12,11 +12,10 @@ import numpy
 import time
 import experiments
 import theano
-from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
+
 from groundhog.trainer.SGD import SGD as SGD
 from groundhog.trainer.SGD_momentum import SGD as SGD_momentum
-
-
+from groundhog.trainer.SGD_adadelta import SGD as SGD_adadelta
 
 from groundhog.mainLoop import MainLoop
 from experiments.nmt import\

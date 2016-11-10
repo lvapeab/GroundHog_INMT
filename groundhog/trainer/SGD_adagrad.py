@@ -126,13 +126,10 @@ class AdaGrad(object):
         accumulated_squared_gradients_update_list = [(acc_gradient, acc_gradient + gradient**2)
                                         for acc_gradient, gradient in
                                         zip(self.accumulated_squared_gradients, self.gs)]
-        #accumulated_squared_gradients_update_list = [(name, theano.printing.Print("accumulated_squared_gradients_update_list:"+str(name))(update)) for name, update in accumulated_squared_gradients_update_list]
+
         # θ{t+1,i}=θ{t,i}−\div{η}{\sqrt{G_{t,ii}+ϵ}}*g_{t,i}
         updates = [(weight, weight - lr * gradient / TT.sqrt(G_t[1]+TT.pow(gradient, 2)+1e-8))
                               for weight, G_t, gradient in zip(model.params, accumulated_squared_gradients_update_list, self.gs)]
-
-        #updates = [(name, theano.printing.Print("weight_update_list:"+str(name))(update)) for name, update in updates]
-
 
         print 'Compiling update function'
         self.lr = numpy.float32(state['lr'])

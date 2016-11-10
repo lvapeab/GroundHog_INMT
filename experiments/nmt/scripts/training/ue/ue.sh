@@ -1,5 +1,9 @@
 #!/bin/bash
 
+this_dir=`pwd`;
+cd ${SOFTWARE_PREFIX}/GroundHog/
+python ./setup.py build install > /dev/null 2> /dev/null;
+cd $this_dir
 
 trainer=/home/lvapeab/smt/software/GroundHog/experiments/nmt/train_unkRep.py
 state=/home/lvapeab/smt/software/GroundHog/experiments/nmt/scripts/states/ue/stateEnEs.py

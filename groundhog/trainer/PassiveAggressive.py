@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
-
-""" Iterative implementation of the Passive Aggressive algorithm (or an approximation to)
+"""
+ Iterative implementation of the Passive Aggressive algorithm (or an approximation to)
 """
 
 __docformat__ = 'restructedtext en'
@@ -26,11 +25,14 @@ class PassiveAggressive(object):
                  state,
                  data,
                  probs_computer,
-                 tolerance=1.):
+                 tolerance=0.,
+                 C=1.):
 
         #####################################
         # Step 0. Constructs shared variables
         #####################################
+
+        assert tolerance >= 0, 'Tolerance value should always be >= 0'
 
         bs = state['bs']
         self.model = model
@@ -43,13 +45,11 @@ class PassiveAggressive(object):
         self.data = data
         self.probs_computer = probs_computer
         self.step_timer = time.time()
-        self.gdata = [theano.shared(np.zeros( (2,)*x.ndim, dtype=x.dtype), name=x.name)
-                      for x in model.inputs]
-        self.gs = [theano.shared(np.zeros(p.get_value(borrow=True).shape,
-                                             dtype=theano.config.floatX),
-                                 name=p.name)
+        self.gdata = [theano.shared(np.zeros( (2,)*x.ndim, dtype=x.dtype), name=x.name) for x in model.inputs]
+        self.gs = [theano.shared(np.zeros(p.get_value(borrow=True).shape, dtype=theano.config.floatX), name=p.name)
                    for p in model.params]
-
+        self.tolerance = tolerance
+        self.C = C
         self.eps = 1e-4
         if 'profile' not in self.state:
             self.state['profile'] = 0
@@ -60,17 +60,13 @@ class PassiveAggressive(object):
 
         print 'Constructing grad function'
         loc_data = self.gdata
-        lr = T.scalar('lr')
         self.prop_names = [x[0] for x in model.properties]
         self.prop_exprs = [x[1] for x in model.properties]
         self.update_rules = [x[1] for x in model.updates]
-        self.iterationInitialParams = [theano.shared(np.array(param.get_value(),
-                                                                 dtype = param.dtype),
-                                                     name = "%s_iteration_initial" % param.name)
-                                       for param in model.params]
-        inputs_replacement_list = zip(model.inputs, loc_data)
-        rval = theano.clone(model.param_grads + self.update_rules + \
-                            self.prop_exprs + [model.train_cost],
+
+        inputs_replacement_list = zip(model.inputs, loc_data)  # = [(y, y), (y_mask, y_mask), (x, x), (x_mask, x_mask)]
+
+        rval = theano.clone(model.param_grads + self.update_rules + self.prop_exprs + [model.train_cost],
                             replace=zip(model.inputs, loc_data))
         nparams = len(model.params)
         nouts = len(self.prop_exprs)
@@ -78,7 +74,7 @@ class PassiveAggressive(object):
         gs = rval[:nparams]
         rules = rval[nparams:nparams + nrules]
         outs = rval[nparams + nrules:]
-
+        """
         norm_gs = sum(T.sum(x**2)
             for x,p in zip(gs,
                            self.model.params)
@@ -108,111 +104,50 @@ class PassiveAggressive(object):
             updates = training_updates,
             givens = zip(model.inputs, loc_data),
             profile=self.state['profile'])
+        """
 
+        outputs = []
 
+        hypothesis = T.lmatrix('hypothesis')
+        hyp_mask = T.matrix('hyp_mask')
         inputDict = {}
         gdataDict = {}
         for inputVar in model.inputs:
-            # y, y_mask, x, x_mask
             inputDict[inputVar.name] = inputVar
-
         for inputVar in self.gdata:
-            # y, y_mask, x, x_mask
             gdataDict[inputVar.name] = inputVar
+        hypothesis_replacement_list = filter(lambda (x, y): x.name != 'y' and  x.name != 'y_mask',
+                                             inputs_replacement_list) # Get 'x' and 'x_mask'
+        hypothesis_replacement_list.append((inputDict['y'], hypothesis))
+        hypothesis_replacement_list.append((inputDict['y_mask'], hyp_mask))
+        target_replacement_list = inputs_replacement_list
 
-        target_replacement_list = inputs_replacement_list[:]
-        print "input_replacement_list", inputs_replacement_list
-        hypothesis = T.lvector('hypothesis')
-        hyp_mask = T.vector('hyp_mask')
-        #hypothesis_replacement_list = filter(lambda (x, y): x.name != 'y' and x.name != 'y_mask',
-        #                                     inputs_replacement_list)
-        #hypothesis_replacement_list.append((inputDict['y'], hypothesis))
-        #hypothesis_replacement_list.append((inputDict['y_mask'], hyp_mask))
-        #print "hypothesis_replacement_list", hypothesis_replacement_list
+        #print "hypothesis_replacement_list", hypothesis_replacement_list # = [(x, x), (x_mask, x_mask), (y, hypothesis), (y_mask, hyp_mask)]
+        #print "target_replacement_list", target_replacement_list # = [(y, y), (y_mask, y_mask), (x, x), (x_mask, x_mask)]
+        #print "gdata", self.gdata # = [y, y_mask, x, x_mask]
+        # yCost = theano.clone(model.cost_layer.cost, replace=target_replacement_list)
+        # hCost = theano.clone(model.cost_layer.cost, replace=hypothesis_replacement_list)
+        #loss = theano.clone(model.cost_layer.cost, replace=hypothesis_replacement_list)#theano.clone(model.cost_layer.cost, replace=target_replacement_list) #- theano.clone(model.cost_layer.cost, replace=hypothesis_replacement_list)
 
-        #src_seq = T.lmatrix('src_seq')
-        #trg_seq = T.lmatrix('trg_seq')
-        #probs = probs_computer(src_seq, trg_seq)
-        #self.probs_computer = theano.function([src_seq, trg_seq], probs, name='probs_computer')
-
-        outputs = []
-
-        """
-        #print "word_probs", word_probs
-        #y_probs = theano.clone(word_probs, replace=target_replacement_list)
-        #hyp_probs = theano.clone(word_probs, replace=hypothesis_replacement_list)
-
-        #yCost = T.sum(-T.log(y_probs))
-        #hypCost = T.sum(-T.log(hyp_probs))
-
-        self.outputNames = []
-        outputs = []
-
-        loss = hypCost - yCost
-
-        self.loss = loss
-        loss = theano.clone(model.cost_layer.cost, replace = hypothesis_replacement_list) - \
-               theano.clone(model.cost_layer.cost, replace = target_replacement_list)
-        loss = theano.printing.Print('loss')(loss)
-        # loss must be first output
-        #self.outputNames.append('loss')
-        #outputs.append(loss)
-        #print "outputs", outputs
-        """
-
-
-        """
-        lossGrads = [T.grad(loss, weight) for weight in model.params]
-        lossGradsNorm = T.sqrt(T.sum([T.sum(T.sqr(grad)) for grad in lossGrads]))
-
-        k = 1
-        if k == 2:
-            # For some reason, 2 * tolerance is cast to float64, even
-            # if theano.config.floatX is 32, this fixes it:
-            doubleTolerance = np.array(2, dtype=theano.config.floatX) * tolerance
-            one = np.array(1, dtype = theano.config.floatX)
-            lagrangeMultiplier = - one / ((lossGradsNorm ** 2) - one / doubleTolerance)
-
-            updateList = [-lagrangeMultiplier * lossGrad
-                          for lossGrad in lossGrads]
-            self.outputNames.append('Lambda')
-            outputs.append(lagrangeMultiplier)
-            self.outputNames.append('lossGradsNorm')
-            outputs.append(lossGradsNorm)
-        elif k == 1:
-            lagrangeMultiplier1 = T.min([tolerance, -loss / (lossGradsNorm ** 2)])
-            lagrangeMultiplier2 = tolerance - lagrangeMultiplier1
-            updateList = [-lagrangeMultiplier1 * lossGrad for lossGrad in lossGrads]
-            self.outputNames.append('lossGradsNorm')
-            outputs.append(lossGradsNorm)
-        else:
-            raise Exception('Unsupported k: %d' % k)
-
-        updateNorm = T.sqrt(T.sum([T.sum(T.sqr(update)) for update in updateList]))
-        self.outputNames.append('updateNorm')
-        outputs.append(updateNorm)
-
-        print 'Compiling training function'
-        st = time.time()
-        """
-
-        #updates = [(weight, initWeight + update)
-        #               for weight, initWeight, update
-        #               in zip(model.params, self.iterationInitialParams, updateList)]
-        new_params = [p - s * g for s, p, g in zip(model.params_grad_scale, model.params, self.gs)]
-        updates = zip(model.params, new_params)
+        loss = T.fscalar('loss')
+        loss = theano.printing.Print('loss=')(loss)
+        # hCost - yCost
+        #loss = theano.clone(model.cost_layer.cost) - theano.clone(model.cost_layer.cost)
+        lossGrads = [T.grad(loss, weight, return_disconnected='zero') for weight in model.params]
+        new_params = [p +  l * g  for p, l, g in
+                      zip(model.params, lossGrads, self.gs)]
+        loss2 = loss + 1.
+        print 'Compiling update function'
         self.update_fn = theano.function(
-            [hypothesis, hyp_mask],
-            outputs,
-            name='update_function',
+            [hypothesis, hyp_mask, loss],
+            [loss2], name='update_function',
             allow_input_downcast=True,
-            profile=self.state['profile'],
-            updates = updates)
-
+            updates = zip(model.params, new_params),
+            profile=self.state['profile'])
         self.old_cost = 1e20
         self.schedules = model.get_schedules()
         self.return_names = self.prop_names + ['cost', 'time_step', 'whole_time']
-
+        print 'End compiling PA algorithm'
 
     def setIterationInitialWeights(self):
         for initialParam, param in zip(self.iterationInitialParams, self.model.params):
@@ -265,22 +200,28 @@ class PassiveAggressive(object):
         ref_prob = ref_word_probs.flatten().sum()
         hyp_prob = hyp_word_probs.flatten().sum()
 
-        if ref_prob < hyp_prob:
+        self.loss = hyp_prob - ref_prob
+        rvals = []
+
+        if self.loss <= self.tolerance:
             print ref_prob,  "<", hyp_prob, "!"
             print "NOW we should launch update fn!"
             print "(hypothesis: ", hypothesis,")"
-            self.setIterationInitialWeights()
-            rvals = self.update_fn(hyp_indices, hyp_mask)
+            #self.train_fn()
+            rvals = self.update_fn(np.asarray([hyp_indices]), np.asarray([hyp_mask]), self.loss)
         else:
-            assert np.all(np.equal(trg_seq, hyp_indices)), '"' + hypothesis + '" is not equal to reference and has ' \
+            try:
+                assert np.all(np.equal(trg_seq, hyp_indices)), '"' + hypothesis + '" is not equal to reference and has ' \
                                                         'more probability!! \n' \
                                                             '\t Hypothesis probability: '+str(hyp_prob)+ '\n' \
                                                             '\t Reference probability: ' + str(ref_prob)  + '\n'
+            except:
+                pass
             return
 
-        if len(rvals) > 0:
-            self.print_trace(rvals)
-            # rvals[0] must always be loss
-            loss = rvals[0]
-            if abs(loss) < 1:
-                return
+        #if len(rvals) > 0:
+        #    self.print_trace(rvals)
+        #    # rvals[0] must always be loss
+        #    loss = rvals[0]
+        #    if abs(loss) < 1:
+        #        return

@@ -3,11 +3,11 @@ sampler=${SOFTWARE_PREFIX}/GroundHog/experiments/nmt/sample_ensemble.py
 
 
 beamsize=12
-src_lan="en"
-trg_lan="fr"
+src_lan="fr"
+trg_lan="en"
 trained_task="europarl"
 translation_task="emea"
-split="dev"
+split="test"
 
 v=1
 

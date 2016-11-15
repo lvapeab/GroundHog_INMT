@@ -32,13 +32,17 @@ task="xerox"
 source="${DATA_PREFIX}/${task}/DATA/${split}.${src_lan}"
 refs="${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}"
 
+n_iter=1
 for algo in "PassiveAggressive" ; do
     for lr in 0.001  ; do
-        for n_iter in 1; do
             echo "algo: ${algo}"
             dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${algo}.${lr}.${trg_lan}"
             mkdir -p `dirname ${dest}`
             python ${pe_script} --verbose ${v} --algo ${algo} --lr ${lr} --beam-search --beam-size ${beam_size} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
+
+        for n_iter in `seq 1 $n_iter`; do
+            echo "BLEU: `calc_bleu -r  ${refs} -t ${dest}.iter_${n_iter}`"
         done
     done
 done
+

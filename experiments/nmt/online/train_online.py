@@ -278,7 +278,7 @@ def parse_args():
     parser.add_argument("--beam-size", type=int, help="Beam size")
     parser.add_argument("--source", help="File of source sentences")
     parser.add_argument("--trans", help="File to save translations in")
-    parser.add_argument("--verbose", type=int, default=5,
+    parser.add_argument("--verbose", type=int, default=1,
                         help="Verbosity level: 0: No verbose. 1: Show hypotheses. 2: Show partial hypotheses.")
     parser.add_argument("--normalize", action="store_true", default=False, help="Normalize log-prob with the word count")
     parser.add_argument("--n-iters", type=int, default=1, help="Number of iterations for training the model. Default is 1.")

@@ -15,7 +15,7 @@ trg_lan="fr"
 task="europarl"
 v=1
 
-split="dev"
+split="test"
 
 model_infix="_1000_620_"
 
@@ -34,20 +34,20 @@ refs=${DATA_PREFIX}/${task}/DATA/${split}.${trg_lan}
 topn="${DATA_PREFIX}/${task}/DATA/NMT/topn_${trg_lan}.pkl"
 
 n_iter=1
-for algo in "AdaGrad" ; do
-    for lr in 0.5 0.1 0.05 0.01 0.005 0.001 0.0005 0.0001 0.00005 0.00001 ; do
-            echo "algo: ${algo}"
-            dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${task}.${task}.${algo}.${lr}.${trg_lan}"
-            mkdir -p `dirname ${dest}`
-            python ${pe_script} --verbose ${v} --replaceUnk --mapping ${topn} --heuristic 1 --algo ${algo} --lr ${lr} --beam-search --beam-size ${beamsize} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
-        for n_iter in `seq 1 $n_iter`; do
-            echo "BLEU: `calc_bleu -r  ${refs} -t ${dest}.iter_${n_iter}`"
-        done
-    done
-done
+#for algo in "AdaGrad" ; do
+#    for lr in 0.001 ; do #0.5 0.1 0.05 0.01 0.005 0.001 0.0005 0.0001 0.00005 0.00001 ; do
+#            echo "algo: ${algo}"
+#            dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${task}.${task}.${algo}.${lr}.${trg_lan}"
+#            mkdir -p `dirname ${dest}`
+#            python ${pe_script} --verbose ${v} --replaceUnk --mapping ${topn} --heuristic 1 --algo ${algo} --lr ${lr} --beam-search --beam-size ${beamsize} --state ${state} --source ${source} --trans ${dest} --refs ${refs} --n-iters ${n_iter} --models ${m1} # ${m2} ${m3} ${m4} ${m5}
+#        for n_iter in `seq 1 $n_iter`; do
+#            echo "BLEU: `calc_bleu -r  ${refs} -t ${dest}.iter_${n_iter}`"
+#        done
+#    done
+#done
 
 for algo in "SGD" ; do
-    for lr in 0.5 0.1 0.05 0.01 0.005 0.001 0.0005 0.0001 0.00005 0.00001 ; do
+    for lr in 0.00001 ; do #0.5 0.1 0.05 0.01 0.005 0.001 0.0005 0.0001 0.00005 0.00001 ; do
             echo "algo: ${algo}"
             dest="${MODELS_PREFIX}/${task}/${src_lan}${trg_lan}/Online/${split}.${task}.${task}.${algo}.${lr}.${trg_lan}"
             mkdir -p `dirname ${dest}`

@@ -387,7 +387,7 @@ def main():
                                                       num_sentences, state['seqlen'], None))
 
             if 'PassiveAggressive' in args.algo:
-                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], probs_computers[i]))
+                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], probs_computers[i], enc_decs[i].predictions.word_probs))
             else:
                 algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 

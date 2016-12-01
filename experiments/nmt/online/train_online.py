@@ -335,6 +335,11 @@ def main():
     sourceLanguage = loadSourceLanguageFromState(state)
     targetLanguage = loadTargetLanguageFromState(state)
     # Model loading
+    state['lr'] = args.lr
+    state['weight_noise'] = args.wn
+    if not args.wn:
+        state['weight_noise_amount'] = 0.
+        state['dropout'] = 1.0
     for i in xrange(num_models):
         enc_decs.append(RNNEncoderDecoder(state, rng, skip_init=True,
                                           compute_alignment=args.replaceUnk))
@@ -380,14 +385,15 @@ def main():
     else:
         raise NotImplementedError
     if args.algo is not None:
-        state['lr'] = args.lr
-        state['weight_noise'] = args.wn
+
+
+        print state
         for i in xrange(num_models):
             batch_iters.append(UnbufferedDataIterator(args.source, args.refs, sourceLanguage, targetLanguage,
                                                       num_sentences, state['seqlen'], None))
 
             if 'PassiveAggressive' in args.algo:
-                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], probs_computers[i], enc_decs[i].predictions.word_probs))
+                algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i], probs_computers[i] ))#, word_probs=enc_decs[i].predictions.word_probs))
             else:
                 algos.append(eval(args.algo)(lm_models[i], state, batch_iters[i]))
 
